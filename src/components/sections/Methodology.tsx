@@ -101,23 +101,23 @@ const Methodology = () => {
                   <span className="text-pink-400">import</span> pandas <span className="text-pink-400">as</span> pd{'\n'}
                   <span className="text-pink-400">from</span> sklearn.ensemble <span className="text-pink-400">import</span> RandomForestRegressor{'\n\n'}
                   <span className="text-slate-500"># Load Economic Indicators</span>{'\n'}
-                  italy_data = pd.read_api(<span className="text-green-400">"ISTAT_GDP_Q4"</span>){'\n'}
-                  turkey_data = pd.read_api(<span className="text-green-400">"TUIK_INFLATION"</span>){'\n\n'}
+                  italy_data = pd.read_api(<span className="text-green-400">&quot;ISTAT_GDP_Q4&quot;</span>){'\n'}
+                  turkey_data = pd.read_api(<span className="text-green-400">&quot;TUIK_INFLATION&quot;</span>){'\n\n'}
                   <span className="text-blue-400">def</span> <span className="text-yellow-400">calculate_viability</span>(sector, capital):{'\n'}
                   {'  '}risk_score = <span className="text-pink-400">0</span>{'\n'}
                   {'  '}{'\n'}
                   {'  '}<span className="text-slate-500"># Analyze Regulatory Friction</span>{'\n'}
-                  {'  '}<span className="text-pink-400">if</span> sector == <span className="text-green-400">"TEXTILE"</span> <span className="text-pink-400">and</span> destination == <span className="text-green-400">"IT"</span>:{'\n'}
+                  {'  '}<span className="text-pink-400">if</span> sector == <span className="text-green-400">&quot;TEXTILE&quot;</span> <span className="text-pink-400">and</span> destination == <span className="text-green-400">&quot;IT&quot;</span>:{'\n'}
                   {'    '}risk_score += <span className="text-pink-400">0.45</span> <span className="text-slate-500"># Made in Italy premium</span>{'\n'}
                   {'  '}{'\n'}
                   {'  '}<span className="text-slate-500"># Tax Arbitrage Calculation</span>{'\n'}
                   {'  '}margin = (italy_price - turkey_cost) * <span className="text-pink-400">0.78</span>{'\n'}
                   {'  '}{'\n'}
                   {'  '}<span className="text-pink-400">return</span> {'{'}{'\n'}
-                  {'    '}<span className="text-green-400">"roi_projection"</span>: margin,{'\n'}
-                  {'    '}<span className="text-green-400">"risk_index"</span>: risk_score{'\n'}
+                  {'    '}<span className="text-green-400">&quot;roi_projection&quot;</span>: margin,{'\n'}
+                  {'    '}<span className="text-green-400">&quot;risk_index&quot;</span>: risk_score{'\n'}
                   {'  '}{'}'}{'\n\n'}
-                  <span className="text-pink-400">print</span>(<span className="text-green-400">"Model Loaded. Ready for Input."</span>)
+                  <span className="text-pink-400">print</span>(<span className="text-green-400">&quot;Model Loaded. Ready for Input.&quot;</span>)
                 </code>
               </pre>
             </div>
