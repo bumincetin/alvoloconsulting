@@ -107,7 +107,7 @@ const Services = () => {
               </div>
             </div>
             <div className="grid grid-cols-1 gap-4">
-                    {c.integrationServices.map((service, index) => {
+              {c.integrationServices.map((service) => {
                       const ServiceIcon = service.icon;
                       return (
                   <div key={service.title} className="glass-panel rounded-xl p-4 flex gap-3 items-start">
@@ -133,7 +133,7 @@ const Services = () => {
               </div>
             </div>
             <div className="grid grid-cols-1 gap-4">
-                    {c.financialServices.map((service, index) => {
+              {c.financialServices.map((service) => {
                       const ServiceIcon = service.icon;
                       return (
                   <div key={service.title} className="glass-panel rounded-xl p-4 flex gap-3 items-start">
