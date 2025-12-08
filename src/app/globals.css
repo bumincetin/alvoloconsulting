@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand Colors (same for both themes) */
-  --brand-blue: #3c77ad;
-  --brand-orange: #f58643;
-  --brand-orange-ton: #d97335;
-  --data-purple: #a855f7;
+  /* Brand Colors (single accent blue) */
+  --brand-blue: #1e90ff;
+  --brand-orange: #1e90ff;
+  --brand-orange-ton: #4ba6ff;
+  --data-purple: #8b5cf6;
   
   /* Legacy/Compatibility Colors */
-  --brand-gold: #271D34;
-  --logo-blue: #3c77ad;
-  --logo-orange: #f58643;
-  --logo-orange-ton: #ff8b44;
+  --brand-gold: #1e90ff;
+  --logo-blue: #1e90ff;
+  --logo-orange: #1e90ff;
+  --logo-orange-ton: #4ba6ff;
   
   --font-size-base: 1rem; 
   --line-height-base: 1.6;
@@ -20,29 +20,29 @@
 /* Dark Theme (default) */
 :root,
 .dark {
-  --bosphorus: #0B1120;
-  --glass: rgba(30, 41, 59, 0.4);
+  --bosphorus: #000000;
+  --glass: rgba(26, 32, 44, 0.5);
   
   /* Text Colors */
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
   
   /* Background Colors */
-  --bg-primary: #0B1120;
-  --bg-surface: rgba(11, 17, 32, 0.6);
-  --bg-surface-hover: rgba(11, 17, 32, 0.8);
+  --bg-primary: #000000;
+  --bg-surface: #0f1115;
+  --bg-surface-hover: #161922;
   
   /* Border Colors */
-  --border-primary: rgba(60, 119, 173, 0.2);
-  --border-secondary: rgba(255, 255, 255, 0.05);
-  --border-slate: rgba(148, 163, 184, 0.1);
+  --border-primary: rgba(30, 144, 255, 0.25);
+  --border-secondary: rgba(255, 255, 255, 0.08);
+  --border-slate: rgba(148, 163, 184, 0.12);
   
   /* Legacy */
-  --brand-text-primary: #e2e8f0;
-  --brand-text-secondary: #94a3b8;
-  --brand-bg-primary: #0B1120;
-  --brand-bg-surface: rgba(11, 17, 32, 0.8);
+  --brand-text-primary: var(--text-primary);
+  --brand-text-secondary: var(--text-secondary);
+  --brand-bg-primary: var(--bg-primary);
+  --brand-bg-surface: var(--bg-surface);
   
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
@@ -50,29 +50,29 @@
 
 /* Light Theme */
 .light {
-  --bosphorus: #F7FAFC;
-  --glass: rgba(255, 255, 255, 0.8);
+  --bosphorus: #feecc8;
+  --glass: rgba(255, 255, 255, 0.9);
   
   /* Text Colors */
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
+  --text-primary: #0f172a;
+  --text-secondary: #1f2937;
+  --text-muted: #475569;
   
   /* Background Colors */
-  --bg-primary: #F7FAFC;
-  --bg-surface: rgba(255, 255, 255, 0.9);
-  --bg-surface-hover: rgba(255, 255, 255, 1);
+  --bg-primary: #feecc8;
+  --bg-surface: #fff6e5;
+  --bg-surface-hover: #fffaf0;
   
   /* Border Colors */
-  --border-primary: rgba(60, 119, 173, 0.2);
-  --border-secondary: rgba(0, 0, 0, 0.1);
-  --border-slate: rgba(0, 0, 0, 0.05);
+  --border-primary: rgba(30, 144, 255, 0.25);
+  --border-secondary: rgba(0, 0, 0, 0.08);
+  --border-slate: rgba(0, 0, 0, 0.06);
   
   /* Legacy */
-  --brand-text-primary: #1e293b;
-  --brand-text-secondary: #475569;
-  --brand-bg-primary: #F7FAFC;
-  --brand-bg-surface: #FFFFFF;
+  --brand-text-primary: var(--text-primary);
+  --brand-text-secondary: var(--text-secondary);
+  --brand-bg-primary: var(--bg-primary);
+  --brand-bg-surface: var(--bg-surface);
   
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
@@ -92,8 +92,8 @@ body {
 .bg-grid {
   background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(60, 119, 173, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(60, 119, 173, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 /* Glassmorphism Effects */
@@ -137,9 +137,9 @@ body {
 
 /* Code Window */
 .code-window {
-  background: #0f172a;
-  border: 1px solid #334155;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-secondary);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
 }
 
 /* Float Animation */
@@ -194,6 +194,23 @@ nav {
 .light [style*="rgba(15, 23, 42"],
 .light [style*="rgba(11, 17, 32"] {
   background-color: var(--bg-surface) !important;
+}
+
+/* Page container helpers for consistent layout */
+.page-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 /* Line clamp utilities for text truncation */

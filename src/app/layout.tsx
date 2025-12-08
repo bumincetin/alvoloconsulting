@@ -133,10 +133,14 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LanguageProvider>
-            <ClientLayout>
-              {children}
-            </ClientLayout>
-            <Footer />
+            <div className="page-container">
+              <div className="content-wrapper">
+                <ClientLayout>
+                  {children}
+                </ClientLayout>
+                <Footer />
+              </div>
+            </div>
             <CookieConsent />
             {/* Google Tag Manager (inline init, only after analytics consent) */}
             <ScriptLoader
