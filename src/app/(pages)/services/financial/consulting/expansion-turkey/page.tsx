@@ -163,7 +163,7 @@ const ExpansionTurkeyPage = () => {
               </div>
               <div className="p-4 rounded-lg col-span-2" style={{ backgroundColor: 'var(--bg-surface-hover)' }}>
                 <div className="text-xs font-mono mb-1" style={{ color: 'var(--text-muted)' }}>{c.medianAgeLabel}</div>
-                <div className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }} className="flex items-center gap-2">
+                <div className="text-2xl font-bold flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
                   {c.medianAgeValue} <span className="text-xs font-normal" style={{ color: 'var(--text-muted)' }}>({c.medianAgeSub})</span>
                 </div>
               </div>

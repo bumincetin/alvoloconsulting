@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { FaCheckCircle, FaChartLine } from 'react-icons/fa';
+import { FaChartLine } from 'react-icons/fa';
 import Link from 'next/link';
 
 const getMethodologyContent = (lang: string) => {
