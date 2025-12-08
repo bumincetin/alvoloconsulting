@@ -4,7 +4,6 @@ import Navbar from '@/components/layout/Navbar';
 import Hero from '@/components/sections/Hero';
 import Services from '@/components/sections/Services';
 import CompanyHighlights from '@/components/sections/CompanyHighlights';
-import Blog from '@/components/sections/Blog';
 import Methodology from '@/components/sections/Methodology';
 import TrustedCompanies from '@/components/sections/TrustedCompanies';
 import Contact from '@/components/sections/Contact';
@@ -54,9 +53,64 @@ const getHeroContent = (lang: string) => {
   return content[lang as keyof typeof content] || content.en;
 };
 
+const getExpansionCards = (lang: string) => {
+  const content = {
+    tr: {
+      left: {
+        direction: "YÖN: BATI",
+        title: "İtalya'ya Açılın",
+        body: "Türk KOBİ'leri için P.IVA, finansal temsilcilik ve Milano ağı yönetimi.",
+        cta: "İtalya Girişi Başlat",
+        href: "/services/financial/consulting/expansion/italy"
+      },
+      right: {
+        direction: "YÖN: DOĞU",
+        title: "Türkiye'de Ölçekleyin",
+        body: "İtalyan firmalarına üretim ortaklıkları ve maliyet optimizasyonu.",
+        cta: "Türkiye Genişlemesini Başlat",
+        href: "/services/financial/consulting/expansion/turkey"
+      }
+    },
+    en: {
+      left: {
+        direction: "DIRECTION: WEST",
+        title: "Expand to Italy",
+        body: "P.IVA, fiscal rep, and Milan network orchestration for Turkish SMEs.",
+        cta: "Start Italian Entry",
+        href: "/services/financial/consulting/expansion/italy"
+      },
+      right: {
+        direction: "DIRECTION: EAST",
+        title: "Scale in Turkey",
+        body: "Manufacturing partnerships and cost optimization for Italian firms.",
+        cta: "Start Turkish Expansion",
+        href: "/services/financial/consulting/expansion/turkey"
+      }
+    },
+    it: {
+      left: {
+        direction: "DIREZIONE: OVEST",
+        title: "Espandi in Italia",
+        body: "P.IVA, rappresentanza fiscale e rete milanese per le PMI turche.",
+        cta: "Avvia Ingresso in Italia",
+        href: "/services/financial/consulting/expansion/italy"
+      },
+      right: {
+        direction: "DIREZIONE: EST",
+        title: "Scala in Turchia",
+        body: "Partnership produttive e ottimizzazione costi per aziende italiane.",
+        cta: "Avvia Espansione in Turchia",
+        href: "/services/financial/consulting/expansion/turkey"
+      }
+    }
+  };
+  return content[lang as keyof typeof content] || content.en;
+};
+
 export default function Home() {
   const { language } = useLanguage();
   const c = getHeroContent(language);
+  const exp = getExpansionCards(language);
 
   return (
     <main className="min-h-screen" style={{backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)'}}>
@@ -176,27 +230,27 @@ export default function Home() {
       <section className="py-0 relative z-10 border-y" style={{borderColor: 'var(--border-secondary)'}}>
         <div className="grid md:grid-cols-2">
           {/* Left: Italy Context */}
-          <Link href="/services/financial/consulting/expansion-italy" className="group relative p-12 md:p-24 border-r overflow-hidden" style={{borderColor: 'var(--border-secondary)'}}>
+          <Link href={exp.left.href} className="group relative p-12 md:p-24 border-r overflow-hidden" style={{borderColor: 'var(--border-secondary)'}}>
             <div className="absolute inset-0 transition-colors duration-500 group-hover:bg-[#3c77ad]/10" style={{backgroundColor: 'rgba(60, 119, 173, 0.05)'}}></div>
             <div className="relative z-10">
-              <div className="font-mono text-xs mb-4" style={{color: 'var(--brand-blue)'}}>DIRECTION: WEST</div>
-              <h3 className="text-3xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>Expand to Italy</h3>
-              <p className="mb-8 max-w-sm" style={{color: 'var(--text-secondary)'}}>For Turkish SMEs seeking EU prestige. We handle the P.IVA setup, fiscal representation, and Milanese networking.</p>
+              <div className="font-mono text-xs mb-4" style={{color: 'var(--brand-blue)'}}>{exp.left.direction}</div>
+              <h3 className="text-3xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>{exp.left.title}</h3>
+              <p className="mb-8 max-w-sm" style={{color: 'var(--text-secondary)'}}>{exp.left.body}</p>
               <div className="inline-flex items-center gap-2 border-b pb-1 transition-colors" style={{color: 'var(--text-primary)', borderColor: 'var(--brand-blue)'}}>
-                Start Italian Entry <FaArrowRight className="w-4 h-4" />
+                {exp.left.cta} <FaArrowRight className="w-4 h-4" />
               </div>
             </div>
           </Link>
 
           {/* Right: Turkey Context */}
-          <Link href="/services/financial/consulting/expansion-turkey" className="group relative p-12 md:p-24 overflow-hidden">
+          <Link href={exp.right.href} className="group relative p-12 md:p-24 overflow-hidden">
             <div className="absolute inset-0 transition-colors duration-500 group-hover:bg-[#f58643]/10" style={{backgroundColor: 'rgba(245, 134, 67, 0.05)'}}></div>
             <div className="relative z-10">
-              <div className="font-mono text-xs mb-4" style={{color: 'var(--brand-orange)'}}>DIRECTION: EAST</div>
-              <h3 className="text-3xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>Scale in Turkey</h3>
-              <p className="mb-8 max-w-sm" style={{color: 'var(--text-secondary)'}}>For Italian firms seeking production power and young demographics. Manufacturing partnerships and cost-reduction analysis.</p>
+              <div className="font-mono text-xs mb-4" style={{color: 'var(--brand-orange)'}}>{exp.right.direction}</div>
+              <h3 className="text-3xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>{exp.right.title}</h3>
+              <p className="mb-8 max-w-sm" style={{color: 'var(--text-secondary)'}}>{exp.right.body}</p>
               <div className="inline-flex items-center gap-2 border-b pb-1 transition-colors" style={{color: 'var(--text-primary)', borderColor: 'var(--brand-orange)'}}>
-                Start Turkish Expansion <FaArrowRight className="w-4 h-4" />
+                {exp.right.cta} <FaArrowRight className="w-4 h-4" />
               </div>
             </div>
           </Link>
@@ -204,7 +258,6 @@ export default function Home() {
       </section>
 
       <Methodology />
-      <Blog />
       <TrustedCompanies />
       <Contact />
     </main>

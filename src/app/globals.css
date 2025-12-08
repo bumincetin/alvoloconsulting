@@ -1,81 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand Colors (single accent blue) */
-  --brand-blue: #1e90ff;
-  --brand-orange: #1e90ff;
-  --brand-orange-ton: #4ba6ff;
-  --data-purple: #8b5cf6;
-  
-  /* Legacy/Compatibility Colors */
-  --brand-gold: #1e90ff;
-  --logo-blue: #1e90ff;
-  --logo-orange: #1e90ff;
-  --logo-orange-ton: #4ba6ff;
-  
+  color-scheme: dark;
   --font-size-base: 1rem; 
   --line-height-base: 1.6;
+  --font-sans: var(--font-inter, "Inter"), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk, "Space Grotesk"), var(--font-inter, "Inter"), system-ui, sans-serif;
+  
+  /* Neon core palette */
+  --neon-cyan: #00f3ff;
+  --neon-purple: #bc13fe;
+  --neon-green: #0aff0a;
+  --off-white: #f6f7ff;
+  --muted-blue: #94a3b8;
+  
+  /* Dark theme baseline */
+  --bg-primary: #030305;
+  --bg-surface: #0a0b10;
+  --bg-surface-2: #0f1017;
+  --bg-surface-hover: #141623;
+  
+  --text-primary: #e7ecff;
+  --text-secondary: #94a3c6;
+  --text-muted: #6b728d;
+
+  --border-primary: rgba(255, 255, 255, 0.12);
+  --border-secondary: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(0, 243, 255, 0.35);
+  
+  --brand-blue: var(--neon-cyan);
+  --brand-orange: var(--neon-purple);
+  --brand-orange-ton: #f6d3ff;
+  --logo-blue: var(--neon-cyan);
+  --logo-orange: var(--neon-purple);
+  --logo-orange-ton: #f6d3ff;
+  --brand-gold: #ffe26f;
+  --data-purple: var(--neon-purple);
+
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-strong: rgba(255, 255, 255, 0.08);
+  --noise-opacity: 0.25;
+  
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
 }
 
-/* Dark Theme (default) */
 :root,
 .dark {
-  --bosphorus: #000000;
-  --glass: rgba(26, 32, 44, 0.5);
-  
-  /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  
-  /* Background Colors */
-  --bg-primary: #000000;
-  --bg-surface: #0f1115;
-  --bg-surface-hover: #161922;
-  
-  /* Border Colors */
-  --border-primary: rgba(30, 144, 255, 0.25);
-  --border-secondary: rgba(255, 255, 255, 0.08);
-  --border-slate: rgba(148, 163, 184, 0.12);
-  
-  /* Legacy */
-  --brand-text-primary: var(--text-primary);
-  --brand-text-secondary: var(--text-secondary);
-  --brand-bg-primary: var(--bg-primary);
-  --brand-bg-surface: var(--bg-surface);
-  
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
 }
 
-/* Light Theme */
 .light {
-  --bosphorus: #feecc8;
-  --glass: rgba(255, 255, 255, 0.9);
-  
-  /* Text Colors */
-  --text-primary: #0f172a;
-  --text-secondary: #1f2937;
+  color-scheme: light;
+  --bg-primary: #f5f7ff;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #eef2ff;
+  --bg-surface-hover: #e7ecff;
+
+  --text-primary: #0b1224;
+  --text-secondary: #1e293b;
   --text-muted: #475569;
-  
-  /* Background Colors */
-  --bg-primary: #feecc8;
-  --bg-surface: #fff6e5;
-  --bg-surface-hover: #fffaf0;
-  
-  /* Border Colors */
-  --border-primary: rgba(30, 144, 255, 0.25);
-  --border-secondary: rgba(0, 0, 0, 0.08);
-  --border-slate: rgba(0, 0, 0, 0.06);
-  
-  /* Legacy */
-  --brand-text-primary: var(--text-primary);
-  --brand-text-secondary: var(--text-secondary);
-  --brand-bg-primary: var(--bg-primary);
-  --brand-bg-surface: var(--bg-surface);
-  
-  --background: var(--bg-primary);
-  --foreground: var(--text-primary);
+
+  --border-primary: rgba(11, 18, 36, 0.12);
+  --border-secondary: rgba(11, 18, 36, 0.08);
+  --border-accent: rgba(0, 243, 255, 0.35);
+
+  --glass: rgba(11, 18, 36, 0.05);
+  --glass-strong: rgba(11, 18, 36, 0.08);
+  --noise-opacity: 0.12;
 }
 
 body {
@@ -85,24 +78,93 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  position: relative;
 }
+
+::selection {
+  background: var(--neon-cyan);
+  color: #050505;
+}
+
+.neo-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: var(--noise-opacity);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.neo-blob {
+  position: absolute;
+  filter: blur(110px);
+  border-radius: 9999px;
+  opacity: 0.45;
+  animation: blob 9s ease-in-out infinite;
+}
+
+.neo-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(0, 243, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.neo-pill {
+  border: 1px solid var(--border-secondary);
+  background: var(--glass);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.neo-cta {
+  background: linear-gradient(90deg, var(--neon-cyan), #ffffff);
+  color: #050505;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+}
+
+.neo-cta-outline {
+  border: 1px solid var(--border-accent);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+}
+
+.bg-neon-cyan { background-color: var(--neon-cyan); }
+.bg-neon-purple { background-color: var(--neon-purple); }
+.bg-neon-green { background-color: var(--neon-green); }
+.text-neon-cyan { color: var(--neon-cyan); }
+.text-neon-purple { color: var(--neon-purple); }
+.text-neon-green { color: var(--neon-green); }
 
 /* Grid Background Pattern */
 .bg-grid {
-  background-size: 50px 50px;
+  background-size: 140px 80px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  transform: skewX(-6deg) scaleY(0.9);
+  transform-origin: center;
 }
 
 /* Glassmorphism Effects */
 .glass-card {
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-primary);
   color: var(--text-primary);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35);
 }
 
 .glass-nav {
@@ -112,10 +174,19 @@ body {
 }
 
 .glass-panel {
-  background: var(--glass);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
   border: 1px solid var(--border-primary);
   color: var(--text-primary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 35px rgba(0, 243, 255, 0.08);
+  transition: all 0.35s ease;
+}
+
+.glass-panel:hover {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
 }
 
 /* Gradient Text */
@@ -152,6 +223,31 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+.animate-fade-in {
+  animation: fadeIn 0.9s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.9s ease forwards;
+}
+
+@keyframes blob {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  33% { transform: translate3d(40px,-30px,0) scale(1.05); }
+  66% { transform: translate3d(-25px,25px,0) scale(0.95); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 700; 
@@ -159,6 +255,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Optional: Style links with the accent color */
+/* 3. Text Hover Fixes */
+a { color: inherit; text-decoration: none; }
+.hover-text-glow:hover {
+  color: var(--brand-accent);
+  text-shadow: 0 0 20px rgba(60, 119, 173, 0.5);
+}
+
+/* 4. THE LOGO WASHER (Fixes the ugly white background logos) */
+.logo-white-filter {
+  filter: grayscale(100%) invert(1) brightness(2);
+  mix-blend-mode: screen; 
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.logo-white-filter:hover { opacity: 1; }
+
+/* 5. Abstract Art Container */
+.abstract-art-bg {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
 a {
   color: var(--brand-gold);
 }
@@ -213,11 +331,33 @@ nav {
   padding-bottom: 80px;
 }
 
+/* Card hover helpers */
+.service-card,
+.info-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.service-card:hover,
+.info-card:hover {
+  background-color: #121212;
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+
+.service-card:hover *,
+.info-card:hover * {
+  color: var(--text-primary) !important;
+}
+
 /* Line clamp utilities for text truncation */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  line-clamp: 2;
   overflow: hidden;
 }
 
@@ -225,6 +365,7 @@ nav {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  line-clamp: 3;
   overflow: hidden;
 }
 
@@ -232,6 +373,7 @@ nav {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  line-clamp: 4;
   overflow: hidden;
 }
 

@@ -2,239 +2,239 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/layout/Navbar';
 import Link from 'next/link';
-import { FaCheck, FaCheckCircle, FaRegChartBar, FaRegHandshake, FaGlobe, FaRegLightbulb, FaChevronDown } from 'react-icons/fa';
-import { useState } from 'react';
+import { FaCheck, FaRegChartBar, FaRegHandshake, FaGlobe, FaRegLightbulb, FaArrowRight } from 'react-icons/fa';
+import { useMemo } from 'react';
 
 const getExpansionContent = (lang: string) => {
   const content = {
     tr: {
-      title: "İtalya'ya Açılma Paketi",
-      hero: {
-        headline: "İtalya Pazarında Büyüme İçin Stratejik Rehberlik",
-        sub: "Türk KOBİ'leri ve işletmeler için İtalya'ya açılmada kapsamlı finansal ve stratejik danışmanlık.",
-        cta: "Hemen Başvurun"
-      },
-      process: {
-        title: "Süreç Adımları",
-        steps: [
-          { icon: <FaRegLightbulb />, label: "Pazar ve Rekabet Analizi" },
-          { icon: <FaGlobe />, label: "Uluslararası Ticaret ve Finans" },
-          { icon: <FaRegChartBar />, label: "Yatırım ve Fon Yönetimi" },
-          { icon: <FaRegHandshake />, label: "Risk Yönetimi ve Sigorta" },
-          { icon: <FaCheckCircle />, label: "Sürekli Finansal Danışmanlık" }
-        ]
-      },
-      features: {
-        title: "Neleri Kapsar?",
-        items: [
-          "Pazar analizi ve rekabet değerlendirmesi",
-          "Yatırım danışmanlığı ve fon yönetimi",
-          "Uluslararası ticaret ve finans danışmanlığı",
-          "Risk yönetimi ve sigorta planlaması",
-          "Sürekli finansal danışmanlık ve raporlama"
-        ]
-      },
-      benefits: {
-        title: "Faydaları",
-        items: [
-          "İtalya pazarına hızlı ve güvenli giriş",
-          "Stratejik büyüme ve yatırım fırsatları",
-          "Uluslararası finansal uyumluluk",
-          "Uzman ekiple sürekli destek"
-        ]
-      },
-      faq: {
-        title: "Sık Sorulan Sorular",
-        questions: [
-          { q: "İtalya'da pazar analizi nasıl yapılır?", a: "Uzman ekibimizle detaylı pazar ve rekabet analizi sunuyoruz." },
-          { q: "Uluslararası finansal uyumluluk nedir?", a: "Tüm yasal ve finansal gerekliliklere tam uyum sağlıyoruz." },
-          { q: "Sürekli danışmanlık neyi kapsar?", a: "Yatırım, finans, vergi ve risk yönetimi dahil tüm süreçlerde yanınızdayız." }
-        ]
-      }
+      title: "Genişleme Stratejisi",
+      heroHeadline: "İtalya ↔ Türkiye arasında tek bir genişleme oyunu planı",
+      heroSub: "Kuruluş, vergi ve operasyonel orkestrasyon. İki piyasada tek bir playbook.",
+      heroCta: "Danışmanlık Al",
+      routesTitle: "Hedefinizi Seçin",
+      routes: [
+        {
+          badge: "MİLANO",
+          title: "İtalya'ya Açılın",
+          copy: "P.IVA, noterleşmiş kuruluş, banka hesabı ve mali temsilcilik.",
+          href: "/services/financial/consulting/expansion/italy",
+        },
+        {
+          badge: "İSTANBUL",
+          title: "Türkiye'de Ölçekleyin",
+          copy: "Vergi numarası, ticaret sicili, imza sirküleri ve yatırım teşvikleri.",
+          href: "/services/financial/consulting/expansion/turkey",
+        },
+      ],
+      processTitle: "Nasıl Çalışır?",
+      steps: [
+        { label: "Pazar & uyumluluk taraması", icon: <FaRegLightbulb /> },
+        { label: "Vergi & kuruluş tasarımı", icon: <FaGlobe /> },
+        { label: "Operasyon & raporlama", icon: <FaRegHandshake /> },
+      ],
+      benefitsTitle: "Neden Tek Çatı?",
+      benefits: [
+        "Tek ekip, iki yargı bölgesi",
+        "Kuruluş → banka → muhasebe zinciri",
+        "Süreç KPI'ları ve raporlama",
+      ],
+      faqTitle: "Sık Sorulanlar",
+      faqs: [
+        { q: "İki ülke için tek sözleşme mi?", a: "Evet, tek çatı danışmanlık ile hem İtalya hem Türkiye süreçlerini yönetiyoruz." },
+        { q: "Süre ne kadar?", a: "Kurulum tipine göre 14-30 gün arası; banka açılışı kritik değişken." },
+        { q: "Uzaktan yapabilir miyim?", a: "Evet, çoğu adımı vekaletlerle ve uzaktan imza süreçleriyle tamamlıyoruz." },
+      ],
     },
     en: {
-      title: "Italy Expansion Package",
-      hero: {
-        headline: "Strategic Guidance for Growth in the Italian Market",
-        sub: "Comprehensive financial and strategic consulting for Turkish SMEs and businesses expanding into Italy.",
-        cta: "Apply Now"
-      },
-      process: {
-        title: "Our Process",
-        steps: [
-          { icon: <FaRegLightbulb />, label: "Market & Competition Analysis" },
-          { icon: <FaGlobe />, label: "International Trade & Finance" },
-          { icon: <FaRegChartBar />, label: "Investment & Fund Management" },
-          { icon: <FaRegHandshake />, label: "Risk Management & Insurance" },
-          { icon: <FaCheckCircle />, label: "Ongoing Financial Consulting" }
-        ]
-      },
-      features: {
-        title: "What's Included?",
-        items: [
-          "Market analysis and competition assessment",
-          "Investment advisory and fund management",
-          "International trade and finance consulting",
-          "Risk management and insurance planning",
-          "Ongoing financial consulting and reporting"
-        ]
-      },
-      benefits: {
-        title: "Benefits",
-        items: [
-          "Fast and secure entry into the Italian market",
-          "Strategic growth and investment opportunities",
-          "International financial compliance",
-          "Continuous support from our expert team"
-        ]
-      },
-      faq: {
-        title: "Frequently Asked Questions",
-        questions: [
-          { q: "How is market analysis conducted in Italy?", a: "Our expert team provides detailed market and competition analysis." },
-          { q: "What is international financial compliance?", a: "We ensure full compliance with all legal and financial requirements." },
-          { q: "What does ongoing consulting include?", a: "We support you in all processes including investment, finance, tax, and risk management." }
-        ]
-      }
+      title: "Expansion Strategy",
+      heroHeadline: "One playbook to expand across Italy ↔ Turkey",
+      heroSub: "Entity, tax, and operational orchestration. One team for both markets.",
+      heroCta: "Get Advisory",
+      routesTitle: "Choose Your Track",
+      routes: [
+        {
+          badge: "MILAN",
+          title: "Expand to Italy",
+          copy: "P.IVA, notarized incorporation, banking, and fiscal representation.",
+          href: "/services/financial/consulting/expansion/italy",
+        },
+        {
+          badge: "ISTANBUL",
+          title: "Scale in Turkey",
+          copy: "Tax ID, trade registry, signature circular, and incentive zones.",
+          href: "/services/financial/consulting/expansion/turkey",
+        },
+      ],
+      processTitle: "How It Works",
+      steps: [
+        { label: "Market & compliance scan", icon: <FaRegLightbulb /> },
+        { label: "Tax & incorporation design", icon: <FaGlobe /> },
+        { label: "Ops & reporting cadence", icon: <FaRegHandshake /> },
+      ],
+      benefitsTitle: "Why One Team?",
+      benefits: [
+        "Single team, dual jurisdictions",
+        "End-to-end: entity → bank → accounting",
+        "Process KPIs and reporting",
+      ],
+      faqTitle: "FAQs",
+      faqs: [
+        { q: "One agreement for both countries?", a: "Yes—single engagement covering Italy and Turkey workflows." },
+        { q: "Timeline?", a: "14-30 days depending on entity type; banking is the critical path." },
+        { q: "Remote-friendly?", a: "Yes, most steps handled via powers of attorney and remote signings." },
+      ],
     },
     it: {
-      title: "Pacchetto Espansione in Italia",
-      hero: {
-        headline: "Guida Strategica per la Crescita nel Mercato Italiano",
-        sub: "Consulenza finanziaria e strategica completa per PMI e aziende turche che si espandono in Italia.",
-        cta: "Candidati Ora"
-      },
-      process: {
-        title: "Il Nostro Processo",
-        steps: [
-          { icon: <FaRegLightbulb />, label: "Analisi di Mercato e Concorrenza" },
-          { icon: <FaGlobe />, label: "Commercio e Finanza Internazionale" },
-          { icon: <FaRegChartBar />, label: "Gestione Investimenti e Fondi" },
-          { icon: <FaRegHandshake />, label: "Gestione del Rischio e Assicurazione" },
-          { icon: <FaCheckCircle />, label: "Consulenza Finanziaria Continua" }
-        ]
-      },
-      features: {
-        title: "Cosa Include?",
-        items: [
-          "Analisi di mercato e valutazione della concorrenza",
-          "Consulenza sugli investimenti e gestione dei fondi",
-          "Consulenza su commercio e finanza internazionale",
-          "Gestione del rischio e pianificazione assicurativa",
-          "Consulenza finanziaria continua e reportistica"
-        ]
-      },
-      benefits: {
-        title: "Vantaggi",
-        items: [
-          "Ingresso rapido e sicuro nel mercato italiano",
-          "Opportunità di crescita strategica e investimento",
-          "Conformità finanziaria internazionale",
-          "Supporto continuo dal nostro team di esperti"
-        ]
-      },
-      faq: {
-        title: "Domande Frequenti",
-        questions: [
-          { q: "Come viene condotta l'analisi di mercato in Italia?", a: "Il nostro team di esperti fornisce un'analisi dettagliata del mercato e della concorrenza." },
-          { q: "Cosa significa conformità finanziaria internazionale?", a: "Garantiamo la piena conformità a tutti i requisiti legali e finanziari." },
-          { q: "Cosa include la consulenza continua?", a: "Ti supportiamo in tutti i processi, inclusi investimenti, finanza, fiscalità e gestione del rischio." }
-        ]
-      }
-    }
+      title: "Strategia di Espansione",
+      heroHeadline: "Un unico playbook per Italia ↔ Turchia",
+      heroSub: "Costituzione, fisco e operazioni. Un team per entrambi i mercati.",
+      heroCta: "Richiedi Consulenza",
+      routesTitle: "Scegli il Percorso",
+      routes: [
+        {
+          badge: "MILANO",
+          title: "Espandi in Italia",
+          copy: "P.IVA, costituzione notarile, conto bancario e rappresentanza fiscale.",
+          href: "/services/financial/consulting/expansion/italy",
+        },
+        {
+          badge: "ISTANBUL",
+          title: "Scala in Turchia",
+          copy: "Codice fiscale, registro imprese, firma circolare e zone agevolate.",
+          href: "/services/financial/consulting/expansion/turkey",
+        },
+      ],
+      processTitle: "Come Funziona",
+      steps: [
+        { label: "Analisi mercato & compliance", icon: <FaRegLightbulb /> },
+        { label: "Design fiscale & costituzione", icon: <FaGlobe /> },
+        { label: "Operatività & reporting", icon: <FaRegHandshake /> },
+      ],
+      benefitsTitle: "Perché un Team Unico?",
+      benefits: [
+        "Un solo team, due giurisdizioni",
+        "End-to-end: ente → banca → contabilità",
+        "KPI di processo e reporting",
+      ],
+      faqTitle: "Domande Frequenti",
+      faqs: [
+        { q: "Un contratto per entrambi i Paesi?", a: "Sì, un unico incarico che copre i flussi Italia e Turchia." },
+        { q: "Tempistiche?", a: "14-30 giorni a seconda del veicolo; la banca è il percorso critico." },
+        { q: "È tutto da remoto?", a: "Quasi tutto: deleghe e firme digitali per minimizzare la presenza fisica." },
+      ],
+    },
   };
-  return content[lang as keyof typeof content] || content.tr;
+  return content[lang as keyof typeof content] || content.en;
 };
 
 const ExpansionPage = () => {
   const { language } = useLanguage();
-  const c = getExpansionContent(language);
-  const [openFaqs, setOpenFaqs] = useState<number[]>([]);
-  const toggleFaq = (index: number) => {
-    setOpenFaqs(prev => prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]);
-  };
+  const c = useMemo(() => getExpansionContent(language), [language]);
+
   return (
     <>
       <Navbar />
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-brand-bg-primary to-blue-50 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-brand-blue mb-4">{c.title}</h1>
-        <h2 className="text-2xl text-brand-gold mb-4">{c.hero.headline}</h2>
-        <p className="text-lg text-brand-text-secondary mb-8 max-w-2xl mx-auto">{c.hero.sub}</p>
-        <Link href="/contact" className="inline-block px-8 py-3 bg-brand-gold text-white font-semibold rounded hover:bg-brand-gold/90 transition">{c.hero.cta}</Link>
-      </section>
-      {/* Process Timeline */}
-      <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold text-brand-blue mb-8 text-center">{c.process.title}</h3>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-            {c.process.steps.map((step, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <div className="text-3xl text-brand-gold mb-2">{step.icon}</div>
-                <div className="text-base font-medium text-brand-blue text-center">{step.label}</div>
-                {idx < c.process.steps.length - 1 && (
-                  <div className="hidden md:block h-16 w-1 bg-brand-gold/30 my-2" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* Features & Benefits */}
-      <section className="py-12 bg-blue-50">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-xl font-bold text-brand-blue mb-4">{c.features.title}</h3>
-            <ul className="space-y-3">
-              {c.features.items.map((item, i) => (
-                <li key={i} className="flex items-start">
-                  <FaCheck className="text-brand-gold mt-[6px] mr-2" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-brand-blue mb-4">{c.benefits.title}</h3>
-            <ul className="space-y-3">
-              {c.benefits.items.map((item, i) => (
-                <li key={i} className="flex items-start">
-                  <FaCheck className="text-brand-gold mt-[6px] mr-2" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-      {/* FAQ */}
-      <section className="py-12 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h3 className="text-2xl font-bold text-brand-blue mb-8 text-center">{c.faq.title}</h3>
-          <div className="space-y-4">
-            {c.faq.questions.map((item, idx) => (
-              <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden hover:border-brand-gold transition-colors duration-200">
-                <button
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
-                >
-                  <h4 className="text-lg font-semibold text-brand-blue">{item.q}</h4>
-                  <FaChevronDown className={`text-brand-gold transition-transform duration-200 ${openFaqs.includes(idx) ? 'transform rotate-180' : ''}`} />
-                </button>
-                <div className={`px-6 overflow-hidden transition-all duration-200 ${openFaqs.includes(idx) ? 'max-h-96 pb-4' : 'max-h-0'}`}>
-                  <p className="text-brand-text-secondary">{item.a}</p>
+
+      <main className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+        <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+
+        {/* Hero */}
+        <section className="relative pt-28 pb-16 px-6 max-w-6xl mx-auto">
+          <div className="glass-panel rounded-3xl p-10 border border-white/10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="space-y-4 max-w-2xl">
+                <div className="neo-pill">
+                  <span className="w-2 h-2 rounded-full bg-neon-cyan" />
+                  <span className="text-[11px] tracking-[0.2em] uppercase">{c.title}</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--text-primary)]">
+                  {c.heroHeadline}
+                </h1>
+                <p className="text-lg text-[var(--text-secondary)] leading-relaxed">{c.heroSub}</p>
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/contact" className="neo-cta px-6 py-3 rounded-md inline-flex items-center gap-2">
+                    {c.heroCta}
+                  </Link>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Routes */}
+        <section className="px-6 pb-16 max-w-6xl mx-auto space-y-6">
+          <div className="flex items-center gap-3">
+            <span className="neo-pill">
+              <FaArrowRight className="w-3 h-3" />
+              <span className="text-[11px] tracking-[0.18em] uppercase">{c.routesTitle}</span>
+            </span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {c.routes.map((route) => (
+              <Link
+                key={route.title}
+                href={route.href}
+                className="glass-panel rounded-2xl p-8 flex flex-col gap-4 hover:border-[var(--border-accent)] transition-colors"
+              >
+                <div className="flex items-center justify-between text-sm text-[var(--text-secondary)] uppercase tracking-[0.15em]">
+                  <span>{route.badge}</span>
+                  <FaArrowRight className="w-4 h-4" />
+                </div>
+                <h3 className="text-2xl font-bold text-[var(--text-primary)]">{route.title}</h3>
+                <p className="text-[var(--text-secondary)] leading-relaxed">{route.copy}</p>
+              </Link>
             ))}
           </div>
-        </div>
-      </section>
-      {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-brand-blue to-brand-blue/90 text-center">
-        <h3 className="text-2xl font-bold text-white mb-4">{c.hero.headline}</h3>
-        <p className="text-lg text-brand-blue/90 mb-8">{c.hero.sub}</p>
-        <Link href="/contact" className="inline-block px-8 py-3 border-2 border-white text-lg font-medium rounded-md text-white hover:bg-white hover:text-brand-blue transition-colors duration-200">{c.hero.cta}</Link>
-      </section>
+        </section>
+
+        {/* Process */}
+        <section className="px-6 pb-16 max-w-6xl mx-auto space-y-6">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">{c.processTitle}</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {c.steps.map((step, idx) => (
+              <div key={step.label} className="glass-panel rounded-xl p-6 space-y-3">
+                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[var(--neon-cyan)]">
+                  {step.icon}
+                </div>
+                <div className="text-sm uppercase tracking-[0.14em] text-[var(--text-secondary)]">0{idx + 1}</div>
+                <p className="text-[var(--text-primary)] font-semibold leading-relaxed">{step.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Benefits */}
+        <section className="px-6 pb-16 max-w-6xl mx-auto space-y-6">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">{c.benefitsTitle}</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            {c.benefits.map((item) => (
+              <div key={item} className="glass-panel rounded-xl p-5 flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-[var(--neon-purple)]">
+                  <FaCheck className="w-4 h-4" />
+                </div>
+                <p className="text-[var(--text-primary)] leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="px-6 pb-20 max-w-4xl mx-auto space-y-4">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] text-center">{c.faqTitle}</h2>
+          <div className="space-y-3">
+            {c.faqs.map((item, idx) => (
+              <details key={item.q} className="glass-panel rounded-xl p-4">
+                <summary className="cursor-pointer text-[var(--text-primary)] font-semibold flex items-center justify-between">
+                  <span>{item.q}</span>
+                  <span className="text-[var(--text-secondary)] text-sm">0{idx + 1}</span>
+                </summary>
+                <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      </main>
     </>
   );
 };

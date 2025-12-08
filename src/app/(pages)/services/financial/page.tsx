@@ -438,7 +438,7 @@ const FinancialPage = () => {
                   )}
                   {index === 1 && (
                     <Link 
-                      href="/services/financial/consulting/expansion-italy"
+                      href="/services/financial/consulting/expansion"
                       className="block w-full text-center px-6 py-3 font-medium rounded-md transition-colors duration-200"
                       style={{ border: '1px solid var(--brand-orange)', color: 'var(--brand-orange)' }}
                     >

@@ -182,7 +182,7 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         {/* Header Section */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#f58643] to-[#d97335] rounded-full mb-6 shadow-lg">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[var(--neon-cyan)] to-[var(--neon-purple)] rounded-full mb-6 shadow-lg">
             <FaEnvelope className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-5xl md:text-6xl font-bold mb-6" style={{color: 'var(--text-primary)'}}>
@@ -197,8 +197,8 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="xl:col-span-1">
             <div className="glass-panel rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold mb-8 flex items-center text-white">
-                <div className="w-8 h-8 bg-gradient-to-br from-[#f58643] to-[#d97335] rounded-lg flex items-center justify-center mr-3">
+              <h3 className="text-2xl font-bold mb-8 flex items-center text-[var(--text-primary)]">
+                <div className="w-8 h-8 bg-gradient-to-br from-[var(--neon-cyan)] to-[var(--neon-purple)] rounded-lg flex items-center justify-center mr-3">
                   <FaPhone className="w-4 h-4 text-white" />
                 </div>
                 {c.contactInfo}
@@ -207,7 +207,7 @@ const Contact = () => {
               <div className="space-y-8">
                 {/* Phone */}
                 <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--neon-green)] to-[var(--neon-cyan)] rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaPhone className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -225,7 +225,7 @@ const Contact = () => {
 
                 {/* Email */}
                 <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--neon-cyan)] to-[var(--neon-purple)] rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaEnvelope className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -240,7 +240,7 @@ const Contact = () => {
 
                 {/* Address */}
                 <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
-                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--neon-purple)] to-[var(--neon-cyan)] rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaMapMarkerAlt className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -255,7 +255,7 @@ const Contact = () => {
 
                 {/* Business Hours */}
                 <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--neon-purple)] to-[var(--neon-green)] rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaClock className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -352,8 +352,12 @@ const Contact = () => {
                 
                 <button
                   type="submit"
-                  className="w-full bg-[#f58643] text-white font-bold py-4 rounded-lg hover:bg-[#d97335] transition-all shadow-lg shadow-[#f58643]/20 flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full text-white font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                   disabled={isSubmitting || showSuccess}
+                  style={{
+                    background: 'linear-gradient(90deg, var(--neon-cyan), var(--neon-purple))',
+                    boxShadow: '0 18px 40px rgba(0,243,255,0.25)'
+                  }}
                 >
                   {isSubmitting ? (
                     <>
@@ -399,9 +403,9 @@ const Contact = () => {
                     <a
                       href={mailtoLink}
                       className="w-full text-white py-3 rounded-lg text-sm font-medium text-center transition-colors"
-                      style={{backgroundColor: 'var(--brand-orange)'}}
-                      onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--brand-orange-ton)'}
-                      onMouseOut={e => e.currentTarget.style.backgroundColor = 'var(--brand-orange)'}
+                      style={{
+                        background: 'linear-gradient(90deg, var(--neon-cyan), var(--neon-purple))'
+                      }}
                     >
                       {c.proposeTimeslots}
                     </a>

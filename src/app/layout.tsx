@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lato } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 // LanguageProvider is a client component, useLanguage is also for client components
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -8,17 +8,18 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { ScriptLoader } from "@/components/ScriptLoader";
 import Footer from "@/components/layout/Footer";
 import ClientLayout from "./ClientLayout";
+import NeoBackground from "@/components/NeoBackground";
 
-const playfairDisplay = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-playfair-display",
-  weight: ["400", "700"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
 });
 
-const lato = Lato({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-lato",
-  weight: ["400", "700"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 const siteUrl = "https://www.alvoloconsulting.com";
@@ -128,13 +129,14 @@ export default function RootLayout({
         <meta httpEquiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data: blob:; font-src 'self' https: data:; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline';" />
       </head>
       <body
-        className={`${playfairDisplay.variable} ${lato.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-[var(--bg-primary)] text-[var(--text-primary)]`}
         suppressHydrationWarning={true} 
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LanguageProvider>
+            <NeoBackground />
             <div className="page-container">
-              <div className="content-wrapper">
+              <div className="content-wrapper relative z-10">
                 <ClientLayout>
                   {children}
                 </ClientLayout>

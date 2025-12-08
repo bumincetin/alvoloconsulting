@@ -144,8 +144,8 @@ const getTrustedCompaniesContent = (lang: string) => {
 };
 
 const CompanyLogo = ({ company, className }: { company: Company; className: string }) => {
-  const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const placeholder = `https://picsum.photos/seed/${encodeURIComponent(company.name)}/160/160`;
 
   return (
     <div className={`relative ${className}`}>
@@ -155,16 +155,12 @@ const CompanyLogo = ({ company, className }: { company: Company; className: stri
         </div>
       )}
       <Image
-        src={imageError ? company.fallbackLogo : company.logo}
+        src={placeholder}
         alt={company.name}
         width={128}
         height={128}
         className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
         onLoad={() => setIsLoading(false)}
-        onError={() => {
-          setImageError(true);
-          setIsLoading(false);
-        }}
         priority={true}
       />
     </div>

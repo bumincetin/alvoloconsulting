@@ -1,9 +1,7 @@
 "use client"; // Make sure client component if not already
 
 import { FaCalculator, FaFileInvoiceDollar, FaHandshake, FaBalanceScale, FaBook, FaUniversity, FaPassport, FaChartLine, FaBuilding, FaShieldAlt } from 'react-icons/fa';
-import { useLanguage } from '@/contexts/LanguageContext'; // Import useLanguage
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const getServicesSectionContent = (lang: string) => {
   const content = {
@@ -86,107 +84,70 @@ const getServicesSectionContent = (lang: string) => {
 const Services = () => {
   const { language } = useLanguage();
   const c = getServicesSectionContent(language);
-  const [open, setOpen] = useState<'integration' | 'financial' | null>(null);
-
-  const handleToggle = (section: 'integration' | 'financial') => {
-    setOpen(prev => (prev === section ? null : section));
-  };
 
   return (
-    <section id="services" className="pt-10 pb-20 md:pt-20" style={{backgroundColor: 'var(--bg-primary)'}}>
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>
-            {c.title}
-          </h2>
-          <p className="text-xl" style={{color: 'var(--text-secondary)'}}>
-            {c.subtitle}
-          </p>
+    <section id="services" className="relative py-24" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-14">
+        <div className="text-center space-y-4">
+          <div className="neo-pill mx-auto">
+            <span className="w-2 h-2 rounded-full bg-neon-cyan" />
+            <span className="text-[11px] tracking-[0.2em] uppercase">{c.title}</span>
+          </div>
+          <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">{c.subtitle}</p>
         </div>
-        <div className="max-w-4xl mx-auto space-y-8">
-          {/* Integration Solutions Dropdown */}
-          <div className="rounded-xl glass-panel shadow-lg">
-            <button
-              className="w-full flex justify-between items-center px-8 py-6 text-2xl font-semibold focus:outline-none transition-colors rounded-t-xl"
-              style={{color: 'var(--brand-blue)'}}
-              onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--bg-surface)'}
-              onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
-              onClick={() => handleToggle('integration')}
-              aria-expanded={open === 'integration'}
-              aria-controls="integration-services"
-            >
-              {c.integrationTitle}
-              <span className={`ml-4 transition-transform duration-300 ${open === 'integration' ? 'rotate-180' : ''}`}>▼</span>
-            </button>
-            <AnimatePresence initial={false}>
-              {open === 'integration' && (
-                <motion.div
-                  id="integration-services"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className="overflow-hidden px-8"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6">
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          <div className="neo-card rounded-2xl p-8 border border-white/10">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-[var(--text-primary)]">{c.integrationTitle}</h3>
+              <div className="neo-pill">
+                <span className="w-2 h-2 rounded-full bg-neon-purple" />
+                <span className="text-[11px] tracking-[0.14em] uppercase">Integration</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-4">
                     {c.integrationServices.map((service, index) => {
                       const ServiceIcon = service.icon;
                       return (
-                        <div key={index} className="flex items-start gap-4">
-                          <ServiceIcon className="w-10 h-10 flex-shrink-0 mt-1" style={{color: 'var(--brand-orange)'}} />
-                          <div>
-                            <h3 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>{service.title}</h3>
-                            <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{service.description}</p>
+                  <div key={service.title} className="glass-panel rounded-xl p-4 flex gap-3 items-start">
+                    <div className="w-11 h-11 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center text-[var(--neon-cyan)]">
+                      <ServiceIcon />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-lg font-semibold text-[var(--text-primary)]">{service.title}</h4>
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{service.description}</p>
                           </div>
                         </div>
                       );
                     })}
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
-          {/* Financial Consultancy Dropdown */}
-          <div className="rounded-xl glass-panel shadow-lg">
-            <button
-              className="w-full flex justify-between items-center px-8 py-6 text-2xl font-semibold focus:outline-none transition-colors rounded-t-xl"
-              style={{color: 'var(--brand-blue)'}}
-              onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--bg-surface)'}
-              onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
-              onClick={() => handleToggle('financial')}
-              aria-expanded={open === 'financial'}
-              aria-controls="financial-services"
-            >
-              {c.financialTitle}
-              <span className={`ml-4 transition-transform duration-300 ${open === 'financial' ? 'rotate-180' : ''}`}>▼</span>
-            </button>
-            <AnimatePresence initial={false}>
-              {open === 'financial' && (
-                <motion.div
-                  id="financial-services"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className="overflow-hidden px-8"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6">
+
+          <div className="neo-card rounded-2xl p-8 border border-white/10">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-[var(--text-primary)]">{c.financialTitle}</h3>
+              <div className="neo-pill">
+                <span className="w-2 h-2 rounded-full bg-neon-green" />
+                <span className="text-[11px] tracking-[0.14em] uppercase">Finance</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-4">
                     {c.financialServices.map((service, index) => {
                       const ServiceIcon = service.icon;
                       return (
-                        <div key={index} className="flex items-start gap-4">
-                          <ServiceIcon className="w-10 h-10 flex-shrink-0 mt-1" style={{color: 'var(--brand-orange)'}} />
-                          <div>
-                            <h3 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>{service.title}</h3>
-                            <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{service.description}</p>
+                  <div key={service.title} className="glass-panel rounded-xl p-4 flex gap-3 items-start">
+                    <div className="w-11 h-11 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center text-[var(--neon-purple)]">
+                      <ServiceIcon />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-lg font-semibold text-[var(--text-primary)]">{service.title}</h4>
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{service.description}</p>
                           </div>
                         </div>
                       );
                     })}
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         </div>
       </div>

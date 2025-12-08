@@ -124,108 +124,130 @@ const getFooterContent = (lang: string) => {
 const Footer = () => {
   const { language } = useLanguage();
   const c = getFooterContent(language);
+
   return (
     <footer
-      className="pt-10 pb-4 mt-16"
-      style={{ backgroundColor: 'var(--bg-surface)', borderTop: '1px solid var(--border-secondary)' }}
+      className="relative mt-20 border-t border-white/10 backdrop-blur-2xl overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-surface)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-10">
-          {/* Logo & Contact */}
-          <div className="flex-1 min-w-[220px] mb-8 md:mb-0">
-            <div className="flex items-center mb-2">
-              <Image 
-                src="https://dl.dropboxusercontent.com/scl/fi/kyiy7zmfhp2qm0sucd7nt/ICON.png?rlkey=3wzqu5r27zaag3j8mpawjydpy&st=qjoffk41&dl=1&raw=1" 
-                alt="ALVOLO CONSULTING Logo" 
-                width={48}
-                height={48}
-                className="h-12 w-12 object-contain mr-3 rounded bg-white border border-gray-200 p-1" 
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div
+          className="neo-blob w-[32rem] h-[32rem] top-[-12rem] left-[-8rem]"
+          style={{ backgroundColor: 'rgba(188,19,254,0.25)' }}
+        />
+        <div
+          className="neo-blob w-[28rem] h-[28rem] bottom-[-10rem] right-[-6rem]"
+          style={{ backgroundColor: 'rgba(0,243,255,0.25)' }}
+        />
+      </div>
+      <div className="max-w-7xl mx-auto px-6 py-14 relative z-10 text-[var(--text-primary)]">
+        <div className="grid gap-10 lg:grid-cols-4">
+          <div className="space-y-4">
+            <div
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg transition-all shadow-sm"
+              style={{
+                backgroundColor: 'var(--bg-surface)',
+                border: '1px solid var(--border-secondary)'
+              }}
+            >
+              <Image
+                src="/LOGO.png"
+                alt="Alvolo Consulting"
+                width={120}
+                height={40}
+                className="w-24 h-8 object-contain"
               />
-              <div>
-                <div className="font-bold text-lg" style={{ color: 'var(--text-primary)' }}>{c.company.name}</div>
-                <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{c.company.title}<br />{c.company.subtitle}</div>
-              </div>
             </div>
-            <div className="text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>{c.company.address}</div>
-            <div className="flex space-x-2 mb-4">
+            <div>
+              <div className="text-lg font-bold tracking-wide text-[var(--text-primary)]">{c.company.name}</div>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                {c.company.title}<br />{c.company.subtitle}
+              </p>
+            </div>
+            <p className="text-sm text-[var(--text-secondary)]">{c.company.address}</p>
+            <div className="flex gap-3">
               <a
                 href="https://www.instagram.com/alvoloconsulting?igsh=Z3IzbzBsNGJraWs%3D"
                 target="_blank"
-                rel="noopener"
-                className="p-2 rounded transition"
-                style={{ backgroundColor: 'var(--bg-surface-hover)', color: 'var(--text-secondary)' }}
-                onMouseOver={e => { e.currentTarget.style.backgroundColor = 'var(--brand-blue)'; e.currentTarget.style.color = '#ffffff'; }}
-                onMouseOut={e => { e.currentTarget.style.backgroundColor = 'var(--bg-surface-hover)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all"
+                style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-secondary)', color: 'var(--text-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border-accent)';
+                  e.currentTarget.style.color = 'var(--neon-cyan)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border-secondary)';
+                  e.currentTarget.style.color = 'var(--text-secondary)';
+                }}
               >
-                <FaInstagram size={20} />
+                <FaInstagram size={18} />
               </a>
               <a
                 href="https://www.linkedin.com/company/alvolo-consulting"
                 target="_blank"
-                rel="noopener"
-                className="p-2 rounded transition"
-                style={{ backgroundColor: 'var(--bg-surface-hover)', color: 'var(--text-secondary)' }}
-                onMouseOver={e => { e.currentTarget.style.backgroundColor = 'var(--brand-blue)'; e.currentTarget.style.color = '#ffffff'; }}
-                onMouseOut={e => { e.currentTarget.style.backgroundColor = 'var(--bg-surface-hover)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all"
+                style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-secondary)', color: 'var(--text-secondary)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border-accent)';
+                  e.currentTarget.style.color = 'var(--neon-cyan)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border-secondary)';
+                  e.currentTarget.style.color = 'var(--text-secondary)';
+                }}
               >
-                <FaLinkedin size={20} />
+                <FaLinkedin size={18} />
               </a>
             </div>
           </div>
 
-          {/* Corporate Links */}
-          <div className="flex-1 min-w-[180px] mb-8 md:mb-0">
-            <div className="font-bold text-lg pb-1 mb-3" style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-secondary)' }}>{c.corporate.title}</div>
-            <ul className="space-y-2 text-sm">
+          <div>
+            <h4 className="text-sm uppercase tracking-[0.18em] text-[var(--text-secondary)] mb-4">{c.corporate.title}</h4>
+            <div className="space-y-2 text-sm">
               {c.corporate.links.map((item, idx) => (
-                <li key={idx}>
-                  <FaCheck className="inline mr-2" style={{ color: 'var(--brand-orange)' }} />
-                  <Link
-                    href={item.href}
-                    className="hover:underline"
-                    style={{ color: 'var(--text-secondary)' }}
-                    onMouseOver={e => { e.currentTarget.style.color = 'var(--brand-orange)'; }}
-                    onMouseOut={e => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
+                <Link
+                  key={idx}
+                  href={item.href}
+                  className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                >
+                  <FaCheck className="text-[var(--text-primary)]" />
+                  {item.label}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Services */}
-          <div className="flex-1 min-w-[180px] mb-8 md:mb-0">
-            <div className="font-bold text-lg pb-1 mb-3" style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-secondary)' }}>{c.services.title}</div>
-            <ul className="space-y-2 text-sm">
+          <div>
+            <h4 className="text-sm uppercase tracking-[0.18em] text-[var(--text-secondary)] mb-4">{c.services.title}</h4>
+            <div className="space-y-2 text-sm">
               {c.services.links.map((item, idx) => (
-                <li key={idx}>
-                  <FaCheck className="inline mr-2" style={{ color: 'var(--brand-orange)' }} />
-                  <Link
-                    href={item.href}
-                    className="hover:underline"
-                    style={{ color: 'var(--text-secondary)' }}
-                    onMouseOver={e => { e.currentTarget.style.color = 'var(--brand-orange)'; }}
-                    onMouseOut={e => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
+                <Link
+                  key={idx}
+                  href={item.href}
+                  className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                >
+                  <FaCheck className="text-[var(--text-primary)]" />
+                  {item.label}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Working Hours */}
-          <div className="flex-1 min-w-[180px]">
-            <div className="font-bold text-lg pb-1 mb-3" style={{ color: 'var(--text-primary)', borderBottom: '1px solid var(--border-secondary)' }}>{c.hours.title}</div>
-            <div className="text-sm mb-2" style={{ color: 'var(--text-secondary)' }}><span className="font-semibold">{c.hours.weekday}</span><br />{c.hours.time}</div>
-            <div className="text-xs" style={{ color: 'var(--text-muted)' }}>{c.hours.closed}</div>
+          <div className="space-y-3">
+            <h4 className="text-sm uppercase tracking-[0.18em] text-[var(--text-secondary)] mb-2">{c.hours.title}</h4>
+            <p className="text-sm text-[var(--text-primary)]">
+              <span className="font-semibold">{c.hours.weekday}</span><br />
+              {c.hours.time}
+            </p>
+            <p className="text-xs text-[var(--text-secondary)]">{c.hours.closed}</p>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 text-xs text-center" style={{ borderTop: '1px solid var(--border-secondary)', color: 'var(--text-muted)' }}>
-          <div className="mb-2 font-semibold" style={{ color: 'var(--text-primary)' }}>{c.copyright}</div>
-          <div className="mb-2">{c.disclaimer}</div>
+        <div className="mt-12 pt-6 border-t border-white/5 text-center text-xs text-[var(--text-secondary)] space-y-2">
+          <div className="font-semibold text-[var(--text-primary)]">{c.copyright}</div>
+          <div className="max-w-4xl mx-auto">{c.disclaimer}</div>
           <div>{c.reserved}</div>
         </div>
       </div>
@@ -233,4 +255,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;

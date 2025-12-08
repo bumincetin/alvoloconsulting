@@ -1,6 +1,5 @@
 "use client";
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -39,61 +38,77 @@ const Hero = () => {
   const c = getHeroContent(language);
 
   return (
-    <section id="hero" className="relative min-h-[80vh] md:min-h-screen flex flex-col justify-center md:items-center pt-20 md:pt-0" style={{backgroundColor: 'var(--bg-primary)'}}>
-      {/* Grid background */}
-      <div className="absolute inset-0 bg-grid opacity-30"></div>
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
-            <div className="inline-block">
-              <h1 className="text-4xl md:text-6xl font-bold mb-2" style={{color: 'var(--text-primary)'}}>
-                {c.brandName}
-              </h1>
-              <div className="h-1 w-1/3 rounded-full mb-6 mx-auto md:mx-0" style={{backgroundColor: 'var(--brand-orange)'}}></div>
-            </div>
-            <p className="text-xl md:text-2xl mb-8" style={{color: 'var(--text-secondary)'}}>
-              {c.subheading1}
-              <span className="block mt-2 font-semibold" style={{color: 'var(--brand-blue)'}}>
-                {c.subheading2}
-              </span>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link
-                href="/contact"
-                className="px-8 py-4 text-white rounded-lg transition duration-300 shadow-lg hover:shadow-xl text-center"
-                style={{backgroundColor: 'var(--logo-orange)'}}
-                onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--logo-orange-ton)'}
-                onMouseOut={e => e.currentTarget.style.backgroundColor = 'var(--logo-orange)'}
-              >
-                {c.contactButton}
-              </Link>
-              <Link
-                href="/services"
-                className="px-8 py-4 border-2 rounded-lg transition duration-300 text-center"
-                style={{borderColor: 'var(--logo-blue)', color: 'var(--logo-blue)'}}
-                onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--logo-orange-ton)'; e.currentTarget.style.color = 'white';}}
-                onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--logo-blue)';}}
-              >
-                {c.servicesButton}
-              </Link>
-            </div>
+    <section
+      id="hero"
+      className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-primary)' }}
+    >
+      <div className="absolute inset-0 bg-grid opacity-30" />
+      <div className="absolute inset-x-0 top-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="space-y-8">
+          <div className="neo-pill animate-fade-in" style={{ animationDuration: '1s' }}>
+            <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
+            <span className="text-[11px] tracking-[0.2em] uppercase">Neo Tokyo Layout</span>
           </div>
-          <div className="md:w-1/2 relative mt-10 md:mt-0">
-            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0B1120] to-transparent rounded-xl"></div>
-              <Image
-                src="https://dl.dropboxusercontent.com/scl/fi/n8abtlx6olxbmtnwhgi4a/milano2.jpg?rlkey=imyqk3wlq0w9x3ohnmmfagco8&st=fgghxlun&dl=1&raw=1"
-                alt="Milano"
-                width={400}
-                height={300}
-                className="rounded-lg shadow-lg"
-              />
+
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tight text-[var(--text-primary)] animate-slide-up" style={{ animationDuration: '1.1s' }}>
+            {c.mainHeading}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-primary)] via-white/70 to-white/30 mt-4">
+              {c.subheading1}
+            </span>
+          </h1>
+
+          <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed animate-slide-up" style={{ animationDuration: '1.2s' }}>
+            {c.subheading2}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDuration: '1.3s' }}>
+            <Link
+              href="/contact"
+              className="neo-cta px-7 py-4 rounded-md shadow-[0_15px_30px_rgba(0,243,255,0.25)] flex items-center justify-center gap-2"
+            >
+              {c.contactButton}
+            </Link>
+            <Link
+              href="/services"
+              className="neo-cta-outline px-7 py-4 rounded-md flex items-center justify-center gap-2"
+            >
+              {c.servicesButton}
+            </Link>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="absolute -inset-6 bg-gradient-to-r from-neon-purple/20 via-transparent to-neon-cyan/20 blur-3xl opacity-70" />
+          <div className="neo-card rounded-3xl p-8 relative overflow-hidden border border-white/10">
+            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(0,243,255,0.05),rgba(188,19,254,0.05))]" />
+              <div className="relative z-10 space-y-4">
+                <div className="flex items-center justify-between text-[var(--text-secondary)] text-xs uppercase tracking-[0.18em]">
+                <span>Integration & Finance</span>
+                <span>2025</span>
+              </div>
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#0f1729] via-[#0a0d1a] to-[#04050a] relative">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,243,255,0.25),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(188,19,254,0.35),transparent_40%)]" />
+                <div className="absolute inset-0 mix-blend-soft-light opacity-60 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+                <div className="absolute inset-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-center px-6">
+                  <p className="text-[var(--text-primary)] text-lg leading-relaxed">
+                    We build visceral digital experiences for every step of your Italy journey.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse" />
+                  {c.brandName}
+                </span>
+                <span className="text-[var(--text-primary)] uppercase tracking-[0.12em]">Since 2024</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t" style={{background: `linear-gradient(to top, var(--bg-primary), transparent)`}}></div>
     </section>
   );
 };

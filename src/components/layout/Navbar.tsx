@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { FaBars, FaTimes, FaChevronDown, FaArrowRight } from 'react-icons/fa';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { ThemeToggle } from '../ThemeToggle';
@@ -69,20 +69,25 @@ const getNavbarContent = (lang: string) => {
 };
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isRightMenuOpen, setIsRightMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
   const c = getNavbarContent(language);
 
   const navItems = [
     { label: c.home, href: '/' },
-    { label: c.missionVision, href: '/mission-vision' },
     { label: c.about, href: '/about' },
-    { label: c.ourStory, href: '/our-story' },
-    { label: c.announcements, href: '/announcements' },
     { label: c.blog, href: '/blog' },
     { label: c.contact, href: '/contact' },
+  ];
+
+  const rightMenuItems = [
+    { label: c.announcements, href: '/announcements' },
+    { label: c.missionVision, href: '/mission-vision' },
+    { label: c.ourStory, href: '/our-story' },
   ];
 
   const serviceItems = [
@@ -91,106 +96,85 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
         setIsServicesOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl" style={{
-      backgroundColor: 'var(--bg-surface)',
-      borderBottom: '1px solid var(--border-secondary)',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
-      transition: 'background-color 0.3s ease'
-    }}>
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity duration-300">
-              <div className="mr-3" style={{filter: 'none'}}>
-                <Image
-                  src="https://dl.dropboxusercontent.com/scl/fi/1e6b17ra9y0ey2kw192ej/LOGO.png?rlkey=eijo2u9qpo88udlovkmh3chaj&st=gnjfhg84&dl=1&raw=1"
-                  alt="ALVOLO CONSULTING"
-                  className="h-8 w-auto"
-                  width={32}
-                  height={32}
-                  unoptimized
-                  style={{filter: 'none', imageRendering: 'crisp-edges'}}
-                />
-              </div>
+    <nav
+      className="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-2xl"
+      style={{
+        backgroundColor: isScrolled ? 'var(--bg-surface)' : 'transparent',
+        borderBottom: isScrolled ? '1px solid var(--border-secondary)' : '1px solid transparent',
+        boxShadow: isScrolled ? '0 15px 40px rgba(0,0,0,0.35)' : 'none'
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between h-20 gap-4">
+          <Link href="/" className="flex items-center gap-2 group">
+            <span
+              className="p-2 rounded-lg transition-all shadow-sm"
+              style={{
+                backgroundColor: 'var(--bg-surface)',
+                border: `1px solid var(--border-secondary)`
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--border-accent)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border-secondary)'; }}
+            >
+              <Image
+                src="/ICON.png"
+                alt="Alvolo Consulting"
+                width={120}
+                height={40}
+                className="w-24 h-8 object-contain transition-transform duration-200 group-hover:scale-105"
+              />
+            </span>
             </Link>
-          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center gap-8">
             {navItems.slice(0, 2).map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="transition-colors duration-300"
-                style={{color: 'var(--text-secondary)'}}
-                onMouseOver={e => e.currentTarget.style.color = 'var(--brand-orange)'}
-                onMouseOut={e => e.currentTarget.style.color = 'var(--text-secondary)'}
+                className="text-sm uppercase tracking-[0.12em] transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
               >
                 {item.label}
               </Link>
             ))}
             
-            {/* Services Dropdown with Unified Button */}
-            <div className="relative group" ref={servicesRef}>
-              <div
-                className="flex items-center transition-colors duration-300 cursor-pointer select-none px-2 py-1 rounded"
-                style={{color: 'var(--text-secondary)'}}
-                tabIndex={0}
-                onMouseEnter={(e) => {setIsServicesOpen(true); e.currentTarget.style.color = 'var(--brand-orange)'}}
-                onMouseLeave={(e) => {setIsServicesOpen(false); e.currentTarget.style.color = 'var(--text-secondary)'}}
-                onFocus={() => setIsServicesOpen(true)}
-                onBlur={() => setIsServicesOpen(false)}
-              >
-                <span
-                  onClick={() => {
-                    setIsServicesOpen(false);
-                    window.location.href = '/services';
-                  }}
-                  className="pr-1"
-                  style={{ outline: 'none' }}
-                  tabIndex={-1}
+            <div className="relative" ref={servicesRef}>
+              <button
+                className="flex items-center gap-2 text-sm uppercase tracking-[0.12em] transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
+                onClick={() => setIsServicesOpen((prev) => !prev)}
                 >
                   {c.services}
-                </span>
-                <button
-                  onClick={e => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    setIsServicesOpen(!isServicesOpen);
-                  }}
-                  className="flex items-center pl-1 bg-transparent border-none outline-none cursor-pointer"
-                  style={{color: 'var(--text-secondary)'}}
-                  aria-label={c.services}
-                  tabIndex={0}
-                  type="button"
-                >
-                  <FaChevronDown className={`ml-1 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} style={{color: 'inherit'}} />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
                 </button>
-              </div>
               {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 rounded-lg shadow-xl py-2 z-50 backdrop-blur-xl" style={{
-                  backgroundColor: 'var(--bg-surface-hover)',
-                  border: '1px solid var(--border-primary)'
-                }}>
+                <div className="absolute top-12 left-0 w-56 rounded-xl glass-panel py-3 shadow-2xl">
                   {serviceItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="block px-4 py-2 transition-colors duration-300 rounded mx-1"
-                      style={{color: 'var(--text-secondary)'}}
-                      onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
-                      onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'}}
+                      className="block px-4 py-2 text-sm transition-colors"
+                      style={{ color: 'var(--text-secondary)' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
                       onClick={() => setIsServicesOpen(false)}
                     >
                       {item.label}
@@ -204,85 +188,103 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="transition-colors duration-300"
-                style={{color: 'var(--text-secondary)'}}
-                onMouseOver={e => e.currentTarget.style.color = 'var(--brand-orange)'}
-                onMouseOut={e => e.currentTarget.style.color = 'var(--text-secondary)'}
+                className="text-sm uppercase tracking-[0.12em] transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
               >
                 {item.label}
               </Link>
             ))}
+
+            {/* RHS Menu */}
+            <div className="relative">
+              <button
+                className="flex items-center gap-2 text-sm uppercase tracking-[0.12em] transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
+                onClick={() => setIsRightMenuOpen((prev) => !prev)}
+              >
+                Menu
+                <ChevronDown className={`w-4 h-4 transition-transform ${isRightMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isRightMenuOpen && (
+                <div className="absolute right-0 top-12 w-56 rounded-xl glass-panel py-3 shadow-2xl">
+                  {rightMenuItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="block px-4 py-2 text-sm transition-colors"
+                      style={{ color: 'var(--text-secondary)' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                      onClick={() => setIsRightMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
               href="/portal"
-              className="hidden md:flex items-center gap-2 border px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
-              style={{borderColor: 'var(--border-primary)', color: 'var(--brand-orange)'}}
-              onMouseOver={e => {
-                e.currentTarget.style.backgroundColor = 'var(--brand-orange)';
-                e.currentTarget.style.color = 'white';
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold transition-colors"
+              style={{ backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--neon-cyan)';
+                e.currentTarget.style.color = '#050505';
               }}
-              onMouseOut={e => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = 'var(--brand-orange)';
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+                e.currentTarget.style.color = 'var(--bg-primary)';
               }}
             >
-              <span>{c.clientPortal}</span>
-              <FaArrowRight className="w-4 h-4" />
+              {c.clientPortal}
+              <ArrowRight className="w-4 h-4" />
             </Link>
             <ThemeToggle />
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile Navigation Button (Hamburger) */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <LanguageSwitcher />
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="focus:outline-none transition-colors"
-              style={{color: 'var(--text-secondary)'}}
-              onMouseOver={e => e.currentTarget.style.color = 'var(--brand-orange)'}
-              onMouseOut={e => e.currentTarget.style.color = 'var(--text-secondary)'}
-              aria-label={isOpen ? c.closeMenu : c.openMenu}
+              className="p-2 rounded-md border border-white/10 text-[var(--text-primary)]"
+              aria-label={isMobileOpen ? c.closeMenu : c.openMenu}
+              onClick={() => setIsMobileOpen((prev) => !prev)}
             >
-              {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
+              {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
+          </div>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu (Dropdown) */}
-        {isOpen && (
-          <div className="md:hidden border-t backdrop-blur-xl" style={{
-            borderColor: 'var(--border-secondary)',
-            backgroundColor: 'var(--bg-surface-hover)'
-          }}>
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      {isMobileOpen && (
+        <div className="lg:hidden border-t border-white/10 bg-[var(--bg-surface)] backdrop-blur-2xl px-6 pb-10 pt-4 space-y-4">
+          <div className="grid grid-cols-2 gap-3">
               {navItems.slice(0, 2).map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
-                  style={{color: 'var(--text-primary)'}}
-                  onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
-                  onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-primary)'}}
-                  onClick={() => setIsOpen(false)}
+                className="px-4 py-3 rounded-lg glass-panel text-sm font-semibold text-[var(--text-primary)] transition-colors"
+                onClick={() => setIsMobileOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              
-              {/* Mobile Services Section */}
-              <div className="px-3 py-2">
-                <div className="text-base font-medium mb-2" style={{color: 'var(--text-primary)'}}>
-                  {c.services}
-                </div>
-                <div className="pl-4 space-y-1">
+          </div>
+
+          <div className="glass-panel rounded-xl p-4 space-y-2">
+            <p className="text-xs uppercase tracking-[0.14em] text-[var(--text-secondary)]">{c.services}</p>
+            <div className="grid grid-cols-1 gap-2">
                   {serviceItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
-                      style={{color: 'var(--text-secondary)'}}
-                      onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
-                      onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'}}
-                      onClick={() => setIsOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm text-[var(--text-primary)] transition-colors"
+                  style={{ backgroundColor: 'var(--bg-surface-hover)', border: `1px solid var(--border-secondary)` }}
+                  onClick={() => setIsMobileOpen(false)}
                     >
                       {item.label}
                     </Link>
@@ -290,37 +292,55 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {navItems.slice(2).map((item) => (
+          <div className="glass-panel rounded-xl p-4 space-y-2">
+            <p className="text-xs uppercase tracking-[0.14em] text-[var(--text-secondary)]">Menu</p>
+            <div className="grid grid-cols-1 gap-2">
+              {rightMenuItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
-                  style={{color: 'var(--text-primary)'}}
-                  onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
-                  onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-primary)'}}
-                  onClick={() => setIsOpen(false)}
+                  className="px-3 py-2 rounded-lg bg-white/5 text-sm text-[var(--text-primary)] transition-colors"
+                  onClick={() => setIsMobileOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/portal"
-                className="block px-3 py-2 rounded-md text-base font-medium border text-center transition-colors"
-                style={{borderColor: 'var(--border-primary)', color: 'var(--brand-orange)'}}
-                onClick={() => setIsOpen(false)}
-              >
-                {c.clientPortal}
-              </Link>
-            </div>
-            <div className="pt-4 pb-3 border-t" style={{borderColor: 'var(--border-secondary)'}}>
-              <div className="flex items-center justify-center gap-3 px-5">
-                <ThemeToggle />
-                <LanguageSwitcher />
-              </div>
             </div>
           </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {navItems.slice(2).map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="px-4 py-3 rounded-lg glass-panel text-sm font-semibold text-[var(--text-primary)] transition-colors"
+                style={{ color: 'var(--text-primary)' }}
+                onClick={() => setIsMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <Link
+            href="/portal"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-semibold transition-colors"
+            style={{ backgroundColor: 'var(--text-primary)', color: 'var(--bg-primary)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--neon-cyan)';
+              e.currentTarget.style.color = '#050505';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+              e.currentTarget.style.color = 'var(--bg-primary)';
+            }}
+            onClick={() => setIsMobileOpen(false)}
+          >
+            {c.clientPortal}
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          </div>
         )}
-      </div>
     </nav>
   );
 };
