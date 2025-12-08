@@ -151,7 +151,7 @@ const Footer = () => {
               }}
             >
               <Image
-                src="/LOGO.png"
+                src="/ICON.png"
                 alt="Alvolo Consulting"
                 width={120}
                 height={40}

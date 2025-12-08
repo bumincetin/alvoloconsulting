@@ -3,8 +3,10 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/layout/Navbar';
 import { AbstractArt } from '@/components/AbstractArt';
-import { FaCalendarAlt, FaUser, FaArrowRight, FaBookOpen, FaTag } from 'react-icons/fa';
+import { FaCalendarAlt, FaUser, FaArrowRight, FaBookOpen } from 'react-icons/fa';
 import Link from 'next/link';
+
+type ArtVariant = 'blue' | 'purple' | 'gold' | 'dark';
 
 const getBlogContent = (lang: string) => {
   const content = {
@@ -99,7 +101,7 @@ const BlogPage = () => {
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="h-64 md:h-auto relative overflow-hidden">
                     {/* Replaced Image with Abstract Art */}
-                    <AbstractArt variant={article.variant as any} className="transition-transform duration-700 group-hover:scale-110" />
+                    <AbstractArt variant={article.variant as ArtVariant} className="transition-transform duration-700 group-hover:scale-110" />
                   </div>
                   <div className="p-8 md:p-12 flex flex-col justify-center">
                     <div className="flex items-center gap-4 text-sm text-[var(--text-secondary)] mb-4">
@@ -138,7 +140,7 @@ const BlogPage = () => {
                 
                 {/* Card Image Area */}
                 <div className="h-48 relative overflow-hidden">
-                  <AbstractArt variant={article.variant as any} className="transition-transform duration-500 group-hover:scale-110" />
+                  <AbstractArt variant={article.variant as ArtVariant} className="transition-transform duration-500 group-hover:scale-110" />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 rounded-md text-xs font-bold bg-black/50 backdrop-blur-md text-white border border-white/10">
                       {article.category}

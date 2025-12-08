@@ -2,7 +2,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/layout/Navbar';
 import Link from 'next/link';
-import { FaCheck, FaRegChartBar, FaRegHandshake, FaGlobe, FaRegLightbulb, FaArrowRight } from 'react-icons/fa';
+import { FaCheck, FaRegHandshake, FaGlobe, FaRegLightbulb, FaArrowRight } from 'react-icons/fa';
 import { useMemo } from 'react';
 
 const getExpansionContent = (lang: string) => {
