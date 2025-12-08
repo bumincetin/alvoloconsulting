@@ -1,0 +1,77 @@
+<!-- UPDATED FORM WITH LOGIC -->
+<form id="auditForm" class="space-y-4 text-left relative overflow-hidden">
+    <!-- Input Fields -->
+    <div id="formFields" class="space-y-4 transition-all duration-300">
+        <div>
+            <label class="block text-xs font-mono text-slate-500 mb-1">EMAIL ADDRESS</label>
+            <input type="email" id="email" required placeholder="name@company.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brandOrange transition-colors">
+        </div>
+        <div>
+            <label class="block text-xs font-mono text-slate-500 mb-1">INTEREST</label>
+            <select id="interest" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-slate-300 focus:outline-none focus:border-brandOrange transition-colors">
+                <option value="Italy Expansion">Expansion to Italy</option>
+                <option value="Turkey Expansion">Expansion to Turkey</option>
+                <option value="Tax Optimization">Tax Optimization</option>
+            </select>
+        </div>
+        <button type="submit" class="w-full bg-brandOrange text-white font-bold py-4 rounded-lg hover:bg-[#d97335] transition-all shadow-lg shadow-brandOrange/20 flex items-center justify-center gap-2">
+            <span>Request Analysis</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+    </div>
+
+    <!-- Success Message (Hidden by default) -->
+    <div id="successMessage" class="absolute inset-0 bg-[#080d1a] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
+        <div class="w-12 h-12 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center mb-4">
+            <i data-lucide="check" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-2">Profile Generated</h3>
+        <p class="text-slate-400 text-sm mb-6 text-center">Data modeled. Choose your next step:</p>
+        
+        <div class="flex flex-col gap-3 w-full">
+            <a id="mailLink" href="#" class="w-full bg-slate-800 border border-slate-700 text-white py-3 rounded-lg text-sm font-medium hover:bg-slate-700 text-center transition-colors">
+                Send via Email App
+            </a>
+            <!-- Replace 'calendly.com' with your actual link later -->
+            <a href="https://calendly.com/" target="_blank" class="w-full bg-brandOrange text-white py-3 rounded-lg text-sm font-medium hover:bg-[#d97335] text-center transition-colors">
+                Book Intro Call
+            </a>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.getElementById('auditForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = this.querySelector('button');
+        const originalText = btn.innerHTML;
+        const email = document.getElementById('email').value;
+        const interest = document.getElementById('interest').value;
+        
+        // 1. Show Loading State
+        btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Processing Data...';
+        lucide.createIcons(); // Re-init icons for the loader
+        
+        // 2. Prepare the Mailto Link
+        const subject = encodeURIComponent(`Consultancy Request: ${interest}`);
+        const body = encodeURIComponent(`Hi Q/A Team,\n\nI am interested in ${interest}.\n\nPlease contact me at: ${email}\n\n[Add more details here]`);
+        const mailto = `mailto:info@qaconsulting.com?subject=${subject}&body=${body}`; // REPLACE with your actual email
+        document.getElementById('mailLink').href = mailto;
+
+        // 3. Simulate API Delay & Show Success
+        setTimeout(() => {
+            const fields = document.getElementById('formFields');
+            const success = document.getElementById('successMessage');
+            
+            fields.style.opacity = '0';
+            fields.style.pointerEvents = 'none';
+            
+            success.classList.remove('opacity-0', 'pointer-events-none');
+            success.classList.add('opacity-100', 'pointer-events-auto');
+            
+            // Re-init icons for the checkmark
+            lucide.createIcons();
+        }, 1500);
+    });
+</script>

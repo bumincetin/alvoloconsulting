@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal | Q/A Consulting</title>
+    
+    <!-- Fonts & Frameworks -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bosphorus: '#0B1120',
+                        brandBlue: '#3c77ad',
+                        brandOrange: '#f58643',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0B1120; color: #e2e8f0; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .sidebar-link.active {
+            background: rgba(60, 119, 173, 0.1);
+            border-right: 2px solid #3c77ad;
+            color: white;
+        }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col">
+
+    <!-- VIEW 1: LOGIN SCREEN -->
+    <section id="login-view" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0B1120] bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-[#0B1120]/90 backdrop-blur-sm"></div>
+
+        <div class="relative w-full max-w-md p-8 glass-panel rounded-2xl shadow-2xl">
+            <div class="text-center mb-8">
+                <div class="w-12 h-12 rounded bg-gradient-to-br from-brandBlue to-brandOrange flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="lock" class="text-white w-6 h-6"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-white">Client Access</h1>
+                <p class="text-slate-400 text-sm mt-2">Enter your secure credentials.</p>
+            </div>
+
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-slate-500 mb-1">CLIENT ID / EMAIL</label>
+                    <input type="email" value="demo@client.com" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brandBlue transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-slate-500 mb-1">PASSWORD</label>
+                    <input type="password" value="password123" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brandBlue transition-colors">
+                </div>
+                <button type="submit" class="w-full bg-brandBlue text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="log-in" class="w-4 h-4"></i> Secure Login
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <a href="index.html" class="text-xs text-slate-500 hover:text-white transition-colors">← Back to Website</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIEW 2: DASHBOARD (Hidden by default) -->
+    <div id="dashboard-view" class="flex-1 flex hidden opacity-0 transition-opacity duration-500">
+        
+        <!-- SIDEBAR -->
+        <aside class="w-64 border-r border-slate-800 bg-[#080d1a] flex flex-col hidden md:flex">
+            <div class="h-16 flex items-center px-6 border-b border-slate-800">
+                <span class="font-bold text-lg tracking-tight">Q/A <span class="text-brandBlue">PORTAL</span></span>
+            </div>
+            
+            <div class="p-4 space-y-2">
+                <div class="text-xs font-mono text-slate-600 px-3 py-2">MAIN</div>
+                <a href="#" class="sidebar-link active flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview
+                </a>
+                <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <i data-lucide="folder-open" class="w-4 h-4"></i> Documents
+                </a>
+                <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Advisory Chat
+                    <span class="ml-auto w-2 h-2 rounded-full bg-brandOrange"></span>
+                </a>
+                
+                <div class="text-xs font-mono text-slate-600 px-3 py-2 mt-6">FINANCE</div>
+                <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <i data-lucide="receipt" class="w-4 h-4"></i> Invoices
+                </a>
+            </div>
+
+            <div class="mt-auto p-4 border-t border-slate-800">
+                <a href="index.html" class="flex items-center gap-3 text-slate-500 hover:text-white transition-colors text-sm">
+                    <i data-lucide="log-out" class="w-4 h-4"></i> Log Out
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 flex flex-col bg-[#0B1120] overflow-y-auto">
+            
+            <!-- Topbar -->
+            <header class="h-16 border-b border-slate-800 flex items-center justify-between px-8 bg-[#0B1120]/80 backdrop-blur-md sticky top-0 z-10">
+                <div class="flex items-center gap-4">
+                    <button class="md:hidden text-slate-400"><i data-lucide="menu" class="w-6 h-6"></i></button>
+                    <h2 class="text-white font-medium">Project Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <button class="relative text-slate-400 hover:text-white">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-brandOrange rounded-full"></span>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white">JD</div>
+                        <span class="text-sm text-slate-300 hidden sm:inline">John Doe (S.r.l.)</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Grid -->
+            <div class="p-8 max-w-6xl mx-auto w-full">
+                
+                <!-- Status Banner -->
+                <div class="glass-panel p-6 rounded-xl mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <div class="text-xs font-mono text-slate-500 mb-1">CURRENT PHASE</div>
+                        <h3 class="text-2xl font-bold text-white">Incorporation: Stage 2/4</h3>
+                        <p class="text-slate-400 text-sm mt-1">Pending Notary Approval in Milan.</p>
+                    </div>
+                    <div class="w-full md:w-64 bg-slate-800 h-3 rounded-full overflow-hidden">
+                        <div class="bg-brandBlue h-full rounded-full" style="width: 65%"></div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Card 1: Action Items -->
+                    <div class="glass-panel p-6 rounded-xl lg:col-span-2">
+                        <h4 class="text-white font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-brandOrange"></i> Action Required
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded border border-brandOrange/30">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-brandOrange animate-pulse"></div>
+                                    <span class="text-sm text-white">Sign Articles of Association</span>
+                                </div>
+                                <button class="text-xs bg-brandOrange text-white px-3 py-1.5 rounded hover:bg-[#d97335]">Sign Now</button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded border border-slate-800">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-slate-600"></div>
+                                    <span class="text-sm text-slate-300">Upload Passport Copy</span>
+                                </div>
+                                <span class="text-xs text-green-500 font-mono">COMPLETED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Quick Docs -->
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h4 class="text-white font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-4 h-4 text-brandBlue"></i> Recent Files
+                        </h4>
+                        <div class="space-y-3">
+                            <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-800/50 group transition-colors">
+                                <i data-lucide="file" class="w-4 h-4 text-slate-500 group-hover:text-brandBlue"></i>
+                                <div>
+                                    <div class="text-sm text-slate-200">Draft_Statute_v2.pdf</div>
+                                    <div class="text-[10px] text-slate-500">Added 2 hours ago</div>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-2 rounded hover:bg-slate-800/50 group transition-colors">
+                                <i data-lucide="file" class="w-4 h-4 text-slate-500 group-hover:text-brandBlue"></i>
+                                <div>
+                                    <div class="text-sm text-slate-200">Tax_ID_Certificate.pdf</div>
+                                    <div class="text-[10px] text-slate-500">Added yesterday</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Data Viz -->
+                <div class="mt-6 glass-panel p-6 rounded-xl border border-slate-800">
+                     <h4 class="text-white font-bold mb-4">Financial Projections (Year 1)</h4>
+                     <!-- Simple CSS Chart -->
+                     <div class="flex items-end justify-between h-32 gap-2 mt-4 px-2">
+                        <div class="w-full bg-slate-800 rounded-t h-[20%] group relative">
+                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 opacity-0 group-hover:opacity-100">€2k</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-t h-[35%] group relative">
+                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-slate-400 opacity-0 group-hover:opacity-100">€5k</span>
+                        </div>
+                        <div class="w-full bg-brandBlue/30 rounded-t h-[50%] group relative">
+                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brandBlue opacity-0 group-hover:opacity-100">€12k</span>
+                        </div>
+                        <div class="w-full bg-brandBlue/60 rounded-t h-[75%] group relative">
+                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brandBlue opacity-0 group-hover:opacity-100">€24k</span>
+                        </div>
+                        <div class="w-full bg-brandOrange rounded-t h-[90%] group relative">
+                            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-brandOrange font-bold opacity-0 group-hover:opacity-100">€45k</span>
+                        </div>
+                     </div>
+                     <div class="flex justify-between text-xs font-mono text-slate-500 mt-2 px-2">
+                        <span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>Y2</span>
+                     </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        lucide.createIcons();
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalContent = btn.innerHTML;
+            
+            // 1. Loading State
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Verifying...';
+            lucide.createIcons();
+
+            // 2. Simulate Delay and Transition
+            setTimeout(() => {
+                document.getElementById('login-view').classList.add('opacity-0', 'pointer-events-none');
+                
+                setTimeout(() => {
+                    document.getElementById('login-view').style.display = 'none';
+                    const dashboard = document.getElementById('dashboard-view');
+                    dashboard.classList.remove('hidden');
+                    // Small delay to allow display:flex to apply before opacity transition
+                    setTimeout(() => {
+                        dashboard.classList.remove('opacity-0');
+                    }, 50);
+                }, 500);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

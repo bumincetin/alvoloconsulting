@@ -187,18 +187,18 @@ const TrustedCompanies = () => {
   }, [c.companies.length]);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-gold to-yellow-600 rounded-full mb-6 shadow-lg">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#f58643] to-[#d97335] rounded-full mb-6 shadow-lg">
             <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
             </svg>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-blue mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
             {c.title}
           </h2>
-          <p className="text-xl text-brand-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             {c.subtitle}
           </p>
         </div>
@@ -209,17 +209,17 @@ const TrustedCompanies = () => {
             {c.companies.map((company, index) => (
               <div key={index} className="w-full flex-shrink-0">
                 <div className="max-w-4xl mx-auto">
-                  <div className="bg-white rounded-2xl shadow-xl p-12 text-center border border-gray-100">
+                  <div className="glass-panel rounded-2xl shadow-xl p-12 text-center">
                     <div className="mb-8">
                       <CompanyLogo
                         company={company}
                         className="w-32 h-32 mx-auto object-contain rounded-xl shadow-lg"
                       />
                     </div>
-                    <h3 className="text-3xl font-bold text-brand-blue mb-4">
+                    <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
                       {company.name}
                     </h3>
-                    <p className="text-xl text-brand-text-secondary max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                       {company.description}
                     </p>
                   </div>
@@ -236,9 +236,10 @@ const TrustedCompanies = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? 'bg-brand-gold scale-125' 
-                    : 'bg-gray-300 hover:bg-gray-400'
+                    ? 'scale-125' 
+                    : ''
                 }`}
+                style={{backgroundColor: index === currentIndex ? '#f58643' : '#475569'}}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -247,10 +248,10 @@ const TrustedCompanies = () => {
           {/* Navigation Arrows */}
           <button
             onClick={() => setCurrentIndex(prev => prev === 0 ? c.companies.length - 1 : prev - 1)}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-gray-100"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 glass-panel rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
             aria-label="Previous company"
           >
-            <svg className="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" style={{color: '#3c77ad'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -260,7 +261,7 @@ const TrustedCompanies = () => {
             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-gray-100"
             aria-label="Next company"
           >
-            <svg className="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" style={{color: '#3c77ad'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -272,14 +273,14 @@ const TrustedCompanies = () => {
             {c.companies.map((company, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer border border-gray-100"
+                className="glass-panel rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
                 onClick={() => setCurrentIndex(index)}
               >
                 <CompanyLogo
                   company={company}
                   className="w-16 h-16 mx-auto object-contain mb-4"
                 />
-                <h4 className="text-sm font-semibold text-brand-text-primary leading-tight">
+                <h4 className="text-sm font-semibold leading-tight text-white">
                   {company.name}
                 </h4>
               </div>

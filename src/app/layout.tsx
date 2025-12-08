@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 // LanguageProvider is a client component, useLanguage is also for client components
-import { LanguageProvider } from "@/contexts/LanguageContext"; 
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import { ThemeProvider } from "@/components/ThemeProvider"; 
 import { CookieConsent } from "@/components/CookieConsent";
 import { ScriptLoader } from "@/components/ScriptLoader";
 import Footer from "@/components/layout/Footer";
@@ -131,11 +131,7 @@ export default function RootLayout({
         className={`${playfairDisplay.variable} ${lato.variable} antialiased`}
         suppressHydrationWarning={true} 
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LanguageProvider>
             <ClientLayout>
               {children}

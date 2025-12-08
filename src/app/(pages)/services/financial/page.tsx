@@ -335,22 +335,29 @@ const FinancialPage = () => {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-b from-brand-bg-primary to-blue-50">
+      <main className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
         {/* Hero Section */}
-        <section className="pt-32 pb-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/10 to-brand-gold/10" />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <section className="pt-32 pb-20 relative overflow-hidden" style={{ backgroundColor: 'var(--bg-primary)' }}>
+          <div className="absolute inset-0 bg-grid z-0 opacity-30 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-[var(--brand-blue)]/15 rounded-full blur-[120px] pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold text-brand-blue mb-6">
+              <div className="mb-4 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>
+                <Link href="/services" className="hover:underline" style={{ color: 'var(--brand-orange)' }}>Services</Link>
+                <span className="mx-2" style={{ color: 'var(--text-muted)' }}>/</span>
+                <span style={{ color: 'var(--text-secondary)' }}>Financial Consultancy</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
                 {c.title}
               </h1>
-              <p className="text-xl text-brand-text-secondary mb-8">
+              <p className="text-xl mb-8" style={{ color: 'var(--text-secondary)' }}>
                 {c.subtitle}
               </p>
               <div className="flex justify-center gap-4">
                 <Link 
                   href="/contact"
-                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-gold hover:bg-brand-gold/90 transition-colors duration-200"
+                  className="inline-flex items-center px-6 py-3 text-base font-medium rounded-md transition-colors duration-200"
+                  style={{ backgroundColor: 'var(--brand-orange)', color: '#ffffff', border: '1px solid var(--border-primary)' }}
                 >
                   {c.cta}
                 </Link>
@@ -360,29 +367,29 @@ const FinancialPage = () => {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20" style={{ backgroundColor: 'var(--bg-surface)' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-brand-blue mb-4">
+              <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
                 {c.trust.title}
               </h2>
-              <p className="text-lg text-brand-text-secondary max-w-3xl mx-auto">
+              <p className="text-lg max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
                 {c.trust.description}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {c.trust.items.map((item, index) => (
-                <div key={index} className="bg-brand-bg-primary rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200">
-                  <div className="text-brand-gold text-3xl mb-4">
+                <div key={index} className="glass-panel rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-200" style={{ backgroundColor: 'var(--bg-surface-hover)' }}>
+                  <div className="text-3xl mb-4" style={{ color: 'var(--brand-orange)' }}>
                     {item.icon === 'building' && <FaBuilding />}
                     {item.icon === 'chart' && <FaChartLine />}
                     {item.icon === 'handshake' && <FaHandshake />}
                     {item.icon === 'shield' && <FaShieldAlt />}
                   </div>
-                  <h3 className="text-xl font-semibold text-brand-blue mb-2">
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
                     {item.title}
                   </h3>
-                  <p className="text-brand-text-secondary">
+                  <p style={{ color: 'var(--text-secondary)' }}>
                     {item.description}
                   </p>
                 </div>
@@ -392,29 +399,29 @@ const FinancialPage = () => {
         </section>
 
         {/* Service Plans Section */}
-        <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <section className="py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-brand-blue mb-4">
+              <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
                 {c.plans.title}
               </h2>
-              <p className="text-lg text-brand-text-secondary max-w-3xl mx-auto">
+              <p className="text-lg max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
                 {c.plans.description}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {c.plans.items.map((plan, index) => (
-                <div key={index} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-100">
+                <div key={index} className="glass-panel rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-200" style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-secondary)' }}>
                   <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold text-brand-blue mb-2">
+                    <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                       {plan.title}
                     </h3>
                   </div>
                   <ul className="space-y-4 mb-8">
                     {plan.items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start">
-                        <FaCheck className="text-brand-gold mt-1 mr-3 flex-shrink-0" />
-                        <span className="text-brand-text-secondary">
+                        <FaCheck className="mt-1 mr-3 flex-shrink-0" style={{ color: 'var(--brand-orange)' }} />
+                        <span style={{ color: 'var(--text-secondary)' }}>
                           {item}
                         </span>
                       </li>
@@ -423,15 +430,17 @@ const FinancialPage = () => {
                   {index === 0 && (
                     <Link 
                       href="/services/financial/consulting/startup"
-                      className="block w-full text-center px-6 py-3 border border-brand-gold text-brand-gold font-medium rounded-md hover:bg-brand-gold hover:text-white transition-colors duration-200"
+                      className="block w-full text-center px-6 py-3 font-medium rounded-md transition-colors duration-200"
+                      style={{ border: '1px solid var(--brand-orange)', color: 'var(--brand-orange)' }}
                     >
                       {c.plans.cta}
                     </Link>
                   )}
                   {index === 1 && (
                     <Link 
-                      href="/services/financial/consulting/expansion"
-                      className="block w-full text-center px-6 py-3 border border-brand-gold text-brand-gold font-medium rounded-md hover:bg-brand-gold hover:text-white transition-colors duration-200"
+                      href="/services/financial/consulting/expansion-italy"
+                      className="block w-full text-center px-6 py-3 font-medium rounded-md transition-colors duration-200"
+                      style={{ border: '1px solid var(--brand-orange)', color: 'var(--brand-orange)' }}
                     >
                       {c.plans.cta}
                     </Link>
@@ -443,27 +452,29 @@ const FinancialPage = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20" style={{ backgroundColor: 'var(--bg-surface)' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-brand-blue mb-4">
+              <h2 className="text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
                 {c.faq.title}
               </h2>
             </div>
             <div className="space-y-4">
               {c.faq.questions.map((item, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg overflow-hidden hover:border-brand-gold transition-colors duration-200">
+                <div key={index} className="rounded-lg overflow-hidden transition-colors duration-200" style={{ border: '1px solid var(--border-secondary)', backgroundColor: 'var(--bg-surface-hover)' }}>
                   <button
                     onClick={() => toggleFaq(index)}
-                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+                    className="w-full px-6 py-4 text-left flex justify-between items-center transition-colors duration-200"
+                    style={{ color: 'var(--text-primary)' }}
                   >
-                    <h3 className="text-lg font-semibold text-brand-blue">
+                    <h3 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
                       {item.q}
                     </h3>
                     <FaChevronDown 
-                      className={`text-brand-gold transition-transform duration-200 ${
+                      className={`transition-transform duration-200 ${
                         openFaqs.includes(index) ? 'transform rotate-180' : ''
                       }`}
+                      style={{ color: 'var(--brand-orange)' }}
                     />
                   </button>
                   <div 
@@ -471,7 +482,7 @@ const FinancialPage = () => {
                       openFaqs.includes(index) ? 'max-h-96 pb-4' : 'max-h-0'
                     }`}
                   >
-                    <p className="text-brand-text-secondary">
+                    <p style={{ color: 'var(--text-secondary)' }}>
                       {item.a}
                     </p>
                   </div>
@@ -482,17 +493,18 @@ const FinancialPage = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-brand-blue to-brand-blue/90">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white mb-6">
+        <section className="py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center glass-panel rounded-2xl p-10" style={{ backgroundColor: 'var(--bg-surface)' }}>
+            <h2 className="text-3xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
               {c.ctaSection.title}
             </h2>
-            <p className="text-xl text-brand-blue/90 mb-8">
+            <p className="text-xl mb-8" style={{ color: 'var(--text-secondary)' }}>
               {c.ctaSection.description}
             </p>
             <Link 
               href="/contact"
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-lg font-medium rounded-md text-white hover:bg-white hover:text-brand-blue transition-colors duration-200"
+              className="inline-flex items-center px-8 py-4 text-lg font-medium rounded-md transition-colors duration-200"
+              style={{ backgroundColor: 'var(--brand-orange)', color: '#ffffff', border: '1px solid var(--border-primary)' }}
             >
               {c.ctaSection.button}
             </Link>

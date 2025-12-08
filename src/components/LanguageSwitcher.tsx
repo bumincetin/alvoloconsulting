@@ -21,11 +21,33 @@ export const LanguageSwitcher = () => {
       <select
         value={language}
         onChange={handleChange}
-        className="p-2 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="p-2 rounded-md border focus:outline-none transition-colors text-sm font-medium"
+        style={{
+          borderColor: 'var(--border-primary)',
+          backgroundColor: 'var(--bg-surface)',
+          color: 'var(--text-primary)',
+          minWidth: '100px'
+        }}
+        onFocus={e => {
+          e.currentTarget.style.borderColor = 'var(--brand-blue)';
+          e.currentTarget.style.backgroundColor = 'var(--bg-surface-hover)';
+        }}
+        onBlur={e => {
+          e.currentTarget.style.borderColor = 'var(--border-primary)';
+          e.currentTarget.style.backgroundColor = 'var(--bg-surface)';
+        }}
+        onMouseOver={e => {
+          e.currentTarget.style.borderColor = 'var(--brand-blue)';
+        }}
+        onMouseOut={e => {
+          if (document.activeElement !== e.currentTarget) {
+            e.currentTarget.style.borderColor = 'var(--border-primary)';
+          }
+        }}
         aria-label="Select language"
       >
         {languages.map((lang) => (
-          <option key={lang.code} value={lang.code}>
+          <option key={lang.code} value={lang.code} style={{backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)'}}>
             {lang.label}
           </option>
         ))}

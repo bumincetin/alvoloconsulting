@@ -1,33 +1,155 @@
 @import "tailwindcss";
 
 :root {
-  /* New Brand Colors as CSS Variables */
-  --brand-blue: #020035;
-  --brand-gold: #271D34 ;
-  --brand-text-primary: #2D3748;
-  --brand-text-secondary: #4A5568;
-  --brand-bg-primary: #F7FAFC; /* Intended for overall page background */
-  --brand-bg-surface: #FAF9F6; /* Intended for surfaces like cards, navbar */
-
-  /* Logo Colors */
+  /* Brand Colors (same for both themes) */
+  --brand-blue: #3c77ad;
+  --brand-orange: #f58643;
+  --brand-orange-ton: #d97335;
+  --data-purple: #a855f7;
+  
+  /* Legacy/Compatibility Colors */
+  --brand-gold: #271D34;
   --logo-blue: #3c77ad;
   --logo-orange: #f58643;
   --logo-orange-ton: #ff8b44;
-
-  /* Base Definitions using Brand Colors */
-  --background: var(--brand-bg-primary);
-  --foreground: var(--brand-text-primary);
   
   --font-size-base: 1rem; 
   --line-height-base: 1.6;
 }
 
+/* Dark Theme (default) */
+:root,
+.dark {
+  --bosphorus: #0B1120;
+  --glass: rgba(30, 41, 59, 0.4);
+  
+  /* Text Colors */
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Background Colors */
+  --bg-primary: #0B1120;
+  --bg-surface: rgba(11, 17, 32, 0.6);
+  --bg-surface-hover: rgba(11, 17, 32, 0.8);
+  
+  /* Border Colors */
+  --border-primary: rgba(60, 119, 173, 0.2);
+  --border-secondary: rgba(255, 255, 255, 0.05);
+  --border-slate: rgba(148, 163, 184, 0.1);
+  
+  /* Legacy */
+  --brand-text-primary: #e2e8f0;
+  --brand-text-secondary: #94a3b8;
+  --brand-bg-primary: #0B1120;
+  --brand-bg-surface: rgba(11, 17, 32, 0.8);
+  
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
+/* Light Theme */
+.light {
+  --bosphorus: #F7FAFC;
+  --glass: rgba(255, 255, 255, 0.8);
+  
+  /* Text Colors */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  /* Background Colors */
+  --bg-primary: #F7FAFC;
+  --bg-surface: rgba(255, 255, 255, 0.9);
+  --bg-surface-hover: rgba(255, 255, 255, 1);
+  
+  /* Border Colors */
+  --border-primary: rgba(60, 119, 173, 0.2);
+  --border-secondary: rgba(0, 0, 0, 0.1);
+  --border-slate: rgba(0, 0, 0, 0.05);
+  
+  /* Legacy */
+  --brand-text-primary: #1e293b;
+  --brand-text-secondary: #475569;
+  --brand-bg-primary: #F7FAFC;
+  --brand-bg-surface: #FFFFFF;
+  
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
 body {
-  background-color: var(--brand-bg-primary); /* Explicitly set page background */
-  color: var(--foreground);
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Grid Background Pattern */
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(60, 119, 173, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(60, 119, 173, 0.05) 1px, transparent 1px);
+}
+
+/* Glassmorphism Effects */
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+}
+
+.glass-nav {
+  background: var(--bg-surface);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.glass-panel {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+}
+
+/* Gradient Text */
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Orb */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+/* Code Window */
+.code-window {
+  background: #0f172a;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -46,9 +168,32 @@ a:hover {
 }
 
 /* Ensure navbar has a solid background by default if classes fail */
-/* This is a fallback, Tailwind classes should handle it */
 nav {
-  background-color: var(--brand-bg-surface) !important; 
+  background-color: var(--bg-surface) !important; 
+  transition: background-color 0.3s ease;
+}
+
+/* Light mode overrides for legacy dark text utilities */
+.light .text-white {
+  color: var(--text-primary) !important;
+}
+
+.light .text-gray-300,
+.light .text-gray-400 {
+  color: var(--text-secondary) !important;
+}
+
+/* Override inline dark backgrounds when in light mode */
+.light [style*="#0B1120"],
+.light [style*="#0b1120"],
+.light [style*="#080d1a"] {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.light [style*="rgba(15, 23, 42"],
+.light [style*="rgba(11, 17, 32"] {
+  background-color: var(--bg-surface) !important;
 }
 
 /* Line clamp utilities for text truncation */

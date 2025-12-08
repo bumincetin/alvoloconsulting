@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp, FaLinkedin, FaInstagram, FaCheck, FaArrowRight } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const getContactSectionContent = (lang: string) => {
@@ -11,12 +11,22 @@ const getContactSectionContent = (lang: string) => {
       subtitle: "İtalya'da iş ve yaşam için entegrasyon çözümleri ve finansal danışmanlık hizmetlerimiz hakkında bize ulaşın.",
       formNameLabel: "Ad Soyad",
       formEmailLabel: "E-posta",
+      formInterestLabel: "İlgi Alanı",
       formMessageLabel: "Mesajınız",
-      formSubmitButton: "Mesaj Gönder",
-      formSendingButton: "Gönderiliyor...",
-      formSuccessMessage: "Mesajınız başarıyla gönderildi!",
-      formErrorMessage: "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+      formSubmitButton: "Analiz İste",
+      formSendingButton: "İşleniyor...",
+      formProcessingButton: "Veri Modelleniyor...",
+      successTitle: "Profil Oluşturuldu",
+      successMessage: "Veri modellendi. Sonraki adımınızı seçin:",
+      sendViaEmail: "E-posta Uygulaması ile Gönder",
+      proposeTimeslots: "3 Farklı Zaman Dilimi Öner",
+      formErrorMessage: "Bir hata oluştu. Lütfen tekrar deneyin.",
       formErrorDetails: "Hata detayı: ",
+      interestOptions: {
+        italy: "İtalya'ya Genişleme",
+        turkey: "Türkiye'ye Genişleme",
+        tax: "Vergi Optimizasyonu"
+      },
       privacyCheckbox1: "Kişisel verilerimin AB 679/2016 sayılı Tüzük uyarınca işlenmesine izin veriyorum",
       privacyCheckbox2: "Pazarlama, promosyon faaliyetleri, ticari teklifler ve pazar araştırması amaçlarıyla veri işlenmesine izin veriyorum",
       privacyPolicy: "Gizlilik Politikası",
@@ -24,7 +34,7 @@ const getContactSectionContent = (lang: string) => {
       phoneDetails: "+39 348 170 5207",
       whatsappDetails: "WhatsApp: +39 348 170 5207",
       emailTitle: "E-posta",
-      emailDetails: "alvoloconsulting@gmail.com",
+      emailDetails: "info@alvoloconsulting.com",
       addressTitle: "Adres",
       addressDetails: "Via Valsugana, 20139 Milano (MI), İtalya",
       hoursTitle: "Çalışma Saatleri",
@@ -38,12 +48,22 @@ const getContactSectionContent = (lang: string) => {
       subtitle: "Contact us for integration solutions and financial consultancy services for doing business and living in Italy.",
       formNameLabel: "Full Name",
       formEmailLabel: "Email",
+      formInterestLabel: "Interest",
       formMessageLabel: "Your Message",
-      formSubmitButton: "Send Message",
-      formSendingButton: "Sending...",
-      formSuccessMessage: "Your message has been sent successfully!",
-      formErrorMessage: "An error occurred while sending your message. Please try again.",
+      formSubmitButton: "Request Analysis",
+      formSendingButton: "Processing...",
+      formProcessingButton: "Processing Data...",
+      successTitle: "Profile Generated",
+      successMessage: "Data modeled. Choose your next step:",
+      sendViaEmail: "Send via Email App",
+      proposeTimeslots: "Propose 3 Different Timeslots",
+      formErrorMessage: "An error occurred. Please try again.",
       formErrorDetails: "Error details: ",
+      interestOptions: {
+        italy: "Expansion to Italy",
+        turkey: "Expansion to Turkey",
+        tax: "Tax Optimization"
+      },
       privacyCheckbox1: "I authorize the processing of my personal data in accordance with EU Regulation No. 679/2016",
       privacyCheckbox2: "I authorize the processing of data for marketing purposes, promotional activities, commercial offers and market research",
       privacyPolicy: "Privacy Policy",
@@ -51,7 +71,7 @@ const getContactSectionContent = (lang: string) => {
       phoneDetails: "+39 348 170 5207",
       whatsappDetails: "WhatsApp: +39 348 170 5207",
       emailTitle: "Email",
-      emailDetails: "alvoloconsulting@gmail.com",
+      emailDetails: "info@alvoloconsulting.com",
       addressTitle: "Address",
       addressDetails: "Via Valsugana, 20139 Milano (MI), Italy",
       hoursTitle: "Business Hours",
@@ -65,12 +85,22 @@ const getContactSectionContent = (lang: string) => {
       subtitle: "Contattaci per soluzioni di integrazione e consulenza finanziaria per vivere e fare business in Italia.",
       formNameLabel: "Nome Cognome",
       formEmailLabel: "Email",
+      formInterestLabel: "Interesse",
       formMessageLabel: "Il Tuo Messaggio",
-      formSubmitButton: "Invia Messaggio",
-      formSendingButton: "Invio in corso...",
-      formSuccessMessage: "Il tuo messaggio è stato inviato con successo!",
-      formErrorMessage: "Si è verificato un errore durante l'invio del messaggio. Riprova.",
+      formSubmitButton: "Richiedi Analisi",
+      formSendingButton: "Elaborazione...",
+      formProcessingButton: "Elaborazione Dati...",
+      successTitle: "Profilo Generato",
+      successMessage: "Dati modellati. Scegli il tuo prossimo passo:",
+      sendViaEmail: "Invia tramite App Email",
+      proposeTimeslots: "Proponi 3 Fasce Orarie Diverse",
+      formErrorMessage: "Si è verificato un errore. Riprova.",
       formErrorDetails: "Dettagli errore: ",
+      interestOptions: {
+        italy: "Espansione in Italia",
+        turkey: "Espansione in Turchia",
+        tax: "Ottimizzazione Fiscale"
+      },
       privacyCheckbox1: "Autorizzo il trattamento dei miei dati personali in base al Regolamento UE n. 679/2016",
       privacyCheckbox2: "Autorizzo al trattamento dei dati per finalità di marketing, attività promozionali, offerte commerciali ed indagini di mercato.",
       privacyPolicy: "Privacy Policy",
@@ -78,7 +108,7 @@ const getContactSectionContent = (lang: string) => {
       phoneDetails: "+39 348 170 5207",
       whatsappDetails: "WhatsApp: +39 348 170 5207",
       emailTitle: "Email",
-      emailDetails: "alvoloconsulting@gmail.com",
+      emailDetails: "info@alvoloconsulting.com",
       addressTitle: "Indirizzo",
       addressDetails: "Via Valsugana, 20139 Milano (MI), Italia",
       hoursTitle: "Orari di Lavoro",
@@ -98,15 +128,16 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    interest: '',
     message: '',
     privacyConsent: false,
     marketingConsent: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submissionStatus, setSubmissionStatus] = useState<'success' | 'error' | null>(null);
-  const [errorDetails, setErrorDetails] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [mailtoLink, setMailtoLink] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { id, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
     
@@ -114,44 +145,31 @@ const Contact = () => {
       ...prev, 
       [id]: type === 'checkbox' ? checked : value 
     }));
-    
-    // Clear error when user starts typing
-    if (submissionStatus === 'error') {
-      setSubmissionStatus(null);
-      setErrorDetails(null);
-    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmissionStatus(null);
-    setErrorDetails(null);
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    // Prepare the Mailto Link
+    const subject = encodeURIComponent(`Consultancy Request: ${formData.interest || 'General Inquiry'}`);
+    const body = encodeURIComponent(
+      `Hi Alvolo Team,\n\n` +
+      `I am interested in: ${formData.interest || 'General Inquiry'}\n\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n\n` +
+      `Message:\n${formData.message}\n\n` +
+      `Please propose 3 different timeslots for a consultation call.\n\n` +
+      `Best regards,\n${formData.name}`
+    );
+    const mailto = `mailto:bumin.cetin@alvoloconsulting.com?subject=${subject}&body=${body}`;
+    setMailtoLink(mailto);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setSubmissionStatus('success');
-        setFormData({ name: '', email: '', message: '', privacyConsent: false, marketingConsent: false }); // Reset form
-      } else {
-        setSubmissionStatus('error');
-        setErrorDetails(data.details || data.error || 'An unknown error occurred');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmissionStatus('error');
-      setErrorDetails('Network error. Please check your internet connection.');
-    }
-    setIsSubmitting(false);
+    // Simulate processing delay & show success
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowSuccess(true);
+    }, 1500);
   };
 
   // Helper to render text with <br /> tags
@@ -160,17 +178,17 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="contact" className="py-24" style={{backgroundColor: 'var(--bg-primary)'}}>
       <div className="container mx-auto px-6">
         {/* Header Section */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-gold to-yellow-600 rounded-full mb-6 shadow-lg">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#f58643] to-[#d97335] rounded-full mb-6 shadow-lg">
             <FaEnvelope className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-brand-blue mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6" style={{color: 'var(--text-primary)'}}>
             {c.title}
           </h2>
-          <p className="text-xl text-brand-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{color: 'var(--text-secondary)'}}>
             {c.subtitle}
           </p>
         </div>
@@ -178,9 +196,9 @@ const Contact = () => {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="xl:col-span-1">
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <h3 className="text-2xl font-bold text-brand-blue mb-8 flex items-center">
-                <div className="w-8 h-8 bg-gradient-to-br from-brand-gold to-yellow-600 rounded-lg flex items-center justify-center mr-3">
+            <div className="glass-panel rounded-2xl shadow-xl p-8">
+              <h3 className="text-2xl font-bold mb-8 flex items-center text-white">
+                <div className="w-8 h-8 bg-gradient-to-br from-[#f58643] to-[#d97335] rounded-lg flex items-center justify-center mr-3">
                   <FaPhone className="w-4 h-4 text-white" />
                 </div>
                 {c.contactInfo}
@@ -188,63 +206,63 @@ const Contact = () => {
               
               <div className="space-y-8">
                 {/* Phone */}
-                <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaPhone className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-brand-blue mb-1">
+                    <h4 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>
                       {c.phoneTitle}
                     </h4>
-                    <p className="text-brand-text-secondary mb-2">
+                    <p className="mb-2" style={{color: 'var(--text-secondary)'}}>
                       {c.phoneDetails}
                     </p>
-                    <p className="text-sm text-green-600 font-medium">
+                    <p className="text-sm font-medium" style={{color: '#22c55e'}}>
                       {c.whatsappDetails}
                     </p>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaEnvelope className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-brand-blue mb-1">
+                    <h4 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>
                       {c.emailTitle}
                     </h4>
-                    <p className="text-brand-text-secondary">
+                    <p style={{color: 'var(--text-secondary)'}}>
                       {c.emailDetails}
                     </p>
                   </div>
                 </div>
 
                 {/* Address */}
-                <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
                   <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaMapMarkerAlt className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-brand-blue mb-1">
+                    <h4 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>
                       {c.addressTitle}
                     </h4>
-                    <p className="text-brand-text-secondary">
+                    <p style={{color: 'var(--text-secondary)'}}>
                       {c.addressDetails}
                     </p>
                   </div>
                 </div>
 
                 {/* Business Hours */}
-                <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                <div className="flex items-start gap-4 p-4 rounded-xl" style={{backgroundColor: 'rgba(15, 23, 42, 0.5)'}}>
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
                     <FaClock className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-brand-blue mb-1">
+                    <h4 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>
                       {c.hoursTitle}
                     </h4>
-                    <div className="text-brand-text-secondary text-sm">
+                    <div className="text-sm" style={{color: 'var(--text-secondary)'}}>
                       {renderHtml(c.hoursDetails)}
                     </div>
                   </div>
@@ -252,8 +270,8 @@ const Contact = () => {
               </div>
 
               {/* Social Media */}
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <h4 className="text-lg font-semibold text-brand-blue mb-4">
+              <div className="mt-8 pt-8" style={{borderTop: '1px solid rgba(255, 255, 255, 0.1)'}}>
+                <h4 className="text-lg font-semibold mb-4" style={{color: 'var(--text-primary)'}}>
                   {c.followUs}
                 </h4>
                 <div className="flex space-x-4">
@@ -288,132 +306,108 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="xl:col-span-2">
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <h3 className="text-2xl font-bold text-brand-blue mb-8 flex items-center">
-                <div className="w-8 h-8 bg-gradient-to-br from-brand-gold to-yellow-600 rounded-lg flex items-center justify-center mr-3">
+            <div className="glass-panel rounded-2xl shadow-xl p-8 relative overflow-hidden">
+              <h3 className="text-2xl font-bold mb-8 flex items-center" style={{color: 'var(--text-primary)'}}>
+                <div className="w-8 h-8 bg-gradient-to-br from-[#f58643] to-[#d97335] rounded-lg flex items-center justify-center mr-3">
                   <FaEnvelope className="w-4 h-4 text-white" />
                 </div>
                 {c.getInTouch}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-brand-text-primary font-semibold mb-3">
-                      {c.formNameLabel} *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 bg-gray-50 text-brand-text-primary focus:outline-none focus:border-brand-gold focus:bg-white transition-all duration-300"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      disabled={isSubmitting}
-                      placeholder="Adınız ve soyadınız"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-brand-text-primary font-semibold mb-3">
-                      {c.formEmailLabel} *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 bg-gray-50 text-brand-text-primary focus:outline-none focus:border-brand-gold focus:bg-white transition-all duration-300"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      disabled={isSubmitting}
-                      placeholder="E-posta adresiniz"
-                    />
-                  </div>
+                <div>
+                  <label htmlFor="email" className="block text-xs font-mono mb-1" style={{color: '#64748b'}}>
+                    {c.formEmailLabel.toUpperCase()}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-slate-300 focus:outline-none focus:border-[#f58643] transition-colors"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    disabled={isSubmitting || showSuccess}
+                    placeholder="name@company.com"
+                  />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-brand-text-primary font-semibold mb-3">
-                    {c.formMessageLabel} *
+                  <label htmlFor="interest" className="block text-xs font-mono mb-1" style={{color: '#64748b'}}>
+                    {c.formInterestLabel.toUpperCase()}
                   </label>
-                  <textarea
-                    id="message"
-                    rows={6}
-                    className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 bg-gray-50 text-brand-text-primary focus:outline-none focus:border-brand-gold focus:bg-white transition-all duration-300 resize-none"
-                    required
-                    value={formData.message}
+                  <select
+                    id="interest"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-slate-300 focus:outline-none focus:border-[#f58643] transition-colors"
+                    value={formData.interest}
                     onChange={handleChange}
-                    disabled={isSubmitting}
-                    placeholder="Mesajınızı buraya yazın..."
-                  ></textarea>
-                </div>
-                
-                {/* Privacy Checkboxes */}
-                <div className="space-y-4 bg-gray-50 p-6 rounded-xl">
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="privacyConsent"
-                      className="mt-1 w-5 h-5 text-brand-gold bg-white border-2 border-gray-300 rounded focus:ring-brand-gold focus:ring-2"
-                      required
-                      checked={formData.privacyConsent}
-                      onChange={handleChange}
-                      disabled={isSubmitting}
-                    />
-                    <label htmlFor="privacyConsent" className="text-sm text-brand-text-secondary leading-relaxed">
-                      {c.privacyCheckbox1} (
-                      <a href="/privacy" className="text-brand-gold hover:underline font-medium" target="_blank" rel="noopener noreferrer">
-                        {c.privacyPolicy}
-                      </a>
-                      )
-                    </label>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="marketingConsent"
-                      className="mt-1 w-5 h-5 text-brand-gold bg-white border-2 border-gray-300 rounded focus:ring-brand-gold focus:ring-2"
-                      checked={formData.marketingConsent}
-                      onChange={handleChange}
-                      disabled={isSubmitting}
-                    />
-                    <label htmlFor="marketingConsent" className="text-sm text-brand-text-secondary leading-relaxed">
-                      {c.privacyCheckbox2}
-                    </label>
-                  </div>
+                    disabled={isSubmitting || showSuccess}
+                    required
+                  >
+                    <option value="">{language === 'tr' ? 'Seçiniz...' : language === 'it' ? 'Seleziona...' : 'Select...'}</option>
+                    <option value={c.interestOptions.italy}>{c.interestOptions.italy}</option>
+                    <option value={c.interestOptions.turkey}>{c.interestOptions.turkey}</option>
+                    <option value={c.interestOptions.tax}>{c.interestOptions.tax}</option>
+                  </select>
                 </div>
                 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-brand-gold to-yellow-600 text-white py-4 px-8 rounded-xl hover:from-yellow-600 hover:to-brand-gold transition-all duration-300 disabled:opacity-50 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
-                  disabled={isSubmitting}
+                  className="w-full bg-[#f58643] text-white font-bold py-4 rounded-lg hover:bg-[#d97335] transition-all shadow-lg shadow-[#f58643]/20 flex items-center justify-center gap-2 disabled:opacity-50"
+                  disabled={isSubmitting || showSuccess}
                 >
                   {isSubmitting ? (
-                    <span className="flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      {c.formSendingButton}
-                    </span>
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      {c.formProcessingButton}
+                    </>
                   ) : (
-                    c.formSubmitButton
+                    <>
+                      {c.formSubmitButton}
+                      <FaArrowRight className="w-4 h-4" />
+                    </>
                   )}
                 </button>
-
-                {submissionStatus === 'success' && (
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-                    <p className="text-green-700 font-medium">{c.formSuccessMessage}</p>
-                  </div>
-                )}
-                {submissionStatus === 'error' && (
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-                    <p className="text-red-700 font-medium">{c.formErrorMessage}</p>
-                    {errorDetails && (
-                      <p className="text-sm text-red-600 mt-2">
-                        {c.formErrorDetails}{errorDetails}
-                      </p>
-                    )}
-                  </div>
-                )}
               </form>
+
+              {/* Success Message (Hidden by default) */}
+              {showSuccess && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl transition-opacity duration-500 z-10" style={{backgroundColor: 'var(--bg-surface-hover)'}}>
+                  <div className="w-12 h-12 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center mb-4">
+                    <FaCheck className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-xl mb-2" style={{color: 'var(--text-primary)'}}>{c.successTitle}</h3>
+                  <p className="text-sm mb-6 text-center" style={{color: 'var(--text-secondary)'}}>{c.successMessage}</p>
+                  
+                  <div className="flex flex-col gap-3 w-full px-8">
+                    <a
+                      href={mailtoLink}
+                      className="w-full border py-3 rounded-lg text-sm font-medium text-center transition-colors"
+                      style={{
+                        backgroundColor: 'var(--bg-surface)',
+                        borderColor: 'var(--border-secondary)',
+                        color: 'var(--text-primary)'
+                      }}
+                      onMouseOver={e => {
+                        e.currentTarget.style.backgroundColor = 'var(--bg-surface-hover)';
+                      }}
+                      onMouseOut={e => {
+                        e.currentTarget.style.backgroundColor = 'var(--bg-surface)';
+                      }}
+                    >
+                      {c.sendViaEmail}
+                    </a>
+                    <a
+                      href={mailtoLink}
+                      className="w-full text-white py-3 rounded-lg text-sm font-medium text-center transition-colors"
+                      style={{backgroundColor: 'var(--brand-orange)'}}
+                      onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--brand-orange-ton)'}
+                      onMouseOut={e => e.currentTarget.style.backgroundColor = 'var(--brand-orange)'}
+                    >
+                      {c.proposeTimeslots}
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

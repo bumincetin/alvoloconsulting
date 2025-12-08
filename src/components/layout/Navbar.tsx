@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronDown, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LanguageSwitcher } from '../LanguageSwitcher';
+import { ThemeToggle } from '../ThemeToggle';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const getNavbarContent = (lang: string) => {
@@ -23,6 +24,7 @@ const getNavbarContent = (lang: string) => {
       blog: "Blog",
       realEstateAgents: "Emlakçılar İçin",
       contact: "İletişim",
+      clientPortal: "Müşteri Portalı",
       openMenu: "Menüyü Aç",
       closeMenu: "Menüyü Kapat"
     },
@@ -40,6 +42,7 @@ const getNavbarContent = (lang: string) => {
       blog: "Blog",
       realEstateAgents: "For Real Estate Agents",
       contact: "Contact",
+      clientPortal: "Client Portal",
       openMenu: "Open Menu",
       closeMenu: "Close Menu"
     },
@@ -57,6 +60,7 @@ const getNavbarContent = (lang: string) => {
       blog: "Blog",
       realEstateAgents: "Per Agenti Immobiliari",
       contact: "Contatti",
+      clientPortal: "Portale Cliente",
       openMenu: "Apri Menu",
       closeMenu: "Chiudi Menu"
     }
@@ -98,18 +102,25 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-brand-bg-surface shadow-md z-50">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl" style={{
+      backgroundColor: 'var(--bg-surface)',
+      borderBottom: '1px solid var(--border-secondary)',
+      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
+      transition: 'background-color 0.3s ease'
+    }}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity duration-300">
-              <div className="mr-3">
+              <div className="mr-3" style={{filter: 'none'}}>
                 <Image
                   src="https://dl.dropboxusercontent.com/scl/fi/1e6b17ra9y0ey2kw192ej/LOGO.png?rlkey=eijo2u9qpo88udlovkmh3chaj&st=gnjfhg84&dl=1&raw=1"
                   alt="ALVOLO CONSULTING"
                   className="h-8 w-auto"
                   width={32}
                   height={32}
+                  unoptimized
+                  style={{filter: 'none', imageRendering: 'crisp-edges'}}
                 />
               </div>
             </Link>
@@ -121,7 +132,10 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-brand-text-secondary hover:text-brand-gold transition-colors duration-300"
+                className="transition-colors duration-300"
+                style={{color: 'var(--text-secondary)'}}
+                onMouseOver={e => e.currentTarget.style.color = 'var(--brand-orange)'}
+                onMouseOut={e => e.currentTarget.style.color = 'var(--text-secondary)'}
               >
                 {item.label}
               </Link>
@@ -130,10 +144,11 @@ const Navbar = () => {
             {/* Services Dropdown with Unified Button */}
             <div className="relative group" ref={servicesRef}>
               <div
-                className="flex items-center text-brand-text-secondary hover:text-brand-gold transition-colors duration-300 cursor-pointer select-none px-2 py-1 rounded"
+                className="flex items-center transition-colors duration-300 cursor-pointer select-none px-2 py-1 rounded"
+                style={{color: 'var(--text-secondary)'}}
                 tabIndex={0}
-                onMouseEnter={() => setIsServicesOpen(true)}
-                onMouseLeave={() => setIsServicesOpen(false)}
+                onMouseEnter={(e) => {setIsServicesOpen(true); e.currentTarget.style.color = 'var(--brand-orange)'}}
+                onMouseLeave={(e) => {setIsServicesOpen(false); e.currentTarget.style.color = 'var(--text-secondary)'}}
                 onFocus={() => setIsServicesOpen(true)}
                 onBlur={() => setIsServicesOpen(false)}
               >
@@ -155,20 +170,27 @@ const Navbar = () => {
                     setIsServicesOpen(!isServicesOpen);
                   }}
                   className="flex items-center pl-1 bg-transparent border-none outline-none cursor-pointer"
+                  style={{color: 'var(--text-secondary)'}}
                   aria-label={c.services}
                   tabIndex={0}
                   type="button"
                 >
-                  <FaChevronDown className={`ml-1 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                  <FaChevronDown className={`ml-1 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} style={{color: 'inherit'}} />
                 </button>
               </div>
               {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-brand-bg-surface rounded-lg shadow-lg py-2 z-50">
+                <div className="absolute top-full left-0 mt-2 w-48 rounded-lg shadow-xl py-2 z-50 backdrop-blur-xl" style={{
+                  backgroundColor: 'var(--bg-surface-hover)',
+                  border: '1px solid var(--border-primary)'
+                }}>
                   {serviceItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="block px-4 py-2 text-brand-text-secondary hover:bg-brand-bg-primary hover:text-brand-gold transition-colors duration-300"
+                      className="block px-4 py-2 transition-colors duration-300 rounded mx-1"
+                      style={{color: 'var(--text-secondary)'}}
+                      onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
+                      onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'}}
                       onClick={() => setIsServicesOpen(false)}
                     >
                       {item.label}
@@ -182,11 +204,31 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-brand-text-secondary hover:text-brand-gold transition-colors duration-300"
+                className="transition-colors duration-300"
+                style={{color: 'var(--text-secondary)'}}
+                onMouseOver={e => e.currentTarget.style.color = 'var(--brand-orange)'}
+                onMouseOut={e => e.currentTarget.style.color = 'var(--text-secondary)'}
               >
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/portal"
+              className="hidden md:flex items-center gap-2 border px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+              style={{borderColor: 'var(--border-primary)', color: 'var(--brand-orange)'}}
+              onMouseOver={e => {
+                e.currentTarget.style.backgroundColor = 'var(--brand-orange)';
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--brand-orange)';
+              }}
+            >
+              <span>{c.clientPortal}</span>
+              <FaArrowRight className="w-4 h-4" />
+            </Link>
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
 
@@ -194,7 +236,10 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-brand-text-secondary hover:text-brand-gold focus:outline-none"
+              className="focus:outline-none transition-colors"
+              style={{color: 'var(--text-secondary)'}}
+              onMouseOver={e => e.currentTarget.style.color = 'var(--brand-orange)'}
+              onMouseOut={e => e.currentTarget.style.color = 'var(--text-secondary)'}
               aria-label={isOpen ? c.closeMenu : c.openMenu}
             >
               {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
@@ -204,13 +249,19 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu (Dropdown) */}
         {isOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-brand-bg-surface">
+          <div className="md:hidden border-t backdrop-blur-xl" style={{
+            borderColor: 'var(--border-secondary)',
+            backgroundColor: 'var(--bg-surface-hover)'
+          }}>
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.slice(0, 2).map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-brand-text-primary hover:bg-brand-bg-primary hover:text-brand-gold transition-colors"
+                  className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                  style={{color: 'var(--text-primary)'}}
+                  onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
+                  onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-primary)'}}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -219,7 +270,7 @@ const Navbar = () => {
               
               {/* Mobile Services Section */}
               <div className="px-3 py-2">
-                <div className="text-base font-medium text-brand-text-primary mb-2">
+                <div className="text-base font-medium mb-2" style={{color: 'var(--text-primary)'}}>
                   {c.services}
                 </div>
                 <div className="pl-4 space-y-1">
@@ -227,7 +278,10 @@ const Navbar = () => {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-brand-text-secondary hover:bg-brand-bg-primary hover:text-brand-gold transition-colors"
+                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                      style={{color: 'var(--text-secondary)'}}
+                      onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
+                      onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'}}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
@@ -240,15 +294,27 @@ const Navbar = () => {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-brand-text-primary hover:bg-brand-bg-primary hover:text-brand-gold transition-colors"
+                  className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                  style={{color: 'var(--text-primary)'}}
+                  onMouseOver={e => {e.currentTarget.style.backgroundColor = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--brand-orange)'}}
+                  onMouseOut={e => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--text-primary)'}}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/portal"
+                className="block px-3 py-2 rounded-md text-base font-medium border text-center transition-colors"
+                style={{borderColor: 'var(--border-primary)', color: 'var(--brand-orange)'}}
+                onClick={() => setIsOpen(false)}
+              >
+                {c.clientPortal}
+              </Link>
             </div>
-            <div className="pt-4 pb-3 border-t border-gray-200">
-              <div className="flex items-center justify-center px-5">
+            <div className="pt-4 pb-3 border-t" style={{borderColor: 'var(--border-secondary)'}}>
+              <div className="flex items-center justify-center gap-3 px-5">
+                <ThemeToggle />
                 <LanguageSwitcher />
               </div>
             </div>

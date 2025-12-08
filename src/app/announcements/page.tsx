@@ -213,11 +213,11 @@ export default function Announcements() {
   const c = getAnnouncementsContent(language);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{backgroundColor: 'var(--bg-primary)'}}>
       <Navbar />
       
       {/* Hero Section */}
-      <div className="relative pt-20 pb-16 bg-gradient-to-r from-brand-blue to-blue-600">
+      <div className="relative pt-20 pb-16" style={{background: 'linear-gradient(to right, var(--brand-blue), #2563eb)'}}>
         <div className="container mx-auto px-6">
           <div className="text-center text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{c.title}</h1>
@@ -234,24 +234,28 @@ export default function Announcements() {
               <Link
                 key={announcement.id}
                 href={`/announcements/${announcement.id}`}
-                className="group block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="group block rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                style={{
+                  backgroundColor: 'var(--bg-surface)',
+                  border: '1px solid var(--border-secondary)'
+                }}
               >
-                <div className="h-48 bg-gradient-to-br from-brand-blue to-blue-600 flex items-center justify-center">
+                <div className="h-48 flex items-center justify-center" style={{background: 'linear-gradient(to bottom right, var(--brand-blue), #2563eb)'}}>
                   <div className="text-white text-center">
                     <div className="text-4xl font-bold mb-2">{announcement.id}</div>
                     <div className="text-sm opacity-90">{announcement.category}</div>
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-brand-gold transition-colors">
+                  <h3 className="text-xl font-semibold mb-2 transition-colors" style={{color: 'var(--text-primary)'}}>
                     {announcement.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+                  <p className="mb-4 line-clamp-3" style={{color: 'var(--text-secondary)'}}>
                     {announcement.excerpt}
                   </p>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div className="flex items-center justify-between text-sm" style={{color: 'var(--text-muted)'}}>
                     <span>{announcement.date}</span>
-                    <span className="px-2 py-1 bg-brand-gold text-white rounded text-xs">
+                    <span className="px-2 py-1 rounded text-xs" style={{backgroundColor: 'var(--brand-orange)', color: 'white'}}>
                       {announcement.category}
                     </span>
                   </div>

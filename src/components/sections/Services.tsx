@@ -93,21 +93,24 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="pt-10 pb-20 md:pt-20 bg-brand-bg-primary">
+    <section id="services" className="pt-10 pb-20 md:pt-20" style={{backgroundColor: 'var(--bg-primary)'}}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4" style={{color: 'var(--logo-blue)'}}>
+          <h2 className="text-4xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>
             {c.title}
           </h2>
-          <p className="text-xl text-brand-text-secondary">
+          <p className="text-xl" style={{color: 'var(--text-secondary)'}}>
             {c.subtitle}
           </p>
         </div>
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Integration Solutions Dropdown */}
-          <div className="rounded-xl bg-brand-bg-surface shadow-lg">
+          <div className="rounded-xl glass-panel shadow-lg">
             <button
-              className="w-full flex justify-between items-center px-8 py-6 text-2xl font-semibold text-brand-blue focus:outline-none hover:bg-brand-bg-primary transition-colors rounded-t-xl"
+              className="w-full flex justify-between items-center px-8 py-6 text-2xl font-semibold focus:outline-none transition-colors rounded-t-xl"
+              style={{color: 'var(--brand-blue)'}}
+              onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--bg-surface)'}
+              onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
               onClick={() => handleToggle('integration')}
               aria-expanded={open === 'integration'}
               aria-controls="integration-services"
@@ -130,10 +133,10 @@ const Services = () => {
                       const ServiceIcon = service.icon;
                       return (
                         <div key={index} className="flex items-start gap-4">
-                          <ServiceIcon className="w-10 h-10 flex-shrink-0 mt-1" style={{color: 'var(--logo-orange)'}} />
+                          <ServiceIcon className="w-10 h-10 flex-shrink-0 mt-1" style={{color: 'var(--brand-orange)'}} />
                           <div>
-                            <h3 className="text-lg font-semibold text-brand-blue mb-1">{service.title}</h3>
-                            <p className="text-brand-text-secondary text-sm">{service.description}</p>
+                            <h3 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>{service.title}</h3>
+                            <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{service.description}</p>
                           </div>
                         </div>
                       );
@@ -144,9 +147,12 @@ const Services = () => {
             </AnimatePresence>
           </div>
           {/* Financial Consultancy Dropdown */}
-          <div className="rounded-xl bg-brand-bg-surface shadow-lg">
+          <div className="rounded-xl glass-panel shadow-lg">
             <button
-              className="w-full flex justify-between items-center px-8 py-6 text-2xl font-semibold text-brand-blue focus:outline-none hover:bg-brand-bg-primary transition-colors rounded-t-xl"
+              className="w-full flex justify-between items-center px-8 py-6 text-2xl font-semibold focus:outline-none transition-colors rounded-t-xl"
+              style={{color: 'var(--brand-blue)'}}
+              onMouseOver={e => e.currentTarget.style.backgroundColor = 'var(--bg-surface)'}
+              onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
               onClick={() => handleToggle('financial')}
               aria-expanded={open === 'financial'}
               aria-controls="financial-services"
@@ -169,10 +175,10 @@ const Services = () => {
                       const ServiceIcon = service.icon;
                       return (
                         <div key={index} className="flex items-start gap-4">
-                          <ServiceIcon className="w-10 h-10 flex-shrink-0 mt-1" style={{color: 'var(--logo-orange)'}} />
+                          <ServiceIcon className="w-10 h-10 flex-shrink-0 mt-1" style={{color: 'var(--brand-orange)'}} />
                           <div>
-                            <h3 className="text-lg font-semibold text-brand-blue mb-1">{service.title}</h3>
-                            <p className="text-brand-text-secondary text-sm">{service.description}</p>
+                            <h3 className="text-lg font-semibold mb-1" style={{color: 'var(--text-primary)'}}>{service.title}</h3>
+                            <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{service.description}</p>
                           </div>
                         </div>
                       );

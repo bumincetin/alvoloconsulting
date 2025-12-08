@@ -272,24 +272,24 @@ const BlogPage = () => {
   const c = getBlogContent(language);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{backgroundColor: 'var(--bg-primary)'}}>
       <Navbar />
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-brand-bg-primary to-blue-50 py-16">
+        <section className="py-16" style={{backgroundColor: 'var(--bg-primary)'}}>
           <div className="container mx-auto px-6">
             <div className="text-center">
               <div className="flex justify-center mb-4">
-                <FaBookOpen className="text-4xl text-brand-blue" />
+                <FaBookOpen className="text-4xl" style={{color: 'var(--brand-blue)'}} />
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>
                 {c.title}
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl max-w-3xl mx-auto" style={{color: 'var(--text-secondary)'}}>
                 {c.subtitle}
               </p>
-              <p className="text-lg text-gray-500 mt-4 max-w-2xl mx-auto">
+              <p className="text-lg mt-4 max-w-2xl mx-auto" style={{color: 'var(--text-muted)'}}>
                 {c.description}
               </p>
             </div>
@@ -299,11 +299,14 @@ const BlogPage = () => {
         {/* Featured Article */}
         <section className="py-16">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold mb-8 text-center" style={{color: 'var(--text-primary)'}}>
               {c.featured} {c.title}
             </h2>
             {c.articles.filter(article => article.featured).map((article) => (
-              <article key={article.id} className="bg-white rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
+              <article key={article.id} className="rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto" style={{
+                backgroundColor: 'var(--bg-surface)',
+                border: '1px solid var(--border-secondary)'
+              }}>
                 <div className="md:flex">
                   <div className="md:w-1/2">
                     <Image 
@@ -315,7 +318,7 @@ const BlogPage = () => {
                     />
                   </div>
                   <div className="md:w-1/2 p-8">
-                    <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <div className="flex items-center text-sm mb-3" style={{color: 'var(--text-muted)'}}>
                       <FaCalendarAlt className="mr-2" />
                       {article.date}
                       <span className="mx-2">•</span>
@@ -327,20 +330,20 @@ const BlogPage = () => {
                     </div>
                     
                     <div className="mb-3">
-                      <span className="inline-block bg-brand-blue text-white text-xs px-2 py-1 rounded">
+                      <span className="inline-block text-white text-xs px-2 py-1 rounded" style={{backgroundColor: 'var(--brand-blue)'}}>
                         {article.category}
                       </span>
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    <h3 className="text-2xl font-bold mb-4" style={{color: 'var(--text-primary)'}}>
                       {article.title}
                     </h3>
                     
-                    <p className="text-gray-600 mb-6 line-clamp-4">
+                    <p className="mb-6 line-clamp-4" style={{color: 'var(--text-secondary)'}}>
                       {article.excerpt}
                     </p>
                     
-                    <button className="inline-flex items-center text-brand-blue hover:text-brand-blue-dark font-medium transition-colors">
+                    <button className="inline-flex items-center font-medium transition-colors" style={{color: 'var(--brand-blue)'}}>
                       <Link href={`/blog/${article.id}`}>
                         {c.readMore} <FaArrowRight className="ml-2" />
                       </Link>
@@ -353,16 +356,20 @@ const BlogPage = () => {
         </section>
 
         {/* Articles Grid */}
-        <section className="py-16 bg-white">
+        <section className="py-16" style={{backgroundColor: 'var(--bg-primary)'}}>
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold mb-8 text-center" style={{color: 'var(--text-primary)'}}>
               {c.title}
             </h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {c.articles.filter(article => !article.featured).map((article) => (
                 <article
                   key={article.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 border border-gray-100"
+                  className="rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105"
+                  style={{
+                    backgroundColor: 'var(--bg-surface)',
+                    border: '1px solid var(--border-secondary)'
+                  }}
                 >
                   <Image 
                     src={article.image} 
@@ -372,7 +379,7 @@ const BlogPage = () => {
                     height={192}
                   />
                   <div className="p-6">
-                    <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <div className="flex items-center text-sm mb-3" style={{color: 'var(--text-muted)'}}>
                       <FaCalendarAlt className="mr-2" />
                       {article.date}
                       <span className="mx-2">•</span>
@@ -381,24 +388,27 @@ const BlogPage = () => {
                     </div>
                     
                     <div className="mb-3">
-                      <span className="inline-block bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                      <span className="inline-block text-xs px-2 py-1 rounded" style={{
+                        backgroundColor: 'var(--bg-surface-hover)',
+                        color: 'var(--text-secondary)'
+                      }}>
                         {article.category}
                       </span>
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
+                    <h3 className="text-xl font-semibold mb-3 line-clamp-2" style={{color: 'var(--text-primary)'}}>
                       {article.title}
                     </h3>
                     
-                    <p className="text-gray-600 mb-4 line-clamp-3">
+                    <p className="mb-4 line-clamp-3" style={{color: 'var(--text-secondary)'}}>
                       {article.excerpt}
                     </p>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm" style={{color: 'var(--text-muted)'}}>
                         {article.author}
                       </span>
-                      <button className="text-brand-blue hover:text-brand-blue-dark font-medium transition-colors">
+                      <button className="font-medium transition-colors" style={{color: 'var(--brand-blue)'}}>
                         <Link href={`/blog/${article.id}`}>
                           {c.readMore} →
                         </Link>

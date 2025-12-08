@@ -217,13 +217,13 @@ const CompanyHighlights = () => {
   const c = getCompanyHighlightsContent(language);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-brand-bg-primary to-blue-50">
+    <section className="py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-blue mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
             {c.title}
           </h2>
-          <p className="text-xl text-brand-text-secondary max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             {c.subtitle}
           </p>
         </div>
@@ -232,20 +232,20 @@ const CompanyHighlights = () => {
           {c.highlights.map((highlight, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300 hover:shadow-xl border border-gray-100"
+              className="glass-panel rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-gold to-yellow-600 rounded-full mb-6 shadow-lg">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#f58643] to-[#d97335] rounded-full mb-6 shadow-lg">
                 <div className="text-white">
                   {highlight.icon}
                 </div>
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-brand-blue mb-2">
+              <div className="text-3xl md:text-4xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                 {highlight.number}
               </div>
-              <h3 className="text-xl font-semibold text-brand-text-primary mb-3">
+              <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
                 {highlight.label}
               </h3>
-              <p className="text-brand-text-secondary leading-relaxed">
+              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 {highlight.description}
               </p>
             </div>
@@ -253,16 +253,16 @@ const CompanyHighlights = () => {
         </div>
 
         <div className="text-center">
-          <div className="bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto border border-gray-100">
-            <h3 className="text-2xl font-bold text-brand-blue mb-4">
+          <div className="glass-panel rounded-2xl shadow-xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
               {c.ctaText}
             </h3>
-            <p className="text-brand-text-secondary mb-6">
+            <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
               {c.ctaSubtext}
             </p>
             <a
               href="/contact"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-brand-gold to-yellow-600 text-white rounded-lg hover:from-yellow-600 hover:to-brand-gold transition duration-300 shadow-lg hover:shadow-xl font-semibold transform hover:scale-105"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-[#f58643] to-[#d97335] text-white rounded-lg hover:from-[#d97335] hover:to-[#f58643] transition duration-300 shadow-lg hover:shadow-xl font-semibold transform hover:scale-105"
             >
               Ücretsiz Danışmanlık Al
             </a>
