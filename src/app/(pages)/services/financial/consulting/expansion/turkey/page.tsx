@@ -132,18 +132,22 @@ const ExpansionTurkeyPage = () => {
               <span className="mx-2 text-[var(--text-muted)]">/</span>
               <span style={{ color: 'var(--text-secondary)' }}>{c.title}</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ color: 'var(--text-primary)' }}>
               {c.heroTitle} <br />
-              <span style={{color: '#f58643'}}>{c.heroTitleHighlight}</span>
+              <span style={{color: 'var(--brand-blue)'}}>{c.heroTitleHighlight}</span>
             </h1>
             <p className="text-lg mb-8 leading-relaxed border-l-2 pl-6" style={{ color: 'var(--text-secondary)', borderColor: 'var(--border-primary)' }}>
               {c.description}
             </p>
             <div className="flex gap-4 flex-wrap">
-              <button className="px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg" style={{ backgroundColor: 'var(--brand-orange)', color: '#ffffff' }}>
+              <Link
+                href="/contact"
+                className="px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg"
+                style={{ backgroundColor: 'var(--brand-orange)', color: '#ffffff' }}
+              >
                 {c.button1}
-              </button>
-              <button className="px-6 py-3 rounded-lg border transition-colors flex items-center gap-2" style={{ borderColor: 'var(--border-primary)', color: 'var(--text-secondary)' }}>
+              </Link>
+              <button className="px-6 py-3 rounded-lg border transition-colors flex items-center gap-2" style={{ borderColor: 'var(--border-primary)', color: 'var(--text-primary)', backgroundColor: 'var(--bg-surface)' }}>
                 <FaIndustry className="w-4 h-4" />
                 {c.button2}
               </button>
@@ -155,7 +159,7 @@ const ExpansionTurkeyPage = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="p-4 rounded-lg" style={{ backgroundColor: 'var(--bg-surface-hover)' }}>
                 <div className="text-xs font-mono mb-1" style={{ color: 'var(--text-muted)' }}>{c.vatLabel}</div>
-                <div className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>20%</div>
+                <div className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>{c.vatValue}</div>
               </div>
               <div className="p-4 rounded-lg" style={{ backgroundColor: 'var(--bg-surface-hover)' }}>
                 <div className="text-xs font-mono mb-1" style={{ color: 'var(--text-muted)' }}>{c.investmentZonesLabel}</div>
@@ -175,7 +179,7 @@ const ExpansionTurkeyPage = () => {
       {/* Process Timeline */}
       <section className="py-20 border-t" style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-secondary)' }}>
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center" style={{ color: 'var(--text-primary)' }}>{c.processTitle}</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center" style={{ color: 'var(--text-primary)' }}>{c.processTitle}</h2>
           
           <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
             
@@ -187,9 +191,9 @@ const ExpansionTurkeyPage = () => {
               <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 rounded-xl hover:border-[#f58643] transition-colors">
                 <div className="flex items-center gap-2 mb-2">
                   <FaFileSignature className="w-4 h-4" style={{color: '#f58643'}} />
-                  <h3 className="font-bold text-white">{c.step1Title}</h3>
+                  <h3 className="font-bold" style={{ color: 'var(--text-primary)' }}>{c.step1Title}</h3>
                 </div>
-                <p className="text-sm" style={{color: '#94a3b8'}}>{c.step1Desc}</p>
+                <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{c.step1Desc}</p>
               </div>
             </div>
 
@@ -201,9 +205,9 @@ const ExpansionTurkeyPage = () => {
               <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 rounded-xl hover:border-[#f58643] transition-colors">
                 <div className="flex items-center gap-2 mb-2">
                   <FaBuilding className="w-4 h-4" style={{color: '#f58643'}} />
-                  <h3 className="font-bold text-white">{c.step2Title}</h3>
+                  <h3 className="font-bold" style={{ color: 'var(--text-primary)' }}>{c.step2Title}</h3>
                 </div>
-                <p className="text-sm" style={{color: '#94a3b8'}}>{c.step2Desc}</p>
+                <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{c.step2Desc}</p>
               </div>
             </div>
 
@@ -215,9 +219,9 @@ const ExpansionTurkeyPage = () => {
               <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 rounded-xl hover:border-[#f58643] transition-colors">
                 <div className="flex items-center gap-2 mb-2">
                   <FaStamp className="w-4 h-4" style={{color: '#f58643'}} />
-                  <h3 className="font-bold text-white">{c.step3Title}</h3>
+                  <h3 className="font-bold" style={{ color: 'var(--text-primary)' }}>{c.step3Title}</h3>
                 </div>
-                <p className="text-sm" style={{color: '#94a3b8'}}>{c.step3Desc}</p>
+                <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{c.step3Desc}</p>
               </div>
             </div>
           </div>
@@ -230,42 +234,42 @@ const ExpansionTurkeyPage = () => {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Limited Şirket */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <span style={{color: '#f58643'}}>01.</span> {c.structure1Title}
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+                <span style={{color: 'var(--brand-orange)'}}>01.</span> {c.structure1Title}
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 p-3 rounded border-l-2" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-surface-hover)' }}>
                   <FaCheck className="w-4 h-4" style={{color: '#f58643'}} />
-                  <span className="text-sm" style={{color: '#cbd5e1'}}>{c.structure1Item1}</span>
+                  <span className="text-sm" style={{color: 'var(--text-primary)'}}>{c.structure1Item1}</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded border-l-2" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-surface-hover)' }}>
                   <FaCheck className="w-4 h-4" style={{color: '#f58643'}} />
-                  <span className="text-sm" style={{color: '#cbd5e1'}}>{c.structure1Item2}</span>
+                  <span className="text-sm" style={{color: 'var(--text-primary)'}}>{c.structure1Item2}</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded border-l-2" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-surface-hover)' }}>
                   <FaCheck className="w-4 h-4" style={{color: '#f58643'}} />
-                  <span className="text-sm" style={{color: '#cbd5e1'}}>{c.structure1Item3}</span>
+                  <span className="text-sm" style={{color: 'var(--text-primary)'}}>{c.structure1Item3}</span>
                 </div>
               </div>
             </div>
 
             {/* Teknopark Zones */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <span style={{color: '#f58643'}}>02.</span> {c.structure2Title}
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+                <span style={{color: 'var(--brand-orange)'}}>02.</span> {c.structure2Title}
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 p-3 rounded border-l-2" style={{ borderColor: 'var(--brand-orange)', backgroundColor: 'var(--bg-surface-hover)' }}>
                   <FaCheck className="w-4 h-4" style={{color: '#f58643'}} />
-                  <span className="text-sm font-medium text-white">{c.structure2Item1}</span>
+                  <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>{c.structure2Item1}</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded border-l-2" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-surface-hover)' }}>
                   <FaCheck className="w-4 h-4" style={{color: '#f58643'}} />
-                  <span className="text-sm" style={{color: '#cbd5e1'}}>{c.structure2Item2}</span>
+                  <span className="text-sm" style={{color: 'var(--text-primary)'}}>{c.structure2Item2}</span>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded border-l-2" style={{ borderColor: 'var(--border-primary)', backgroundColor: 'var(--bg-surface-hover)' }}>
                   <FaCheck className="w-4 h-4" style={{color: '#f58643'}} />
-                  <span className="text-sm" style={{color: '#cbd5e1'}}>{c.structure2Item3}</span>
+                  <span className="text-sm" style={{color: 'var(--text-primary)'}}>{c.structure2Item3}</span>
                 </div>
               </div>
             </div>

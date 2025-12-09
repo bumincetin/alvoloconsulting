@@ -43,6 +43,10 @@
   
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
+
+  /* Minimum legible contrast for small text */
+  --min-contrast-text: #e7ecff;
+  --min-contrast-muted: #c7cee6;
 }
 
 :root,
@@ -53,18 +57,29 @@
 
 .light {
   color-scheme: light;
-  --bg-primary: #f5f7ff;
-  --bg-surface: #ffffff;
-  --bg-surface-2: #eef2ff;
-  --bg-surface-hover: #e7ecff;
+  --bg-primary: #feecc8;
+  --bg-surface: #fff7e6;
+  --bg-surface-2: #ffe9c2;
+  --bg-surface-hover: #ffe1ad;
 
-  --text-primary: #0b1224;
-  --text-secondary: #1e293b;
-  --text-muted: #475569;
+  --text-primary: #0b0b0b;
+  --text-secondary: #1f1f1f;
+  --text-muted: #3a3a3a;
 
   --border-primary: rgba(11, 18, 36, 0.12);
   --border-secondary: rgba(11, 18, 36, 0.08);
-  --border-accent: rgba(0, 243, 255, 0.35);
+  --border-accent: rgba(11, 97, 255, 0.28);
+
+  /* Softer brand tones for light mode */
+  --brand-blue: #0b61ff;
+  --brand-orange: #f58643;
+  --brand-orange-ton: #ffd7b0;
+  --logo-blue: #0b61ff;
+  --logo-orange: #f58643;
+  --logo-orange-ton: #ffd7b0;
+
+  --min-contrast-text: #0b0b0b;
+  --min-contrast-muted: #1f1f1f;
 
   --glass: rgba(11, 18, 36, 0.05);
   --glass-strong: rgba(11, 18, 36, 0.08);
@@ -285,6 +300,15 @@ a:hover {
   color: var(--brand-blue); /* Darken gold on hover or use primary blue */
 }
 
+/* Light mode: keep links neutral/dark, remove yellow */
+.light a {
+  color: var(--text-primary);
+}
+
+.light a:hover {
+  color: var(--text-primary);
+}
+
 /* Ensure navbar has a solid background by default if classes fail */
 nav {
   background-color: var(--bg-surface) !important; 
@@ -342,7 +366,7 @@ nav {
 
 .service-card:hover,
 .info-card:hover {
-  background-color: #121212;
+  background-color: var(--bg-surface-hover);
   border-color: var(--border-primary);
   color: var(--text-primary);
 }
@@ -350,6 +374,37 @@ nav {
 .service-card:hover *,
 .info-card:hover * {
   color: var(--text-primary) !important;
+}
+
+/* Ensure pills/badges stay legible in both themes */
+.badge,
+[class*="pill"],
+[class*="chip"] {
+  color: var(--text-primary);
+}
+
+/* Buttons: ensure text contrast */
+.btn,
+button,
+[role="button"] {
+  color: var(--text-primary);
+}
+
+/* Light/dark text utilities reset to minimum contrast */
+.text-muted {
+  color: var(--text-secondary);
+}
+
+.text-dim {
+  color: var(--text-muted);
+}
+
+.text-contrast {
+  color: var(--min-contrast-text);
+}
+
+.text-contrast-muted {
+  color: var(--min-contrast-muted);
 }
 
 /* Line clamp utilities for text truncation */

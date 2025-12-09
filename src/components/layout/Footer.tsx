@@ -128,16 +128,16 @@ const Footer = () => {
   return (
     <footer
       className="relative mt-20 border-t border-white/10 backdrop-blur-2xl overflow-hidden"
-      style={{ backgroundColor: 'var(--bg-surface)' }}
+      style={{ backgroundColor: 'var(--bg-primary)' }}
     >
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div
           className="neo-blob w-[32rem] h-[32rem] top-[-12rem] left-[-8rem]"
-          style={{ backgroundColor: 'rgba(188,19,254,0.25)' }}
+          style={{ backgroundColor: 'var(--brand-orange)', opacity: 0.15 }}
         />
         <div
           className="neo-blob w-[28rem] h-[28rem] bottom-[-10rem] right-[-6rem]"
-          style={{ backgroundColor: 'rgba(0,243,255,0.25)' }}
+          style={{ backgroundColor: 'var(--brand-blue)', opacity: 0.15 }}
         />
       </div>
       <div className="max-w-7xl mx-auto px-6 py-14 relative z-10 text-[var(--text-primary)]">
