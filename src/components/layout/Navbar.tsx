@@ -22,6 +22,7 @@ const getNavbarContent = (lang: string) => {
       ourStory: "Hikayemiz",
       announcements: "Duyurular",
       blog: "Blog",
+      methodology: "Metodoloji",
       realEstateAgents: "Emlakçılar İçin",
       contact: "İletişim",
       clientPortal: "Müşteri Portalı",
@@ -40,6 +41,7 @@ const getNavbarContent = (lang: string) => {
       ourStory: "Our Story",
       announcements: "Announcements",
       blog: "Blog",
+      methodology: "Methodology",
       realEstateAgents: "For Real Estate Agents",
       contact: "Contact",
       clientPortal: "Client Portal",
@@ -58,6 +60,7 @@ const getNavbarContent = (lang: string) => {
       ourStory: "La Nostra Storia",
       announcements: "Annunci",
       blog: "Blog",
+      methodology: "Metodologia",
       realEstateAgents: "Per Agenti Immobiliari",
       contact: "Contatti",
       clientPortal: "Portale Cliente",
@@ -81,7 +84,7 @@ const Navbar = () => {
     { label: c.home, href: '/' },
     { label: c.about, href: '/about' },
     { label: c.blog, href: '/blog' },
-    { label: 'Methodology', href: '/methodology' },
+    { label: c.methodology, href: '/methodology' },
     { label: c.contact, href: '/contact' },
   ];
 
