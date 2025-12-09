@@ -81,6 +81,7 @@ const Navbar = () => {
     { label: c.home, href: '/' },
     { label: c.about, href: '/about' },
     { label: c.blog, href: '/blog' },
+    { label: 'Methodology', href: '/methodology' },
     { label: c.contact, href: '/contact' },
   ];
 
@@ -143,7 +144,7 @@ const Navbar = () => {
             </Link>
 
           <div className="hidden lg:flex items-center gap-8">
-            {navItems.slice(0, 2).map((item) => (
+            {navItems.slice(0, 3).map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
@@ -184,7 +185,7 @@ const Navbar = () => {
               )}
             </div>
 
-            {navItems.slice(2).map((item) => (
+            {navItems.slice(3).map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
