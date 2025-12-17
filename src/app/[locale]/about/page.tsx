@@ -1,6 +1,5 @@
 import { locales, type Locale } from '@/lib/translations';
 import AboutPageClient from './AboutPageClient';
-export const runtime = 'edge';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
