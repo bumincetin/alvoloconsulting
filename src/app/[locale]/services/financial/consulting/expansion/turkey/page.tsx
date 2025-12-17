@@ -1,6 +1,6 @@
 import { locales, type Locale } from '@/lib/translations';
 import TurkeyExpansionClient from './TurkeyExpansionClient';
-
+export const runtime = 'edge';
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
