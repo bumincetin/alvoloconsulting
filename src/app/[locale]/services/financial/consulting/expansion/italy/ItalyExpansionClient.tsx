@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowRight, FaBuilding, FaFileContract, FaHandshake, FaUsers, FaChartLine, FaGlobe } from 'react-icons/fa';
 import GlassCard from '@/app/components/ui/GlassCard';
-import { type Locale, getTranslation } from '@/lib/translations';
+import { type Locale } from '@/lib/translations';
 
 interface ItalyExpansionClientProps {
   locale: Locale;
