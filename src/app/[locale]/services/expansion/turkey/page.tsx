@@ -1,9 +1,7 @@
-import { locales, type Locale } from '@/lib/translations';
+import { type Locale } from '@/lib/translations';
 import TurkeyExpansionClient from './TurkeyExpansionClient';
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
+export const runtime = 'edge';
 
 export default async function TurkeyExpansionPage({
   params,
@@ -13,4 +11,3 @@ export default async function TurkeyExpansionPage({
   const { locale } = await params;
   return <TurkeyExpansionClient locale={locale} />;
 }
-

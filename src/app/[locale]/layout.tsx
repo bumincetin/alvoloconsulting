@@ -1,9 +1,7 @@
-import { locales, type Locale } from '@/lib/translations';
+import { type Locale } from '@/lib/translations';
 import LocaleLayoutClient from './LocaleLayoutClient';
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
+export const runtime = 'edge';
 
 export default async function LocaleLayout({
   children,
