@@ -1,0 +1,63 @@
+{% extends 'portal/base.html' %}
+
+{% block title %}Message Thread{% endblock %}
+
+{% block content %}
+<div class="p-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <a href="{% url 'portal:messages' %}" class="inline-flex items-center gap-2 text-accent-cyan text-sm hover:underline mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to Messages
+        </a>
+        <h1 class="font-serif text-2xl font-bold text-white">
+            {% if parent_message.subject %}{{ parent_message.subject }}{% else %}Conversation{% endif %}
+        </h1>
+        <p class="text-gray-500 text-sm">
+            With {% if parent_message.sender == user %}{{ parent_message.recipient.first_name|default:parent_message.recipient.username }}{% else %}{{ parent_message.sender.first_name|default:parent_message.sender.username }}{% endif %}
+        </p>
+    </div>
+    
+    <!-- Messages Thread -->
+    <div class="glass-card rounded-2xl p-6 mb-6 max-h-[500px] overflow-y-auto">
+        <div class="space-y-6">
+            {% for msg in thread_messages %}
+            <div class="flex gap-4 {% if msg.sender == user %}flex-row-reverse{% endif %}">
+                <div class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center {% if msg.sender == user %}bg-gradient-to-br from-accent-cyan to-accent-purple{% else %}bg-gradient-to-br from-accent-orange to-accent-purple{% endif %}">
+                    <span class="font-bold text-white text-sm">{{ msg.sender.first_name|slice:":1"|default:msg.sender.username|slice:":1"|upper }}</span>
+                </div>
+                <div class="flex-1 max-w-[80%]">
+                    <div class="{% if msg.sender == user %}bg-accent-cyan/10 border-accent-cyan/30{% else %}bg-gray-800/50 border-gray-700{% endif %} border rounded-2xl p-4">
+                        <p class="text-gray-200 text-sm whitespace-pre-wrap">{{ msg.content }}</p>
+                    </div>
+                    <div class="mt-1 text-xs text-gray-600 {% if msg.sender == user %}text-right{% endif %}">
+                        {{ msg.created_at|date:"M d, Y H:i" }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Reply Form -->
+    <div class="glass-card rounded-2xl p-6">
+        <h3 class="text-sm font-medium text-gray-400 mb-4">Reply</h3>
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            {{ form.content }}
+            <div class="flex justify-end">
+                <button type="submit" 
+                        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white font-bold text-sm hover:opacity-90 transition-opacity">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                    Send Reply
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

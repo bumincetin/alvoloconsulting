@@ -1,0 +1,130 @@
+{% extends 'portal/base.html' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<div class="p-8">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <div>
+            <h1 class="font-serif text-3xl font-bold text-white mb-2">Messages</h1>
+            <p class="text-gray-500">Secure communication with your consultant.</p>
+        </div>
+        
+        <!-- New Message Button -->
+        <button onclick="document.getElementById('newMessageModal').classList.remove('hidden')"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white font-bold uppercase tracking-wider text-sm hover:opacity-90 transition-opacity">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            New Message
+        </button>
+    </div>
+    
+    <!-- Messages List -->
+    {% if messages_list %}
+    <div class="space-y-4">
+        {% for msg in messages_list %}
+        <a href="{% url 'portal:message_thread' msg.pk %}" 
+           class="block glass-card rounded-2xl p-6 hover:border-accent-cyan/30 transition-colors">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent-orange to-accent-purple flex items-center justify-center flex-shrink-0">
+                    <span class="font-bold text-white">
+                        {% if msg.sender == user %}{{ msg.recipient.first_name|slice:":1"|default:msg.recipient.username|slice:":1"|upper }}{% else %}{{ msg.sender.first_name|slice:":1"|default:msg.sender.username|slice:":1"|upper }}{% endif %}
+                    </span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-4 mb-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-medium text-white">
+                                {% if msg.sender == user %}To: {{ msg.recipient.first_name|default:msg.recipient.username }}{% else %}{{ msg.sender.first_name|default:msg.sender.username }}{% endif %}
+                            </span>
+                            {% if not msg.is_read and msg.recipient == user %}
+                            <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
+                            {% endif %}
+                        </div>
+                        <span class="text-sm text-gray-500">{{ msg.created_at|date:"M d, Y H:i" }}</span>
+                    </div>
+                    {% if msg.subject %}
+                    <div class="text-sm font-medium text-gray-300 mb-1">{{ msg.subject }}</div>
+                    {% endif %}
+                    <p class="text-sm text-gray-500 truncate">{{ msg.content }}</p>
+                    
+                    {% if msg.replies.count > 0 %}
+                    <div class="mt-2 text-xs text-accent-cyan">
+                        {{ msg.replies.count }} repl{{ msg.replies.count|pluralize:"y,ies" }}
+                    </div>
+                    {% endif %}
+                </div>
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="glass-card rounded-2xl p-12 text-center">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gray-800/50 flex items-center justify-center">
+            <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">No messages yet</h3>
+        <p class="text-gray-500 text-sm mb-4">Start a conversation with your consultant.</p>
+        <button onclick="document.getElementById('newMessageModal').classList.remove('hidden')"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-cyan/20 border border-accent-cyan/30 text-accent-cyan font-medium text-sm hover:bg-accent-cyan/30 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Start Conversation
+        </button>
+    </div>
+    {% endif %}
+</div>
+
+<!-- New Message Modal -->
+<div id="newMessageModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+    <div class="min-h-screen px-4 flex items-center justify-center">
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="document.getElementById('newMessageModal').classList.add('hidden')"></div>
+        
+        <div class="relative glass-card rounded-2xl p-8 w-full max-w-lg">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-white">New Message</h2>
+                <button onclick="document.getElementById('newMessageModal').classList.add('hidden')" class="text-gray-500 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Subject (optional)</label>
+                    {{ form.subject }}
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                    {{ form.content }}
+                </div>
+                
+                <div class="flex gap-4 pt-4">
+                    <button type="button" 
+                            onclick="document.getElementById('newMessageModal').classList.add('hidden')"
+                            class="flex-1 px-6 py-3 rounded-xl border border-gray-700 text-gray-400 font-medium text-sm hover:bg-gray-800 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 px-6 py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white font-bold text-sm hover:opacity-90 transition-opacity">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

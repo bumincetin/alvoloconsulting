@@ -11,6 +11,310 @@ interface MethodologyPageClientProps {
   locale: Locale;
 }
 
+// Animated Neural Network Component
+const NeuralNetworkAnimation = () => {
+  return (
+    <div className="relative w-full h-32 my-8">
+      <svg viewBox="0 0 300 100" className="w-full h-full">
+        {/* Input Layer */}
+        <g className="input-layer">
+          {[20, 40, 60, 80].map((y, i) => (
+            <motion.circle
+              key={`input-${i}`}
+              cx="30"
+              cy={y}
+              r="8"
+              fill="none"
+              stroke="#00f0ff"
+              strokeWidth="1.5"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+            />
+          ))}
+          <motion.text
+            x="30"
+            y="95"
+            textAnchor="middle"
+            className="fill-accent-cyan text-[8px] font-mono"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.7 }}
+            transition={{ delay: 0.5 }}
+          >
+            INPUT
+          </motion.text>
+        </g>
+        
+        {/* Hidden Layers */}
+        {[100, 150, 200].map((cx, layerIndex) => (
+          <g key={`layer-${layerIndex}`}>
+            {[25, 50, 75].map((cy, nodeIndex) => (
+              <motion.circle
+                key={`hidden-${layerIndex}-${nodeIndex}`}
+                cx={cx}
+                cy={cy}
+                r="6"
+                fill="none"
+                stroke="#7000ff"
+                strokeWidth="1"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.6 }}
+                transition={{ delay: 0.3 + layerIndex * 0.15 + nodeIndex * 0.05, duration: 0.4 }}
+              />
+            ))}
+          </g>
+        ))}
+        
+        {/* Output Layer */}
+        <motion.circle
+          cx="270"
+          cy="50"
+          r="10"
+          fill="none"
+          stroke="#f58643"
+          strokeWidth="2"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: [1, 1.2, 1], opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6, repeat: Infinity, repeatDelay: 2 }}
+        />
+        <motion.text
+          x="270"
+          y="95"
+          textAnchor="middle"
+          className="fill-accent-orange text-[8px] font-mono"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ delay: 1 }}
+        >
+          PREDICTION
+        </motion.text>
+        
+        {/* Animated Connection Lines */}
+        {[20, 40, 60, 80].map((y1, i) =>
+          [25, 50, 75].map((y2, j) => (
+            <motion.line
+              key={`conn-input-${i}-${j}`}
+              x1="38"
+              y1={y1}
+              x2="94"
+              y2={y2}
+              stroke="#00f0ff"
+              strokeWidth="0.5"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.2 }}
+              transition={{ delay: 0.5 + i * 0.05 + j * 0.05, duration: 0.3 }}
+            />
+          ))
+        )}
+      </svg>
+    </div>
+  );
+};
+
+// Animated Risk Matrix Component
+const RiskMatrixAnimation = () => {
+  const cells = [
+    { x: 0, y: 0, risk: 'low' },
+    { x: 1, y: 0, risk: 'low' },
+    { x: 2, y: 0, risk: 'medium' },
+    { x: 0, y: 1, risk: 'low' },
+    { x: 1, y: 1, risk: 'medium' },
+    { x: 2, y: 1, risk: 'high' },
+    { x: 0, y: 2, risk: 'medium' },
+    { x: 1, y: 2, risk: 'high' },
+    { x: 2, y: 2, risk: 'critical' },
+  ];
+  
+  const getColor = (risk: string) => {
+    switch (risk) {
+      case 'low': return '#00f0ff33';
+      case 'medium': return '#f5864366';
+      case 'high': return '#f5864399';
+      case 'critical': return '#ff4444cc';
+      default: return '#ffffff11';
+    }
+  };
+
+  return (
+    <div className="relative w-full h-32 my-8">
+      <svg viewBox="0 0 120 120" className="w-full h-full max-w-[120px] mx-auto">
+        {cells.map((cell, i) => (
+          <motion.rect
+            key={i}
+            x={cell.x * 35 + 5}
+            y={cell.y * 35 + 5}
+            width="30"
+            height="30"
+            rx="4"
+            fill={getColor(cell.risk)}
+            stroke="#ffffff22"
+            strokeWidth="1"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: i * 0.08, duration: 0.3 }}
+          />
+        ))}
+        {/* Animated indicator */}
+        <motion.circle
+          cx="90"
+          cy="90"
+          r="8"
+          fill="#ff4444"
+          initial={{ scale: 0 }}
+          animate={{ scale: [1, 1.3, 1] }}
+          transition={{ delay: 1, duration: 1.5, repeat: Infinity }}
+        />
+        <motion.text
+          x="60"
+          y="118"
+          textAnchor="middle"
+          className="fill-text-muted text-[7px] font-mono uppercase"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ delay: 1 }}
+        >
+          Impact →
+        </motion.text>
+      </svg>
+    </div>
+  );
+};
+
+// Animated Data Pipeline Component
+const DataPipelineAnimation = () => {
+  return (
+    <div className="relative w-full h-24 my-8 overflow-hidden">
+      <div className="flex items-center justify-center gap-2">
+        {/* Data blocks flowing */}
+        {[0, 1, 2, 3, 4].map((i) => (
+          <motion.div
+            key={i}
+            className="w-8 h-8 rounded border border-accent-cyan/50 bg-accent-cyan/10 flex items-center justify-center"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: [0, 1, 1, 0] }}
+            transition={{
+              delay: i * 0.3,
+              duration: 2,
+              repeat: Infinity,
+              repeatDelay: 1,
+            }}
+          >
+            <span className="text-accent-cyan text-xs font-mono">◆</span>
+          </motion.div>
+        ))}
+        
+        {/* Arrow */}
+        <motion.div
+          className="text-accent-cyan mx-2"
+          animate={{ x: [0, 5, 0] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        >
+          →
+        </motion.div>
+        
+        {/* Output */}
+        <motion.div
+          className="w-12 h-12 rounded-xl border-2 border-accent-orange/50 bg-accent-orange/10 flex items-center justify-center"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <span className="text-accent-orange text-lg font-mono">✦</span>
+        </motion.div>
+      </div>
+      <motion.div
+        className="text-center mt-2 text-xs font-mono text-text-muted"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ delay: 0.5 }}
+      >
+        RAW → INSIGHTS
+      </motion.div>
+    </div>
+  );
+};
+
+// Animated Cross-Border Network Component
+const CrossBorderNetworkAnimation = () => {
+  return (
+    <div className="relative w-full h-32 my-8">
+      <svg viewBox="0 0 200 100" className="w-full h-full">
+        {/* Italy Node */}
+        <motion.g
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <circle cx="40" cy="50" r="25" fill="none" stroke="#00f0ff" strokeWidth="2" />
+          <text x="40" y="54" textAnchor="middle" className="fill-accent-cyan text-[12px] font-bold">IT</text>
+        </motion.g>
+        
+        {/* Turkey Node */}
+        <motion.g
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <circle cx="160" cy="50" r="25" fill="none" stroke="#f58643" strokeWidth="2" />
+          <text x="160" y="54" textAnchor="middle" className="fill-accent-orange text-[12px] font-bold">TR</text>
+        </motion.g>
+        
+        {/* Animated Connection */}
+        <motion.path
+          d="M 70 50 Q 100 20 130 50"
+          fill="none"
+          stroke="url(#gradient)"
+          strokeWidth="2"
+          strokeDasharray="5 5"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+        <motion.path
+          d="M 70 50 Q 100 80 130 50"
+          fill="none"
+          stroke="url(#gradient)"
+          strokeWidth="2"
+          strokeDasharray="5 5"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+        />
+        
+        {/* Animated data packets */}
+        <motion.circle
+          cx="40"
+          cy="50"
+          r="4"
+          fill="#00f0ff"
+          animate={{
+            cx: [40, 100, 160],
+            cy: [50, 20, 50],
+          }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+        />
+        <motion.circle
+          cx="160"
+          cy="50"
+          r="4"
+          fill="#f58643"
+          animate={{
+            cx: [160, 100, 40],
+            cy: [50, 80, 50],
+          }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, delay: 1 }}
+        />
+        
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#00f0ff" />
+            <stop offset="100%" stopColor="#f58643" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
 const content = {
   en: {
     badge: 'METHODOLOGY & SERVICES',
@@ -25,7 +329,7 @@ const content = {
         desc1: 'We transform complex financial landscapes into actionable strategies using advanced analytical frameworks. From cross-border tax optimization to capital structure analysis, every solution is engineered for real-world implementation.',
         desc2: 'Our approach combines traditional financial modeling with modern data analytics, ensuring strategies are both statistically robust and practically applicable to SME expansion, investment decisions, and international trade operations.',
         features: ['DCF & Comparative Valuation Models', 'Tax Efficiency Optimization', 'Working Capital Analysis', 'Cross-Border Investment Structuring'],
-        visual: 'NPV → IRR → WACC',
+        visual: 'neural',
         metric: 'α: 0.05',
       },
       {
@@ -35,7 +339,7 @@ const content = {
         desc1: 'Navigating Italian and EU regulations requires deep expertise in GDPR, anti-money laundering (AML), and cross-border fiscal compliance. We leverage automated compliance monitoring systems to ensure continuous adherence.',
         desc2: 'Our risk management framework employs Monte Carlo simulations and stress testing methodologies to quantify operational, market, and regulatory risks—enabling proactive mitigation strategies for your Italian market entry.',
         features: ['EU/Italian Regulatory Mapping', 'AML/KYC Compliance Systems', 'Risk Assessment Frameworks', 'Automated Compliance Monitoring'],
-        visual: 'RISK_MATRIX',
+        visual: 'risk',
         metric: 'VaR 95%',
       },
       {
@@ -45,7 +349,7 @@ const content = {
         desc1: 'We build comprehensive market intelligence systems that aggregate data from multiple sources—industry reports, customs data, financial filings—to provide real-time insights into Italian market dynamics.',
         desc2: 'Our entry strategy development uses cluster analysis and predictive modeling to identify optimal market segments, pricing strategies, and distribution channels tailored to your business sector.',
         features: ['Market Size & Growth Analysis', 'Competitor Benchmarking', 'Customer Segmentation Models', 'Entry Mode Optimization'],
-        visual: 'MARKET_DATA → INSIGHTS',
+        visual: 'pipeline',
         metric: 'R² > 0.85',
       },
       {
@@ -55,7 +359,7 @@ const content = {
         desc1: 'As Alvolo Consulting, we specialize in the Italy-Turkey financial corridor—providing comprehensive advisory services for SMEs and professionals navigating cross-border investments, fiscal representation, and market expansion.',
         desc2: 'Our consulting methodology integrates deep local knowledge with quantitative rigor, helping clients understand not just what the data shows, but how to strategically act on it within complex regulatory environments.',
         features: ['Cross-Border Investment Advisory', 'Italian Financial System Navigation', 'Regulatory Compliance Guidance', 'Strategic Financial Planning'],
-        visual: 'IT ↔ TR NETWORK',
+        visual: 'network',
         metric: '€50M+ Analyzed',
       },
     ],
@@ -91,7 +395,7 @@ const content = {
         desc1: 'Gelişmiş analitik çerçeveler kullanarak karmaşık finansal ortamları eyleme dönüştürülebilir stratejilere dönüştürüyoruz. Sınır ötesi vergi optimizasyonundan sermaye yapısı analizine kadar her çözüm gerçek dünya uygulaması için tasarlanmıştır.',
         desc2: 'Yaklaşımımız geleneksel finansal modellemeyi modern veri analitiğiyle birleştirerek stratejilerin hem istatistiksel olarak güçlü hem de KOBİ genişlemesi, yatırım kararları ve uluslararası ticaret operasyonlarına pratik olarak uygulanabilir olmasını sağlar.',
         features: ['İNA & Karşılaştırmalı Değerleme Modelleri', 'Vergi Verimliliği Optimizasyonu', 'İşletme Sermayesi Analizi', 'Sınır Ötesi Yatırım Yapılandırma'],
-        visual: 'NBD → İÇ VERİM → AOSM',
+        visual: 'neural',
         metric: 'α: 0.05',
       },
       {
@@ -101,7 +405,7 @@ const content = {
         desc1: 'İtalyan ve AB düzenlemelerinde gezinmek GDPR, kara para aklamayı önleme (AML) ve sınır ötesi mali uyumluluk konularında derin uzmanlık gerektirir. Sürekli uyumu sağlamak için otomatik uyumluluk izleme sistemleri kullanıyoruz.',
         desc2: 'Risk yönetimi çerçevemiz, operasyonel, piyasa ve düzenleyici riskleri nicelendirmek için Monte Carlo simülasyonları ve stres testi metodolojileri kullanır—İtalya pazar girişiniz için proaktif azaltma stratejileri sağlar.',
         features: ['AB/İtalyan Mevzuat Haritalama', 'AML/KYC Uyumluluk Sistemleri', 'Risk Değerlendirme Çerçeveleri', 'Otomatik Uyumluluk İzleme'],
-        visual: 'RİSK_MATRİSİ',
+        visual: 'risk',
         metric: 'VaR %95',
       },
       {
@@ -111,7 +415,7 @@ const content = {
         desc1: 'Sektör raporları, gümrük verileri, finansal dosyalamalar gibi birden fazla kaynaktan veri toplayan kapsamlı pazar istihbarat sistemleri oluşturarak İtalyan pazar dinamikleri hakkında gerçek zamanlı içgörüler sunuyoruz.',
         desc2: 'Giriş stratejisi geliştirmemiz, işletme sektörünüze özel optimal pazar segmentlerini, fiyatlandırma stratejilerini ve dağıtım kanallarını belirlemek için kümeleme analizi ve tahminsel modelleme kullanır.',
         features: ['Pazar Büyüklüğü & Büyüme Analizi', 'Rakip Karşılaştırması', 'Müşteri Segmentasyon Modelleri', 'Giriş Modu Optimizasyonu'],
-        visual: 'PAZAR_VERİSİ → İÇGÖRÜLER',
+        visual: 'pipeline',
         metric: 'R² > 0.85',
       },
       {
@@ -121,7 +425,7 @@ const content = {
         desc1: 'Alvolo Consulting olarak İtalya-Türkiye finansal koridorunda uzmanlaşıyoruz—sınır ötesi yatırımlar, mali temsilcilik ve pazar genişlemesi konularında gezinen KOBİ\'ler ve profesyoneller için kapsamlı danışmanlık hizmetleri sunuyoruz.',
         desc2: 'Danışmanlık metodolojimiz, derin yerel bilgiyi kantitatif titizlikle bütünleştirerek müşterilerin yalnızca verinin ne gösterdiğini değil, karmaşık düzenleyici ortamlarda stratejik olarak nasıl hareket edeceklerini anlamalarına yardımcı olur.',
         features: ['Sınır Ötesi Yatırım Danışmanlığı', 'İtalyan Finans Sistemi Navigasyonu', 'Mevzuat Uyumu Rehberliği', 'Stratejik Finansal Planlama'],
-        visual: 'IT ↔ TR AĞI',
+        visual: 'network',
         metric: '€50M+ Analiz Edildi',
       },
     ],
@@ -157,7 +461,7 @@ const content = {
         desc1: 'Trasformiamo panorami finanziari complessi in strategie attuabili utilizzando framework analitici avanzati. Dall\'ottimizzazione fiscale transfrontaliera all\'analisi della struttura del capitale, ogni soluzione è progettata per l\'implementazione nel mondo reale.',
         desc2: 'Il nostro approccio combina la modellazione finanziaria tradizionale con l\'analisi dei dati moderna, garantendo che le strategie siano sia statisticamente robuste che praticamente applicabili all\'espansione delle PMI, alle decisioni di investimento e alle operazioni commerciali internazionali.',
         features: ['Modelli DCF & Valutazione Comparativa', 'Ottimizzazione Efficienza Fiscale', 'Analisi Capitale Circolante', 'Strutturazione Investimenti Transfrontalieri'],
-        visual: 'VAN → TIR → WACC',
+        visual: 'neural',
         metric: 'α: 0.05',
       },
       {
@@ -167,7 +471,7 @@ const content = {
         desc1: 'Navigare le normative italiane e UE richiede profonda expertise in GDPR, antiriciclaggio (AML) e compliance fiscale transfrontaliera. Utilizziamo sistemi di monitoraggio compliance automatizzati per garantire aderenza continua.',
         desc2: 'Il nostro framework di gestione rischi impiega simulazioni Monte Carlo e metodologie di stress testing per quantificare rischi operativi, di mercato e normativi—abilitando strategie di mitigazione proattive per il tuo ingresso nel mercato italiano.',
         features: ['Mappatura Normativa UE/Italiana', 'Sistemi Compliance AML/KYC', 'Framework Valutazione Rischi', 'Monitoraggio Compliance Automatizzato'],
-        visual: 'RISK_MATRIX',
+        visual: 'risk',
         metric: 'VaR 95%',
       },
       {
@@ -177,7 +481,7 @@ const content = {
         desc1: 'Costruiamo sistemi di market intelligence completi che aggregano dati da molteplici fonti—report di settore, dati doganali, documenti finanziari—per fornire insights in tempo reale sulle dinamiche del mercato italiano.',
         desc2: 'Lo sviluppo della nostra strategia di ingresso utilizza cluster analysis e modellazione predittiva per identificare segmenti di mercato ottimali, strategie di pricing e canali di distribuzione su misura per il tuo settore aziendale.',
         features: ['Analisi Dimensione & Crescita Mercato', 'Benchmarking Competitivo', 'Modelli Segmentazione Clienti', 'Ottimizzazione Modalità di Ingresso'],
-        visual: 'MARKET_DATA → INSIGHTS',
+        visual: 'pipeline',
         metric: 'R² > 0.85',
       },
       {
@@ -187,7 +491,7 @@ const content = {
         desc1: 'Come Alvolo Consulting, siamo specializzati nel corridoio finanziario Italia-Turchia—fornendo servizi di consulenza completi per PMI e professionisti che navigano investimenti transfrontalieri, rappresentanza fiscale ed espansione di mercato.',
         desc2: 'La nostra metodologia di consulenza integra profonda conoscenza locale con rigore quantitativo, aiutando i clienti a capire non solo cosa mostrano i dati, ma come agire strategicamente all\'interno di ambienti normativi complessi.',
         features: ['Consulenza Investimenti Transfrontalieri', 'Navigazione Sistema Finanziario Italiano', 'Guida Conformità Normativa', 'Pianificazione Finanziaria Strategica'],
-        visual: 'IT ↔ TR NETWORK',
+        visual: 'network',
         metric: '€50M+ Analizzati',
       },
     ],
@@ -210,6 +514,22 @@ const content = {
     ctaDesc: 'Parliamo di come l\'expertise finanziaria data-driven può accelerare la tua espansione.',
     ctaButton: 'Avvia Consulenza',
   },
+};
+
+// Visual component selector
+const VisualAnimation = ({ type }: { type: string }) => {
+  switch (type) {
+    case 'neural':
+      return <NeuralNetworkAnimation />;
+    case 'risk':
+      return <RiskMatrixAnimation />;
+    case 'pipeline':
+      return <DataPipelineAnimation />;
+    case 'network':
+      return <CrossBorderNetworkAnimation />;
+    default:
+      return null;
+  }
 };
 
 export default function MethodologyPageClient({ locale }: MethodologyPageClientProps) {
@@ -260,7 +580,7 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
           <div className="font-mono text-xs text-accent-cyan tracking-[0.3em] mb-4">{t.coreServices}</div>
         </motion.div>
 
-        {/* Service Areas - Styled like personal portfolio */}
+        {/* Service Areas with Animated Figures */}
         <div className="space-y-20 mb-32">
           {t.services.map((service, index) => (
             <motion.div
@@ -272,8 +592,8 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
             >
               <GlassCard className="overflow-hidden">
                 <div className="grid lg:grid-cols-12 gap-8">
-                  {/* Left Column - Number and Title */}
-                  <div className="lg:col-span-4 relative">
+                  {/* Left Column - Number, Title, and Animation */}
+                  <div className="lg:col-span-5 relative">
                     <div className="text-[8rem] font-serif font-bold text-accent-cyan/10 leading-none absolute -top-8 -left-4">
                       {service.num}
                     </div>
@@ -284,33 +604,39 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
                       </p>
                       
                       {/* Animated Visual Element */}
-                      <div className="mt-8 p-4 rounded-xl bg-void/50 border border-glass-border inline-block">
-                        <div className="font-mono text-sm text-accent-cyan tracking-wider">{service.visual}</div>
-                      </div>
+                      <VisualAnimation type={service.visual} />
                       
                       {/* Metric Badge */}
-                      <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-orange/30 bg-accent-orange/10">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent-orange animate-pulse"></span>
-                        <span className="text-xs font-mono text-accent-orange">{service.metric}</span>
-                      </div>
+                      <motion.div 
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent-orange/30 bg-accent-orange/10"
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        <span className="w-2 h-2 rounded-full bg-accent-orange animate-pulse"></span>
+                        <span className="text-sm font-mono text-accent-orange font-bold">{service.metric}</span>
+                      </motion.div>
                     </div>
                   </div>
 
                   {/* Right Column - Descriptions and Features */}
-                  <div className="lg:col-span-8 space-y-6">
+                  <div className="lg:col-span-7 space-y-6">
                     <p className="text-text-muted leading-relaxed">{service.desc1}</p>
                     <p className="text-text-secondary leading-relaxed">{service.desc2}</p>
                     
                     {/* Features Grid */}
                     <div className="grid sm:grid-cols-2 gap-3 pt-6 border-t border-glass-border">
                       {service.features.map((feature, featureIndex) => (
-                        <div 
+                        <motion.div 
                           key={featureIndex} 
                           className="flex items-center gap-3 text-sm group"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: featureIndex * 0.1 }}
                         >
                           <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan group-hover:scale-150 transition-transform"></span>
                           <span className="text-text-muted group-hover:text-text-primary transition-colors">{feature}</span>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
