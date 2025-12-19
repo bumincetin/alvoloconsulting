@@ -83,7 +83,7 @@ const content = {
     compliance: 'Mevzuat Uyumu',
     complianceDesc: 'Uyumluluk gereksinimleri konusunda uzman rehberliğiyle İtalyan ve AB düzenlemelerinde yön bulun.',
     ctaTitle: 'İtalya Pazarına Girmeye Hazır mısınız?',
-    ctaDesc: 'Genişleme planlarınızı görüşmek ve size nasıl yardımcı olabileceğimizi keşfetmek için bir danışma planlayın.',
+    ctaDesc: 'Genişleme planlarınızı görüşmek ve size nasıl yardımcı olabileceğimizi keşfetmek için bir danışmanlık seansı planlayın.',
     ctaButton: 'İtalya Yolculuğunuza Başlayın',
     backLink: 'Hizmetlere Dön',
   },

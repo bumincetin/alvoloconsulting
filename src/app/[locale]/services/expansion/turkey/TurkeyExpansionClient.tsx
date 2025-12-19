@@ -82,7 +82,7 @@ const content = {
     localTeamDesc: 'İşe alma ve ekip yönetiminde yardımımızla Türkiye\'deki varlığınızı oluşturun.',
     legal: 'Hukuki ve Uyumluluk',
     legalDesc: 'Uzman hukuki ve uyumluluk desteğiyle Türk iş düzenlemelerinde yön bulun.',
-    ctaTitle: 'Türkiye\'de Ölçeklenmeye Hazır mısınız?',
+    ctaTitle: 'Türkiye\'de Ölçeklendirmeye Hazır mısınız?',
     ctaDesc: 'Türk üretiminin potansiyelini açığa çıkarmanıza ve operasyonel maliyetlerinizi azaltmanıza yardımcı olalım.',
     ctaButton: 'Türkiye Genişlemenize Başlayın',
     backLink: 'Hizmetlere Dön',

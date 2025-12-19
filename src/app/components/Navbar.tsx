@@ -84,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
           className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan text-xs font-mono uppercase tracking-wider hover:bg-accent-cyan/20 transition-all"
         >
           <FaLock className="w-3 h-3" />
-          Portal
+          {trans.nav.portal}
         </Link>
         
         {/* Language Switcher */}
@@ -159,7 +159,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
                 className="flex items-center gap-2 px-4 py-3 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan text-sm font-mono uppercase tracking-wider hover:bg-accent-cyan/20 transition-all mt-2"
               >
                 <FaLock className="w-3 h-3" />
-                Client Portal
+                {trans.nav.portal}
               </Link>
             </div>
 

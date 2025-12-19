@@ -385,7 +385,7 @@ const content = {
   tr: {
     badge: 'METODOLOJİ & HİZMETLER',
     title: 'Finansal Danışmanlık, Veri Odaklı Stratejiyle Buluşuyor',
-    subtitle: 'İleri analitik ve düzenleyici uzmanlık aracılığıyla İtalya ve Türkiye\'yi birleştiren sınır ötesi finansal çözümler sunmaya yönelik sistematik bir yaklaşım.',
+    subtitle: 'İleri düzey analitik ve düzenleyici uzmanlık aracılığıyla İtalya ve Türkiye\'yi birleştiren sınır ötesi finansal çözümler sunmaya yönelik sistematik bir yaklaşım.',
     coreServices: 'TEMEL HİZMET ALANLARI',
     services: [
       {
@@ -394,7 +394,7 @@ const content = {
         arch: 'KANTİTATİF ANALİZ // VERGİ OPTİMİZASYONU // SERMAYE YAPILANDIRMA',
         desc1: 'Gelişmiş analitik çerçeveler kullanarak karmaşık finansal ortamları eyleme dönüştürülebilir stratejilere dönüştürüyoruz. Sınır ötesi vergi optimizasyonundan sermaye yapısı analizine kadar her çözüm gerçek dünya uygulaması için tasarlanmıştır.',
         desc2: 'Yaklaşımımız geleneksel finansal modellemeyi modern veri analitiğiyle birleştirerek stratejilerin hem istatistiksel olarak güçlü hem de KOBİ genişlemesi, yatırım kararları ve uluslararası ticaret operasyonlarına pratik olarak uygulanabilir olmasını sağlar.',
-        features: ['İNA & Karşılaştırmalı Değerleme Modelleri', 'Vergi Verimliliği Optimizasyonu', 'İşletme Sermayesi Analizi', 'Sınır Ötesi Yatırım Yapılandırma'],
+        features: ['DCF & Karşılaştırmalı Değerleme Modelleri', 'Vergi Verimliliği Optimizasyonu', 'İşletme Sermayesi Analizi', 'Sınır Ötesi Yatırım Yapılandırma'],
         visual: 'neural',
         metric: 'α: 0.05',
       },
@@ -422,7 +422,7 @@ const content = {
         num: '04',
         title: 'Sınır Ötesi Finansal Danışmanlık',
         arch: 'İTALYA-TÜRKİYE KORİDORU // İKİLİ YAPILAR // STRATEJİK ORTAKLIKLAR',
-        desc1: 'Alvolo Consulting olarak İtalya-Türkiye finansal koridorunda uzmanlaşıyoruz—sınır ötesi yatırımlar, mali temsilcilik ve pazar genişlemesi konularında gezinen KOBİ\'ler ve profesyoneller için kapsamlı danışmanlık hizmetleri sunuyoruz.',
+        desc1: 'Alvolo Consulting olarak İtalya-Türkiye finansal koridorunda uzmanlaşıyoruz—sınır ötesi yatırımlar, mali temsilcilik ve pazar genişlemesi konularında rehberlik eden KOBİ\'ler ve profesyoneller için kapsamlı danışmanlık hizmetleri sunuyoruz.',
         desc2: 'Danışmanlık metodolojimiz, derin yerel bilgiyi kantitatif titizlikle bütünleştirerek müşterilerin yalnızca verinin ne gösterdiğini değil, karmaşık düzenleyici ortamlarda stratejik olarak nasıl hareket edeceklerini anlamalarına yardımcı olur.',
         features: ['Sınır Ötesi Yatırım Danışmanlığı', 'İtalyan Finans Sistemi Navigasyonu', 'Mevzuat Uyumu Rehberliği', 'Stratejik Finansal Planlama'],
         visual: 'network',
@@ -432,7 +432,7 @@ const content = {
     processTitle: 'ÇALIŞMA SÜRECİ',
     processSubtitle: 'Nasıl Birlikte Çalışıyoruz',
     process: [
-      { num: '01', title: 'Keşif', desc: 'Yapılandırılmış danışmanlık seansları aracılığıyla iş bağlamınıza, veri ortamınıza ve stratejik hedeflerinize derinlemesine dalış.' },
+      { num: '01', title: 'Keşif', desc: 'Yapılandırılmış danışmanlık seansları aracılığıyla iş bağlamınıza, veri ortamınıza ve stratejik hedeflerinize derinlemesine analiz.' },
       { num: '02', title: 'Mimari', desc: 'Gereksinimlerinize uygun teknik spesifikasyonlar, düzenleyici yollar ve finansal yapılar tasarımı.' },
       { num: '03', title: 'Yürütme', desc: 'Düzenli kontrol noktalarıyla yinelemeli uygulama, süreç boyunca iş hedefleriyle uyum sağlama.' },
       { num: '04', title: 'Teslimat', desc: 'Kapsamlı dokümantasyon, eğitim ve sürekli destek seçenekleriyle üretime hazır çözümler.' },
