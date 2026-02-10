@@ -47,6 +47,12 @@ export interface TranslationType {
     label: string;
     title: string;
     subtitle: string;
+    startupCorridor: {
+      label: string;
+      title: string;
+      description: string;
+      button: string;
+    };
     integrationTitle: string;
     financialTitle: string;
     viewAll: string;
@@ -220,8 +226,14 @@ export const translations: Record<Locale, TranslationType> = {
     services: {
       label: '01 // SERVICES',
       title: 'Our Service Areas',
-      subtitle: 'We offer comprehensive integration and financial consultancy solutions for your business and life in Italy.',
-      integrationTitle: 'Integration Solutions',
+      subtitle: 'Comprehensive, data-driven solutions for every stage of your growth journey.',
+      startupCorridor: {
+        label: 'New Strategic Pillar',
+        title: 'The Turkey-Italy Startup Corridor',
+        description: 'The definitive data-driven bridge between Turkish and Italian innovation ecosystems. A standardized, repeatable, and data-driven expansion engine.',
+        button: 'Explore the Corridor',
+      },
+      integrationTitle: 'Integration Services',
       financialTitle: 'Financial Consultancy',
       viewAll: 'View All Services',
       integrationServices: [
@@ -432,8 +444,14 @@ export const translations: Record<Locale, TranslationType> = {
     services: {
       label: '01 // HİZMETLER',
       title: 'Hizmet Alanlarımız',
-      subtitle: 'İtalya\'da iş, yaşam, entegrasyon ve finansal danışmanlık ihtiyaçlarınız için kapsamlı çözümler sunuyoruz.',
-      integrationTitle: 'Entegrasyon Çözümleri',
+      subtitle: 'Büyüme yolculuğunuzun her aşaması için kapsamlı, veri odaklı çözümler.',
+      startupCorridor: {
+        label: 'Yeni Stratejik Sütun',
+        title: 'Türkiye-İtalya Startup Koridoru',
+        description: 'Türk ve İtalyan inovasyon ekosistemleri arasındaki kesin veri odaklı köprü. Standartlaştırılmış, tekrarlanabilir ve veri odaklı bir genişleme motoru.',
+        button: 'Koridoru Keşfet',
+      },
+      integrationTitle: 'Entegrasyon Hizmetleri',
       financialTitle: 'Finansal Danışmanlık',
       viewAll: 'Tüm Hizmetleri Görüntüle',
       integrationServices: [
@@ -644,8 +662,14 @@ export const translations: Record<Locale, TranslationType> = {
     services: {
       label: '01 // SERVIZI',
       title: 'Le Nostre Aree di Servizio',
-      subtitle: 'Offriamo soluzioni complete di integrazione e consulenza finanziaria per le vostre esigenze di business e vita in Italia.',
-      integrationTitle: 'Soluzioni di Integrazione',
+      subtitle: 'Soluzioni complete e basate sui dati per ogni fase del tuo percorso di crescita.',
+      startupCorridor: {
+        label: 'Nuovo Pilastro Strategico',
+        title: 'Il Corridoio Startup Turchia-Italia',
+        description: "Il ponte definitivo basato sui dati tra gli ecosistemi dell'innovazione turco e italiano. Un motore di espansione standardizzato, ripetibile e guidato dai dati.",
+        button: 'Esplora il Corridoio',
+      },
+      integrationTitle: 'Servizi di Integrazione',
       financialTitle: 'Consulenza Finanziaria',
       viewAll: 'Vedi Tutti i Servizi',
       integrationServices: [

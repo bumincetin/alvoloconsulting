@@ -129,19 +129,19 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
 
             <div className="relative z-10 flex-1 text-center md:text-left">
               <div className="inline-block px-3 py-1 mb-4 rounded-full border border-white/20 bg-white/5 text-[10px] uppercase tracking-widest text-electric-platinum">
-                New Strategic Pillar
+                {t.services.startupCorridor.label}
               </div>
               <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
-                The Turkey-Italy Startup Corridor
+                {t.services.startupCorridor.title}
               </h2>
               <p className="text-electric-platinum/70 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
-                The definitive data-driven bridge between Turkish and Italian innovation ecosystems. A standardized, repeatable, and data-driven expansion engine.
+                {t.services.startupCorridor.description}
               </p>
               <Link
                 href={`/${locale}/services/startup-corridor`}
-                className="inline-flex items-center gap-3 rounded-full bg-white text-void-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                className="inline-flex items-center gap-3 rounded-full bg-black text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
               >
-                Explore the Corridor
+                {t.services.startupCorridor.button}
                 <FaArrowRight />
               </Link>
             </div>
