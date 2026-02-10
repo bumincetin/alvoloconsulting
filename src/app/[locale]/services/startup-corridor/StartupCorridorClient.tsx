@@ -55,23 +55,23 @@ export default function StartupCorridorClient() {
             </section>
 
             {/* Mission */}
-            <section className="container-wide mx-auto px-6 mb-32">
-                <GlassCard className="p-12 md:p-16 max-w-5xl mx-auto">
-                    <div className="flex flex-col md:flex-row gap-12 items-center">
-                        <div className="flex-1 space-y-6">
-                            <h2 className="text-3xl font-serif text-white">{p.missionTitle}</h2>
-                            <p className="text-electric-platinum/80 leading-relaxed">
+            <section className="container-wide mx-auto px-6 mb-24 md:mb-32">
+                <GlassCard className="p-8 md:p-16 max-w-5xl mx-auto">
+                    <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                        <div className="flex-1 space-y-6 text-center md:text-left">
+                            <h2 className="text-2xl md:text-3xl font-serif text-white">{p.missionTitle}</h2>
+                            <p className="text-electric-platinum/80 leading-relaxed text-sm md:text-base">
                                 {p.missionP1}
                             </p>
-                            <p className="text-electric-platinum/80 leading-relaxed">
+                            <p className="text-electric-platinum/80 leading-relaxed text-sm md:text-base">
                                 {p.missionP2} <span className="text-white font-semibold">{p.missionHighlight}</span>.
                             </p>
                         </div>
                         <div className="w-full md:w-1/3 flex justify-center">
-                            <div className="relative w-48 h-48 rounded-full border border-tungsten-grey/40 flex items-center justify-center">
+                            <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full border border-tungsten-grey/40 flex items-center justify-center">
                                 <div className="absolute inset-0 rounded-full border border-white/10 animate-[spin_10s_linear_infinite]" />
                                 <div className="absolute inset-4 rounded-full border border-white/20 animate-[spin_15s_linear_infinite_reverse]" />
-                                <FaRocket className="w-12 h-12 text-white/80" />
+                                <FaRocket className="w-10 h-10 md:w-12 md:h-12 text-white/80" />
                             </div>
                         </div>
                     </div>
@@ -79,21 +79,21 @@ export default function StartupCorridorClient() {
             </section>
 
             {/* 6-Module Framework */}
-            <section className="container-wide mx-auto px-6 mb-32">
-                <div className="text-center mb-16 space-y-4">
+            <section className="container-wide mx-auto px-6 mb-24 md:mb-32">
+                <div className="text-center mb-12 md:mb-16 space-y-4">
                     <h2 className="text-3xl md:text-4xl font-serif text-white">{p.frameworkTitle}</h2>
-                    <p className="text-electric-platinum/60 max-w-2xl mx-auto">
+                    <p className="text-electric-platinum/60 max-w-2xl mx-auto text-sm md:text-base">
                         {p.frameworkSubtitle}
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {p.modules.map((mod, idx) => (
-                        <GlassCard key={idx} className="p-8 hover:bg-white/5 transition-colors group">
+                        <GlassCard key={idx} className="p-6 md:p-8 hover:bg-white/5 transition-colors group">
                             <div className="mb-6 p-4 rounded-full bg-white/5 w-fit border border-white/10 group-hover:border-white/30 transition-colors">
                                 {moduleIcons[idx]}
                             </div>
-                            <h3 className="text-xl font-semibold text-white mb-3">{mod.title}</h3>
+                            <h3 className="text-lg md:text-xl font-semibold text-white mb-3">{mod.title}</h3>
                             <p className="text-sm text-electric-platinum/70 leading-relaxed">{mod.desc}</p>
                         </GlassCard>
                     ))}
@@ -101,9 +101,9 @@ export default function StartupCorridorClient() {
             </section>
 
             {/* 3 Tiers */}
-            <section className="container-wide mx-auto px-6 mb-32">
-                <h2 className="text-3xl md:text-4xl font-serif text-white text-center mb-16">{p.tiersTitle}</h2>
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <section className="container-wide mx-auto px-6 mb-24 md:mb-32">
+                <h2 className="text-3xl md:text-4xl font-serif text-white text-center mb-12 md:mb-16">{p.tiersTitle}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {p.tiers.map((tier, idx) => (
                         <div key={idx} className="relative group">
                             <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

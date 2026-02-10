@@ -6,6 +6,7 @@ import { FaChevronDown, FaArrowRight } from 'react-icons/fa';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { getTranslation, type Locale } from '@/lib/translations';
+import GlassCard from '@/app/components/ui/GlassCard';
 
 function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
     const [open, setOpen] = useState(false);
@@ -87,37 +88,34 @@ export default function FAQPageClient() {
                 </div>
 
                 {/* Questions */}
-                <div className="max-w-3xl mx-auto">
-                    <div className="rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/40 backdrop-blur-xl px-6 md:px-10">
-                        {t.faq.questions.map((item, idx) => (
-                            <FAQItem
-                                key={idx}
-                                question={item.q}
-                                answer={item.a}
-                                index={idx}
-                            />
-                        ))}
-                    </div>
-                </div>
+                <section className="container-wide mx-auto px-0 md:px-0 mb-20 md:mb-32">
+                    <GlassCard className="p-6 md:p-12 max-w-4xl mx-auto">
+                        <div className="space-y-4">
+                            {t.faq.questions.map((item, idx) => (
+                                <FAQItem key={idx} question={item.q} answer={item.a} index={idx} />
+                            ))}
+                        </div>
+                    </GlassCard>
+                </section>
 
                 {/* CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="max-w-3xl mx-auto mt-20 text-center space-y-6"
-                >
-                    <p className="text-electric-platinum/60 text-sm uppercase tracking-widest">
-                        {locale === 'tr' ? 'Hâlâ sorunuz mu var?' : locale === 'it' ? 'Hai ancora domande?' : 'Still have questions?'}
-                    </p>
-                    <Link
-                        href={`/${locale}/contact`}
-                        className="inline-flex items-center gap-3 rounded-full bg-black text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-                    >
-                        {t.nav.contact}
-                        <FaArrowRight className="w-3 h-3" />
-                    </Link>
-                </motion.div>
+                <section className="container-wide mx-auto px-0 md:px-0 text-center">
+                    <GlassCard className="p-8 md:p-16 max-w-3xl mx-auto bg-gradient-to-br from-white/[0.03] to-transparent">
+                        <h2 className="text-2xl md:text-4xl font-serif text-white mb-4 md:mb-6">
+                            Still have questions?
+                        </h2>
+                        <p className="text-electric-platinum/70 text-sm md:text-lg mb-8 md:mb-10 leading-relaxed">
+                            We are here to help you navigate your expansion journey.
+                        </p>
+                        <Link
+                            href={`/${locale}/contact`}
+                            className="inline-flex items-center gap-3 rounded-full bg-black text-white px-6 py-3 md:px-8 md:py-3 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                        >
+                            {t.nav.contact}
+                            <FaArrowRight className="w-3 h-3" />
+                        </Link>
+                    </GlassCard>
+                </section>
             </div>
         </main>
     );

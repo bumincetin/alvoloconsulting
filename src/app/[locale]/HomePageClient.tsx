@@ -32,24 +32,25 @@ export default function HomePageClient() {
             backgroundSize: "100% 3px",
           }}
         />
-        <div className="relative z-10 flex h-full flex-col justify-between px-6 py-12 md:px-16">
-          <div className="flex items-center justify-between text-xs uppercase tracking-[0.4em] text-electric-platinum/60">
+        <div className="relative z-10 flex h-full flex-col justify-between px-4 py-8 md:px-16 md:py-12">
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between text-[10px] md:text-xs uppercase tracking-[0.4em] text-electric-platinum/60">
             <span>{home.heroBadge1}</span>
+            <span className="hidden md:inline">•</span>
             <span>{home.heroBadge2}</span>
           </div>
-          <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.5em] text-electric-platinum/60">
+          <div className="space-y-4 md:space-y-6">
+            <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] md:tracking-[0.5em] text-electric-platinum/60">
               {home.heroSubtitle}
             </p>
-            <h1 className="text-[clamp(3rem,12vw,12rem)] font-serif leading-none text-electric-platinum">
+            <h1 className="text-[clamp(2.5rem,10vw,12rem)] font-serif leading-none text-electric-platinum">
               {home.heroTitle}
             </h1>
-            <p className="max-w-xl text-sm uppercase tracking-[0.3em] text-electric-platinum/70">
+            <p className="max-w-xl text-[10px] md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-electric-platinum/70 leading-relaxed">
               {home.heroSubtitle}
             </p>
           </div>
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="text-xs uppercase tracking-[0.3em] text-electric-platinum/60">
+            <div className="text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] text-electric-platinum/60 max-w-[80%]">
               {home.heroCta}
             </div>
             <MagneticButton />

@@ -123,27 +123,35 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
             <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-50" />
             <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-white/5 blur-3xl group-hover:bg-white/10 transition-colors duration-700" />
 
-            <div className="relative z-10 hidden md:flex h-32 w-32 items-center justify-center rounded-full border border-tungsten-grey/60 bg-obsidian-plate/50 backdrop-blur-md shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-              <FaRocket className="h-12 w-12 text-white" />
-            </div>
-
-            <div className="relative z-10 flex-1 text-center md:text-left">
-              <div className="inline-block px-3 py-1 mb-4 rounded-full border border-white/20 bg-white/5 text-[10px] uppercase tracking-widest text-electric-platinum">
-                {t.services.startupCorridor.label}
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              {/* Text Content */}
+              <div className="relative z-10 flex-1 text-center md:text-left order-2 md:order-1">
+                <div className="inline-block px-3 py-1 mb-4 rounded-full border border-white/20 bg-white/5 text-[10px] uppercase tracking-widest text-electric-platinum">
+                  {t.services.startupCorridor.label}
+                </div>
+                <h2 className="text-2xl md:text-4xl font-serif text-white mb-4">
+                  {t.services.startupCorridor.title}
+                </h2>
+                <p className="text-electric-platinum/70 text-xs md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0">
+                  {t.services.startupCorridor.description}
+                </p>
+                <Link
+                  href={`/${locale}/services/startup-corridor`}
+                  className="inline-flex items-center gap-3 rounded-full bg-black text-white px-6 py-3 md:px-8 md:py-3 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                >
+                  {t.services.startupCorridor.button}
+                  <FaArrowRight />
+                </Link>
               </div>
-              <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
-                {t.services.startupCorridor.title}
-              </h2>
-              <p className="text-electric-platinum/70 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
-                {t.services.startupCorridor.description}
-              </p>
-              <Link
-                href={`/${locale}/services/startup-corridor`}
-                className="inline-flex items-center gap-3 rounded-full bg-black text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-              >
-                {t.services.startupCorridor.button}
-                <FaArrowRight />
-              </Link>
+
+              {/* Visual/Icon */}
+              <div className="relative flex-shrink-0 w-32 h-32 md:w-48 md:h-48 order-1 md:order-2">
+                <div className="absolute inset-0 rounded-full border border-white/10 animate-[spin_10s_linear_infinite]" />
+                <div className="absolute inset-4 rounded-full border border-white/20 animate-[spin_15s_linear_infinite_reverse]" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <FaRocket className="w-12 h-12 md:w-16 md:h-16 text-white/80" />
+                </div>
+              </div>
             </div>
           </GlassCard>
         </section>
@@ -164,7 +172,7 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
             variants={gridVariants}
             initial="hidden"
             animate="show"
-            className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
           >
             {t.services.integrationServices.map((service, index) => {
               const Icon = integrationIcons[index % integrationIcons.length];

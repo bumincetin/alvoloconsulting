@@ -396,5 +396,17 @@ a {
 .container-wide {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-wide {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-wide {
+    padding: 0 2rem;
+  }
 }
