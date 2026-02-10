@@ -19,7 +19,7 @@ const Ticker: React.FC<TickerProps> = ({ t }) => {
 
   return (
     <div className="relative w-full overflow-hidden py-8 border-y border-glass-border bg-void/50">
-      <div className={`flex whitespace-nowrap ${mounted ? 'animate-ticker' : ''}`}>
+      <div className={`flex whitespace-nowrap will-change-transform ${mounted ? 'animate-ticker' : ''}`}>
         {doubledItems.map((item, index) => (
           <div key={index} className="flex items-center mx-8">
             <span className="text-sm md:text-base font-mono uppercase tracking-wider text-text-muted">

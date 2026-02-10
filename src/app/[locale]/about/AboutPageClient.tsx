@@ -235,11 +235,11 @@ export default function AboutPageClient() {
                 variants={itemVariants}
                 onMouseEnter={() => setActive(operative)}
                 onMouseLeave={() => setActive(null)}
-                className={`group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 min-h-[400px] shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition ${active && active.id !== operative.id ? "opacity-40" : "opacity-100"
+                className={`group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 min-h-[400px] shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition ${active && active.id !== operative.id ? "lg:opacity-40" : "opacity-100"
                   }`}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-60" />
-                <div className="relative z-10 flex flex-col items-start gap-6 transition-all duration-500 group-hover:blur-xl group-hover:opacity-30">
+                <div className="relative z-10 flex flex-col items-start gap-6 transition-all duration-500 lg:group-hover:blur-xl lg:group-hover:opacity-30">
                   <div className="h-24 w-24 overflow-hidden rounded-2xl border border-tungsten-grey/60">
                     <Image
                       src={operative.image}
@@ -264,7 +264,7 @@ export default function AboutPageClient() {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 flex flex-col justify-center p-8 bg-void-black/80 backdrop-blur-md z-20">
+                <div className="absolute inset-0 opacity-100 lg:opacity-0 transition duration-500 lg:group-hover:opacity-100 flex flex-col justify-center p-8 bg-void-black/90 lg:bg-void-black/80 lg:backdrop-blur-md z-20">
                   <p className="text-sm uppercase tracking-[0.4em] text-holographic-cyan mb-6 font-semibold">
                     DATA OVERLAY
                   </p>
