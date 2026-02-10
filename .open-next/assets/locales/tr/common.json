@@ -1,0 +1,96 @@
+{
+  "navbar": {
+    "home": "Ana Sayfa",
+    "services": "Hizmetler",
+    "pricing": "Fiyatlandırma",
+    "about": "Hakkımızda",
+    "ourStory": "Hikayemiz",
+    "contact": "İletişim",
+    "brand": "Çetin & Aslan Danışmanlık"
+  },
+  "servicesPage": {
+    "title": "Hizmetlerimiz",
+    "subtitle": "Profesyonel ve güvenilir mali müşavirlik hizmetleri",
+    "service1": {
+      "title": "Emlak Danışmanlığı",
+      "description": "konaklama alanında danışmanlık, konut seçimi, kontrat, depozito ve noter işlemlerinde hukuki rehberlik."
+    },
+    "service2": {
+      "title": "Oturum İzni (Permesso di Soggiorno) Danışmanlığı",
+      "description": "Belgelerin (kontrat, sigorta, gelir kanıtı vb.) eksiksiz hazırlanması, karakol (Questura) randevusu alma, posta kitinin doldurulması ve posta takibi."
+    },
+    "service3": {
+      "title": "Öğrencilere Burs Başvurusu Danışmanlığı",
+      "description": "Profilinize uygun devlet, bölgesel ve özel burs olanaklarının taranması, başvuru takvimi ve şartların burs başvurusu zaman çizelgesine dönüştürülmesi, CV, motivasyon mektubu, gelir belgeleri ve referansların hazırlanıp kontrol edilmesi, online portallarda başvuru gönderimi ve sonuçların takibi."
+    },
+    "service4": {
+      "title": "Şirket Kuruluş ve Kapanış",
+      "description": "Limited ve Anonim şirket kuruluşu, şirket kapanış işlemleri ve tasfiye süreçleri."
+    },
+    "service5": {
+      "title": "Finansal Danışmanlık Hizmetleri",
+      "description": "Finansal planlama, bütçeleme ve yönetim danışmanlığı hizmetleri."
+    },
+    "service6": {
+      "title": "Karşılama Hizmeti",
+      "description": "Havalimanında karşılama & özel transfer (birey/öğrenci grupları), Şehir oryantasyonu: toplu taşıma kartı, SIM kart, temel ihtiyaç noktaları, İlk günler için acil destek hattı (kayıp eşya, sağlık, dil yardımı), Özel taleplere göre turlar ve rehberlik organizasyonu."
+    }
+  },
+  "metadata": {
+    "title": "Alvolo Consulting Danismanlik",
+    "description": "1995'ten beri Ankara'da güvenilir mali müşavirlik ve danışmanlık hizmetleri. Vergi, muhasebe ve danışmanlık ihtiyaçlarınız için profesyonel çözümler.",
+    "keywords": "mali müşavir, SMMM, vergi danışmanlığı, muhasebe, Ankara, mali müşavirlik, Alvolo Consulting Danismanlik"
+  },
+  "heroSection": {
+    "mainHeading": "Çetin & Aslan Danışmanlık",
+    "subheading1": "İtalya'da güvenilir bürokrasi ve emlak danışmanlık hizmetleri",
+    "subheading2": "Her türlü ihtiyacınız için profesyonel çözümler.",
+    "contactButton": "İletişime Geçin",
+    "servicesButton": "Hizmetlerimiz"
+  },
+  "aboutSection": {
+    "title": "Hakkımızda",
+    "paragraph1": "Alvolo Consulting Danışmanlık olarak, 1995 yılından bu yana Ankara'da mali müşavirlik ve danışmanlık hizmetleri sunmaktayız.",
+    "paragraph2": "Deneyimli kadromuzla müşterilerimize en iyi hizmeti sunmak için çalışıyoruz.",
+    "paragraph3": "Mesleki gelişmeleri ve değişen mevzuatı yakından takip ederek, müşterilerimize güncel ve doğru bilgiyi aktarıyoruz.",
+    "valuesTitle": "Değerlerimiz",
+    "value1": "Mesleki etik değerlere bağlılık",
+    "value2": "Güvenilirlik ve şeffaflık",
+    "value3": "Müşteri odaklı hizmet anlayışı",
+    "value4": "Güncel mevzuat takibi",
+    "value5": "Hızlı ve etkili çözümler",
+    "experienceStat": "Yıllık Tecrübe",
+    "happyClientsStat": "Mutlu Müşteri"
+  },
+  "contactSection": {
+    "title": "İletişim",
+    "subtitle": "Sorularınız için bize ulaşın",
+    "formNameLabel": "Ad Soyad",
+    "formEmailLabel": "E-posta",
+    "formMessageLabel": "Mesajınız",
+    "formSubmitButton": "Gönder",
+    "phoneFaxTitle": "Telefon & Faks",
+    "emailTitle": "E-posta",
+    "addressTitle": "Adres",
+    "emailAddress1": "info@alvolo-consulting.com",
+    "emailAddress2": "info@alvolo-consulting.com"
+  },
+  "for_real_estate_agents": {
+    "for_real_estate_agents_title": "Emlakçılar İçin",
+    "for_real_estate_agents_intro": "İtalya'ya yeni gelen öğrenciler, profesyoneller ve göçmenler gibi ciddi, kiralamaya hazır uluslararası kiracılara ulaşmanıza yardımcı oluyoruz - listelerinizi hedefli tanıtım ve kişiselleştirilmiş destek yoluyla ihtiyaçlarıyla eşleştiriyoruz.",
+    "for_real_estate_agents_value_prop_intro": "Siz mülkü getirirsiniz. Biz, başka türlü ulaşamayacağınız, incelenmiş bir talep getiririz.",
+    "for_real_estate_agents_what_we_offer_title": "Size Ne Sunuyoruz:",
+    "for_real_estate_agents_offer_1_title": "Yeni Talep Akışı",
+    "for_real_estate_agents_offer_1_desc": "Listelerinizi, uluslararası öğrenciler, gurbetçiler ve İtalya'ya taşınan serbest çalışanlar da dahil olmak üzere İtalyan olmayan kiracılara bağlıyoruz - geleneksel ajanslar tarafından genellikle yeterince hizmet verilmeyen bir grup.",
+    "for_real_estate_agents_offer_2_title": "Çok Kanallı Görünürlük",
+    "for_real_estate_agents_offer_2_desc": "Mülklerinizi İtalyan olmayan platformlarda (Sahibinden, Facebook gurbetçi grupları ve üniversite konut panoları gibi) tanıtarak, İtalyanca konuşmayan veya yerel platformları kullanmayan kiracılara ulaşmanıza yardımcı oluyoruz.",
+    "for_real_estate_agents_offer_3_title": "Yerelleştirilmiş Kiracı Desteği",
+    "for_real_estate_agents_offer_3_desc": "İtalyan kiralama sürecinin iletişimini, çevirisini ve açıklığa kavuşturulmasını biz yönetiyoruz - dil engellerini ve gerçekçi olmayan beklentileri yönetmek için harcadığınız zamanı azaltıyoruz.",
+    "for_real_estate_agents_offer_4_title": "Nicelik Değil, Nitelikli Müşteri Adayları",
+    "for_real_estate_agents_offer_4_desc": "Yalnızca kiralama koşullarınıza (süre, belgeler, bütçe) uyan önceden incelenmiş kiracılardan sorular alırsınız. Ciddi olmayan ilgiyi filtreliyoruz.",
+    "for_real_estate_agents_offer_5_title": "Münhasırlık Yok, Kesinti Yok",
+    "for_real_estate_agents_offer_5_desc": "Listeleriniz, sözleşmeleriniz ve ücretleriniz üzerinde tam kontrole sahip olursunuz. Rakip bir ajans değiliz - mevcut modelinizle birlikte çalışan ek bir talep kanalız.",
+    "for_real_estate_agents_offer_6_title": "Profesyonel Sunum",
+    "for_real_estate_agents_offer_6_desc": "Mülkünüzün uluslararası kitlelere açık ve profesyonel bir şekilde sunulmasını sağlayarak listeleme bilgilerinin hazırlanmasına veya çevrilmesine yardımcı oluyoruz."
+  }
+} 

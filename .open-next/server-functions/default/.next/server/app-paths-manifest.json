@@ -1,0 +1,17 @@
+{
+  "/[locale]/about/page": "app-edge-has-no-entrypoint",
+  "/[locale]/contact/page": "app-edge-has-no-entrypoint",
+  "/[locale]/faq/page": "app/[locale]/faq/page.js",
+  "/[locale]/methodology/page": "app-edge-has-no-entrypoint",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/portal/page": "app-edge-has-no-entrypoint",
+  "/[locale]/pricing/page": "app-edge-has-no-entrypoint",
+  "/[locale]/services/expansion/italy/page": "app-edge-has-no-entrypoint",
+  "/[locale]/services/expansion/turkey/page": "app-edge-has-no-entrypoint",
+  "/[locale]/services/page": "app-edge-has-no-entrypoint",
+  "/[locale]/services/startup-corridor/page": "app/[locale]/services/startup-corridor/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/contact/route": "app-edge-has-no-entrypoint",
+  "/page": "app/page.js"
+}
