@@ -18,7 +18,7 @@ console.log('Patched worker.js');
 // Bundle with esbuild
 try {
     execSync(
-        'npx esbuild .open-next/worker.js --bundle --outfile=.open-next/assets/_worker.js --target=esnext --format=esm --platform=node --external:cloudflare:* --external:workerd:*',
+        'npx esbuild .open-next/worker.js --bundle --outfile=.open-next/assets/_worker.js --target=esnext --format=esm --platform=neutral --main-fields=browser,module,main --conditions=worker,browser --external:node:* --external:cloudflare:* --external:workerd:*',
         { stdio: 'inherit' }
     );
     console.log('Bundled _worker.js successfully');
