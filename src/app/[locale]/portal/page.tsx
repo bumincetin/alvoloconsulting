@@ -1,7 +1,7 @@
 import { type Locale } from '@/lib/translations';
 import PortalPageClient from './PortalPageClient';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export default async function PortalPage({
   params,

@@ -1,0 +1,276 @@
+﻿
+> alvoloconsulting@0.1.0 pages:build
+> opennextjs-cloudflare build
+
+
+ÔöîÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÉ
+Ôöé OpenNext ÔÇö Cloudflare build Ôöé
+ÔööÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÿ
+
+node.exe : WARN 
+OpenNext is not 
+fully compatible 
+with Windows.
+At C:\Program Files\n
+odejs\npm.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : 
+NotSpecified: (W    
+ARN OpenNext i...e 
+wi    th 
+Windows.:String) [   
+ ], RemoteException
+    + 
+FullyQualifiedError  
+  Id : 
+NativeCommandErr    
+or
+ 
+WARN For optimal 
+performance, it is 
+recommended to use 
+Windows Subsystem 
+for Linux (WSL).
+WARN While OpenNext 
+may function on 
+Windows, it could 
+encounter 
+unpredictable 
+failures during 
+runtime.
+App directory: C:\Users\bumin\Desktop\projects\alvoloconsulting
+Next.js version : 16.1.6
+@opennextjs/cloudflare version: 1.16.3
+@opennextjs/aws version: 3.9.15
+
+ÔöîÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÉ
+Ôöé OpenNext ÔÇö Building Next.js app Ôöé
+ÔööÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÿ
+
+
+> alvoloconsulting@0.1.0 build
+> next build --webpack
+
+Ôû▓ Next.js 16.1.6 (webpack)
+- Environments: .env.local, .env
+
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 7.0s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+ÔÜá Using edge 
+runtime on a page 
+currently disables 
+static generation 
+for that page
+  Generating static pages using 11 workers (0/3) ...
+Ô£ô Generating static pages using 11 workers (3/3) in 535.6ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+Ôöî Ôùï /
+Ôö£ Ôùï /_not-found
+Ôö£ ãÆ /[locale]
+Ôö£ ãÆ /[locale]/about
+Ôö£ ãÆ /[locale]/contact
+Ôö£ ãÆ /[locale]/faq
+Ôö£ ãÆ /[locale]/methodology
+Ôö£ ãÆ /[locale]/portal
+Ôö£ ãÆ /[locale]/pricing
+Ôö£ ãÆ /[locale]/services
+Ôö£ ãÆ /[locale]/services/expansion/italy
+Ôö£ ãÆ /[locale]/services/expansion/turkey
+Ôö£ ãÆ /[locale]/services/startup-corridor
+Ôöö ãÆ /api/contact
+
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+
+
+ÔöîÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÉ
+Ôöé OpenNext ÔÇö Generating bundle Ôöé
+ÔööÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÿ
+
+Bundling middleware function...
+Bundling static assets...
+Bundling cache assets...
+Building server function: default...
+opennextjs-cloudflare
+ build
+
+Build an OpenNext 
+Cloudflare worker
+
+Options:
+      --help         
+                     
+  Show help          
+        [boolean]
+      --version      
+                     
+  Show version 
+number        
+[boolean]
+  -c, --config       
+                     
+  Path to Wrangler 
+configuration file
+                     
+                     
+                     
+         [string]
+      --configPath   
+                     
+  Path to Wrangler 
+configuration file
+                     
+                     
+                 
+[deprecated] [string]
+  -e, --env          
+                     
+  Wrangler 
+environment to use 
+for
+                     
+                     
+  operations         
+         [string]
+  -s, 
+--skipNextBuild, 
+--skipBuild          
+Skip building the 
+Next.js app
+                     
+                     
+            
+[boolean] [default: 
+false]
+      --noMinify     
+                     
+  Disable worker 
+minification
+                     
+                     
+            
+[boolean] [default: 
+false]
+      --skipWranglerC
+onfigCheck           
+  Skip checking for 
+a Wrangler config
+                     
+                     
+            
+[boolean] [default: 
+false]
+      
+--openNextConfigPath 
+                 
+Path to the OpenNext 
+configuration
+                     
+                     
+  file               
+         [string]
+      --dangerouslyUs
+eUnsupportedNextVersi
+  Allow using 
+unsupported Next.js
+      on             
+                     
+  versions  
+[boolean] [default: 
+false]
+
+Error: 
+---------------------
+---------------------
+---------------------
+-----------------
+app/api\contact\route
+ cannot use the edge 
+runtime.
+OpenNext requires 
+edge runtime 
+function to be 
+defined in a 
+separate function.
+See the docs for 
+more information on 
+how to bundle edge 
+runtime functions.
+---------------------
+---------------------
+---------------------
+-----------------
+        
+    at computeCopyFil
+esForPage (file:///C:
+/Users/bumin/Desktop/
+projects/alvoloconsul
+ting/node_modules/@op
+ennextjs/aws/dist/bui
+ld/copyTracedFiles.js
+:122:23)
+    at file:///C:/Use
+rs/bumin/Desktop/proj
+ects/alvoloconsulting
+/node_modules/@openne
+xtjs/aws/dist/build/c
+opyTracedFiles.js:187
+:9
+    at Array.forEach 
+(<anonymous>)
+    at 
+copyTracedFiles (file
+:///C:/Users/bumin/De
+sktop/projects/alvolo
+consulting/node_modul
+es/@opennextjs/aws/di
+st/build/copyTracedFi
+les.js:186:12)
+    at 
+generateBundle (file:
+///C:/Users/bumin/Des
+ktop/projects/alvoloc
+onsulting/node_module
+s/@opennextjs/cloudfl
+are/dist/cli/build/op
+en-next/createServerB
+undle.js:121:60)
+    at 
+createServerBundle (f
+ile:///C:/Users/bumin
+/Desktop/projects/alv
+oloconsulting/node_mo
+dules/@opennextjs/clo
+udflare/dist/cli/buil
+d/open-next/createSer
+verBundle.js:75:11)
+    at process.proces
+sTicksAndRejections (
+node:internal/process
+/task_queues:105:5)
+    at async build (f
+ile:///C:/Users/bumin
+/Desktop/projects/alv
+oloconsulting/node_mo
+dules/@opennextjs/clo
+udflare/dist/cli/buil
+d/build.js:73:5)
+    at async 
+buildCommand (file://
+/C:/Users/bumin/Deskt
+op/projects/alvolocon
+sulting/node_modules/
+@opennextjs/cloudflar
+e/dist/cli/commands/b
+uild.js:21:5)

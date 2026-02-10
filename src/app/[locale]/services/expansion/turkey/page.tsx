@@ -1,7 +1,7 @@
 import { type Locale } from '@/lib/translations';
 import TurkeyExpansionClient from './TurkeyExpansionClient';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export default async function TurkeyExpansionPage({
   params,

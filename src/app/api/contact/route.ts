@@ -3,20 +3,20 @@ import { Resend } from 'resend';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   const toEmail = process.env.CONTACT_EMAIL || 'alvoloconsulting@gmail.com';
-  
+
   try {
     console.log('Starting contact form submission...');
 
     const body = await request.json();
     const { name, email, message, privacyConsent, marketingConsent } = body;
 
-    console.log('Received form data:', { 
-      name, 
-      email, 
+    console.log('Received form data:', {
+      name,
+      email,
       messageLength: message?.length,
       privacyConsent,
       marketingConsent
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     // Basic validation
     if (!name || !email || !message) {
       console.log('Validation failed:', { name: !!name, email: !!email, message: !!message });
-      return NextResponse.json({ 
+      return NextResponse.json({
         error: 'Missing required fields',
         details: {
           name: !name ? 'Name is required' : null,
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       console.log('Invalid email format:', email);
-      return NextResponse.json({ 
+      return NextResponse.json({
         error: 'Invalid email format',
         details: 'Please provide a valid email address'
       }, { status: 400 });
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
       }
 
       console.log('Email sent successfully via Resend');
-      return NextResponse.json({ 
+      return NextResponse.json({
         message: 'Email sent successfully',
         details: 'Your message has been delivered'
       }, { status: 200 });
@@ -110,7 +110,7 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.error('Unexpected error:', error);
-    return NextResponse.json({ 
+    return NextResponse.json({
       error: 'Internal Server Error',
       details: error instanceof Error ? error.message : 'An unexpected error occurred'
     }, { status: 500 });
