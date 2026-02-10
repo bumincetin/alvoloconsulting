@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
-import GlassCard from '../../components/ui/GlassCard';
+import ScrambleText from '@/components/UI/ScrambleText';
 import { type Locale } from '@/lib/translations';
 
 interface MethodologyPageClientProps {
@@ -44,7 +44,7 @@ const NeuralNetworkAnimation = () => {
             INPUT
           </motion.text>
         </g>
-        
+
         {/* Hidden Layers */}
         {[100, 150, 200].map((cx, layerIndex) => (
           <g key={`layer-${layerIndex}`}>
@@ -64,7 +64,7 @@ const NeuralNetworkAnimation = () => {
             ))}
           </g>
         ))}
-        
+
         {/* Output Layer */}
         <motion.circle
           cx="270"
@@ -88,7 +88,7 @@ const NeuralNetworkAnimation = () => {
         >
           PREDICTION
         </motion.text>
-        
+
         {/* Animated Connection Lines */}
         {[20, 40, 60, 80].map((y1, i) =>
           [25, 50, 75].map((y2, j) => (
@@ -124,7 +124,7 @@ const RiskMatrixAnimation = () => {
     { x: 1, y: 2, risk: 'high' },
     { x: 2, y: 2, risk: 'critical' },
   ];
-  
+
   const getColor = (risk: string) => {
     switch (risk) {
       case 'low': return '#00f0ff33';
@@ -202,7 +202,7 @@ const DataPipelineAnimation = () => {
             <span className="text-accent-cyan text-xs font-mono">◆</span>
           </motion.div>
         ))}
-        
+
         {/* Arrow */}
         <motion.div
           className="text-accent-cyan mx-2"
@@ -211,7 +211,7 @@ const DataPipelineAnimation = () => {
         >
           →
         </motion.div>
-        
+
         {/* Output */}
         <motion.div
           className="w-12 h-12 rounded-xl border-2 border-accent-orange/50 bg-accent-orange/10 flex items-center justify-center"
@@ -247,7 +247,7 @@ const CrossBorderNetworkAnimation = () => {
           <circle cx="40" cy="50" r="25" fill="none" stroke="#00f0ff" strokeWidth="2" />
           <text x="40" y="54" textAnchor="middle" className="fill-accent-cyan text-[12px] font-bold">IT</text>
         </motion.g>
-        
+
         {/* Turkey Node */}
         <motion.g
           initial={{ scale: 0 }}
@@ -257,7 +257,7 @@ const CrossBorderNetworkAnimation = () => {
           <circle cx="160" cy="50" r="25" fill="none" stroke="#f58643" strokeWidth="2" />
           <text x="160" y="54" textAnchor="middle" className="fill-accent-orange text-[12px] font-bold">TR</text>
         </motion.g>
-        
+
         {/* Animated Connection */}
         <motion.path
           d="M 70 50 Q 100 20 130 50"
@@ -279,7 +279,7 @@ const CrossBorderNetworkAnimation = () => {
           animate={{ pathLength: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
         />
-        
+
         {/* Animated data packets */}
         <motion.circle
           cx="40"
@@ -303,7 +303,7 @@ const CrossBorderNetworkAnimation = () => {
           }}
           transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, delay: 1 }}
         />
-        
+
         <defs>
           <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#00f0ff" />
@@ -545,8 +545,8 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
   }
 
   return (
-    <main className="pt-32 pb-20 px-6">
-      <div className="container mx-auto max-w-6xl">
+    <main className="relative bg-void-black text-electric-platinum min-h-screen pt-32 pb-20 px-6">
+      <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -558,16 +558,10 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
             <span className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
             <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.badge}</span>
           </div>
-          <h1 className="font-serif text-4xl md:text-6xl mb-6">
-            <span className="bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">
-              {t.title.split(' ').slice(0, 3).join(' ')}
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-accent-cyan to-accent-orange bg-clip-text text-transparent">
-              {t.title.split(' ').slice(3).join(' ')}
-            </span>
+          <h1 className="font-serif text-4xl md:text-6xl mb-6 text-electric-platinum">
+            <ScrambleText text={t.title} />
           </h1>
-          <p className="text-text-muted max-w-3xl mx-auto text-lg leading-relaxed">{t.subtitle}</p>
+          <p className="text-electric-platinum/60 max-w-3xl mx-auto text-lg leading-relaxed uppercase tracking-[0.1em] text-sm">{t.subtitle}</p>
         </motion.div>
 
         {/* Core Services Label */}
@@ -577,106 +571,133 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12"
         >
-          <div className="font-mono text-xs text-accent-cyan tracking-[0.3em] mb-4">{t.coreServices}</div>
+          <div className="font-mono text-xs text-accent-cyan tracking-[0.3em] mb-4 uppercase">{t.coreServices}</div>
         </motion.div>
 
-        {/* Service Areas with Animated Figures */}
-        <div className="space-y-20 mb-32">
+        {/* Service Areas with Animated Figures - Bento Grid Layout */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-32"
+        >
           {t.services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              variants={{
+                hidden: { opacity: 0, y: 40, scale: 0.95 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
               transition={{ duration: 0.6 }}
             >
-              <GlassCard className="overflow-hidden">
-                <div className="grid lg:grid-cols-12 gap-8">
-                  {/* Left Column - Number, Title, and Animation */}
-                  <div className="lg:col-span-5 relative">
-                    <div className="text-[8rem] font-serif font-bold text-accent-cyan/10 leading-none absolute -top-8 -left-4">
+              <div className="relative h-full rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/30 hover:shadow-[0_25px_80px_rgba(0,0,0,0.6)] group">
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                <div className="pointer-events-none absolute inset-0 rounded-3xl border border-tungsten-grey/40 shadow-[0_0_25px_rgba(0,240,255,0.15)]" />
+
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="text-[4rem] font-serif font-bold text-electric-platinum/10 leading-none">
                       {service.num}
                     </div>
-                    <div className="relative z-10 pt-16">
-                      <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-3">{service.title}</h2>
-                      <p className="text-[10px] font-mono text-accent-cyan/70 tracking-[0.15em] uppercase leading-relaxed">
-                        {service.arch}
-                      </p>
-                      
-                      {/* Animated Visual Element */}
-                      <VisualAnimation type={service.visual} />
-                      
-                      {/* Metric Badge */}
-                      <motion.div 
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent-orange/30 bg-accent-orange/10"
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        <span className="w-2 h-2 rounded-full bg-accent-orange animate-pulse"></span>
-                        <span className="text-sm font-mono text-accent-orange font-bold">{service.metric}</span>
-                      </motion.div>
-                    </div>
+                    <motion.div
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-holographic-cyan/30 bg-deep-indigo/40"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-holographic-cyan animate-pulse"></span>
+                      <span className="text-sm font-mono text-holographic-cyan font-bold">{service.metric}</span>
+                    </motion.div>
                   </div>
 
-                  {/* Right Column - Descriptions and Features */}
-                  <div className="lg:col-span-7 space-y-6">
-                    <p className="text-text-muted leading-relaxed">{service.desc1}</p>
-                    <p className="text-text-secondary leading-relaxed">{service.desc2}</p>
-                    
-                    {/* Features Grid */}
-                    <div className="grid sm:grid-cols-2 gap-3 pt-6 border-t border-glass-border">
-                      {service.features.map((feature, featureIndex) => (
-                        <motion.div 
-                          key={featureIndex} 
-                          className="flex items-center gap-3 text-sm group"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: featureIndex * 0.1 }}
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan group-hover:scale-150 transition-transform"></span>
-                          <span className="text-text-muted group-hover:text-text-primary transition-colors">{feature}</span>
-                        </motion.div>
-                      ))}
-                    </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-electric-platinum mb-3">
+                    <ScrambleText text={service.title} />
+                  </h2>
+                  <p className="text-[10px] font-mono text-electric-platinum/50 tracking-[0.15em] uppercase leading-relaxed mb-6">
+                    {service.arch}
+                  </p>
+
+                  {/* Animated Visual Element */}
+                  <div className="mb-6">
+                    <VisualAnimation type={service.visual} />
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    <p className="text-electric-platinum/70 leading-relaxed text-sm">{service.desc1}</p>
+                    <p className="text-electric-platinum/60 leading-relaxed text-sm">{service.desc2}</p>
+                  </div>
+
+                  {/* Features Grid */}
+                  <div className="grid sm:grid-cols-2 gap-3 pt-6 border-t border-tungsten-grey/60">
+                    {service.features.map((feature, featureIndex) => (
+                      <motion.div
+                        key={featureIndex}
+                        className="flex items-center gap-3 text-xs group"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: featureIndex * 0.1 }}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan group-hover:scale-150 transition-transform"></span>
+                        <span className="text-electric-platinum/60 group-hover:text-electric-platinum transition-colors uppercase tracking-[0.05em]">{feature}</span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </GlassCard>
+              </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Work Process Section */}
+        {/* Work Process Section - HUD Layout */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
           className="mb-32"
         >
           <div className="text-center mb-16">
-            <div className="font-mono text-xs text-accent-cyan tracking-[0.3em] mb-4">{t.processTitle}</div>
-            <h2 className="font-serif text-3xl md:text-4xl">{t.processSubtitle}</h2>
+            <div className="font-mono text-xs text-accent-cyan tracking-[0.3em] mb-4 uppercase">{t.processTitle}</div>
+            <h2 className="font-serif text-3xl md:text-4xl text-electric-platinum">
+              <ScrambleText text={t.processSubtitle} />
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.process.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={{
+                  hidden: { opacity: 0, y: 20, scale: 0.95 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
+                }}
+                transition={{ duration: 0.5 }}
                 className="group"
               >
-                <div className="glass-panel rounded-2xl p-6 h-full transition-all hover:border-accent-cyan/30 relative overflow-hidden">
-                  <div className="absolute -top-4 -right-4 text-[5rem] font-serif font-bold text-accent-cyan/5 group-hover:text-accent-cyan/10 transition-colors">
+                <div className="relative h-full rounded-2xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/30 hover:shadow-[0_25px_80px_rgba(0,240,255,0.2)] relative overflow-hidden">
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                  <div className="absolute -top-4 -right-4 text-[5rem] font-serif font-bold text-electric-platinum/5 group-hover:text-electric-platinum/10 transition-colors">
                     {step.num}
                   </div>
                   <div className="relative z-10">
-                    <div className="text-2xl font-bold text-accent-cyan mb-2">{step.num}</div>
-                    <h3 className="text-lg font-bold text-text-primary mb-3">{step.title}</h3>
-                    <p className="text-sm text-text-muted leading-relaxed">{step.desc}</p>
+                    <div className="text-2xl font-bold text-accent-cyan mb-2 font-mono">{step.num}</div>
+                    <h3 className="text-lg font-bold text-electric-platinum mb-3 uppercase tracking-[0.1em]">
+                      <ScrambleText text={step.title} />
+                    </h3>
+                    <p className="text-sm text-electric-platinum/60 leading-relaxed uppercase tracking-[0.05em] text-xs">{step.desc}</p>
                   </div>
                 </div>
               </motion.div>
@@ -684,37 +705,49 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
           </div>
         </motion.div>
 
-        {/* Technology Stack Section */}
+        {/* Technology Stack Section - Bento Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <div className="font-mono text-xs text-accent-orange tracking-[0.3em] mb-4">{t.techTitle}</div>
+            <div className="font-mono text-xs text-electric-platinum/60 tracking-[0.3em] mb-4 uppercase">
+              <ScrambleText text={t.techTitle} />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.techCategories.map((category, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={{
+                  hidden: { opacity: 0, y: 20, scale: 0.95 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
+                }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="glass-panel rounded-2xl p-6 h-full">
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-accent-cyan mb-4">{category.title}</h4>
-                  <ul className="space-y-2">
-                    {category.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="text-sm text-text-muted flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-glass-highlight"></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="relative h-full rounded-2xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-deep-indigo/40 hover:shadow-[0_25px_80px_rgba(46,46,94,0.25)]">
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                  <div className="relative z-10">
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-electric-platinum/70 mb-4">{category.title}</h4>
+                    <ul className="space-y-2">
+                      {category.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="text-sm text-electric-platinum/60 flex items-center gap-2 uppercase tracking-[0.05em] text-xs">
+                          <span className="w-1 h-1 rounded-full bg-holographic-cyan"></span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -729,16 +762,18 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <div className="font-serif text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] opacity-90 mb-8 transition-all duration-300 hover:text-transparent hover:text-stroke-cyan cursor-default select-none">
+          <div className="font-serif text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] opacity-90 mb-8 transition-all duration-300 hover:text-transparent hover:text-stroke-cyan cursor-default select-none text-electric-platinum">
             {locale === 'tr' ? 'ŞİMDİ' : locale === 'it' ? 'ORA' : 'NOW'}<br />
             {locale === 'tr' ? 'OPTİMİZE' : locale === 'it' ? 'OTTIMIZZA' : 'OPTIMIZE'}
           </div>
-          
-          <h3 className="font-serif text-2xl md:text-3xl mb-4">{t.ctaTitle}</h3>
-          <p className="text-text-muted mb-8 max-w-lg mx-auto">{t.ctaDesc}</p>
-          <Link 
+
+          <h3 className="font-serif text-2xl md:text-3xl mb-4 text-electric-platinum">
+            <ScrambleText text={t.ctaTitle} />
+          </h3>
+          <p className="text-electric-platinum/60 mb-8 max-w-lg mx-auto uppercase tracking-[0.1em] text-sm">{t.ctaDesc}</p>
+          <Link
             href={`/${locale}/contact`}
-            className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-accent-cyan text-void font-mono font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(0,240,255,0.3)]"
+            className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-tungsten-grey/80 bg-obsidian-plate/70 text-electric-platinum font-mono font-bold uppercase tracking-widest text-sm hover:border-holographic-cyan/60 hover:text-electric-platinum hover:bg-deep-indigo/40 transition-all shadow-[0_0_30px_rgba(0,240,255,0.15)] hover:shadow-[0_0_40px_rgba(0,240,255,0.3)]"
           >
             {t.ctaButton}
             <FaArrowRight className="w-4 h-4" />

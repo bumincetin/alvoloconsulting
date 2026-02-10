@@ -12,8 +12,24 @@ export interface TranslationType {
     announcements: string;
     portal: string;
   };
+  home: {
+    heroTitle: string;
+    heroSubtitle: string;
+    heroBadge1: string;
+    heroBadge2: string;
+    heroCta: string;
+    philosophyTitle: string;
+    philosophyPoints: string[];
+    philosophyCta: string;
+    deckVault: string;
+    deckTitle: string;
+    deckSubtitle: string;
+    deckCards: Array<{ title: string; footer: string }>;
+    contactTitle: string;
+    contactSubtitle: string;
+    contactCta: string;
+  };
   hero: {
-    badge: string;
     title1: string;
     title2: string;
     subtitle: string;
@@ -160,8 +176,34 @@ export const translations: Record<Locale, TranslationType> = {
       announcements: 'News',
       portal: 'Portal',
     },
+    home: {
+      heroTitle: 'ALVOLO',
+      heroSubtitle: 'Swiss watchmaking precision engineered for sovereign data flows.',
+      heroBadge1: 'Alvolo Consulting',
+      heroBadge2: 'Luxury Data Exclusivity',
+      heroCta: 'Access remains curated. Signal by invitation only.',
+      philosophyTitle: 'THE ALVOLO PHILOSOPHY',
+      philosophyPoints: [
+        'Precision-first intelligence.',
+        'Systems that anticipate.',
+        'Scale without exposure.',
+      ],
+      philosophyCta: 'Explore Methodology',
+      deckVault: 'The Vault',
+      deckTitle: 'Secured channels, glassed in platinum optics.',
+      deckSubtitle: 'Private intelligence modules engineered for sovereign data flows.',
+      deckCards: [
+        { title: 'PREDICTIVE INTEL', footer: 'STATUS: OPTIMIZED // LATENCY: 4ms' },
+        { title: 'ALGORITHMIC SCALE', footer: 'STATUS: ACTIVE // NODES: 1200' },
+        { title: 'GLOBAL NEXUS', footer: 'STATUS: LINKED // ROUTES: 88' },
+        { title: 'SIGNAL HELIX', footer: 'STATUS: CALIBRATED // FLOW: 9.2' },
+        { title: 'VAULT PULSE', footer: 'STATUS: SYNCED // VAULT: LOCKED' },
+      ],
+      contactTitle: 'SIGNAL RECEIVED.',
+      contactSubtitle: 'Access to Alvolo private channels is by verification only. Initiate the protocol to begin calibration.',
+      contactCta: 'Initialize Contact',
+    },
     hero: {
-      badge: 'Milan ↔ Istanbul',
       title1: 'Cross-Border',
       title2: 'Scale Engineering.',
       subtitle: "We don't just advise. We architect your expansion. A data-driven financial bridge for SMEs and Professionals moving between Italy and Turkey.",
@@ -349,8 +391,34 @@ export const translations: Record<Locale, TranslationType> = {
       announcements: 'Duyurular',
       portal: 'Portal',
     },
+    home: {
+      heroTitle: 'ALVOLO',
+      heroSubtitle: 'Egemen veri akışları için tasarlanmış İsviçre saat işçiliği hassasiyeti.',
+      heroBadge1: 'Alvolo Danışmanlık',
+      heroBadge2: 'Lüks Veri Ayrıcalığı',
+      heroCta: 'Erişim küratörlü kalır. Sinyal sadece davetiye ile.',
+      philosophyTitle: 'ALVOLO FELSEFESİ',
+      philosophyPoints: [
+        'Hassasiyet öncelikli istihbarat.',
+        'Öngören sistemler.',
+        'Maruz kalmadan ölçeklenme.',
+      ],
+      philosophyCta: 'Metodolojiyi Keşfet',
+      deckVault: 'Kasa',
+      deckTitle: 'Güvenli kanallar, platin optiklerle camlanmış.',
+      deckSubtitle: 'Egemen veri akışları için tasarlanmış özel istihbarat modülleri.',
+      deckCards: [
+        { title: 'ÖNGÖRÜSEL İSTİHBARAT', footer: 'DURUM: OPTİMİZE // GECİKME: 4ms' },
+        { title: 'ALGORİTMİK ÖLÇEK', footer: 'DURUM: AKTİF // DÜĞÜMLER: 1200' },
+        { title: 'KÜRESEL BAĞLANTI', footer: 'DURUM: BAĞLI // ROTALAR: 88' },
+        { title: 'SİNYAL SARMALI', footer: 'DURUM: KALİBRE // AKIŞ: 9.2' },
+        { title: 'KASA NABZI', footer: 'DURUM: SENKRONİZE // KASA: KİLİTLİ' },
+      ],
+      contactTitle: 'SİNYAL ALINDI.',
+      contactSubtitle: 'Alvolo özel kanallarına erişim sadece doğrulama ile mümkündür. Kalibrasyonu başlatmak için protokolü başlatın.',
+      contactCta: 'İletişimi Başlat',
+    },
     hero: {
-      badge: 'Milano ↔ İstanbul',
       title1: 'Sınır Ötesi',
       title2: 'Ölçek Mühendisliği.',
       subtitle: 'Sadece tavsiye vermiyoruz. Büyümenizi tasarlıyoruz. İtalya ve Türkiye arasında hareket eden KOBİ\'ler ve profesyoneller için veri odaklı finansal köprü.',
@@ -538,8 +606,34 @@ export const translations: Record<Locale, TranslationType> = {
       announcements: 'Annunci',
       portal: 'Portale',
     },
+    home: {
+      heroTitle: 'ALVOLO',
+      heroSubtitle: 'Precisione svizzera ingegnerizzata per flussi di dati sovrani.',
+      heroBadge1: 'Alvolo Consulting',
+      heroBadge2: 'Esclusività Dati Lusso',
+      heroCta: 'L\'accesso rimane curato. Segnale solo su invito.',
+      philosophyTitle: 'LA FILOSOFIA ALVOLO',
+      philosophyPoints: [
+        'Intelligence prima della precisione.',
+        'Sistemi che anticipano.',
+        'Scalare senza esposizione.',
+      ],
+      philosophyCta: 'Esplora Metodologia',
+      deckVault: 'Il Caveau',
+      deckTitle: 'Canali sicuri, vetrati in ottica platino.',
+      deckSubtitle: 'Moduli di intelligence privata ingegnerizzati per flussi di dati sovrani.',
+      deckCards: [
+        { title: 'INTEL PREDITTIVA', footer: 'STATO: OTTIMIZZATO // LATENZA: 4ms' },
+        { title: 'SCALA ALGORITMICA', footer: 'STATO: ATTIVO // NODI: 1200' },
+        { title: 'NESSO GLOBALE', footer: 'STATO: COLLEGATO // ROTTE: 88' },
+        { title: 'ELICA DEL SEGNALE', footer: 'STATO: CALIBRATO // FLUSSO: 9.2' },
+        { title: 'IMPULSO CAVEAU', footer: 'STATO: SINCRONIZZATO // CAVEAU: BLOCCATO' },
+      ],
+      contactTitle: 'SEGNALE RICEVUTO.',
+      contactSubtitle: 'L\'accesso ai canali privati Alvolo è solo tramite verifica. Avvia il protocollo per iniziare la calibrazione.',
+      contactCta: 'Inizializza Contatto',
+    },
     hero: {
-      badge: 'Milano ↔ Istanbul',
       title1: 'Scala Transfrontaliera',
       title2: 'Ingegneria.',
       subtitle: 'Non solo consigliamo. Architettiamo la tua espansione. Un ponte finanziario basato sui dati per PMI e professionisti che si muovono tra Italia e Turchia.',

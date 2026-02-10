@@ -74,7 +74,7 @@ const About: React.FC<AboutProps> = ({ t, locale }) => {
                   
                   <Link 
                     href={`/${locale}/about`}
-                    className="inline-flex items-center gap-2 mt-6 text-accent-cyan hover:text-white transition-colors font-mono text-sm uppercase tracking-wider"
+                    className="inline-flex items-center gap-2 mt-6 text-accent-cyan hover:text-electric-platinum transition-colors font-mono text-sm uppercase tracking-wider"
                   >
                     {t.about.viewMore}
                     <FaArrowRight className="w-3 h-3" />

@@ -97,7 +97,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
                 px-2 py-1 text-xs font-mono rounded transition-all
                 ${locale === loc 
                   ? 'bg-accent-cyan/20 text-accent-cyan' 
-                  : 'text-text-muted hover:text-white hover:bg-white/5'
+                  : 'text-text-muted hover:text-electric-platinum hover:bg-obsidian-plate/40'
                 }
               `}
             >
@@ -174,7 +174,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
                     px-3 py-2 text-xs font-mono rounded transition-all
                     ${locale === loc 
                       ? 'bg-accent-cyan/20 text-accent-cyan' 
-                      : 'text-text-muted hover:text-white hover:bg-white/5'
+                      : 'text-text-muted hover:text-electric-platinum hover:bg-obsidian-plate/40'
                     }
                   `}
                 >

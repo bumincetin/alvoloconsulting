@@ -1,13 +1,8 @@
-import { type Locale } from '@/lib/translations';
 import HomePageClient from './HomePageClient';
 
-export const runtime = 'edge';
+// Edge runtime disabled for compatibility with client-side libraries
+// export const runtime = 'edge';
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: Locale }>;
-}) {
-  const { locale } = await params;
-  return <HomePageClient locale={locale} />;
+export default async function HomePage() {
+  return <HomePageClient />;
 }

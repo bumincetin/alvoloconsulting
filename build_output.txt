@@ -1,0 +1,72 @@
+﻿   Ôû▓ Next.js 15.3.3
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully in 12.0s
+   Linting and checking validity of types ...
+node.exe : 
+At C:\Program Files\n
+odejs\npx.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (:String   
+ ) [], RemoteExce    
+ption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+Failed to compile.
+
+./src/app/[locale]/ab
+out/AboutPageClient.t
+sx
+138:21  Warning: 
+Using `<img>` could 
+result in slower LCP 
+and higher 
+bandwidth. Consider 
+using `<Image />` 
+from `next/image` or 
+a custom image 
+loader to 
+automatically 
+optimize images. 
+This may incur 
+additional usage or 
+cost from your 
+provider. See: https:
+//nextjs.org/docs/mes
+sages/no-img-element 
+ @next/next/no-img-el
+ement
+
+./src/app/[locale]/me
+thodology/Methodology
+PageClient.tsx
+7:8  Error: 
+'GlassCard' is 
+defined but never 
+used.  @typescript-es
+lint/no-unused-vars
+
+./src/app/[locale]/pa
+ge.tsx
+1:15  Error: 
+'Locale' is defined 
+but never used.  @typ
+escript-eslint/no-unu
+sed-vars
+
+info  - Need to 
+disable some ESLint 
+rules? Learn more 
+here: https://nextjs.
+org/docs/app/api-refe
+rence/config/eslint#d
+isabling-rules

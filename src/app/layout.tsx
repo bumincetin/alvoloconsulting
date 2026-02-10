@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import LenisProvider from "@/components/providers/LenisProvider";
 
 const siteUrl = "https://www.alvoloconsulting.com";
 
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
   title: "Alvolo Consulting | Financial & Integration Solutions for Italy",
   description: "Alvolo Consulting: Business formation, financial consulting and integration solutions in Italy. Professional and multilingual consulting services for international clients.",
   keywords: [
-    "Alvolo Consulting", "Italy business consulting", "company formation Italy", 
-    "financial consulting Italy", "integration solutions Italy", "İtalya danışmanlık", 
-    "business setup Italy", "Italian market entry", "legal consulting Italy", 
+    "Alvolo Consulting", "Italy business consulting", "company formation Italy",
+    "financial consulting Italy", "integration solutions Italy", "İtalya danışmanlık",
+    "business setup Italy", "Italian market entry", "legal consulting Italy",
     "international clients Italy", "italy startup package", "italy expansion package"
   ],
   icons: {
@@ -39,6 +40,9 @@ export const metadata: Metadata = {
     images: ['https://dl.dropboxusercontent.com/scl/fi/1e6b17ra9y0ey2kw192ej/LOGO.png?rlkey=eijo2u9qpo88udlovkmh3chaj&st=gnjfhg84&dl=1&raw=1'],
   },
 };
+
+// Edge runtime disabled for compatibility with client-side libraries (Framer Motion)
+// export const runtime = "edge";
 
 export default function RootLayout({
   children,
@@ -90,8 +94,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="font-sans text-text-primary overflow-x-hidden min-h-screen selection:bg-accent-cyan selection:text-void bg-void antialiased">
-        {children}
+      <body suppressHydrationWarning className="font-sans text-electric-platinum overflow-x-hidden min-h-screen selection:bg-holographic-cyan selection:text-void-black bg-void-black antialiased">
+        <LenisProvider>{children}</LenisProvider>
+        <div
+          className="pointer-events-none fixed inset-0 z-[60] opacity-20 mix-blend-soft-light"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E\")",
+          }}
+        />
       </body>
     </html>
   );

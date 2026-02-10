@@ -4,17 +4,21 @@
 
 /* Custom Theme for Tailwind v4 */
 @theme {
-  --color-void: #050505;
-  --color-deep: #0a0a12;
-  --color-glass-surface: rgba(255, 255, 255, 0.03);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
-  --color-glass-highlight: rgba(255, 255, 255, 0.15);
+  --color-void-black: #020204;
+  --color-obsidian-plate: #0a0a0c;
+  --color-electric-platinum: #e5e4e2;
+  --color-tungsten-grey: #4a4a4a;
+  --color-holographic-cyan: #00f0ff;
+  --color-deep-indigo: #2e2e5e;
+  --color-glass-surface: rgba(229, 228, 226, 0.04);
+  --color-glass-border: rgba(229, 228, 226, 0.12);
+  --color-glass-highlight: rgba(229, 228, 226, 0.2);
   --color-accent-cyan: #00f0ff;
-  --color-accent-purple: #7000ff;
-  --color-accent-orange: #f58643;
-  --color-text-primary: #f0f0f0;
-  --color-text-muted: #888899;
-  --color-text-secondary: #a0a0b0;
+  --color-accent-purple: #2e2e5e;
+  --color-accent-orange: #e5e4e2;
+  --color-text-primary: #e5e4e2;
+  --color-text-muted: #4a4a4a;
+  --color-text-secondary: #4a4a4a;
 
   --font-family-serif: 'Playfair Display', serif;
   --font-family-mono: 'JetBrains Mono', monospace;
@@ -76,25 +80,29 @@
 }
 
 :root {
-  --background: #050505;
-  --foreground: #f0f0f0;
-  
+  --background: #020204;
+  --foreground: #e5e4e2;
+
   /* Core palette */
-  --void: #050505;
-  --deep: #0a0a12;
-  --glass-surface: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.15);
-  
-  /* Accent colors */
+  --void-black: #020204;
+  --obsidian-plate: #0a0a0c;
+  --electric-platinum: #e5e4e2;
+  --tungsten-grey: #4a4a4a;
+  --holographic-cyan: #00f0ff;
+  --deep-indigo: #2e2e5e;
+
+  /* Alias for legacy usage */
+  --void: #020204;
+  --deep: #0a0a0c;
+  --glass-surface: rgba(229, 228, 226, 0.04);
+  --glass-border: rgba(229, 228, 226, 0.12);
+  --glass-highlight: rgba(229, 228, 226, 0.2);
   --accent-cyan: #00f0ff;
-  --accent-purple: #7000ff;
-  --accent-orange: #f58643;
-  
-  /* Text colors */
-  --text-primary: #f0f0f0;
-  --text-muted: #888899;
-  --text-secondary: #a0a0b0;
+  --accent-purple: #2e2e5e;
+  --accent-orange: #e5e4e2;
+  --text-primary: #e5e4e2;
+  --text-muted: #4a4a4a;
+  --text-secondary: #4a4a4a;
 }
 
 /* Custom scrollbar hiding */
@@ -119,9 +127,16 @@ body {
   min-height: 100vh;
 }
 
+/* Hide horizontal scrollbar globally */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+
+
 ::selection {
-  background: var(--accent-cyan);
-  color: var(--void);
+  background: var(--holographic-cyan);
+  color: var(--void-black);
 }
 
 /* Text stroke effect for hover */
@@ -131,7 +146,7 @@ body {
 
 /* Glass Card */
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(135deg, rgba(229, 228, 226, 0.06), rgba(229, 228, 226, 0.02));
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -139,13 +154,13 @@ body {
 }
 
 .glass-card:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(135deg, rgba(229, 228, 226, 0.1), rgba(229, 228, 226, 0.04));
   border-color: rgba(0, 240, 255, 0.2);
 }
 
 /* Glass Panel (similar but for sections) */
 .glass-panel {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(160deg, rgba(229, 228, 226, 0.06), rgba(229, 228, 226, 0.02));
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -154,7 +169,7 @@ body {
 }
 
 .glass-panel:hover {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(160deg, rgba(229, 228, 226, 0.1), rgba(229, 228, 226, 0.04));
   border-color: rgba(0, 240, 255, 0.25);
   transform: translateY(-2px);
 }
@@ -235,10 +250,6 @@ body {
   animation: floatY 6s ease-in-out infinite;
 }
 
-/* Perspective for 3D effects */
-.perspective-1000 {
-  perspective: 1000px;
-}
 
 /* Line clamp utilities */
 .line-clamp-2 {

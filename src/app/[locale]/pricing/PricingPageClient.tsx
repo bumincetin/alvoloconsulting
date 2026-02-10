@@ -15,7 +15,7 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
   const t = getTranslation(locale);
 
   return (
-    <main className="pt-32 pb-20 px-6">
+    <main className="bg-void-black text-electric-platinum pt-32 pb-20 px-6">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -29,7 +29,7 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
             <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.pricing.label}</span>
           </div>
           <h1 className="font-serif text-4xl md:text-6xl mb-4">{t.pricing.title}</h1>
-          <p className="text-text-muted max-w-2xl mx-auto text-lg">{t.pricing.subtitle}</p>
+          <p className="text-electric-platinum/60 max-w-2xl mx-auto text-lg">{t.pricing.subtitle}</p>
         </motion.div>
 
         {/* Pricing Cards */}
@@ -53,9 +53,9 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
                 )}
 
                 <div className="text-center mb-6 pt-4">
-                  <h3 className="text-xl font-bold text-text-primary mb-2">{pkg.name}</h3>
+                  <h3 className="text-xl font-bold text-electric-platinum mb-2">{pkg.name}</h3>
                   <div className="text-4xl font-bold text-accent-cyan mb-2">{pkg.price}</div>
-                  <p className="text-sm text-text-muted">{pkg.description}</p>
+                  <p className="text-sm text-electric-platinum/60">{pkg.description}</p>
                 </div>
 
                 <div className="space-y-3 mb-8">
@@ -64,18 +64,17 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
                       <span className="w-5 h-5 rounded-full bg-accent-cyan/20 flex items-center justify-center flex-shrink-0">
                         <FaCheck className="w-2.5 h-2.5 text-accent-cyan" />
                       </span>
-                      <span className="text-sm text-text-muted">{feature}</span>
+                      <span className="text-sm text-electric-platinum/60">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                <Link 
+                <Link
                   href={`/${locale}/contact`}
-                  className={`w-full py-3 rounded-xl font-semibold text-sm uppercase tracking-wider text-center block transition-all hover:scale-[1.02] ${
-                    pkg.popular
+                  className={`w-full py-3 rounded-xl font-semibold text-sm uppercase tracking-wider text-center block transition-all hover:scale-[1.02] ${pkg.popular
                       ? 'bg-accent-cyan text-void'
-                      : 'bg-glass-surface border border-glass-border text-text-primary hover:border-accent-cyan/30'
-                  }`}
+                      : 'bg-obsidian-plate/70 border border-tungsten-grey/60 text-electric-platinum hover:border-holographic-cyan/30'
+                    }`}
                 >
                   {pkg.cta}
                 </Link>
@@ -93,14 +92,14 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
           className="mt-16 text-center"
         >
           <GlassCard className="inline-block">
-            <p className="text-text-muted">
+            <p className="text-electric-platinum/60">
               {locale === 'tr' ? 'Özel ihtiyaçlarınız mı var? Sizin için özelleştirilmiş bir çözüm oluşturalım.' :
-               locale === 'it' ? 'Hai esigenze specifiche? Creiamo una soluzione personalizzata per te.' :
-               'Have specific needs? Let us create a customized solution for you.'}
+                locale === 'it' ? 'Hai esigenze specifiche? Creiamo una soluzione personalizzata per te.' :
+                  'Have specific needs? Let us create a customized solution for you.'}
             </p>
-            <Link 
+            <Link
               href={`/${locale}/contact`}
-              className="inline-block mt-4 text-accent-cyan hover:text-white transition-colors font-mono text-sm uppercase tracking-wider"
+              className="inline-block mt-4 text-accent-cyan hover:text-electric-platinum transition-colors font-mono text-sm uppercase tracking-wider"
             >
               {t.nav.contact} →
             </Link>

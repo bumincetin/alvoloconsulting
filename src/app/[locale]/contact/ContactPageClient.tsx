@@ -1,298 +1,199 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp, FaLinkedin, FaInstagram, FaCheck, FaArrowRight } from 'react-icons/fa';
-import GlassCard from '../../components/ui/GlassCard';
-import { getTranslation, type Locale } from '@/lib/translations';
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { motion } from "framer-motion";
+import ScrambleText from "@/components/UI/ScrambleText";
+import BookingModal from "@/app/components/BookingModal";
+import { type Locale } from "@/lib/translations";
 
-interface ContactPageClientProps {
-  locale: Locale;
-}
+type FormState = "idle" | "sending" | "done";
 
-export default function ContactPageClient({ locale }: ContactPageClientProps) {
-  const t = getTranslation(locale);
+export default function ContactPageClient() {
+  const [formState, setFormState] = useState<FormState>("idle");
+  const [progress, setProgress] = useState(0);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const params = useParams();
+  const locale = (params?.locale as string || "en") as Locale;
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    interest: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [mailtoLink, setMailtoLink] = useState('');
+  useEffect(() => {
+    if (formState !== "sending") return;
+    let frameId = 0;
+    const start = performance.now();
+    const duration = 1400;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({ ...prev, [id]: value }));
+    const tick = (now: number) => {
+      const next = Math.min(1, (now - start) / duration);
+      setProgress(Math.floor(next * 100));
+      if (next < 1) {
+        frameId = requestAnimationFrame(tick);
+      } else {
+        setFormState("done");
+      }
+    };
+
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
+  }, [formState]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (formState === "sending") return;
+    setProgress(0);
+    setFormState("sending");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const subject = encodeURIComponent(`Consultancy Request: ${formData.interest || 'General Inquiry'}`);
-    const body = encodeURIComponent(
-      `Hi Alvolo Team,\n\n` +
-      `I am interested in: ${formData.interest || 'General Inquiry'}\n\n` +
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n\n` +
-      `Message:\n${formData.message}\n\n` +
-      `Please propose 3 different timeslots for a consultation call.\n\n` +
-      `Best regards,\n${formData.name}`
-    );
-    const mailto = `mailto:bumin.cetin@alvoloconsulting.com?subject=${subject}&body=${body}`;
-    setMailtoLink(mailto);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setShowSuccess(true);
-    }, 1500);
+  const contactLabels = {
+    en: {
+      title: "Uplink",
+      subtitle: "Command Line",
+      desc: "Secure transmission lane active. Awaiting operator signal.",
+      name: "> ENTER_DESIGNATION",
+      email: "> SECURE_EMAIL",
+      topic: "> CLEARANCE_TOPIC",
+      message: "> MESSAGE_BUFFER",
+      submit: "TRANSMIT PACKET",
+      done: "TRANSMISSION SECURE",
+      sending: "Sending...",
+      awaiting: "Awaiting Input.",
+      transmitted: "Transmission Secure.",
+      bookCta: "Or schedule a consultation directly",
+      bookBtn: "Book a Consultation",
+    },
+    tr: {
+      title: "Bağlantı",
+      subtitle: "Komut Hattı",
+      desc: "Güvenli iletim hattı aktif. Operatör sinyali bekleniyor.",
+      name: "> İSİM_GİRİN",
+      email: "> GÜVENLİ_EMAIL",
+      topic: "> KONU_SEÇİMİ",
+      message: "> MESAJ_ALANI",
+      submit: "PAKET GÖNDER",
+      done: "İLETİM GÜVENLİ",
+      sending: "Gönderiliyor...",
+      awaiting: "Giriş Bekleniyor.",
+      transmitted: "İletim Güvenli.",
+      bookCta: "Veya doğrudan bir danışmanlık planlayın",
+      bookBtn: "Danışmanlık Randevusu",
+    },
+    it: {
+      title: "Uplink",
+      subtitle: "Linea di Comando",
+      desc: "Canale di trasmissione sicuro attivo. In attesa del segnale dell'operatore.",
+      name: "> NOME_COMPLETO",
+      email: "> EMAIL_SICURA",
+      topic: "> ARGOMENTO",
+      message: "> MESSAGGIO",
+      submit: "TRASMETTI PACCHETTO",
+      done: "TRASMISSIONE SICURA",
+      sending: "Invio in corso...",
+      awaiting: "In Attesa di Input.",
+      transmitted: "Trasmissione Sicura.",
+      bookCta: "Oppure prenota direttamente una consulenza",
+      bookBtn: "Prenota una Consulenza",
+    },
   };
+
+  const labels = contactLabels[locale] || contactLabels.en;
 
   return (
-    <main className="pt-32 pb-20 px-6">
-      <div className="container mx-auto max-w-6xl">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="neo-pill mx-auto mb-6">
-            <span className="w-2 h-2 rounded-full bg-accent-cyan"></span>
-            <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.contact.title.toUpperCase()}</span>
-          </div>
-          <h1 className="font-serif text-4xl md:text-6xl mb-4">{t.contact.title}</h1>
-          <p className="text-text-muted max-w-2xl mx-auto text-lg">{t.contact.subtitle}</p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <GlassCard className="h-full">
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-3 text-text-primary">
-                <div className="w-8 h-8 rounded-lg bg-accent-cyan/20 flex items-center justify-center">
-                  <FaPhone className="w-4 h-4 text-accent-cyan" />
-                </div>
-                {t.contact.contactInfo}
-              </h3>
-              
-              <div className="space-y-6">
-                {/* Phone */}
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-glass-surface border border-glass-border">
-                  <div className="w-10 h-10 rounded-lg bg-accent-cyan/20 flex items-center justify-center flex-shrink-0">
-                    <FaPhone className="w-4 h-4 text-accent-cyan" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-text-primary">{t.contact.phoneTitle}</h4>
-                    <p className="text-sm text-text-muted">{t.contact.phoneDetails}</p>
-                    <p className="text-xs text-green-400 mt-1">{t.contact.whatsappDetails}</p>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-glass-surface border border-glass-border">
-                  <div className="w-10 h-10 rounded-lg bg-accent-purple/20 flex items-center justify-center flex-shrink-0">
-                    <FaEnvelope className="w-4 h-4 text-accent-purple" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-text-primary">{t.contact.emailTitle}</h4>
-                    <p className="text-sm text-text-muted">{t.contact.emailDetails}</p>
-                  </div>
-                </div>
-
-                {/* Address */}
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-glass-surface border border-glass-border">
-                  <div className="w-10 h-10 rounded-lg bg-accent-orange/20 flex items-center justify-center flex-shrink-0">
-                    <FaMapMarkerAlt className="w-4 h-4 text-accent-orange" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-text-primary">{t.contact.addressTitle}</h4>
-                    <p className="text-sm text-text-muted">{t.contact.addressDetails}</p>
-                  </div>
-                </div>
-
-                {/* Hours */}
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-glass-surface border border-glass-border">
-                  <div className="w-10 h-10 rounded-lg bg-accent-cyan/20 flex items-center justify-center flex-shrink-0">
-                    <FaClock className="w-4 h-4 text-accent-cyan" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-text-primary">{t.contact.hoursTitle}</h4>
-                    <p className="text-sm text-text-muted">{t.contact.hoursDetails}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social Media */}
-              <div className="mt-8 pt-6 border-t border-glass-border">
-                <h4 className="font-semibold mb-4 text-text-primary">{t.contact.followUs}</h4>
-                <div className="flex gap-3">
-                  <a
-                    href="https://wa.me/393481705207"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400 hover:bg-green-500/30 transition-all"
-                  >
-                    <FaWhatsapp size={18} />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/alvolo-consulting"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 hover:bg-blue-500/30 transition-all"
-                  >
-                    <FaLinkedin size={18} />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/alvoloconsulting"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 hover:bg-pink-500/30 transition-all"
-                  >
-                    <FaInstagram size={18} />
-                  </a>
-                </div>
-              </div>
-            </GlassCard>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2"
-          >
-            <GlassCard className="relative overflow-hidden">
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-3 text-text-primary">
-                <div className="w-8 h-8 rounded-lg bg-accent-orange/20 flex items-center justify-center">
-                  <FaEnvelope className="w-4 h-4 text-accent-orange" />
-                </div>
-                {t.contact.getInTouch}
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-mono mb-2 text-text-muted uppercase tracking-wider">
-                      {t.contact.formNameLabel}
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full bg-glass-surface border border-glass-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-cyan transition-colors"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      disabled={isSubmitting || showSuccess}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-mono mb-2 text-text-muted uppercase tracking-wider">
-                      {t.contact.formEmailLabel}
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full bg-glass-surface border border-glass-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-cyan transition-colors"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      disabled={isSubmitting || showSuccess}
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="interest" className="block text-xs font-mono mb-2 text-text-muted uppercase tracking-wider">
-                    {t.contact.formInterestLabel}
-                  </label>
-                  <select
-                    id="interest"
-                    className="w-full bg-glass-surface border border-glass-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-cyan transition-colors"
-                    value={formData.interest}
-                    onChange={handleChange}
-                    disabled={isSubmitting || showSuccess}
-                    required
-                  >
-                    <option value="">{locale === 'tr' ? 'Seçiniz...' : locale === 'it' ? 'Seleziona...' : 'Select...'}</option>
-                    <option value={t.contact.interestOptions.italy}>{t.contact.interestOptions.italy}</option>
-                    <option value={t.contact.interestOptions.turkey}>{t.contact.interestOptions.turkey}</option>
-                    <option value={t.contact.interestOptions.tax}>{t.contact.interestOptions.tax}</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-xs font-mono mb-2 text-text-muted uppercase tracking-wider">
-                    {t.contact.formMessageLabel}
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    className="w-full bg-glass-surface border border-glass-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-cyan transition-colors resize-none"
-                    value={formData.message}
-                    onChange={handleChange}
-                    disabled={isSubmitting || showSuccess}
-                  />
-                </div>
-                
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-accent-cyan to-accent-purple text-void font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50 hover:scale-[1.02]"
-                  disabled={isSubmitting || showSuccess}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-void"></div>
-                      {t.contact.formSendingButton}
-                    </>
-                  ) : (
-                    <>
-                      {t.contact.formSubmitButton}
-                      <FaArrowRight className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
-              </form>
-
-              {/* Success Message */}
-              {showSuccess && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-void/95 z-10">
-                  <div className="w-16 h-16 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center mb-6">
-                    <FaCheck className="w-8 h-8" />
-                  </div>
-                  <h3 className="font-bold text-2xl mb-2 text-text-primary">{t.contact.successTitle}</h3>
-                  <p className="text-text-muted mb-8">{t.contact.successMessage}</p>
-                  
-                  <div className="flex flex-col gap-3 w-full max-w-xs">
-                    <a
-                      href={mailtoLink}
-                      className="w-full border border-glass-border py-3 rounded-xl text-sm font-medium text-center bg-glass-surface text-text-primary hover:bg-glass-highlight transition-colors"
-                    >
-                      {t.contact.sendViaEmail}
-                    </a>
-                    <a
-                      href={mailtoLink}
-                      className="w-full bg-gradient-to-r from-accent-cyan to-accent-purple text-void py-3 rounded-xl text-sm font-bold text-center"
-                    >
-                      {t.contact.proposeTimeslots}
-                    </a>
-                  </div>
-                </div>
-              )}
-            </GlassCard>
-          </motion.div>
+    <main className="relative min-h-screen bg-void-black text-electric-platinum">
+      <div className="relative z-10 px-8 py-16">
+        <div className="mb-12 space-y-4">
+          <ScrambleText
+            as="h1"
+            text={labels.title}
+            className="text-5xl font-serif text-electric-platinum"
+          />
+          <ScrambleText
+            as="h2"
+            text={labels.subtitle}
+            className="text-sm uppercase tracking-[0.5em] text-electric-platinum/50"
+          />
+          <p className="max-w-2xl text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
+            {labels.desc}
+          </p>
         </div>
+
+        {/* Booking CTA */}
+        <div className="mb-10 rounded-3xl border border-holographic-cyan/20 bg-holographic-cyan/5 p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-electric-platinum/70">
+            {labels.bookCta}
+          </p>
+          <button
+            onClick={() => setBookingOpen(true)}
+            className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-holographic-cyan text-void-black font-mono font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] shadow-[0_0_30px_rgba(0,240,255,0.25)]"
+          >
+            {labels.bookBtn}
+          </button>
+        </div>
+
+        <motion.form
+          onSubmit={handleSubmit}
+          className="grid gap-8 rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 shadow-[0_30px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl md:grid-cols-2"
+        >
+          <div className="space-y-6">
+            <label className="block text-xs font-mono uppercase tracking-[0.3em] text-electric-platinum/60">
+              {labels.name}
+              <input
+                type="text"
+                required
+                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+              />
+            </label>
+            <label className="block text-xs font-mono uppercase tracking-[0.3em] text-electric-platinum/60">
+              {labels.email}
+              <input
+                type="email"
+                required
+                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+              />
+            </label>
+            <label className="block text-xs font-mono uppercase tracking-[0.3em] text-electric-platinum/60">
+              {labels.topic}
+              <input
+                type="text"
+                required
+                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+              />
+            </label>
+          </div>
+
+          <div className="space-y-6">
+            <label className="block text-xs font-mono uppercase tracking-[0.3em] text-electric-platinum/60">
+              {labels.message}
+              <textarea
+                rows={6}
+                required
+                className="mt-3 w-full resize-none border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+              />
+            </label>
+            <div className="space-y-4">
+              <button
+                type="submit"
+                className="w-full rounded-full border border-tungsten-grey/80 bg-obsidian-plate/70 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-electric-platinum transition hover:border-holographic-cyan/80 hover:shadow-[0_0_20px_rgba(0,240,255,0.25)]"
+              >
+                {formState === "done" ? labels.done : labels.submit}
+              </button>
+              <div className="h-1 w-full overflow-hidden rounded-full bg-obsidian-plate/60">
+                <motion.div
+                  animate={{ width: `${formState === "idle" ? 0 : progress}%` }}
+                  className="h-full bg-gradient-to-r from-holographic-cyan to-deep-indigo"
+                />
+              </div>
+              <p className="text-xs uppercase tracking-[0.35em] text-electric-platinum/50">
+                {formState === "sending" ? labels.sending : formState === "done" ? labels.transmitted : labels.awaiting}
+              </p>
+            </div>
+          </div>
+        </motion.form>
       </div>
+
+      <BookingModal
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        locale={locale}
+      />
     </main>
   );
 }
-

@@ -136,7 +136,7 @@ const Services: React.FC<ServicesProps> = ({ t, locale }) => {
             >
               <Link 
                 href={`/${locale}/services`}
-                className="inline-flex items-center gap-2 text-accent-cyan hover:text-white transition-colors font-mono text-sm uppercase tracking-wider"
+                className="inline-flex items-center gap-2 text-accent-cyan hover:text-electric-platinum transition-colors font-mono text-sm uppercase tracking-wider"
               >
                 {t.services.viewAll}
                 <FaArrowRight className="w-3 h-3" />

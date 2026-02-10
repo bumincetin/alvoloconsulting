@@ -157,7 +157,7 @@ const SecurityShieldAnimation = () => {
           animate={{ pathLength: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
         />
-        
+
         {/* Inner Shield */}
         <motion.path
           d="M50 15 L80 27 L80 55 Q80 82 50 103 Q20 82 20 55 L20 27 Z"
@@ -169,7 +169,7 @@ const SecurityShieldAnimation = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         />
-        
+
         {/* Lock Icon */}
         <motion.g
           initial={{ scale: 0, opacity: 0 }}
@@ -180,7 +180,7 @@ const SecurityShieldAnimation = () => {
           <path d="M42 55 V48 Q42 40 50 40 Q58 40 58 48 V55" fill="none" stroke="#f58643" strokeWidth="2" />
           <circle cx="50" cy="65" r="3" fill="#f58643" />
         </motion.g>
-        
+
         {/* Animated Rings */}
         <motion.circle
           cx="50"
@@ -194,7 +194,7 @@ const SecurityShieldAnimation = () => {
           animate={{ scale: 1.2, opacity: [0, 0.5, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
-        
+
         <defs>
           <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#00f0ff" />
@@ -219,7 +219,7 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
   }
 
   return (
-    <main className="pt-32 pb-20 px-6">
+    <main className="bg-void-black text-electric-platinum pt-32 pb-20 px-6">
       <div className="container mx-auto max-w-6xl">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
@@ -233,16 +233,16 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
               <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.badge}</span>
             </div>
             <h1 className="font-serif text-4xl md:text-6xl mb-6">
-              <span className="text-text-primary">{t.title}</span>
+              <span className="text-electric-platinum">{t.title}</span>
               <br />
               <span className="bg-gradient-to-r from-accent-cyan to-accent-orange bg-clip-text text-transparent">
                 {t.titleHighlight}
               </span>
             </h1>
-            <p className="text-text-muted text-lg leading-relaxed mb-8">{t.subtitle}</p>
-            
+            <p className="text-electric-platinum/60 text-lg leading-relaxed mb-8">{t.subtitle}</p>
+
             <div className="flex flex-wrap gap-4">
-              <a 
+              <a
                 href={`${PORTAL_URL}/login`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -251,16 +251,16 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
                 <FaLock className="w-4 h-4" />
                 {t.loginButton}
               </a>
-              <Link 
+              <Link
                 href={`/${locale}/contact`}
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-glass-highlight text-text-primary font-mono uppercase tracking-wider text-sm hover:bg-white/5 transition-all"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-tungsten-grey/60 text-electric-platinum font-mono uppercase tracking-wider text-sm hover:bg-obsidian-plate/60 transition-all"
               >
                 {t.registerButton}
                 <FaArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -287,8 +287,8 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
                     <feature.icon className="w-5 h-5 text-accent-cyan" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-text-primary mb-2">{feature.title}</h3>
-                    <p className="text-sm text-text-muted leading-relaxed">{feature.desc}</p>
+                    <h3 className="text-lg font-bold text-electric-platinum mb-2">{feature.title}</h3>
+                    <p className="text-sm text-electric-platinum/60 leading-relaxed">{feature.desc}</p>
                   </div>
                 </div>
               </GlassCard>
@@ -320,7 +320,7 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
                     <div className="w-10 h-10 rounded-lg bg-glass-surface border border-glass-border flex items-center justify-center">
                       <feature.icon className="w-4 h-4 text-accent-cyan" />
                     </div>
-                    <span className="text-sm text-text-muted font-mono">{feature.text}</span>
+                    <span className="text-sm text-electric-platinum/60 font-mono">{feature.text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -338,19 +338,19 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
         >
           <GlassCard className="py-12">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">{t.ctaTitle}</h2>
-            <p className="text-text-muted mb-8 max-w-lg mx-auto">{t.ctaDesc}</p>
-            <Link 
+            <p className="text-electric-platinum/60 mb-8 max-w-lg mx-auto">{t.ctaDesc}</p>
+            <Link
               href={`/${locale}/contact`}
               className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-accent-orange text-void font-mono font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(245,134,67,0.3)]"
             >
               {t.ctaButton}
               <FaArrowRight className="w-4 h-4" />
             </Link>
-            
+
             <div className="mt-8 pt-8 border-t border-glass-border">
-              <p className="text-sm text-text-muted">
+              <p className="text-sm text-electric-platinum/60">
                 {t.existingClient}{' '}
-                <a 
+                <a
                   href={`${PORTAL_URL}/login`}
                   target="_blank"
                   rel="noopener noreferrer"

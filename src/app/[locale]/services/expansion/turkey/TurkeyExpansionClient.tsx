@@ -124,12 +124,12 @@ const TurkeyExpansionClient: React.FC<TurkeyExpansionClientProps> = ({ locale })
   };
 
   return (
-    <main className="min-h-screen pt-32 pb-24 px-6">
+    <main className="bg-void-black text-electric-platinum min-h-screen pt-32 pb-24 px-6">
       <div className="container mx-auto max-w-6xl">
         {/* Back Link */}
-        <Link 
+        <Link
           href={`/${locale}/services`}
-          className="inline-flex items-center gap-2 text-text-muted hover:text-accent-orange transition-colors mb-8 font-mono text-sm"
+          className="inline-flex items-center gap-2 text-electric-platinum/60 hover:text-holographic-cyan transition-colors mb-8 font-mono text-sm"
         >
           <FaArrowRight className="w-3 h-3 rotate-180" />
           {t.backLink}
@@ -150,7 +150,7 @@ const TurkeyExpansionClient: React.FC<TurkeyExpansionClientProps> = ({ locale })
                 <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.badge}</span>
               </div>
               <h1 className="font-serif text-4xl md:text-6xl mb-6">{t.title}</h1>
-              <p className="text-xl text-text-muted max-w-3xl">{t.subtitle}</p>
+              <p className="text-xl text-electric-platinum/60 max-w-3xl">{t.subtitle}</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -168,10 +168,10 @@ const TurkeyExpansionClient: React.FC<TurkeyExpansionClientProps> = ({ locale })
                 >
                   <GlassCard className="h-full">
                     <service.icon className="w-10 h-10 text-accent-orange mb-4" />
-                    <h3 className="text-xl font-bold text-text-primary mb-2">
+                    <h3 className="text-xl font-bold text-electric-platinum mb-2">
                       {t[service.titleKey as keyof typeof t]}
                     </h3>
-                    <p className="text-text-muted text-sm leading-relaxed">
+                    <p className="text-electric-platinum/60 text-sm leading-relaxed">
                       {t[service.descKey as keyof typeof t]}
                     </p>
                   </GlassCard>
@@ -192,8 +192,8 @@ const TurkeyExpansionClient: React.FC<TurkeyExpansionClientProps> = ({ locale })
             >
               <GlassCard className="text-center py-12">
                 <h2 className="font-serif text-3xl md:text-4xl mb-4">{t.ctaTitle}</h2>
-                <p className="text-text-muted mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
-                <Link 
+                <p className="text-electric-platinum/60 mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
+                <Link
                   href={`/${locale}/contact`}
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-orange text-void font-semibold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105 shadow-[0_0_30px_rgba(245,134,67,0.3)]"
                 >

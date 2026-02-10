@@ -1,144 +1,376 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { FaArrowRight, FaBuilding, FaChartLine, FaUniversity, FaPassport, FaHome, FaHandshake, FaFileAlt, FaGraduationCap, FaShieldAlt, FaBalanceScale } from 'react-icons/fa';
-import GlassCard from '../../components/ui/GlassCard';
-import { getTranslation, type Locale } from '@/lib/translations';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  FaArrowRight,
+  FaBalanceScale,
+  FaBuilding,
+  FaChartLine,
+  FaFileAlt,
+  FaGraduationCap,
+  FaHandshake,
+  FaHome,
+  FaPassport,
+  FaShieldAlt,
+  FaUniversity,
+} from "react-icons/fa";
+import ScrambleText from "@/components/UI/ScrambleText";
+import HlsVideo from "@/components/Media/HlsVideo";
+import { getTranslation, type Locale } from "@/lib/translations";
 
 interface ServicesPageClientProps {
   locale: Locale;
 }
 
-const integrationIcons = [FaGraduationCap, FaPassport, FaHome, FaHandshake, FaUniversity, FaPassport, FaFileAlt];
-const financialIcons = [FaBuilding, FaChartLine, FaBalanceScale, FaUniversity, FaHandshake, FaShieldAlt, FaFileAlt];
+const integrationIcons = [
+  FaGraduationCap,
+  FaPassport,
+  FaHome,
+  FaHandshake,
+  FaUniversity,
+  FaPassport,
+  FaFileAlt,
+];
+const financialIcons = [
+  FaBuilding,
+  FaChartLine,
+  FaBalanceScale,
+  FaUniversity,
+  FaHandshake,
+  FaShieldAlt,
+  FaFileAlt,
+];
+
+const gridVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const tileVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+function MetricTicker({ label }: { label: string }) {
+  const [value, setValue] = useState(label);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const jitter = Math.floor(Math.random() * 6) - 3;
+      setValue(label.replace(/\d+/, (match) => String(Number(match) + jitter)));
+    }, 1200);
+    return () => clearInterval(interval);
+  }, [label]);
+
+  return <p className="text-xs uppercase tracking-[0.25em] text-electric-platinum/60">{value}</p>;
+}
+
+const mockMetrics = [
+  ["Efficiency: +400%", "Latency: -18%", "Signal: 9.6"],
+  ["Risk: -62%", "Audit: 24/7", "Assurance: 99.9%"],
+  ["Velocity: +310%", "Access: Tier V", "Coverage: 12X"],
+  ["Yield: +220%", "Hedge: Active", "Flow: Stable"],
+  ["Confidential: 100%", "SLA: 20m", "Control: Max"],
+  ["Uptime: 99.99%", "Resilience: 8X", "Recovery: 2m"],
+];
+
+const serviceVideos = [
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/90bb1b34646b81b3b63e5a854ea00da3/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/df176a2fb2ea2b64bd21ae1c10d3af6a/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/12a9780eeb1ea015801a5f55cf2e9d3d/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/964cb3eddff1a67e3772aac9a7aceea2/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/dd17599dfa77f41517133fa7a4967535/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/408ad52e3f15bc8f01ae69d194a8cf3a/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/e923e67d71fed3e0853ec57f0348451e/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/136a8a211c6c3b1cc1fd7b1c7d836c58/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/c9ddd33ac3d964e5d33b31ce849e8f95/manifest/video.m3u8",
+  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/257c7359efd4b4aaebcc03aa8fc78a36/manifest/video.m3u8",
+];
 
 export default function ServicesPageClient({ locale }: ServicesPageClientProps) {
   const t = getTranslation(locale);
 
   return (
-    <main className="pt-32 pb-20 px-6">
-      <div className="container mx-auto max-w-7xl">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="neo-pill mx-auto mb-6">
-            <span className="w-2 h-2 rounded-full bg-accent-cyan"></span>
-            <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.services.label}</span>
-          </div>
-          <h1 className="font-serif text-4xl md:text-6xl mb-4">{t.services.title}</h1>
-          <p className="text-text-muted max-w-2xl mx-auto text-lg">{t.services.subtitle}</p>
-        </motion.div>
+    <main className="relative min-h-screen bg-void-black text-electric-platinum">
+      <div className="relative z-10 px-8 py-16">
+        <div className="mb-12 space-y-4">
+          <ScrambleText
+            as="h1"
+            text={t.services.title}
+            className="text-5xl font-serif text-electric-platinum"
+          />
+          <ScrambleText
+            as="h2"
+            text={t.services.label}
+            className="text-sm uppercase tracking-[0.5em] text-electric-platinum/50"
+          />
+          <p className="max-w-2xl text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
+            {t.services.subtitle}
+          </p>
+        </div>
 
-        {/* Integration Services */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
-        >
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-3xl">{t.services.integrationTitle}</h2>
-            <div className="neo-pill">
-              <span className="w-2 h-2 rounded-full bg-accent-purple"></span>
-              <span className="text-[10px] tracking-[0.14em] uppercase">Integration</span>
+        <section className="mb-16">
+          <div className="mb-6 flex items-center justify-between">
+            <ScrambleText
+              as="h2"
+              text={t.services.integrationTitle}
+              className="text-2xl font-serif text-electric-platinum"
+            />
+            <div className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
+              Vault Access: Integration
             </div>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <motion.div
+            variants={gridVariants}
+            initial="hidden"
+            animate="show"
+            className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+          >
             {t.services.integrationServices.map((service, index) => {
               const Icon = integrationIcons[index % integrationIcons.length];
+              const metrics = mockMetrics[index % mockMetrics.length];
+              const video = serviceVideos[index % serviceVideos.length];
               return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  key={service.title}
+                  variants={tileVariants}
+                  whileHover={{ scale: 1.03 }}
+                  className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
                 >
-                  <GlassCard className="h-full">
-                    <div className="w-12 h-12 rounded-xl bg-accent-purple/20 flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5 text-accent-purple" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                  <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+                    <HlsVideo
+                      src={video}
+                      className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
+                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,240,255,0.2),_transparent_65%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
+                  </div>
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
+                        <Icon className="h-4 w-4 text-electric-platinum" />
+                      </span>
+                      <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
                     </div>
-                    <h3 className="text-lg font-semibold text-text-primary mb-2">{service.title}</h3>
-                    <p className="text-sm text-text-muted leading-relaxed">{service.description}</p>
-                  </GlassCard>
+                    <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
+                      {service.description}
+                    </p>
+                    <div className="space-y-2">
+                      {metrics.map((metric) => (
+                        <MetricTicker key={`${service.title}-${metric}`} label={metric} />
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
               );
             })}
-          </div>
-        </motion.div>
+          </motion.div>
+        </section>
 
-        {/* Financial Services */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
-        >
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-3xl">{t.services.financialTitle}</h2>
-            <div className="neo-pill">
-              <span className="w-2 h-2 rounded-full bg-accent-orange"></span>
-              <span className="text-[10px] tracking-[0.14em] uppercase">Finance</span>
+        <section className="mb-16">
+          <div className="mb-6 flex items-center justify-between">
+            <ScrambleText
+              as="h2"
+              text={t.services.financialTitle}
+              className="text-2xl font-serif text-electric-platinum"
+            />
+            <div className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
+              Vault Access: Finance
             </div>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <motion.div
+            variants={gridVariants}
+            initial="hidden"
+            animate="show"
+            className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+          >
             {t.services.financialServices.map((service, index) => {
               const Icon = financialIcons[index % financialIcons.length];
+              const metrics = mockMetrics[(index + 3) % mockMetrics.length];
+              const video = serviceVideos[(index + 4) % serviceVideos.length];
               return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  key={service.title}
+                  variants={tileVariants}
+                  whileHover={{ scale: 1.03 }}
+                  className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
                 >
-                  <GlassCard className="h-full">
-                    <div className="w-12 h-12 rounded-xl bg-accent-orange/20 flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5 text-accent-orange" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                  <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+                    <HlsVideo
+                      src={video}
+                      className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
+                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.15),_transparent_65%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
+                  </div>
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
+                        <Icon className="h-4 w-4 text-electric-platinum" />
+                      </span>
+                      <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
                     </div>
-                    <h3 className="text-lg font-semibold text-text-primary mb-2">{service.title}</h3>
-                    <p className="text-sm text-text-muted leading-relaxed">{service.description}</p>
-                  </GlassCard>
+                    <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
+                      {service.description}
+                    </p>
+                    <div className="space-y-2">
+                      {metrics.map((metric) => (
+                        <MetricTicker key={`${service.title}-${metric}`} label={metric} />
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
               );
             })}
-          </div>
-        </motion.div>
+          </motion.div>
+        </section>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <GlassCard className="inline-block">
-            <div className="flex flex-col md:flex-row items-center gap-6 p-4">
-              <p className="text-text-muted">
-                {locale === 'tr' ? 'Hizmetlerimiz hakkında daha fazla bilgi almak ister misiniz?' :
-                 locale === 'it' ? 'Vuoi saperne di più sui nostri servizi?' :
-                 'Want to learn more about our services?'}
-              </p>
-              <Link 
-                href={`/${locale}/contact`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-cyan text-void font-semibold uppercase tracking-wider text-sm hover:scale-105 transition-transform"
+        {/* ── Intelligence Deck ── */}
+        <section className="mb-16">
+          <div className="mb-6">
+            <p className="text-xs uppercase tracking-[0.5em] text-electric-platinum/60">
+              {t.home.deckVault}
+            </p>
+            <h2 className="mt-4 text-4xl font-serif text-electric-platinum md:text-5xl">
+              {t.home.deckTitle}
+            </h2>
+            <p className="mt-4 max-w-xl text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
+              {t.home.deckSubtitle}
+            </p>
+          </div>
+
+          <motion.div
+            variants={gridVariants}
+            initial="hidden"
+            animate="show"
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+          >
+            {t.home.deckCards.map((card) => (
+              <motion.div
+                key={card.title}
+                variants={tileVariants}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/40 hover:shadow-[0_25px_80px_rgba(46,46,94,0.4)]"
               >
-                {t.nav.contact}
-                <FaArrowRight className="w-3 h-3" />
-              </Link>
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                <div className="pointer-events-none absolute inset-0 rounded-3xl border border-tungsten-grey/40 shadow-[0_0_25px_rgba(0,240,255,0.08)]" />
+                <div className="relative z-10 flex h-full min-h-[180px] flex-col justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
+                      Module
+                    </p>
+                    <h3 className="mt-3 text-lg font-semibold text-electric-platinum">
+                      {card.title}
+                    </h3>
+                  </div>
+                  <p className="mt-4 text-[10px] tracking-[0.1em] text-electric-platinum/40 font-mono">
+                    {card.footer}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* ── Expansion Packages ── */}
+        <section className="mb-16">
+          <div className="mb-6 flex items-center justify-between">
+            <ScrambleText
+              as="h2"
+              text={locale === "tr" ? "Genişleme Paketleri" : locale === "it" ? "Pacchetti di Espansione" : "Expansion Packages"}
+              className="text-2xl font-serif text-electric-platinum"
+            />
+            <div className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
+              Vault Access: Expansion
             </div>
-          </GlassCard>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Italy Expansion */}
+            <Link href={`/${locale}/services/expansion/italy`}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition hover:border-holographic-cyan/40"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <span className="text-4xl">🇮🇹</span>
+                    <div>
+                      <h3 className="text-xl font-semibold text-electric-platinum">
+                        {locale === "tr" ? "İtalya Genişleme Paketi" : locale === "it" ? "Pacchetto Espansione Italia" : "Italy Expansion Package"}
+                      </h3>
+                      <p className="text-xs uppercase tracking-[0.3em] text-electric-platinum/60 mt-1">
+                        {locale === "tr" ? "İtalya pazarına giriş çözümleri" : locale === "it" ? "Soluzioni per l'ingresso nel mercato italiano" : "Complete market entry solutions for Italy"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-holographic-cyan/80">
+                    <span>{locale === "tr" ? "Detayları Gör" : locale === "it" ? "Vedi Dettagli" : "View Details"}</span>
+                    <FaArrowRight className="h-3 w-3" />
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* Turkey Expansion */}
+            <Link href={`/${locale}/services/expansion/turkey`}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition hover:border-holographic-cyan/40"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <span className="text-4xl">🇹🇷</span>
+                    <div>
+                      <h3 className="text-xl font-semibold text-electric-platinum">
+                        {locale === "tr" ? "Türkiye Genişleme Paketi" : locale === "it" ? "Pacchetto Espansione Turchia" : "Turkey Expansion Package"}
+                      </h3>
+                      <p className="text-xs uppercase tracking-[0.3em] text-electric-platinum/60 mt-1">
+                        {locale === "tr" ? "Türkiye pazarına giriş çözümleri" : locale === "it" ? "Soluzioni per l'ingresso nel mercato turco" : "Complete market entry solutions for Turkey"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-holographic-cyan/80">
+                    <span>{locale === "tr" ? "Detayları Gör" : locale === "it" ? "Vedi Dettagli" : "View Details"}</span>
+                    <FaArrowRight className="h-3 w-3" />
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+        </section>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col items-start gap-4 rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 text-sm uppercase tracking-[0.3em] text-electric-platinum/60 md:flex-row md:items-center md:justify-between"
+        >
+          <span>
+            {locale === "tr"
+              ? "Hizmetlerimiz hakkında daha fazla bilgi almak ister misiniz?"
+              : locale === "it"
+                ? "Vuoi saperne di più sui nostri servizi?"
+                : "Want to learn more about our services?"}
+          </span>
+          <Link
+            href={`/${locale}/contact`}
+            className="inline-flex items-center gap-3 rounded-full border border-tungsten-grey/80 px-6 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-electric-platinum transition hover:border-holographic-cyan/80"
+          >
+            {t.nav.contact}
+            <FaArrowRight className="h-3 w-3" />
+          </Link>
         </motion.div>
       </div>
     </main>
