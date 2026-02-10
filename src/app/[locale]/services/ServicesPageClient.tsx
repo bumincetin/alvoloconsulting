@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import GlassCard from "@/app/components/ui/GlassCard";
@@ -72,6 +72,34 @@ function MetricTicker({ label }: { label: string }) {
   }, [label]);
 
   return <p className="text-xs uppercase tracking-[0.25em] text-electric-platinum/60">{value}</p>;
+}
+
+/**
+ * Renders a persistent HlsVideo that plays/pauses based on hover state.
+ * Avoids destroying and recreating the HLS instance on each hover.
+ */
+function ServiceCardVideo({ src, isActive }: { src: string; isActive: boolean }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isActive) {
+      video.play().catch(() => undefined);
+    } else {
+      video.pause();
+    }
+  }, [isActive]);
+
+  return (
+    <HlsVideo
+      ref={videoRef}
+      src={src}
+      lazy
+      autoPlay={false}
+      className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
+    />
+  );
 }
 
 const mockMetrics = [
@@ -223,13 +251,8 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
                 className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
-                  {hoveredCard === service.title && (
-                    <HlsVideo
-                      src={service.video}
-                      className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
-                    />
-                  )}
+                <div className={`absolute inset-0 transition ${hoveredCard === service.title ? 'opacity-100' : 'opacity-0'}`}>
+                  <ServiceCardVideo src={service.video} isActive={hoveredCard === service.title} />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.2),_transparent_65%)]" />
                   <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
                 </div>
@@ -282,13 +305,8 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
                 className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
-                  {hoveredCard === service.title && (
-                    <HlsVideo
-                      src={service.video}
-                      className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
-                    />
-                  )}
+                <div className={`absolute inset-0 transition ${hoveredCard === service.title ? 'opacity-100' : 'opacity-0'}`}>
+                  <ServiceCardVideo src={service.video} isActive={hoveredCard === service.title} />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.15),_transparent_65%)]" />
                   <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
                 </div>
