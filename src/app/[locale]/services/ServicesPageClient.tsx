@@ -96,13 +96,22 @@ const serviceVideos = [
   "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/257c7359efd4b4aaebcc03aa8fc78a36/manifest/video.m3u8",
 ];
 
+interface ServiceItem {
+  title: string;
+  description: string;
+  type: 'integration' | 'financial';
+  Icon: React.ElementType;
+  metrics: string[];
+  video: string;
+}
+
 export default function ServicesPageClient({ locale }: ServicesPageClientProps) {
   const t = getTranslation(locale);
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   // Pre-calculate randomized metrics once on mount to avoid hydration mismatch
-  const [randomizedServices, setRandomizedServices] = useState<any[]>([]);
+  const [randomizedServices, setRandomizedServices] = useState<ServiceItem[]>([]);
 
   useEffect(() => {
     // Combine integration and financial services with their assigned icons/metrics/videos
