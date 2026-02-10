@@ -13,7 +13,7 @@ const BackgroundMesh: React.FC = () => {
     <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none bg-void">
       {/* Orb 1 - Purple */}
       <div
-        className={`absolute w-[60vw] h-[60vw] rounded-full blur-[80px] opacity-40 -top-[20%] -left-[10%] bg-[radial-gradient(circle,_#7000ff,_transparent)] will-change-transform ${mounted ? 'animate-float' : ''}`}
+        className={`absolute w-[60vw] h-[60vw] rounded-full blur-[80px] opacity-40 -top-[20%] -left-[10%] bg-[radial-gradient(circle,_#f58643,_transparent)] will-change-transform ${mounted ? 'animate-float' : ''}`}
       />
 
       {/* Orb 2 - Cyan */}
