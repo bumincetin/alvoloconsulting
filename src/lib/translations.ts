@@ -11,6 +11,7 @@ export interface TranslationType {
     blog: string;
     announcements: string;
     portal: string;
+    faq: string;
   };
   home: {
     heroTitle: string;
@@ -168,6 +169,11 @@ export interface TranslationType {
     title: string;
     subtitle: string;
   };
+  faq: {
+    title: string;
+    subtitle: string;
+    questions: Array<{ q: string; a: string }>;
+  };
 }
 
 export const translations: Record<Locale, TranslationType> = {
@@ -181,6 +187,7 @@ export const translations: Record<Locale, TranslationType> = {
       blog: 'Blog',
       announcements: 'News',
       portal: 'Portal',
+      faq: 'FAQs',
     },
     home: {
       heroTitle: 'ALVOLO',
@@ -388,6 +395,44 @@ export const translations: Record<Locale, TranslationType> = {
       title: 'Trusted By',
       subtitle: 'Our partners and affiliations',
     },
+    faq: {
+      title: 'Frequently Asked Questions',
+      subtitle: 'Everything you need to know about working with Alvolo Consulting.',
+      questions: [
+        {
+          q: 'What makes Alvolo different from a traditional consultancy?',
+          a: 'We are not advisors who hand you a report and walk away. Alvolo operates as an embedded expansion partner. We combine business development, regulatory navigation, and operational analytics into a single, repeatable playbook. Think of us as your in-house international growth team—without the overhead of building one from scratch.',
+        },
+        {
+          q: 'I have a startup in Turkey. How do I know if I am ready to expand to Italy?',
+          a: 'Readiness is not just about revenue—it is about product-market signal. Through our Startup Corridor, we run an ICP (Ideal Customer Profile) validation and competitive landscaping analysis before you commit a single euro. If the data says the timing is right, we activate. If it does not, we save you from a costly misfire.',
+        },
+        {
+          q: 'Can you help with company formation, or is it just strategy?',
+          a: 'We go far beyond strategy. Our Company Setup & Compliance module handles legal entity selection (SRL, SPA, A.Ş., Ltd. Şti.), tax registration, banking onboarding, and initial accounting setup. We coordinate with licensed local partners to ensure every step is compliant from day one.',
+        },
+        {
+          q: 'How does the Startup Corridor differ from the Expansion Packages?',
+          a: 'The Expansion Packages (Italy and Turkey) are focused, market-entry solutions for businesses that already know where they want to go. The Startup Corridor is a broader, 6-module framework designed for founders who need end-to-end support—from market validation all the way through to scaling operations. It is the full-stack experience.',
+        },
+        {
+          q: 'Do you help with hiring and talent in the target country?',
+          a: 'Yes. Our People & Mobility module coordinates visa and relocation processes with licensed immigration partners. We also establish local hiring pathways and contractor frameworks, giving you flexible options to build your team without navigating bureaucracy alone.',
+        },
+        {
+          q: 'What kind of businesses do you typically work with?',
+          a: 'Our sweet spot is SMEs, scaleups, and professionals moving between Turkey and Italy. Whether you are a tech startup looking for European customers, a manufacturing firm seeking Italian suppliers, or a professional relocating for work—we have a structured program for you.',
+        },
+        {
+          q: 'How long does a typical engagement last?',
+          a: 'It depends on your tier. Our Launch tier delivers entity creation and compliance in 6-8 weeks. The Grow tier deepens into commercial enablement over 3-6 months. And our Scale tier is a 6-12 month embedded partnership with quarterly reviews and executive reporting. You scale the relationship as your needs evolve.',
+        },
+        {
+          q: 'Is there a way to test working with Alvolo before committing?',
+          a: 'Absolutely. We offer a complimentary discovery call where we assess your situation and outline a preliminary roadmap. There are no commitments until we both agree there is a clear, data-backed path forward. We believe in earning trust through transparency, not pressure.',
+        },
+      ],
+    },
   },
   tr: {
     nav: {
@@ -399,6 +444,7 @@ export const translations: Record<Locale, TranslationType> = {
       blog: 'Blog',
       announcements: 'Duyurular',
       portal: 'Portal',
+      faq: 'SSS',
     },
     home: {
       heroTitle: 'ALVOLO',
@@ -606,6 +652,44 @@ export const translations: Record<Locale, TranslationType> = {
       title: 'Güvendiğimiz',
       subtitle: 'Ortaklarımız ve bağlantılarımız',
     },
+    faq: {
+      title: 'Sıkça Sorulan Sorular',
+      subtitle: 'Alvolo Consulting ile çalışmak hakkında bilmeniz gereken her şey.',
+      questions: [
+        {
+          q: 'Alvolo\'yu geleneksel bir danışmanlık firmasından farklı kılan nedir?',
+          a: 'Biz size bir rapor verip ayrılan danışmanlar değiliz. Alvolo, gömülü bir genişleme ortağı olarak çalışır. İş geliştirme, mevzuat navigasyonu ve operasyonel analitiği tek, tekrarlanabilir bir oyun planında birleştiriyoruz. Bizi sıfırdan kurmak zorunda kalmadan şirket içi uluslararası büyüme ekibiniz olarak düşünün.',
+        },
+        {
+          q: 'Türkiye\'de bir startup\'ım var. İtalya\'ya açılmaya hazır olduğumu nasıl anlarım?',
+          a: 'Hazırlık sadece gelirle ilgili değildir—ürün-pazar sinyaliyle ilgilidir. Startup Koridorumuz aracılığıyla tek bir euro harcamadan önce ICP (İdeal Müşteri Profili) doğrulaması ve rekabet analizi yapıyoruz. Veriler zamanlamanın doğru olduğunu söylüyorsa harekete geçeriz; söylemiyorsa sizi maliyetli bir hatadan kurtarırız.',
+        },
+        {
+          q: 'Şirket kuruluşuna yardımcı olabilir misiniz yoksa sadece strateji mi sunuyorsunuz?',
+          a: 'Stratejinin çok ötesine geçiyoruz. Şirket Kurulumu ve Uyum modülümüz, tüzel kişilik seçimi (SRL, SPA, A.Ş., Ltd. Şti.), vergi kaydı, banka entegrasyonu ve muhasebe kurulumunu kapsar. Her adımın ilk günden itibaren uyumlu olmasını sağlamak için lisanslı yerel ortaklarla koordinasyon sağlarız.',
+        },
+        {
+          q: 'Startup Koridoru, Genişleme Paketlerinden nasıl farklıdır?',
+          a: 'Genişleme Paketleri (İtalya ve Türkiye), nereye gitmek istediğini bilen işletmeler için odaklı pazar giriş çözümleridir. Startup Koridoru ise pazar doğrulamasından operasyonların ölçeklendirilmesine kadar uçtan uca desteğe ihtiyaç duyan kurucular için tasarlanmış 6 modüllü bir çerçevedir.',
+        },
+        {
+          q: 'Hedef ülkede işe alım ve yetenek konusunda yardımcı oluyor musunuz?',
+          a: 'Evet. İnsan ve Mobilite modülümüz, lisanslı göçmenlik ortaklarıyla vize ve taşınma süreçlerini koordine eder. Ayrıca yerel işe alım yolları ve yüklenici çerçeveleri oluşturarak ekibinizi bürokrasiyle tek başınıza uğraşmadan kurmanız için esnek seçenekler sunarız.',
+        },
+        {
+          q: 'Genellikle ne tür işletmelerle çalışıyorsunuz?',
+          a: 'Odak noktamız Türkiye ve İtalya arasında hareket eden KOBİ\'ler, ölçeklenen şirketler ve profesyonellerdir. Avrupa müşterileri arayan bir teknoloji startup\'ı, İtalyan tedarikçiler arayan bir üretim firması veya iş için taşınan bir profesyonel olun—sizin için yapılandırılmış bir programımız var.',
+        },
+        {
+          q: 'Tipik bir iş birliği ne kadar sürer?',
+          a: 'Katmanınıza bağlıdır. Launch katmanımız 6-8 haftada kuruluş ve uyum sağlar. Grow katmanı 3-6 ay boyunca ticari etkinleştirmeyi derinleştirir. Scale katmanı ise çeyreklik incelemeler ve yönetici raporlaması içeren 6-12 aylık gömülü bir ortaklıktır.',
+        },
+        {
+          q: 'Taahhüt vermeden önce Alvolo ile çalışmayı denemenin bir yolu var mı?',
+          a: 'Kesinlikle. Durumunuzu değerlendirdiğimiz ve ön bir yol haritası çizdiğimiz ücretsiz bir keşif görüşmesi sunuyoruz. Her iki taraf da veri destekli net bir yol olduğunda anlaşana kadar herhangi bir taahhüt yoktur. Baskıyla değil, şeffaflıkla güven kazanmaya inanıyoruz.',
+        },
+      ],
+    },
   },
   it: {
     nav: {
@@ -617,6 +701,7 @@ export const translations: Record<Locale, TranslationType> = {
       blog: 'Blog',
       announcements: 'Annunci',
       portal: 'Portale',
+      faq: 'FAQ',
     },
     home: {
       heroTitle: 'ALVOLO',
@@ -823,6 +908,44 @@ export const translations: Record<Locale, TranslationType> = {
     trustedCompanies: {
       title: 'Di Fiducia',
       subtitle: 'I nostri partner e affiliazioni',
+    },
+    faq: {
+      title: 'Domande Frequenti',
+      subtitle: 'Tutto ciò che devi sapere sulla collaborazione con Alvolo Consulting.',
+      questions: [
+        {
+          q: 'Cosa rende Alvolo diverso da una consulenza tradizionale?',
+          a: 'Non siamo consulenti che consegnano un report e se ne vanno. Alvolo opera come un partner di espansione integrato. Combiniamo sviluppo commerciale, navigazione normativa e analisi operativa in un unico playbook ripetibile. Pensateci come il vostro team interno di crescita internazionale—senza il costo di costruirne uno da zero.',
+        },
+        {
+          q: 'Ho una startup in Turchia. Come faccio a sapere se sono pronto per espandermi in Italia?',
+          a: 'La prontezza non riguarda solo il fatturato—riguarda il segnale prodotto-mercato. Attraverso il nostro Startup Corridor, eseguiamo una validazione ICP (Profilo Cliente Ideale) e un\'analisi competitiva prima di impegnare un singolo euro. Se i dati confermano il timing giusto, attiviamo. Altrimenti, vi risparmiamo un errore costoso.',
+        },
+        {
+          q: 'Potete aiutare con la costituzione aziendale o è solo strategia?',
+          a: 'Andiamo ben oltre la strategia. Il nostro modulo di Costituzione e Conformità gestisce la selezione dell\'entità giuridica (SRL, SPA, A.Ş., Ltd. Şti.), la registrazione fiscale, l\'apertura bancaria e la configurazione contabile iniziale. Ci coordiniamo con partner locali autorizzati per garantire la conformità dal primo giorno.',
+        },
+        {
+          q: 'In cosa si differenzia lo Startup Corridor dai Pacchetti di Espansione?',
+          a: 'I Pacchetti di Espansione (Italia e Turchia) sono soluzioni mirate per l\'ingresso nel mercato per le aziende che sanno già dove vogliono andare. Lo Startup Corridor è un framework più ampio a 6 moduli, progettato per i fondatori che necessitano di supporto end-to-end—dalla validazione del mercato fino alla scalabilità.',
+        },
+        {
+          q: 'Aiutate con le assunzioni e il talento nel paese di destinazione?',
+          a: 'Sì. Il nostro modulo Persone e Mobilità coordina i processi di visto e trasferimento con partner di immigrazione autorizzati. Stabiliamo anche percorsi di assunzione locali e framework per i contractor, offrendovi opzioni flessibili senza navigare la burocrazia da soli.',
+        },
+        {
+          q: 'Con che tipo di aziende lavorate di solito?',
+          a: 'Il nostro punto forte sono le PMI, le scaleup e i professionisti che si muovono tra Turchia e Italia. Che siate una startup tech in cerca di clienti europei, un\'azienda manifatturiera alla ricerca di fornitori italiani o un professionista in trasferimento—abbiamo un programma strutturato per voi.',
+        },
+        {
+          q: 'Quanto dura un tipico incarico?',
+          a: 'Dipende dal vostro livello. Il nostro tier Launch fornisce la costituzione e la conformità in 6-8 settimane. Il tier Grow approfondisce l\'abilitazione commerciale in 3-6 mesi. E il nostro tier Scale è una partnership incorporata di 6-12 mesi con revisioni trimestrali e reporting esecutivo.',
+        },
+        {
+          q: 'C\'è un modo per provare a lavorare con Alvolo prima di impegnarsi?',
+          a: 'Assolutamente. Offriamo una discovery call gratuita in cui valutiamo la vostra situazione e delineiamo una roadmap preliminare. Non ci sono impegni finché entrambe le parti non concordano che esiste un percorso chiaro e supportato dai dati. Crediamo nel guadagnare fiducia attraverso la trasparenza, non la pressione.',
+        },
+      ],
     },
   },
 };
