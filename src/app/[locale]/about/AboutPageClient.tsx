@@ -227,7 +227,7 @@ export default function AboutPageClient() {
             variants={gridVariants}
             initial="hidden"
             animate="show"
-            className="grid gap-6 md:grid-cols-2"
+            className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
           >
             {operatives.map((operative) => (
               <motion.div
@@ -235,64 +235,66 @@ export default function AboutPageClient() {
                 variants={itemVariants}
                 onMouseEnter={() => setActive(operative)}
                 onMouseLeave={() => setActive(null)}
-                className={`group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition ${active && active.id !== operative.id ? "opacity-40" : "opacity-100"
+                className={`group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 min-h-[400px] shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition ${active && active.id !== operative.id ? "opacity-40" : "opacity-100"
                   }`}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-60" />
-                <div className="relative z-10 flex items-start gap-4 transition-all duration-500 group-hover:blur-xl group-hover:opacity-30">
-                  <div className="h-16 w-16 overflow-hidden rounded-2xl border border-tungsten-grey/60">
+                <div className="relative z-10 flex flex-col items-start gap-6 transition-all duration-500 group-hover:blur-xl group-hover:opacity-30">
+                  <div className="h-24 w-24 overflow-hidden rounded-2xl border border-tungsten-grey/60">
                     <Image
                       src={operative.image}
                       alt={operative.name}
-                      width={64}
-                      height={64}
+                      width={96}
+                      height={96}
                       className="h-full w-full object-cover"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-electric-platinum">
-                      {operative.name}
-                    </h3>
-                    <p className="text-xs uppercase tracking-[0.3em] text-electric-platinum/60">
-                      {operative.role}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-tungsten-grey">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-2xl font-semibold text-electric-platinum">
+                        {operative.name}
+                      </h3>
+                      <p className="text-sm uppercase tracking-[0.3em] text-electric-platinum/60 mt-1">
+                        {operative.role}
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-2 text-xs uppercase tracking-[0.25em] text-tungsten-grey">
                       <span>Years Active: {operative.yearsActive}</span>
                       <span>{operative.clearance}</span>
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 flex flex-col justify-center p-6 bg-void-black/20 backdrop-blur-sm z-20">
-                  <p className="text-xs uppercase tracking-[0.4em] text-holographic-cyan mb-4 font-semibold">
+                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 flex flex-col justify-center p-8 bg-void-black/80 backdrop-blur-md z-20">
+                  <p className="text-sm uppercase tracking-[0.4em] text-holographic-cyan mb-6 font-semibold">
                     DATA OVERLAY
                   </p>
-                  <ul className="space-y-3 text-sm text-electric-platinum/90">
+                  <ul className="space-y-4 text-base text-electric-platinum/90">
                     {operative.dossier.map((line) => (
-                      <li key={line} className="flex items-start gap-2">
+                      <li key={line} className="flex items-start gap-3">
                         <span className="text-holographic-cyan mt-1">›</span>
                         {line}
                       </li>
                     ))}
                   </ul>
-                  <div className="flex items-center gap-4 mt-6 pt-4 border-t border-holographic-cyan/20">
+                  <div className="flex items-center gap-6 mt-8 pt-6 border-t border-holographic-cyan/20">
                     <a
                       href={operative.linkedin}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-electric-platinum/60 hover:text-holographic-cyan transition-colors"
+                      className="text-electric-platinum hover:text-holographic-cyan transition-colors"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <FaLinkedin size={20} />
+                      <FaLinkedin size={28} />
                     </a>
                     {operative.website && (
                       <a
                         href={operative.website}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-electric-platinum/60 hover:text-holographic-cyan transition-colors"
+                        className="text-electric-platinum hover:text-holographic-cyan transition-colors"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <FaGlobe size={20} />
+                        <FaGlobe size={28} />
                       </a>
                     )}
                   </div>
