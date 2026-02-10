@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 p-3 px-6 rounded-full bg-void/60 backdrop-blur-2xl border border-glass-border hidden md:flex items-center gap-6 w-[95%] max-w-fit justify-center">
+      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 p-3 px-6 rounded-full bg-void/60 backdrop-blur-2xl border border-glass-border hidden md:flex items-center gap-4 w-[95%] max-w-fit justify-center">
         {/* Logo */}
         <Link href={`/${locale}`} className="mr-2">
           <Image

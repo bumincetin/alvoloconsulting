@@ -174,6 +174,25 @@ export interface TranslationType {
     subtitle: string;
     questions: Array<{ q: string; a: string }>;
   };
+  startupCorridorPage: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    missionTitle: string;
+    missionP1: string;
+    missionP2: string;
+    missionHighlight: string;
+    frameworkTitle: string;
+    frameworkSubtitle: string;
+    modules: Array<{ title: string; desc: string }>;
+    tiersTitle: string;
+    tierLabel: string;
+    tierCta: string;
+    tiers: Array<{ name: string; duration: string; desc: string }>;
+    whyTitle: string;
+    whyBody: string;
+    whyCta: string;
+  };
 }
 
 export const translations: Record<Locale, TranslationType> = {
@@ -433,6 +452,36 @@ export const translations: Record<Locale, TranslationType> = {
         },
       ],
     },
+    startupCorridorPage: {
+      badge: 'New Strategic Pillar',
+      title: 'The Turkey-Italy Startup Corridor',
+      subtitle: 'A Data-Driven Expansion Engine. Eliminating the friction of cross-border expansion with a standardized, repeatable playbook.',
+      missionTitle: 'Our Mission',
+      missionP1: 'We aim to solve the specific "market gap" where founders struggle to navigate the complexities of incorporation, tax, compliance, and go-to-market strategy when expanding between these two regions.',
+      missionP2: 'Our ambition is to be the',
+      missionHighlight: 'first data-driven, full-stack TR-IT expansion operator',
+      frameworkTitle: 'The 6-Module Expansion Framework',
+      frameworkSubtitle: 'We don\'t just give advice; we implement a configured service model designed to guide you through every stage.',
+      modules: [
+        { title: 'Market Discovery & Entry', desc: 'Ideal Customer Profile (ICP) validation, competitor landscaping, and pricing signal analysis. Mapping potential partners for a clear lay of the land.' },
+        { title: 'Company Setup & Compliance', desc: 'Handling legal entity selection (SRL/SPA or A.Ş./Ltd. Şti.), tax registrations, accounting setup, and local banking onboarding.' },
+        { title: 'People & Mobility', desc: 'Coordinating visa/relocation processes and establishing hiring pathways. Contractor frameworks for flexible workforce options.' },
+        { title: 'Commercial Enablement', desc: 'Assisting with channel partner setup, reseller agreements, and "First-10-Customers" plan. Localizing collateral for the target region.' },
+        { title: 'Capital & Incentives', desc: 'Introductions to investors/accelerators, mapping non-dilutive incentives, and grant application support.' },
+        { title: 'Operate to Scale', desc: 'KPI instrumentation, OKR coaching, and quarterly operations reviews to ensure sustainable expansion.' },
+      ],
+      tiersTitle: 'Your Growth Journey',
+      tierLabel: 'Tier',
+      tierCta: 'Get Started',
+      tiers: [
+        { name: 'Launch', duration: '6-8 Weeks', desc: 'A "Fast-Start" program focusing on entity creation, essential compliance, and light Go-To-Market support.' },
+        { name: 'Grow', duration: '3-6 Months', desc: 'A deepening phase handling full compliance, commercial enablement, and active hiring support.' },
+        { name: 'Scale', duration: '6-12 Months', desc: 'Long-term partnership with embedded operating cadence, executive reporting, and strategic partnerships.' },
+      ],
+      whyTitle: 'Why Alvolo?',
+      whyBody: 'We are not just consultants; we are operators. By combining business development, analytics, and end-to-end operations, we offer a unique value proposition that no other boutique consultancy in the Turkey-Italy space provides. We create network effects that compound over time, giving you access to a proven ecosystem.',
+      whyCta: 'Book a Discovery Call',
+    },
   },
   tr: {
     nav: {
@@ -690,6 +739,36 @@ export const translations: Record<Locale, TranslationType> = {
         },
       ],
     },
+    startupCorridorPage: {
+      badge: 'Yeni Stratejik Sütun',
+      title: 'Türkiye-İtalya Startup Koridoru',
+      subtitle: 'Veri Odaklı Genişleme Motoru. Sınır ötesi genişlemenin zorluklarını standartlaştırılmış, tekrarlanabilir bir oyun planıyla ortadan kaldırıyoruz.',
+      missionTitle: 'Misyonumuz',
+      missionP1: 'Bu iki bölge arasında genişlerken kurucuların şirket kurulumu, vergi, uyum ve pazara giriş stratejisinin karmaşıklıklarında zorlandığı belirli "pazar boşluğunu" çözmeyi hedefliyoruz.',
+      missionP2: 'Hedefimiz',
+      missionHighlight: 'ilk veri odaklı, tam kapsamlı TR-IT genişleme operatörü olmak',
+      frameworkTitle: '6 Modüllü Genişleme Çerçevesi',
+      frameworkSubtitle: 'Sadece tavsiye vermiyoruz; sizi her aşamada yönlendirmek için tasarlanmış yapılandırılmış bir hizmet modeli uyguluyoruz.',
+      modules: [
+        { title: 'Pazar Keşfi ve Giriş', desc: 'İdeal Müşteri Profili (ICP) doğrulaması, rakip analizi ve fiyatlandırma sinyali analizi. Net bir görüş için potansiyel ortakların haritalanması.' },
+        { title: 'Şirket Kurulumu ve Uyum', desc: 'Tüzel kişilik seçimi (SRL/SPA veya A.Ş./Ltd. Şti.), vergi kayıtları, muhasebe kurulumu ve yerel banka entegrasyonu.' },
+        { title: 'İnsan ve Mobilite', desc: 'Vize/taşınma süreçlerinin koordinasyonu ve işe alım yollarının oluşturulması. Esnek iş gücü seçenekleri için yüklenici çerçeveleri.' },
+        { title: 'Ticari Etkinleştirme', desc: 'Kanal ortağı kurulumu, bayi anlaşmaları ve "İlk 10 Müşteri" planı. Hedef bölge için materyallerin yerelleştirilmesi.' },
+        { title: 'Sermaye ve Teşvikler', desc: 'Yatırımcı/hızlandırıcı tanıştırmaları, seyreltici olmayan teşviklerin haritalanması ve hibe başvuru desteği.' },
+        { title: 'Ölçekleme Operasyonları', desc: 'KPI enstrümantasyonu, OKR koçluğu ve sürdürülebilir genişlemeyi sağlamak için üç aylık operasyon değerlendirmeleri.' },
+      ],
+      tiersTitle: 'Büyüme Yolculuğunuz',
+      tierLabel: 'Katman',
+      tierCta: 'Başlayın',
+      tiers: [
+        { name: 'Launch', duration: '6-8 Hafta', desc: 'Kuruluş oluşturma, temel uyum ve hafif Pazara Giriş desteğine odaklanan "Hızlı Başlangıç" programı.' },
+        { name: 'Grow', duration: '3-6 Ay', desc: 'Tam uyum, ticari etkinleştirme ve aktif işe alım desteğini kapsayan derinleştirme aşaması.' },
+        { name: 'Scale', duration: '6-12 Ay', desc: 'Gömülü operasyon temposu, yönetici raporlaması ve stratejik ortaklıklar içeren uzun vadeli ortaklık.' },
+      ],
+      whyTitle: 'Neden Alvolo?',
+      whyBody: 'Biz sadece danışman değiliz; operatörüz. İş geliştirme, analitik ve uçtan uca operasyonları birleştirerek, Türkiye-İtalya alanında başka hiçbir butik danışmanlığın sunamadığı benzersiz bir değer teklifi sunuyoruz. Zamanla biriken ağ etkileri yaratarak kanıtlanmış bir ekosisteme erişim sağlıyoruz.',
+      whyCta: 'Keşif Görüşmesi Ayırtın',
+    },
   },
   it: {
     nav: {
@@ -946,6 +1025,36 @@ export const translations: Record<Locale, TranslationType> = {
           a: 'Assolutamente. Offriamo una discovery call gratuita in cui valutiamo la vostra situazione e delineiamo una roadmap preliminare. Non ci sono impegni finché entrambe le parti non concordano che esiste un percorso chiaro e supportato dai dati. Crediamo nel guadagnare fiducia attraverso la trasparenza, non la pressione.',
         },
       ],
+    },
+    startupCorridorPage: {
+      badge: 'Nuovo Pilastro Strategico',
+      title: 'Il Corridoio Startup Turchia-Italia',
+      subtitle: 'Un Motore di Espansione Basato sui Dati. Eliminando le frizioni dell\'espansione transfrontaliera con un playbook standardizzato e ripetibile.',
+      missionTitle: 'La Nostra Missione',
+      missionP1: 'Miriamo a risolvere lo specifico "gap di mercato" in cui i fondatori faticano a navigare le complessità di costituzione, fiscalità, conformità e strategia di go-to-market nell\'espansione tra queste due regioni.',
+      missionP2: 'La nostra ambizione è essere il',
+      missionHighlight: 'primo operatore di espansione TR-IT full-stack e basato sui dati',
+      frameworkTitle: 'Il Framework di Espansione a 6 Moduli',
+      frameworkSubtitle: 'Non diamo solo consigli; implementiamo un modello di servizio configurato per guidarvi in ogni fase.',
+      modules: [
+        { title: 'Scoperta del Mercato e Ingresso', desc: 'Validazione del Profilo Cliente Ideale (ICP), mappatura dei concorrenti e analisi dei segnali di prezzo. Mappatura dei potenziali partner per un quadro chiaro.' },
+        { title: 'Costituzione Aziendale e Conformità', desc: 'Gestione della selezione dell\'entità giuridica (SRL/SPA o A.Ş./Ltd. Şti.), registrazioni fiscali, configurazione contabile e onboarding bancario locale.' },
+        { title: 'Persone e Mobilità', desc: 'Coordinamento dei processi di visto/trasferimento e creazione di percorsi di assunzione. Framework per contractor per opzioni di forza lavoro flessibili.' },
+        { title: 'Abilitazione Commerciale', desc: 'Assistenza nella configurazione di partner di canale, accordi di rivendita e piano "Primi 10 Clienti". Localizzazione del materiale per la regione target.' },
+        { title: 'Capitale e Incentivi', desc: 'Presentazioni a investitori/acceleratori, mappatura degli incentivi non dilutivi e supporto per le domande di sovvenzione.' },
+        { title: 'Operare per Scalare', desc: 'Strumentazione KPI, coaching OKR e revisioni operative trimestrali per garantire un\'espansione sostenibile.' },
+      ],
+      tiersTitle: 'Il Vostro Percorso di Crescita',
+      tierLabel: 'Livello',
+      tierCta: 'Inizia',
+      tiers: [
+        { name: 'Launch', duration: '6-8 Settimane', desc: 'Un programma "Fast-Start" focalizzato sulla creazione dell\'entità, conformità essenziale e supporto leggero Go-To-Market.' },
+        { name: 'Grow', duration: '3-6 Mesi', desc: 'Una fase di approfondimento che gestisce conformità completa, abilitazione commerciale e supporto attivo alle assunzioni.' },
+        { name: 'Scale', duration: '6-12 Mesi', desc: 'Partnership a lungo termine con cadenza operativa integrata, reporting esecutivo e partnership strategiche.' },
+      ],
+      whyTitle: 'Perché Alvolo?',
+      whyBody: 'Non siamo solo consulenti; siamo operatori. Combinando sviluppo commerciale, analisi e operazioni end-to-end, offriamo una proposta di valore unica che nessun\'altra consulenza boutique nello spazio Turchia-Italia fornisce. Creiamo effetti di rete che si compongono nel tempo, dandovi accesso a un ecosistema collaudato.',
+      whyCta: 'Prenota una Discovery Call',
     },
   },
 };

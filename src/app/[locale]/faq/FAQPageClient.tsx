@@ -112,7 +112,7 @@ export default function FAQPageClient() {
                     </p>
                     <Link
                         href={`/${locale}/contact`}
-                        className="inline-flex items-center gap-3 rounded-full bg-white text-void-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                        className="inline-flex items-center gap-3 rounded-full bg-black text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.15)]"
                     >
                         {t.nav.contact}
                         <FaArrowRight className="w-3 h-3" />
