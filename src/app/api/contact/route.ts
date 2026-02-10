@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 export async function POST(request: Request) {
   const toEmail = process.env.CONTACT_EMAIL || 'alvoloconsulting@gmail.com';
