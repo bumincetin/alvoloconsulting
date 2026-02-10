@@ -9,7 +9,7 @@
     "lint": "next lint",
     "deploy": "npm run build && gh-pages -d out",
     "pages:build": "opennextjs-cloudflare build && node scripts/build-worker.mjs",
-    "pages:deploy": "npm run pages:build && wrangler pages deploy .open-next-v2/assets"
+    "pages:deploy": "npm run pages:build && wrangler pages deploy .open-next/assets"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
