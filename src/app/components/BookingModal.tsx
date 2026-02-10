@@ -187,7 +187,14 @@ import { createPortal } from 'react-dom';
 export default function BookingModal({ isOpen, onClose, locale }: BookingModalProps) {
     const [mounted, setMounted] = useState(false);
     const [step, setStep] = useState<'form' | 'loading' | 'success'>('form');
-    // ... (other state variables) ...
+    const [selectedService, setSelectedService] = useState('integration');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [message, setMessage] = useState('');
+    const [errors, setErrors] = useState<FormErrors>({});
+    const [honeypot, setHoneypot] = useState('');
 
     const lang = (locale as 'en' | 'tr' | 'it') || 'en';
     const t = translations[lang] || translations.en;
@@ -208,7 +215,58 @@ export default function BookingModal({ isOpen, onClose, locale }: BookingModalPr
         };
     }, [isOpen]);
 
-    // ... (generateTimeSlots, validate, handleSubmit, handleClose functions remain the same) ...
+    const generateTimeSlots = (): string[] => {
+        const slots: string[] = [];
+        for (let hour = 9; hour <= 18; hour++) {
+            slots.push(`${hour.toString().padStart(2, '0')}:00`);
+        }
+        return slots;
+    };
+
+    const timeSlots = generateTimeSlots();
+
+    const validate = (): boolean => {
+        const newErrors: FormErrors = {};
+        if (!name) newErrors.name = t.nameRequired;
+        if (!email) newErrors.email = t.emailRequired;
+        if (!date) newErrors.date = t.dateRequired;
+        if (!time) newErrors.time = t.timeRequired;
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // Honeypot spam check
+        if (honeypot) {
+            setStep('success');
+            return;
+        }
+
+        if (!validate()) return;
+
+        setStep('loading');
+
+        // Simulate processing — replace with actual email/calendar API
+        await new Promise(resolve => setTimeout(resolve, 1800));
+
+        setStep('success');
+    };
+
+    const handleClose = () => {
+        onClose();
+        setTimeout(() => {
+            setStep('form');
+            setDate('');
+            setTime('');
+            setEmail('');
+            setName('');
+            setMessage('');
+            setHoneypot('');
+            setErrors({});
+        }, 300);
+    };
 
     if (!mounted) return null;
 
