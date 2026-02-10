@@ -220,9 +220,9 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
   }
 
   return (
-    <main className="bg-transparent text-electric-platinum pt-32 pb-20 px-6">
+    <main className="relative bg-transparent text-electric-platinum pt-32 pb-20 px-6">
       <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/e923e67d71fed3e0853ec57f0348451e/manifest/video.m3u8" />
-      <div className="container mx-auto max-w-6xl">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <motion.div
@@ -248,7 +248,7 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
                 href={`${PORTAL_URL}/login`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-cyan text-void font-mono font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(229,228,226,0.3)]"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-black text-void font-mono font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(229,228,226,0.3)]"
               >
                 <FaLock className="w-4 h-4" />
                 {t.loginButton}

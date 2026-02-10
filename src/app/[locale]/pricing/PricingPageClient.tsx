@@ -16,9 +16,9 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
   const t = getTranslation(locale);
 
   return (
-    <main className="bg-transparent text-electric-platinum pt-32 pb-20 px-6">
+    <main className="relative bg-transparent text-electric-platinum pt-32 pb-20 px-6">
       <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/408ad52e3f15bc8f01ae69d194a8cf3a/manifest/video.m3u8" />
-      <div className="container mx-auto max-w-6xl">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

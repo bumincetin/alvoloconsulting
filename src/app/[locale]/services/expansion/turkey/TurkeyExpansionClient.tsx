@@ -125,9 +125,9 @@ const TurkeyExpansionClient: React.FC<TurkeyExpansionClientProps> = ({ locale })
   };
 
   return (
-    <main className="bg-transparent text-electric-platinum min-h-screen pt-32 pb-24 px-6">
+    <main className="relative bg-transparent text-electric-platinum min-h-screen pt-32 pb-24 px-6">
       <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/257c7359efd4b4aaebcc03aa8fc78a36/manifest/video.m3u8" />
-      <div className="container mx-auto max-w-6xl">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         {/* Back Link */}
         <Link
           href={`/${locale}/services`}

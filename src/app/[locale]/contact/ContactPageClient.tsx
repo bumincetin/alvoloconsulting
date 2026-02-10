@@ -74,7 +74,7 @@ export default function ContactPageClient() {
       sending: "Gönderiliyor...",
       awaiting: "Giriş Bekleniyor.",
       transmitted: "İletim Güvenli.",
-      bookCta: "Veya doğrudan bir danışmanlık planlayın",
+      bookCta: "Veya doğrudan bir ön görüşme planlayın",
       bookBtn: "Danışmanlık Randevusu",
     },
     it: {

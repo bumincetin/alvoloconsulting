@@ -125,9 +125,9 @@ const ItalyExpansionClient: React.FC<ItalyExpansionClientProps> = ({ locale }) =
   };
 
   return (
-    <main className="bg-transparent text-electric-platinum min-h-screen pt-32 pb-24 px-6">
+    <main className="relative bg-transparent text-electric-platinum min-h-screen pt-32 pb-24 px-6">
       <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/c9ddd33ac3d964e5d33b31ce849e8f95/manifest/video.m3u8" />
-      <div className="container mx-auto max-w-6xl">
+      <div className="relative z-10 container mx-auto max-w-6xl">
         {/* Back Link */}
         <Link
           href={`/${locale}/services`}

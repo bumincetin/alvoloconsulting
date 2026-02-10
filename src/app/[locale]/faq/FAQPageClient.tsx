@@ -59,9 +59,9 @@ export default function FAQPageClient() {
     const t = getTranslation(locale);
 
     return (
-        <main className="min-h-screen bg-transparent text-electric-platinum pt-32 pb-20">
+        <main className="relative min-h-screen bg-transparent text-electric-platinum pt-32 pb-20">
             <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/964cb3eddff1a67e3772aac9a7aceea2/manifest/video.m3u8" />
-            <div className="container-wide mx-auto px-6">
+            <div className="relative z-10 container-wide mx-auto px-6">
                 {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-20 space-y-6">
                     <motion.div

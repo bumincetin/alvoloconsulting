@@ -548,7 +548,7 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
   return (
     <main className="relative bg-transparent text-electric-platinum min-h-screen pt-32 pb-20 px-6">
       <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/dd17599dfa77f41517133fa7a4967535/manifest/video.m3u8" />
-      <div className="container mx-auto max-w-7xl">
+      <div className="relative z-10 container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

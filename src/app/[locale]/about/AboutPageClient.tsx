@@ -107,7 +107,7 @@ export default function AboutPageClient() {
     <main className="relative min-h-screen bg-transparent text-electric-platinum">
       <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/df176a2fb2ea2b64bd21ae1c10d3af6a/manifest/video.m3u8" />
       {/* ── Philosophy Section ── */}
-      <section className="relative overflow-hidden px-6 py-32 md:px-16">
+      <section className="relative z-10 overflow-hidden px-6 py-32 md:px-16">
         <div className="mx-auto max-w-6xl flex flex-col lg:flex-row gap-16 items-start">
           <div className="lg:w-1/2 space-y-6">
             <motion.h2
