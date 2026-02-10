@@ -1,6 +1,6 @@
 import ContactPageClient from './ContactPageClient';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 export default async function ContactPage() {
   return <ContactPageClient />;

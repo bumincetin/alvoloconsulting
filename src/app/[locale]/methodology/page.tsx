@@ -1,7 +1,7 @@
 import { type Locale } from '@/lib/translations';
 import MethodologyPageClient from './MethodologyPageClient';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 export default async function MethodologyPage({
   params,
