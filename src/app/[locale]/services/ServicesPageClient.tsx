@@ -118,14 +118,14 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
     const combinedServices = [
       ...t.services.integrationServices.map((service, index) => ({
         ...service,
-        type: 'integration',
+        type: 'integration' as const,
         Icon: integrationIcons[index % integrationIcons.length],
         metrics: mockMetrics[index % mockMetrics.length],
         video: serviceVideos[index % serviceVideos.length],
       })),
       ...t.services.financialServices.map((service, index) => ({
         ...service,
-        type: 'financial',
+        type: 'financial' as const,
         Icon: financialIcons[index % financialIcons.length],
         metrics: mockMetrics[(index + 3) % mockMetrics.length],
         video: serviceVideos[(index + 4) % serviceVideos.length],
