@@ -74,7 +74,7 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
                 <Link
                   href={`/${locale}/contact`}
                   className={`w-full py-3 rounded-xl font-semibold text-sm uppercase tracking-wider text-center block transition-all hover:scale-[1.02] ${pkg.popular
-                    ? 'bg-accent-cyan text-void'
+                    ? 'bg-accent-black text-void'
                     : 'bg-obsidian-plate/70 border border-tungsten-grey/60 text-electric-platinum hover:border-holographic-cyan/30'
                     }`}
                 >
