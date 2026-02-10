@@ -99,6 +99,33 @@ const serviceVideos = [
 export default function ServicesPageClient({ locale }: ServicesPageClientProps) {
   const t = getTranslation(locale);
 
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
+  // Pre-calculate randomized metrics once on mount to avoid hydration mismatch
+  const [randomizedServices, setRandomizedServices] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Combine integration and financial services with their assigned icons/metrics/videos
+    const combinedServices = [
+      ...t.services.integrationServices.map((service, index) => ({
+        ...service,
+        type: 'integration',
+        Icon: integrationIcons[index % integrationIcons.length],
+        metrics: mockMetrics[index % mockMetrics.length],
+        video: serviceVideos[index % serviceVideos.length],
+      })),
+      ...t.services.financialServices.map((service, index) => ({
+        ...service,
+        type: 'financial',
+        Icon: financialIcons[index % financialIcons.length],
+        metrics: mockMetrics[(index + 3) % mockMetrics.length],
+        video: serviceVideos[(index + 4) % serviceVideos.length],
+      }))
+    ];
+    setRandomizedServices(combinedServices);
+  }, [t]);
+
+
   return (
     <main className="relative min-h-screen bg-transparent text-electric-platinum">
       <PageVideoBackground src={serviceVideos[0]} />
@@ -177,45 +204,44 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
             animate="show"
             className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
           >
-            {t.services.integrationServices.map((service, index) => {
-              const Icon = integrationIcons[index % integrationIcons.length];
-              const metrics = mockMetrics[index % mockMetrics.length];
-              const video = serviceVideos[index % serviceVideos.length];
-              return (
-                <motion.div
-                  key={service.title}
-                  variants={tileVariants}
-                  whileHover={{ scale: 1.03 }}
-                  className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                  <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+            {randomizedServices.filter(s => s.type === 'integration').map((service) => (
+              <motion.div
+                key={service.title}
+                variants={tileVariants}
+                whileHover={{ scale: 1.03 }}
+                onMouseEnter={() => setHoveredCard(service.title)}
+                onMouseLeave={() => setHoveredCard(null)}
+                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+                  {hoveredCard === service.title && (
                     <HlsVideo
-                      src={video}
+                      src={service.video}
                       className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
                     />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.2),_transparent_65%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
+                  )}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.2),_transparent_65%)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
+                </div>
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
+                      <service.Icon className="h-4 w-4 text-electric-platinum" />
+                    </span>
+                    <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
                   </div>
-                  <div className="relative z-10 space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
-                        <Icon className="h-4 w-4 text-electric-platinum" />
-                      </span>
-                      <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
-                    </div>
-                    <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
-                      {service.description}
-                    </p>
-                    <div className="space-y-2">
-                      {metrics.map((metric) => (
-                        <MetricTicker key={`${service.title}-${metric}`} label={metric} />
-                      ))}
-                    </div>
+                  <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
+                    {service.description}
+                  </p>
+                  <div className="space-y-2">
+                    {service.metrics.map((metric: string) => (
+                      <MetricTicker key={`${service.title}-${metric}`} label={metric} />
+                    ))}
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </section>
 
@@ -237,45 +263,44 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
             animate="show"
             className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
           >
-            {t.services.financialServices.map((service, index) => {
-              const Icon = financialIcons[index % financialIcons.length];
-              const metrics = mockMetrics[(index + 3) % mockMetrics.length];
-              const video = serviceVideos[(index + 4) % serviceVideos.length];
-              return (
-                <motion.div
-                  key={service.title}
-                  variants={tileVariants}
-                  whileHover={{ scale: 1.03 }}
-                  className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                  <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+            {randomizedServices.filter(s => s.type === 'financial').map((service) => (
+              <motion.div
+                key={service.title}
+                variants={tileVariants}
+                whileHover={{ scale: 1.03 }}
+                onMouseEnter={() => setHoveredCard(service.title)}
+                onMouseLeave={() => setHoveredCard(null)}
+                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
+                <div className="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+                  {hoveredCard === service.title && (
                     <HlsVideo
-                      src={video}
+                      src={service.video}
                       className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
                     />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.15),_transparent_65%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
+                  )}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.15),_transparent_65%)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
+                </div>
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
+                      <service.Icon className="h-4 w-4 text-electric-platinum" />
+                    </span>
+                    <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
                   </div>
-                  <div className="relative z-10 space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
-                        <Icon className="h-4 w-4 text-electric-platinum" />
-                      </span>
-                      <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
-                    </div>
-                    <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
-                      {service.description}
-                    </p>
-                    <div className="space-y-2">
-                      {metrics.map((metric) => (
-                        <MetricTicker key={`${service.title}-${metric}`} label={metric} />
-                      ))}
-                    </div>
+                  <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
+                    {service.description}
+                  </p>
+                  <div className="space-y-2">
+                    {service.metrics.map((metric: string) => (
+                      <MetricTicker key={`${service.title}-${metric}`} label={metric} />
+                    ))}
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </section>
 

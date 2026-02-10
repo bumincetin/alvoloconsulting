@@ -47,7 +47,7 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
               <GlassCard className={`h-full relative ${pkg.popular ? 'border-accent-cyan' : ''}`}>
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <div className="flex items-center gap-1 px-4 py-1 rounded-full bg-accent-cyan text-void text-xs font-bold uppercase tracking-wider">
+                    <div className="flex items-center gap-1 px-4 py-1 rounded-full bg-accent-black text-void text-xs font-bold uppercase tracking-wider">
                       <FaStar className="w-3 h-3" />
                       {locale === 'tr' ? 'Popüler' : locale === 'it' ? 'Popolare' : 'Popular'}
                     </div>
