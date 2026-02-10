@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { FaLock, FaFileAlt, FaComments, FaChartLine, FaShieldAlt, FaUserShield, FaArrowRight } from 'react-icons/fa';
 import GlassCard from '../../components/ui/GlassCard';
 import { type Locale } from '@/lib/translations';
+import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 interface PortalPageClientProps {
   locale: Locale;
@@ -219,7 +220,8 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
   }
 
   return (
-    <main className="bg-void-black text-electric-platinum pt-32 pb-20 px-6">
+    <main className="bg-transparent text-electric-platinum pt-32 pb-20 px-6">
+      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/e923e67d71fed3e0853ec57f0348451e/manifest/video.m3u8" />
       <div className="container mx-auto max-w-6xl">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">

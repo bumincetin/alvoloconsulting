@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { FaCheck, FaStar } from 'react-icons/fa';
 import GlassCard from '../../components/ui/GlassCard';
 import { getTranslation, type Locale } from '@/lib/translations';
+import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 interface PricingPageClientProps {
   locale: Locale;
@@ -15,7 +16,8 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
   const t = getTranslation(locale);
 
   return (
-    <main className="bg-void-black text-electric-platinum pt-32 pb-20 px-6">
+    <main className="bg-transparent text-electric-platinum pt-32 pb-20 px-6">
+      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/408ad52e3f15bc8f01ae69d194a8cf3a/manifest/video.m3u8" />
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -72,8 +74,8 @@ export default function PricingPageClient({ locale }: PricingPageClientProps) {
                 <Link
                   href={`/${locale}/contact`}
                   className={`w-full py-3 rounded-xl font-semibold text-sm uppercase tracking-wider text-center block transition-all hover:scale-[1.02] ${pkg.popular
-                      ? 'bg-accent-cyan text-void'
-                      : 'bg-obsidian-plate/70 border border-tungsten-grey/60 text-electric-platinum hover:border-holographic-cyan/30'
+                    ? 'bg-accent-cyan text-void'
+                    : 'bg-obsidian-plate/70 border border-tungsten-grey/60 text-electric-platinum hover:border-holographic-cyan/30'
                     }`}
                 >
                   {pkg.cta}

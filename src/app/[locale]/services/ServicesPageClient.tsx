@@ -21,6 +21,7 @@ import {
 import ScrambleText from "@/components/UI/ScrambleText";
 import HlsVideo from "@/components/Media/HlsVideo";
 import { getTranslation, type Locale } from "@/lib/translations";
+import PageVideoBackground from "@/components/Media/PageVideoBackground";
 
 interface ServicesPageClientProps {
   locale: Locale;
@@ -99,7 +100,9 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
   const t = getTranslation(locale);
 
   return (
-    <main className="relative min-h-screen bg-void-black text-electric-platinum">
+    <main className="relative min-h-screen bg-transparent text-electric-platinum">
+      <PageVideoBackground src={serviceVideos[0]} />
+
       <div className="relative z-10 px-8 py-16">
         <div className="mb-12 space-y-4">
           <ScrambleText

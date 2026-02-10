@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { FaLinkedin, FaGlobe } from "react-icons/fa";
 import ScrambleText from "@/components/UI/ScrambleText";
 import { getTranslation, type Locale } from "@/lib/translations";
+import PageVideoBackground from "@/components/Media/PageVideoBackground";
 
 type Operative = {
   id: string;
@@ -103,7 +104,8 @@ export default function AboutPageClient() {
   const { home } = t;
 
   return (
-    <main className="relative min-h-screen bg-void-black text-electric-platinum">
+    <main className="relative min-h-screen bg-transparent text-electric-platinum">
+      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/df176a2fb2ea2b64bd21ae1c10d3af6a/manifest/video.m3u8" />
       {/* ── Philosophy Section ── */}
       <section className="relative overflow-hidden px-6 py-32 md:px-16">
         <div className="mx-auto max-w-6xl flex flex-col lg:flex-row gap-16 items-start">

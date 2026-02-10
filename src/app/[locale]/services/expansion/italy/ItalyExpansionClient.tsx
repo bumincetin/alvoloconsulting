@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowRight, FaBuilding, FaFileContract, FaHandshake, FaUsers, FaChartLine, FaGlobe } from 'react-icons/fa';
 import GlassCard from '@/app/components/ui/GlassCard';
 import { type Locale } from '@/lib/translations';
+import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 interface ItalyExpansionClientProps {
   locale: Locale;
@@ -124,7 +125,8 @@ const ItalyExpansionClient: React.FC<ItalyExpansionClientProps> = ({ locale }) =
   };
 
   return (
-    <main className="bg-void-black text-electric-platinum min-h-screen pt-32 pb-24 px-6">
+    <main className="bg-transparent text-electric-platinum min-h-screen pt-32 pb-24 px-6">
+      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/c9ddd33ac3d964e5d33b31ce849e8f95/manifest/video.m3u8" />
       <div className="container mx-auto max-w-6xl">
         {/* Back Link */}
         <Link

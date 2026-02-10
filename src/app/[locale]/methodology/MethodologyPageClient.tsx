@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import ScrambleText from '@/components/UI/ScrambleText';
 import { type Locale } from '@/lib/translations';
+import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 interface MethodologyPageClientProps {
   locale: Locale;
@@ -545,7 +546,8 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
   }
 
   return (
-    <main className="relative bg-void-black text-electric-platinum min-h-screen pt-32 pb-20 px-6">
+    <main className="relative bg-transparent text-electric-platinum min-h-screen pt-32 pb-20 px-6">
+      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/dd17599dfa77f41517133fa7a4967535/manifest/video.m3u8" />
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div

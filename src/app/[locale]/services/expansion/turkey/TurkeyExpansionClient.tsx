@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowRight, FaIndustry, FaCogs, FaShippingFast, FaMoneyBillWave, FaUserTie, FaBalanceScale } from 'react-icons/fa';
 import GlassCard from '@/app/components/ui/GlassCard';
 import { type Locale } from '@/lib/translations';
+import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 interface TurkeyExpansionClientProps {
   locale: Locale;
@@ -124,7 +125,8 @@ const TurkeyExpansionClient: React.FC<TurkeyExpansionClientProps> = ({ locale })
   };
 
   return (
-    <main className="bg-void-black text-electric-platinum min-h-screen pt-32 pb-24 px-6">
+    <main className="bg-transparent text-electric-platinum min-h-screen pt-32 pb-24 px-6">
+      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/257c7359efd4b4aaebcc03aa8fc78a36/manifest/video.m3u8" />
       <div className="container mx-auto max-w-6xl">
         {/* Back Link */}
         <Link

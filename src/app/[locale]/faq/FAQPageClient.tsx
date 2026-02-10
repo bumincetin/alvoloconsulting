@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { getTranslation, type Locale } from '@/lib/translations';
 import GlassCard from '@/app/components/ui/GlassCard';
+import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
     const [open, setOpen] = useState(false);
@@ -58,7 +59,8 @@ export default function FAQPageClient() {
     const t = getTranslation(locale);
 
     return (
-        <main className="min-h-screen bg-void-black text-electric-platinum pt-32 pb-20">
+        <main className="min-h-screen bg-transparent text-electric-platinum pt-32 pb-20">
+            <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/964cb3eddff1a67e3772aac9a7aceea2/manifest/video.m3u8" />
             <div className="container-wide mx-auto px-6">
                 {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-20 space-y-6">

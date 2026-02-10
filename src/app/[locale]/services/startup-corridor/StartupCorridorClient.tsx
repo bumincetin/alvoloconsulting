@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FaRocket, FaChartLine, FaBuilding, FaHandshake, FaCoins, FaCogs } from 'react-icons/fa';
 import { useParams } from 'next/navigation';
 import { getTranslation, type Locale } from '@/lib/translations';
+import PageVideoBackground from '@/components/Media/PageVideoBackground';
 import GlassCard from '@/app/components/ui/GlassCard';
 import MagneticButton from '@/components/UI/MagneticButton';
 
@@ -24,7 +25,8 @@ export default function StartupCorridorClient() {
     const p = t.startupCorridorPage;
 
     return (
-        <main className="min-h-screen bg-void-black text-electric-platinum pt-32 pb-20">
+        <main className="min-h-screen bg-transparent text-electric-platinum pt-32 pb-20">
+            <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/136a8a211c6c3b1cc1fd7b1c7d836c58/manifest/video.m3u8" />
             {/* Hero Section */}
             <section className="container-wide mx-auto px-6 mb-24">
                 <div className="max-w-4xl mx-auto text-center space-y-8">
