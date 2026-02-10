@@ -1,5 +1,5 @@
 name        = "alvoloconsulting"
-pages_build_output_dir = ".open-next/assets"
+pages_build_output_dir = ".open-next-v2/assets"
 compatibility_flags = ["nodejs_compat"]
 compatibility_date = "2025-05-30"
 

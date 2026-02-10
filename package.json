@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "npm run build && gh-pages -d out",
-    "pages:build": "opennextjs-cloudflare build",
-    "pages:deploy": "npm run pages:build && wrangler pages deploy .open-next/assets"
+    "pages:build": "opennextjs-cloudflare build && node scripts/build-worker.mjs",
+    "pages:deploy": "npm run pages:build && wrangler pages deploy .open-next-v2/assets"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",

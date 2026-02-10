@@ -1,0 +1,158 @@
+﻿
+> alvoloconsulting@0.1.0 pages:build
+> opennextjs-cloudflare build && node scripts/build-worker.mjs
+
+
+ÔöîÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÉ
+Ôöé OpenNext ÔÇö Cloudflare build Ôöé
+ÔööÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÿ
+
+node.exe : WARN OpenNext 
+is not fully compatible 
+with Windows.
+At C:\Program 
+Files\nodejs\npm.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (W  
+  ARN OpenNext i...e wi   
+ th Windows.:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+WARN For optimal 
+performance, it is 
+recommended to use 
+Windows Subsystem for 
+Linux (WSL).
+WARN While OpenNext may 
+function on Windows, it 
+could encounter 
+unpredictable failures 
+during runtime.
+App directory: C:\Users\bumin\Desktop\projects\alvoloconsulting
+Next.js version : 16.1.6
+@opennextjs/cloudflare version: 1.16.3
+@opennextjs/aws version: 3.9.15
+opennextjs-cloudflare 
+build
+
+Build an OpenNext 
+Cloudflare worker
+
+Options:
+      --help              
+                  Show 
+help                  
+[boolean]
+      --version           
+                  Show 
+version number        
+[boolean]
+  -c, --config            
+                  Path to 
+Wrangler configuration 
+file
+                          
+                          
+                    
+[string]
+      --configPath        
+                  Path to 
+Wrangler configuration 
+file
+                          
+                          
+       [deprecated] 
+[string]
+  -e, --env               
+                  
+Wrangler environment to 
+use for
+                          
+                  
+operations                
+  [string]
+  -s, --skipNextBuild, 
+--skipBuild          Skip 
+building the Next.js app
+                          
+                          
+  [boolean] [default: 
+false]
+      --noMinify          
+                  Disable 
+worker minification
+                          
+                          
+  [boolean] [default: 
+false]
+      
+--skipWranglerConfigCheck 
+            Skip checking 
+for a Wrangler config
+                          
+                          
+  [boolean] [default: 
+false]
+      
+--openNextConfigPath      
+            Path to the 
+OpenNext configuration
+                          
+                  file    
+                    
+[string]
+      --dangerouslyUseUnsu
+pportedNextVersi  Allow 
+using unsupported Next.js
+      on                  
+                  
+versions  [boolean] 
+[default: false]
+
+Error: EBUSY: resource 
+busy or locked, rmdir 'C:\
+Users\bumin\Desktop\projec
+ts\alvoloconsulting\.open-
+next'
+    at rmdirSync 
+(node:fs:1202:11)
+    at _rmdirSync (node:in
+ternal/fs/rimraf:236:5)
+    at rimrafSync (node:in
+ternal/fs/rimraf:194:7)
+    at Object.rmSync 
+(node:fs:1248:10)
+    at 
+Module.initOutputDir (file
+:///C:/Users/bumin/Desktop
+/projects/alvoloconsulting
+/node_modules/@opennextjs/
+aws/dist/build/helper.js:3
+84:8)
+    at build (file:///C:/U
+sers/bumin/Desktop/project
+s/alvoloconsulting/node_mo
+dules/@opennextjs/cloudfla
+re/dist/cli/build/build.js
+:41:17)
+    at async buildCommand 
+(file:///C:/Users/bumin/De
+sktop/projects/alvoloconsu
+lting/node_modules/@openne
+xtjs/cloudflare/dist/cli/c
+ommands/build.js:21:5) {
+  errno: -4082,
+  code: 'EBUSY',
+  syscall: 'rmdir',
+  path: 'C:\\Users\\bumin\
+\Desktop\\projects\\alvolo
+consulting\\.open-next'
+}

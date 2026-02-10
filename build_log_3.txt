@@ -61,3 +61,42 @@ Next.js version : 16.1.6
   Generating static pages using 11 workers (2/4) 
   Generating static pages using 11 workers (3/4) 
 Ô£ô Generating static pages using 11 workers (4/4) in 369.7ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+Ôöî Ôùï /
+Ôö£ Ôùï /_not-found
+Ôö£ ãÆ /[locale]
+Ôö£ ãÆ /[locale]/about
+Ôö£ ãÆ /[locale]/contact
+Ôö£ ãÆ /[locale]/faq
+Ôö£ ãÆ /[locale]/methodology
+Ôö£ ãÆ /[locale]/portal
+Ôö£ ãÆ /[locale]/pricing
+Ôö£ ãÆ /[locale]/services
+Ôö£ ãÆ /[locale]/services/expansion/italy
+Ôö£ ãÆ /[locale]/services/expansion/turkey
+Ôö£ ãÆ /[locale]/services/startup-corridor
+Ôöö ãÆ /api/contact
+
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+
+
+ÔöîÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÉ
+Ôöé OpenNext ÔÇö Generating bundle Ôöé
+ÔööÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÿ
+
+Bundling middleware function...
+Bundling static assets...
+Bundling cache assets...
+Building server function: default...
+Applying code patches: 4.901s
+# copyPackageTemplateFiles
+[35mÔÜÖ´©Å Bundling the OpenNext server...
+[0m
+[35mWorker saved in `.open-next\worker.js` ­ƒÜÇ
+[0m
+OpenNext build complete.
