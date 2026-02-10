@@ -246,7 +246,7 @@ export default function AboutPageClient() {
                       alt={operative.name}
                       width={64}
                       height={64}
-                      className="h-full w-full object-cover grayscale"
+                      className="h-full w-full object-cover"
                     />
                   </div>
                   <div className="space-y-2">
@@ -260,31 +260,9 @@ export default function AboutPageClient() {
                       <span>Years Active: {operative.yearsActive}</span>
                       <span>{operative.clearance}</span>
                     </div>
-                    <div className="flex items-center gap-3 mt-2">
-                      <a
-                        href={operative.linkedin}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-electric-platinum/40 hover:text-holographic-cyan transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaLinkedin size={16} />
-                      </a>
-                      {operative.website && (
-                        <a
-                          href={operative.website}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-electric-platinum/40 hover:text-holographic-cyan transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <FaGlobe size={16} />
-                        </a>
-                      )}
-                    </div>
                   </div>
                 </div>
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 flex flex-col justify-center p-6 bg-void-black/20 backdrop-blur-sm z-20">
+                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 flex flex-col justify-center p-6 bg-void-black/20 backdrop-blur-sm z-20">
                   <p className="text-xs uppercase tracking-[0.4em] text-holographic-cyan mb-4 font-semibold">
                     DATA OVERLAY
                   </p>
@@ -296,6 +274,28 @@ export default function AboutPageClient() {
                       </li>
                     ))}
                   </ul>
+                  <div className="flex items-center gap-4 mt-6 pt-4 border-t border-holographic-cyan/20">
+                    <a
+                      href={operative.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-electric-platinum/60 hover:text-holographic-cyan transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <FaLinkedin size={20} />
+                    </a>
+                    {operative.website && (
+                      <a
+                        href={operative.website}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-electric-platinum/60 hover:text-holographic-cyan transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <FaGlobe size={20} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
