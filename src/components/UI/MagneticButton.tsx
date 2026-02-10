@@ -35,9 +35,9 @@ export default function MagneticButton({ label = "INITIALIZE PROTOCOL" }: Magnet
       onMouseMove={handleMove}
       onMouseLeave={reset}
       onBlur={reset}
-      className="relative inline-flex items-center justify-center gap-3 rounded-full border border-tungsten-grey/80 bg-obsidian-plate/60 px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-electric-platinum shadow-[0_0_30px_rgba(46,46,94,0.25)] backdrop-blur transition hover:border-holographic-cyan/80 hover:text-electric-platinum hover:shadow-[0_0_40px_rgba(0,240,255,0.3)]"
+      className="relative inline-flex items-center justify-center gap-3 rounded-full border border-tungsten-grey/80 bg-obsidian-plate/60 px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-electric-platinum shadow-[0_0_30px_rgba(46,46,94,0.25)] backdrop-blur transition hover:border-holographic-cyan/80 hover:text-electric-platinum hover:shadow-[0_0_40px_rgba(229,228,226,0.3)]"
     >
-      <span className="h-2 w-2 rounded-full bg-holographic-cyan shadow-[0_0_12px_rgba(0,240,255,0.6)]" />
+      <span className="h-2 w-2 rounded-full bg-holographic-cyan shadow-[0_0_12px_rgba(229,228,226,0.6)]" />
       {label}
     </motion.button>
   );

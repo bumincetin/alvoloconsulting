@@ -246,7 +246,7 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
                 href={`${PORTAL_URL}/login`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-cyan text-void font-mono font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(0,240,255,0.3)]"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-cyan text-void font-mono font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(229,228,226,0.3)]"
               >
                 <FaLock className="w-4 h-4" />
                 {t.loginButton}

@@ -122,7 +122,7 @@ export default function ContactPageClient() {
           </p>
           <button
             onClick={() => setBookingOpen(true)}
-            className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-holographic-cyan text-void-black font-mono font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] shadow-[0_0_30px_rgba(0,240,255,0.25)]"
+            className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-holographic-cyan text-void-black font-mono font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] shadow-[0_0_30px_rgba(229,228,226,0.25)]"
           >
             {labels.bookBtn}
           </button>
@@ -138,7 +138,7 @@ export default function ContactPageClient() {
               <input
                 type="text"
                 required
-                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(229,228,226,0.35)]"
               />
             </label>
             <label className="block text-xs font-mono uppercase tracking-[0.3em] text-electric-platinum/60">
@@ -146,7 +146,7 @@ export default function ContactPageClient() {
               <input
                 type="email"
                 required
-                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(229,228,226,0.35)]"
               />
             </label>
             <label className="block text-xs font-mono uppercase tracking-[0.3em] text-electric-platinum/60">
@@ -154,7 +154,7 @@ export default function ContactPageClient() {
               <input
                 type="text"
                 required
-                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+                className="mt-3 w-full border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(229,228,226,0.35)]"
               />
             </label>
           </div>
@@ -165,13 +165,13 @@ export default function ContactPageClient() {
               <textarea
                 rows={6}
                 required
-                className="mt-3 w-full resize-none border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(0,240,255,0.35)]"
+                className="mt-3 w-full resize-none border-b border-tungsten-grey/70 bg-transparent pb-3 text-sm text-electric-platinum outline-none transition focus:border-holographic-cyan focus:shadow-[0_0_12px_rgba(229,228,226,0.35)]"
               />
             </label>
             <div className="space-y-4">
               <button
                 type="submit"
-                className="w-full rounded-full border border-tungsten-grey/80 bg-obsidian-plate/70 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-electric-platinum transition hover:border-holographic-cyan/80 hover:shadow-[0_0_20px_rgba(0,240,255,0.25)]"
+                className="w-full rounded-full border border-tungsten-grey/80 bg-obsidian-plate/70 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-electric-platinum transition hover:border-holographic-cyan/80 hover:shadow-[0_0_20px_rgba(229,228,226,0.25)]"
               >
                 {formState === "done" ? labels.done : labels.submit}
               </button>

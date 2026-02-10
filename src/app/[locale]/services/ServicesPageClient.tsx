@@ -150,7 +150,7 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
                       src={video}
                       className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
                     />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,240,255,0.2),_transparent_65%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.2),_transparent_65%)]" />
                     <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
                   </div>
                   <div className="relative z-10 space-y-4">
@@ -263,7 +263,7 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
                 className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/40 hover:shadow-[0_25px_80px_rgba(46,46,94,0.4)]"
               >
                 <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className="pointer-events-none absolute inset-0 rounded-3xl border border-tungsten-grey/40 shadow-[0_0_25px_rgba(0,240,255,0.08)]" />
+                <div className="pointer-events-none absolute inset-0 rounded-3xl border border-tungsten-grey/40 shadow-[0_0_25px_rgba(229,228,226,0.08)]" />
                 <div className="relative z-10 flex h-full min-h-[180px] flex-col justify-between">
                   <div>
                     <p className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">

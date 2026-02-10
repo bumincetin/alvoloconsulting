@@ -173,7 +173,7 @@ export default function AboutPageClient() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="absolute inset-16 rounded-full bg-gradient-to-br from-holographic-cyan/10 to-deep-indigo/20 shadow-[0_0_60px_rgba(0,240,255,0.15)]"
+                className="absolute inset-16 rounded-full bg-gradient-to-br from-holographic-cyan/10 to-deep-indigo/20 shadow-[0_0_60px_rgba(229,228,226,0.15)]"
                 style={{ animation: "breathe 8s infinite ease-in-out" }}
               />
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-holographic-cyan/40" />

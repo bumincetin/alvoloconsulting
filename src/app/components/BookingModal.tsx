@@ -432,7 +432,7 @@ export default function BookingModal({ isOpen, onClose, locale }: BookingModalPr
 
                                     <button
                                         type="submit"
-                                        className="w-full py-5 rounded-xl text-[11px] font-mono uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-2 bg-holographic-cyan text-void-black font-bold hover:bg-white hover:shadow-[0_0_30px_rgba(0,240,255,0.25)]"
+                                        className="w-full py-5 rounded-xl text-[11px] font-mono uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-2 bg-holographic-cyan text-void-black font-bold hover:bg-white hover:shadow-[0_0_30px_rgba(229,228,226,0.25)]"
                                     >
                                         {t.confirm}
                                         <FaArrowRight size={12} />

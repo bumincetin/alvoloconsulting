@@ -599,7 +599,7 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
             >
               <div className="relative h-full rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/30 hover:shadow-[0_25px_80px_rgba(0,0,0,0.6)] group">
                 <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className="pointer-events-none absolute inset-0 rounded-3xl border border-tungsten-grey/40 shadow-[0_0_25px_rgba(0,240,255,0.15)]" />
+                <div className="pointer-events-none absolute inset-0 rounded-3xl border border-tungsten-grey/40 shadow-[0_0_25px_rgba(229,228,226,0.15)]" />
 
                 <div className="relative z-10">
                   <div className="flex items-start justify-between mb-6">
@@ -687,7 +687,7 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
                 transition={{ duration: 0.5 }}
                 className="group"
               >
-                <div className="relative h-full rounded-2xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/30 hover:shadow-[0_25px_80px_rgba(0,240,255,0.2)] relative overflow-hidden">
+                <div className="relative h-full rounded-2xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/30 hover:shadow-[0_25px_80px_rgba(229,228,226,0.2)] relative overflow-hidden">
                   <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
                   <div className="absolute -top-4 -right-4 text-[5rem] font-serif font-bold text-electric-platinum/5 group-hover:text-electric-platinum/10 transition-colors">
                     {step.num}
@@ -773,7 +773,7 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
           <p className="text-electric-platinum/60 mb-8 max-w-lg mx-auto uppercase tracking-[0.1em] text-sm">{t.ctaDesc}</p>
           <Link
             href={`/${locale}/contact`}
-            className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-tungsten-grey/80 bg-obsidian-plate/70 text-electric-platinum font-mono font-bold uppercase tracking-widest text-sm hover:border-holographic-cyan/60 hover:text-electric-platinum hover:bg-deep-indigo/40 transition-all shadow-[0_0_30px_rgba(0,240,255,0.15)] hover:shadow-[0_0_40px_rgba(0,240,255,0.3)]"
+            className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-tungsten-grey/80 bg-obsidian-plate/70 text-electric-platinum font-mono font-bold uppercase tracking-widest text-sm hover:border-holographic-cyan/60 hover:text-electric-platinum hover:bg-deep-indigo/40 transition-all shadow-[0_0_30px_rgba(229,228,226,0.15)] hover:shadow-[0_0_40px_rgba(229,228,226,0.3)]"
           >
             {t.ctaButton}
             <FaArrowRight className="w-4 h-4" />

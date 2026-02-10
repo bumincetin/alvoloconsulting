@@ -195,7 +195,7 @@ const ItalyExpansionClient: React.FC<ItalyExpansionClientProps> = ({ locale }) =
                 <p className="text-electric-platinum/60 mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-cyan text-void font-semibold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105 shadow-[0_0_30px_rgba(0,240,255,0.3)]"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-cyan text-void font-semibold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105 shadow-[0_0_30px_rgba(229,228,226,0.3)]"
                 >
                   {t.ctaButton}
                   <FaArrowRight className="w-4 h-4" />
