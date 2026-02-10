@@ -5,9 +5,10 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 type MagneticButtonProps = {
   label?: string;
+  onClick?: () => void;
 };
 
-export default function MagneticButton({ label = "INITIALIZE PROTOCOL" }: MagneticButtonProps) {
+export default function MagneticButton({ label = "INITIALIZE PROTOCOL", onClick }: MagneticButtonProps) {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -35,6 +36,7 @@ export default function MagneticButton({ label = "INITIALIZE PROTOCOL" }: Magnet
       onMouseMove={handleMove}
       onMouseLeave={reset}
       onBlur={reset}
+      onClick={onClick}
       className="relative inline-flex items-center justify-center gap-3 rounded-full border border-tungsten-grey/80 bg-obsidian-plate/60 px-8 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-electric-platinum shadow-[0_0_30px_rgba(46,46,94,0.25)] backdrop-blur transition hover:border-holographic-cyan/80 hover:text-electric-platinum hover:shadow-[0_0_40px_rgba(229,228,226,0.3)]"
     >
       <span className="h-2 w-2 rounded-full bg-holographic-cyan shadow-[0_0_12px_rgba(229,228,226,0.6)]" />

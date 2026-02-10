@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import GlassCard from "@/app/components/ui/GlassCard";
 import {
+  FaRocket,
   FaArrowRight,
   FaBalanceScale,
   FaBuilding,
@@ -114,6 +116,37 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
             {t.services.subtitle}
           </p>
         </div>
+
+        {/* ── Startup Corridor Feature ── */}
+        <section className="mb-24">
+          <GlassCard className="relative overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-16 group">
+            <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-50" />
+            <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-white/5 blur-3xl group-hover:bg-white/10 transition-colors duration-700" />
+
+            <div className="relative z-10 hidden md:flex h-32 w-32 items-center justify-center rounded-full border border-tungsten-grey/60 bg-obsidian-plate/50 backdrop-blur-md shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+              <FaRocket className="h-12 w-12 text-white" />
+            </div>
+
+            <div className="relative z-10 flex-1 text-center md:text-left">
+              <div className="inline-block px-3 py-1 mb-4 rounded-full border border-white/20 bg-white/5 text-[10px] uppercase tracking-widest text-electric-platinum">
+                New Strategic Pillar
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
+                The Turkey-Italy Startup Corridor
+              </h2>
+              <p className="text-electric-platinum/70 text-sm md:text-base leading-relaxed mb-8 max-w-2xl">
+                The definitive data-driven bridge between Turkish and Italian innovation ecosystems. A standardized, repeatable, and data-driven expansion engine.
+              </p>
+              <Link
+                href={`/${locale}/services/startup-corridor`}
+                className="inline-flex items-center gap-3 rounded-full bg-white text-void-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+              >
+                Explore the Corridor
+                <FaArrowRight />
+              </Link>
+            </div>
+          </GlassCard>
+        </section>
 
         <section className="mb-16">
           <div className="mb-6 flex items-center justify-between">
