@@ -14,7 +14,7 @@ const Footer: React.FC<FooterProps> = ({ locale = 'en', t }) => {
   const l = (href: string) => `/${locale}${href}`;
 
   return (
-    <footer className="bg-void-black relative z-10">
+    <footer className="bg-[#111418] relative z-10">
       <div className="container mx-auto px-6 pt-12 pb-8">
         {/* Compact Site Index */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs uppercase tracking-[0.15em] pb-10 border-b border-tungsten-grey/20">

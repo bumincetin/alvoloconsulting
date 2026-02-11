@@ -48,9 +48,9 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 p-3 px-6 rounded-full bg-void/60 backdrop-blur-2xl border border-glass-border hidden md:flex items-center gap-4 w-[95%] max-w-fit justify-center">
+      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 p-3 px-4 lg:px-6 rounded-full bg-void/60 backdrop-blur-2xl border border-glass-border hidden md:flex items-center flex-nowrap gap-2 lg:gap-4 w-[95%] max-w-fit justify-center">
         {/* Logo */}
-        <Link href={`/${locale}`} className="mr-2">
+        <Link href={`/${locale}`} className="mr-1 lg:mr-2 shrink-0">
           <Image
             src="/ICON.png"
             alt="Alvolo Consulting"
@@ -65,7 +65,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
             key={link.name}
             href={link.href}
             className={`
-              text-xs md:text-sm uppercase tracking-wider transition-colors duration-300
+              text-xs md:text-sm uppercase tracking-wider whitespace-nowrap transition-colors duration-300
               ${isActive(link.href) ? 'text-accent-cyan' : 'text-text-muted hover:text-accent-cyan'}
             `}
           >
@@ -74,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
         ))}
         <Link
           href={`/${locale}/contact`}
-          className="text-xs md:text-sm uppercase tracking-wider text-text-primary hover:text-accent-cyan transition-colors duration-300"
+          className="text-xs md:text-sm uppercase tracking-wider whitespace-nowrap text-text-primary hover:text-accent-cyan transition-colors duration-300"
         >
           {trans.nav.contact}
         </Link>
@@ -82,7 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
         {/* Client Portal Button */}
         <Link
           href={`/${locale}/portal`}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan text-xs font-mono uppercase tracking-wider hover:bg-accent-cyan/20 transition-all"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan text-xs font-mono uppercase tracking-wider whitespace-nowrap shrink-0 hover:bg-accent-cyan/20 transition-all"
         >
           <FaLock className="w-3 h-3" />
           {trans.nav.portal}
@@ -138,7 +138,7 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`
-                    text-sm uppercase tracking-wider transition-colors duration-300 py-2
+                    text-sm uppercase tracking-wider whitespace-nowrap transition-colors duration-300 py-2
                     ${isActive(link.href) ? 'text-accent-cyan' : 'text-text-muted hover:text-accent-cyan'}
                   `}
                 >
