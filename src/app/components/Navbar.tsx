@@ -88,25 +88,26 @@ const Navbar: React.FC<NavbarProps> = ({ locale = 'en', t }) => {
           {trans.nav.portal}
         </Link>
 
-        {/* Language Switcher */}
-        <div className="flex items-center gap-1 ml-1.5 lg:ml-2 border-l border-glass-border pl-2.5 lg:pl-4 shrink-0">
-          {locales.map((loc) => (
-            <Link
-              key={loc}
-              href={`/${loc}${currentPath}`}
-              className={`
-                px-2 py-1 text-xs font-mono rounded transition-all
-                ${locale === loc
-                  ? 'bg-accent-cyan/20 text-accent-cyan'
-                  : 'text-text-muted hover:text-electric-platinum hover:bg-obsidian-plate/40'
-                }
-              `}
-            >
-              {languageNames[loc]}
-            </Link>
-          ))}
-        </div>
       </nav>
+
+      {/* Desktop Language Switcher (separate pill to avoid navbar overflow) */}
+      <div className="hidden md:flex fixed top-8 right-4 z-50 rounded-full border border-glass-border bg-void/60 backdrop-blur-2xl px-3 py-1.5 gap-1">
+        {locales.map((loc) => (
+          <Link
+            key={loc}
+            href={`/${loc}${currentPath}`}
+            className={`
+              px-2 py-0.5 text-[11px] font-mono rounded transition-all
+              ${locale === loc
+                ? 'bg-accent-cyan/20 text-accent-cyan'
+                : 'text-text-muted hover:text-electric-platinum hover:bg-obsidian-plate/40'
+              }
+            `}
+          >
+            {languageNames[loc]}
+          </Link>
+        ))}
+      </div>
 
       {/* Mobile Navigation */}
       <nav className="fixed top-4 left-4 right-4 z-50 p-4 rounded-2xl bg-void/80 backdrop-blur-2xl border border-glass-border md:hidden">
