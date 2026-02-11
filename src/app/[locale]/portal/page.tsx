@@ -11,4 +11,3 @@ export default async function PortalPage({
   const { locale } = await params;
   return <PortalPageClient locale={locale} />;
 }
-
