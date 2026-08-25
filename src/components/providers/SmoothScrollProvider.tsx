@@ -109,8 +109,16 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     lenisRef.current = instance;
     setLenis(instance);
 
-    // Let ScrollTrigger measure once Lenis has taken over the document
-    const refreshId = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    // Let ScrollTrigger measure once Lenis has taken over the document, then honour a hash deep-link
+    // (pinned sections change the document height, so the browser's native jump lands short).
+    const refreshId = window.requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      const hash = window.location.hash;
+      if (hash.length > 1) {
+        const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+        if (el) instance.scrollTo(el, { offset: -88, immediate: true });
+      }
+    });
 
     return () => {
       window.cancelAnimationFrame(refreshId);
