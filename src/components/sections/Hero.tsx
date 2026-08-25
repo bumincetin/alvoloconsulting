@@ -1,7 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, CalendarClock } from "lucide-react";
 import SplitType from "split-type";
@@ -15,10 +14,28 @@ import { heroContent } from "@/lib/content/hero";
 import { ACCENT_HEX, CITIES, CITY_ORDER, formatCoords, type CityId } from "@/lib/geo/cities";
 import type { Locale } from "@/lib/translations";
 
-const TradeGlobeCanvas = dynamic(() => import("@/components/canvas/TradeGlobeCanvas"), {
-  ssr: false,
-  loading: () => <GlobeFallback />,
-});
+type TradeGlobeCanvasComponent = ComponentType<import("@/components/canvas/TradeGlobeCanvas").TradeGlobeCanvasProps>;
+
+/**
+ * Client-only loader for the WebGL globe.
+ * Deliberately NOT `next/dynamic`: on the Cloudflare edge build, @cloudflare/next-on-pages hoists the
+ * `() => import()` loader into an `async__chunk_*` reference that is undefined for ssr:false chunks and
+ * throws at module evaluation (500 on the home route). A plain `import()` inside an effect is never
+ * evaluated on the server, and the browser bundle code-splits it normally.
+ */
+function useTradeGlobeCanvas(): TradeGlobeCanvasComponent | null {
+  const [component, setComponent] = useState<TradeGlobeCanvasComponent | null>(null);
+  useEffect(() => {
+    let alive = true;
+    import("@/components/canvas/TradeGlobeCanvas").then((mod) => {
+      if (alive) setComponent(() => mod.default);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return component;
+}
 
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -76,6 +93,7 @@ export default function Hero({ locale }: HeroProps) {
   const content = heroContent[locale];
   const { reducedMotion, finePointer, scrollTo } = useSmoothScroll();
   const { open: openConsultation } = useConsultation();
+  const TradeGlobeCanvas = useTradeGlobeCanvas();
   const clocks = useLocalClocks(locale);
 
   const rootRef = useRef<HTMLElement>(null);
@@ -211,6 +229,9 @@ export default function Hero({ locale }: HeroProps) {
         data-hero-globe
         className="absolute inset-x-0 top-0 h-[54svh] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-full lg:w-[58vw]"
       >
+        {TradeGlobeCanvas === null ? (
+          <GlobeFallback />
+        ) : (
         <TradeGlobeCanvas
           className="absolute inset-0"
           activeCity={activeCity}
@@ -221,6 +242,7 @@ export default function Hero({ locale }: HeroProps) {
           labels={labels}
           {...(isDesktop ? GLOBE_PRESET.desktop : GLOBE_PRESET.mobile)}
         />
+        )}
         {/* Legibility ramps */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-obsidian via-obsidian/60 to-transparent lg:block lg:w-[38%]" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-obsidian to-transparent lg:hidden" />
