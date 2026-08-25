@@ -147,10 +147,10 @@ const CAM: Waypoint[] = [
   { p: [3.0, 5.0, -6.0], t: [10.0, 5.0, -28.0], fov: 40 }, // 2 corridors — over the water to the bridge
   { p: [10.0, 3.0, -14.0], t: [30.0, 6.0, -32.0], fov: 46 }, // 3 protocol — the Turkish shore
   { p: [2.0, 7.5, -42.0], t: [34.0, 7.0, -44.0], fov: 44 }, // 4 continuity — beyond the bridge, facing the Istanbul shore
-  { p: [11.0, 13.0, -40.0], t: [12.0, 1.0, -58.0], fov: 46 }, // 5 colophon — looking down on the water
+  { p: [1.0, 5.5, -36.0], t: [15.0, 5.0, -52.0], fov: 44 }, // 5 colophon — across the water to the Maiden's Tower
 ];
 
-const FOG_COLOR = new THREE.Color("#05070a");
+const FOG_COLOR = new THREE.Color("#1c2842");
 const MOON_POS = new THREE.Vector3(30, 34, -84);
 
 function aspectFix(w: number, h: number) {
@@ -248,8 +248,8 @@ function SkyAndMoon({ quality }: { quality: ShoreQuality }) {
   const hazeRefs = useRef<THREE.Mesh[]>([]);
 
   useEffect(() => {
-    scene.background = new THREE.Color("#05070a");
-    scene.fog = new THREE.Fog(FOG_COLOR, 26, 140);
+    scene.background = new THREE.Color("#1c2842");
+    scene.fog = new THREE.Fog(FOG_COLOR, 30, 170);
     return () => {
       scene.fog = null;
       moonTex.dispose();
@@ -347,7 +347,7 @@ const LAMP_REFLECTIONS: { x: number; z: number; i: number; c: THREE.Color }[] = 
   { x: 16, z: -26, i: 0.7, c: new THREE.Color("#ffc27a") },
   { x: 22.5, z: -30, i: 1.1, c: new THREE.Color("#ffd08a") },
   { x: 22.5, z: -44, i: 0.6, c: new THREE.Color("#ffb469") },
-  { x: 22.5, z: -18, i: 0.5, c: new THREE.Color("#ffb469") },
+  { x: 15, z: -52, i: 0.9, c: new THREE.Color("#ffd9a0") },
   { x: 30, z: -84, i: 1.6, c: new THREE.Color("#efe3c4") },
 ];
 
@@ -379,7 +379,7 @@ const WATER_FRAG = /* glsl */ `
     vec3 v = normalize(uCam - vWorld);
     vec3 r = reflect(-v, n);
     vec3 md = normalize(uMoon - vWorld);
-    vec3 col = vec3(0.020, 0.040, 0.062);
+    vec3 col = vec3(0.075, 0.115, 0.175);
     float spec = pow(max(dot(r, md), 0.0), 160.0);
     float path = pow(max(dot(r, md), 0.0), 9.0);
     col += vec3(0.95, 0.88, 0.70) * (spec * 0.9 + path * 0.05);
@@ -392,9 +392,9 @@ const WATER_FRAG = /* glsl */ `
       col += uLightColors[i] * a * 0.55 * ripple * flick;
     }
     float fres = pow(1.0 - max(dot(v, n), 0.0), 3.0);
-    col += vec3(0.05, 0.08, 0.11) * fres;
+    col += vec3(0.11, 0.15, 0.21) * fres;
     float dist = length(uCam - vWorld);
-    float f = smoothstep(26.0, 140.0, dist);
+    float f = smoothstep(30.0, 170.0, dist);
     col = mix(col, uFog, f);
     gl_FragColor = vec4(col, 1.0);
   }
@@ -427,20 +427,22 @@ function Water() {
 /* ───────────────────────────── shores ───────────────────────────── */
 
 const M = {
-  ground: "#0a100e",
-  quay: "#161b1e",
-  marble: "#2d333a",
-  marbleLight: "#3a4149",
+  ground: "#1a2622",
+  quay: "#2a3138",
+  marble: "#5c646d",
+  marbleLight: "#707882",
   gold: "#d9b45a",
-  lead: "#3a4653",
-  stone: "#2b333c",
-  tower: "#262c33",
-  cypress: "#0f1a12",
-  bridge: "#1a2026",
-  cable: "#9aa7a0",
+  lead: "#5a6a7c",
+  stone: "#4d5560",
+  tower: "#47505a",
+  cypress: "#182a1e",
+  bridge: "#2c343c",
+  cable: "#b4c0ba",
   lamp: "#ffb469",
   window: "#ffb469",
   glass: "#ff9a52",
+  brick: "#7c5b4e",
+  travertine: "#7a6f62",
 };
 
 function Shores() {
@@ -472,16 +474,16 @@ function Shores() {
       {/* Turkish ridge behind the mosque */}
       <mesh position={[52, 5, -70]} rotation={[0, 0.3, 0]}>
         <cylinderGeometry args={[0, 34, 10, 7]} />
-        <meshStandardMaterial color="#0b1013" roughness={1} flatShading />
+        <meshStandardMaterial color="#1b2536" roughness={1} flatShading />
       </mesh>
       <mesh position={[26, 4, -96]}>
         <cylinderGeometry args={[0, 40, 8, 6]} />
-        <meshStandardMaterial color="#0b1013" roughness={1} flatShading />
+        <meshStandardMaterial color="#1b2536" roughness={1} flatShading />
       </mesh>
       {/* Italian hills */}
       <mesh position={[-40, 3, -70]}>
         <cylinderGeometry args={[0, 42, 7, 7]} />
-        <meshStandardMaterial color="#0b1013" roughness={1} flatShading />
+        <meshStandardMaterial color="#1b2536" roughness={1} flatShading />
       </mesh>
     </group>
   );
@@ -632,7 +634,7 @@ function QuayLamps() {
         <group key={i} position={[x, 1.2, z]}>
           <mesh position={[0, 1.6, 0]}>
             <cylinderGeometry args={[0.07, 0.1, 3.2, 6]} />
-            <meshStandardMaterial color="#111517" roughness={0.9} />
+            <meshStandardMaterial color="#1d2329" roughness={0.9} />
           </mesh>
           <mesh position={[0, 3.35, 0]}>
             <boxGeometry args={[0.42, 0.5, 0.42]} />
@@ -838,6 +840,239 @@ function Houses({ quality }: { quality: ShoreQuality }) {
   );
 }
 
+/* ───────────────────────────── sky dome ───────────────────────────── */
+
+const SKY_VERT = /* glsl */ `
+  varying vec3 vDir;
+  void main() {
+    vDir = normalize(position);
+    vec4 wp = modelMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * viewMatrix * wp;
+  }
+`;
+
+const SKY_FRAG = /* glsl */ `
+  precision highp float;
+  varying vec3 vDir;
+  uniform vec3 uZenith;
+  uniform vec3 uMid;
+  uniform vec3 uHorizon;
+  uniform vec3 uWarm;
+  uniform vec3 uMoonDir;
+  void main() {
+    float h = clamp(vDir.y, -0.2, 1.0);
+    vec3 col = mix(uHorizon, uMid, smoothstep(0.0, 0.22, h));
+    col = mix(col, uZenith, smoothstep(0.2, 0.85, h));
+    // the last warmth of the day lingers on the western horizon
+    float west = pow(max(dot(normalize(vec3(vDir.x, 0.0, vDir.z)), vec3(-0.72, 0.0, 0.69)), 0.0), 3.0);
+    col += uWarm * west * (1.0 - smoothstep(0.0, 0.28, h)) * 0.55;
+    // a soft sheen around the moon
+    float m = pow(max(dot(vDir, uMoonDir), 0.0), 18.0);
+    col += vec3(0.62, 0.58, 0.46) * m * 0.16;
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+function SkyDome() {
+  const uniforms = useMemo(
+    () => ({
+      uZenith: { value: new THREE.Color("#0e1a33") },
+      uMid: { value: new THREE.Color("#233658") },
+      uHorizon: { value: new THREE.Color("#5b6b8e") },
+      uWarm: { value: new THREE.Color("#b08a62") },
+      uMoonDir: { value: MOON_POS.clone().normalize() },
+    }),
+    [],
+  );
+  return (
+    <mesh renderOrder={-2} frustumCulled={false}>
+      <sphereGeometry args={[200, 32, 20]} />
+      <shaderMaterial vertexShader={SKY_VERT} fragmentShader={SKY_FRAG} uniforms={uniforms} side={THREE.BackSide} depthWrite={false} fog={false} />
+    </mesh>
+  );
+}
+
+/* ───────────────────────────── Hagia Sophia ───────────────────────────── */
+
+function HagiaSophia({ position }: { position: [number, number, number] }) {
+  const drum = useMemo(() => Array.from({ length: 24 }, (_, i) => (i / 24) * TAU), []);
+  return (
+    <group position={position}>
+      {/* the great square mass */}
+      <mesh position={[0, 4, 0]} castShadow receiveShadow>
+        <boxGeometry args={[20, 8, 18]} />
+        <meshStandardMaterial color={M.brick} roughness={0.95} />
+      </mesh>
+      {/* buttresses */}
+      {[
+        [-8.5, 3, 9.6],
+        [8.5, 3, 9.6],
+        [-8.5, 3, -9.6],
+        [8.5, 3, -9.6],
+      ].map(([x, y, z], i) => (
+        <mesh key={i} position={[x, y, z]}>
+          <boxGeometry args={[3.2, 6, 1.6]} />
+          <meshStandardMaterial color={M.brick} roughness={0.95} />
+        </mesh>
+      ))}
+      {/* lower windows */}
+      {[-7, -4.2, -1.4, 1.4, 4.2, 7].map((x) => (
+        <mesh key={`f${x}`} position={[x, 3.4, 9.02]}>
+          <planeGeometry args={[0.8, 1.9]} />
+          <meshBasicMaterial color={M.window} toneMapped={false} />
+        </mesh>
+      ))}
+      {[-6, -3, 0, 3, 6].map((z) => (
+        <mesh key={`w${z}`} position={[-10.02, 3.4, z]} rotation={[0, -Math.PI / 2, 0]}>
+          <planeGeometry args={[0.8, 1.9]} />
+          <meshBasicMaterial color={M.window} toneMapped={false} />
+        </mesh>
+      ))}
+      {/* the two great semi-domes, east and west */}
+      {[7.4, -7.4].map((x) => (
+        <mesh key={x} position={[x, 8, 0]}>
+          <sphereGeometry args={[5.4, 24, 12, 0, TAU, 0, Math.PI / 2]} />
+          <meshStandardMaterial color={M.lead} roughness={0.55} metalness={0.15} />
+        </mesh>
+      ))}
+      {/* exedrae */}
+      {[
+        [5.2, 7.6, 5.6],
+        [5.2, 7.6, -5.6],
+        [-5.2, 7.6, 5.6],
+        [-5.2, 7.6, -5.6],
+      ].map(([x, y, z], i) => (
+        <mesh key={`e${i}`} position={[x, y, z]}>
+          <sphereGeometry args={[2.6, 18, 10, 0, TAU, 0, Math.PI / 2]} />
+          <meshStandardMaterial color={M.lead} roughness={0.55} metalness={0.15} />
+        </mesh>
+      ))}
+      {/* the drum with its ring of forty windows */}
+      <mesh position={[0, 9.4, 0]}>
+        <cylinderGeometry args={[7.4, 7.4, 2.8, 32]} />
+        <meshStandardMaterial color={M.brick} roughness={0.95} />
+      </mesh>
+      {drum.map((a, i) => (
+        <mesh key={i} position={[Math.cos(a) * 7.42, 9.5, Math.sin(a) * 7.42]} rotation={[0, -a + Math.PI / 2, 0]}>
+          <planeGeometry args={[0.55, 1.5]} />
+          <meshBasicMaterial color={M.window} toneMapped={false} side={THREE.DoubleSide} />
+        </mesh>
+      ))}
+      {/* the shallow dome */}
+      <mesh position={[0, 10.8, 0]} scale={[1, 0.72, 1]}>
+        <sphereGeometry args={[7.5, 32, 18, 0, TAU, 0, Math.PI / 2]} />
+        <meshStandardMaterial color={M.lead} roughness={0.5} metalness={0.18} />
+      </mesh>
+      <mesh position={[0, 16.4, 0]}>
+        <sphereGeometry args={[0.3, 8, 8]} />
+        <meshStandardMaterial color={M.gold} emissive={M.gold} emissiveIntensity={0.8} />
+      </mesh>
+      <Minaret position={[11.2, 0, 10.4]} height={19} />
+      <Minaret position={[-11.2, 0, 10.4]} height={19} />
+      <Minaret position={[11.2, 0, -10.4]} height={19} />
+      <Minaret position={[-11.2, 0, -10.4]} height={19} />
+      <pointLight position={[0, 6, 11]} color="#ffc27a" intensity={7} distance={48} decay={2} />
+    </group>
+  );
+}
+
+/* ───────────────────────────── Maiden's Tower ───────────────────────────── */
+
+function MaidenTower({ position }: { position: [number, number, number] }) {
+  return (
+    <group position={position}>
+      {/* the islet */}
+      <mesh position={[0, 0.5, 0]}>
+        <cylinderGeometry args={[4.2, 4.8, 1.0, 12]} />
+        <meshStandardMaterial color={M.quay} roughness={1} flatShading />
+      </mesh>
+      {/* the low house */}
+      <mesh position={[0, 2.2, 0]}>
+        <boxGeometry args={[4.6, 2.6, 3.6]} />
+        <meshStandardMaterial color={M.travertine} roughness={0.9} />
+      </mesh>
+      {[-1.4, 0, 1.4].map((x) => (
+        <mesh key={x} position={[x, 2.2, 1.82]}>
+          <planeGeometry args={[0.5, 0.9]} />
+          <meshBasicMaterial color={M.window} toneMapped={false} />
+        </mesh>
+      ))}
+      {/* the tower */}
+      <mesh position={[0, 6.4, 0]}>
+        <cylinderGeometry args={[1.25, 1.45, 6.4, 12]} />
+        <meshStandardMaterial color={M.travertine} roughness={0.9} />
+      </mesh>
+      <mesh position={[0, 9.8, 0]}>
+        <cylinderGeometry args={[1.7, 1.25, 0.6, 12]} />
+        <meshStandardMaterial color={M.stone} roughness={0.9} />
+      </mesh>
+      <mesh position={[0, 10.8, 0]}>
+        <cylinderGeometry args={[1.0, 1.0, 1.6, 12]} />
+        <meshStandardMaterial color={M.travertine} roughness={0.9} />
+      </mesh>
+      {Array.from({ length: 6 }, (_, i) => {
+        const a = (i / 6) * TAU;
+        return (
+          <mesh key={i} position={[Math.cos(a) * 1.02, 10.8, Math.sin(a) * 1.02]} rotation={[0, -a + Math.PI / 2, 0]}>
+            <planeGeometry args={[0.36, 0.7]} />
+            <meshBasicMaterial color={M.window} toneMapped={false} side={THREE.DoubleSide} />
+          </mesh>
+        );
+      })}
+      <mesh position={[0, 12.7, 0]}>
+        <coneGeometry args={[1.3, 2.4, 12]} />
+        <meshStandardMaterial color={M.lead} roughness={0.7} />
+      </mesh>
+      <mesh position={[0, 14.1, 0]}>
+        <sphereGeometry args={[0.16, 6, 6]} />
+        <meshBasicMaterial color="#fff2cf" toneMapped={false} />
+      </mesh>
+      <pointLight position={[0, 11, 0]} color="#ffd9a0" intensity={4} distance={30} decay={2} />
+    </group>
+  );
+}
+
+/* ───────────────────────────── Colosseum ───────────────────────────── */
+
+function Colosseum({ position }: { position: [number, number, number] }) {
+  const R = 9.2;
+  const arches = useMemo(() => {
+    const out: { a: number; y: number }[] = [];
+    const span = TAU * 0.68;
+    for (let row = 0; row < 3; row++) {
+      const n = 22;
+      for (let i = 0; i < n; i++) out.push({ a: -span / 2 + (i / (n - 1)) * span, y: 1.6 + row * 2.7 });
+    }
+    return out;
+  }, []);
+  return (
+    <group position={position} rotation={[0, 0.35, 0]}>
+      {/* the outer wall, broken as it stands today */}
+      <mesh position={[0, 4.2, 0]} rotation={[0, -TAU * 0.34 + Math.PI / 2, 0]}>
+        <cylinderGeometry args={[R, R, 8.4, 44, 1, true, 0, TAU * 0.68]} />
+        <meshStandardMaterial color={M.travertine} roughness={0.95} side={THREE.DoubleSide} />
+      </mesh>
+      {/* the lower inner ring */}
+      <mesh position={[0, 2.6, 0]}>
+        <cylinderGeometry args={[R - 1.6, R - 1.6, 5.2, 40, 1, true]} />
+        <meshStandardMaterial color="#5e554b" roughness={1} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[0, 0.2, 0]}>
+        <cylinderGeometry args={[R + 1.2, R + 1.6, 0.4, 40]} />
+        <meshStandardMaterial color={M.quay} roughness={1} />
+      </mesh>
+      {/* the arches, lit from within */}
+      {arches.map(({ a, y }, i) => (
+        <mesh key={i} position={[Math.sin(a) * (R + 0.03), y, Math.cos(a) * (R + 0.03)]} rotation={[0, a, 0]}>
+          <planeGeometry args={[0.7, 1.5]} />
+          <meshBasicMaterial color="#e0a866" toneMapped={false} side={THREE.DoubleSide} />
+        </mesh>
+      ))}
+      <pointLight position={[0, 5, 0]} color="#ffb469" intensity={6} distance={40} decay={2} />
+    </group>
+  );
+}
+
 /* ───────────────────────────── bridge ───────────────────────────── */
 
 const BRIDGE_Z = -26;
@@ -848,11 +1083,11 @@ function Bridge() {
   const y = BRIDGE_Y;
   const cable = useMemo(() => {
     const pts = [
-      new THREE.Vector3(-4.6, y + 0.4, Z),
-      new THREE.Vector3(2.5, y + 8.5, Z),
-      new THREE.Vector3(9, y + 1.6, Z),
-      new THREE.Vector3(15.5, y + 8.5, Z),
-      new THREE.Vector3(22.6, y + 0.4, Z),
+      new THREE.Vector3(-4.6, BRIDGE_Y + 0.6, BRIDGE_Z),
+      new THREE.Vector3(2.5, BRIDGE_Y + 7.6, BRIDGE_Z),
+      new THREE.Vector3(9, BRIDGE_Y + 3.0, BRIDGE_Z),
+      new THREE.Vector3(15.5, BRIDGE_Y + 7.6, BRIDGE_Z),
+      new THREE.Vector3(22.6, BRIDGE_Y + 0.6, BRIDGE_Z),
     ];
     return new THREE.CatmullRomCurve3(pts, false, "catmullrom", 0.5).getPoints(90);
   }, []);
@@ -862,8 +1097,8 @@ function Bridge() {
       const p = cable[i];
       if (Math.abs(p.x - 2.5) < 0.6 || Math.abs(p.x - 15.5) < 0.6) continue;
       out.push([
-        [p.x, p.y, Z],
-        [p.x, y + 0.2, Z],
+        [p.x, p.y, BRIDGE_Z],
+        [p.x, BRIDGE_Y + 0.2, BRIDGE_Z],
       ]);
     }
     return out;
@@ -882,16 +1117,16 @@ function Bridge() {
       {[2.5, 15.5].map((x) => (
         <group key={x} position={[x, 0, Z]}>
           {[-0.7, 0.7].map((dz) => (
-            <mesh key={dz} position={[0, 5.6, dz]}>
-              <boxGeometry args={[0.7, 11.2, 0.5]} />
-              <meshStandardMaterial color="#20262c" roughness={0.9} />
+            <mesh key={dz} position={[0, 5.2, dz]}>
+              <boxGeometry args={[0.7, 10.4, 0.5]} />
+              <meshStandardMaterial color="#343c46" roughness={0.9} />
             </mesh>
           ))}
-          <mesh position={[0, 11.4, 0]}>
+          <mesh position={[0, 10.6, 0]}>
             <boxGeometry args={[1.1, 0.5, 2.1]} />
-            <meshStandardMaterial color="#20262c" roughness={0.9} />
+            <meshStandardMaterial color="#343c46" roughness={0.9} />
           </mesh>
-          <mesh position={[0, 11.9, 0]}>
+          <mesh position={[0, 11.1, 0]}>
             <sphereGeometry args={[0.12, 6, 6]} />
             <meshBasicMaterial color="#ff3b30" toneMapped={false} />
           </mesh>
@@ -1203,9 +1438,12 @@ function Wordmark({ word, reducedMotion }: { word: string; reducedMotion: boolea
 function Lighting() {
   return (
     <>
-      <ambientLight color="#1c2a3d" intensity={0.9} />
-      <hemisphereLight args={["#203352", "#05070a", 0.9]} />
-      <directionalLight position={[40, 50, -70]} color="#dfe6ff" intensity={0.9} />
+      <ambientLight color="#3a4c6a" intensity={1.05} />
+      <hemisphereLight args={["#5872a4", "#1a2230", 1.15]} />
+      {/* moonlight */}
+      <directionalLight position={[40, 50, -70]} color="#e6ecff" intensity={1.35} />
+      {/* the last of the sunset, low from the west */}
+      <directionalLight position={[-60, 10, 30]} color="#d9a875" intensity={0.38} />
     </>
   );
 }
@@ -1228,15 +1466,19 @@ export default function ShoreScene({ quality, reducedMotion, word }: ShoreSceneP
     <>
       <Rig reducedMotion={reducedMotion} />
       <Lighting />
+      <SkyDome />
       <SkyAndMoon quality={quality} />
       <Water />
       <Shores />
       <Duomo position={[-17, 0, -22]} />
       <Galleria position={[-14.5, 0, -2]} />
+      <Colosseum position={[-30, 0, -62]} />
       <Cypresses quality={quality} />
       <QuayLamps />
       <Mosque position={[36, 0, -30]} />
-      <Galata position={[31, 0, -52]} />
+      <Galata position={[44, 0, -46]} />
+      <HagiaSophia position={[36, 0, -68]} />
+      <MaidenTower position={[15, 0, -52]} />
       <Houses quality={quality} />
       <Bridge />
       <OliveLeaves quality={quality} reducedMotion={reducedMotion} />

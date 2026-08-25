@@ -171,7 +171,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       cta: "Begin the mandate",
     },
     footer: {
-      statement: "A four-chapter night walk between Milan and Istanbul. Three illustrated corridors sit inside a live Three.js strait, built for companies moving between the EU and Türkiye.",
+      statement: "Alvolo takes companies and their people across the Italy–Türkiye corridor: from the first regulatory audit to an operating entity, with one senior advisor accountable from Milan to Istanbul.",
       columns: [
         {
           title: "Chapters",
@@ -203,7 +203,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       ],
       copyright: "© 2026 Alvolo Consulting — Due Sponde",
       motto: "İki kıyı, tek pazar · Due sponde, un solo mercato",
-      colophon: "WebGL · Onest · Milano — Istanbul",
+      colophon: "Milano · Roma · Istanbul",
       language: "Language",
     },
     rail: ["Two Shores", "The Italian Shore", "Corridors", "The Protocol", "Continuity", "Colophon"],
@@ -280,7 +280,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       cta: "Mandatı başlat",
     },
     footer: {
-      statement: "Milano ile İstanbul arasında dört bölümlük bir gece yürüyüşü. Üç resimli koridor, AB ile Türkiye arasında hareket eden şirketler için kurulmuş canlı bir Three.js boğazının içinde duruyor.",
+      statement: "Alvolo, şirketleri ve insanlarını İtalya–Türkiye koridorundan geçirir: ilk mevzuat denetiminden faaliyetteki şirkete kadar, Milano'dan İstanbul'a sorumluluğu üstlenen tek bir kıdemli danışmanla.",
       columns: [
         {
           title: "Bölümler",
@@ -312,7 +312,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       ],
       copyright: "© 2026 Alvolo Consulting — İki Kıyı",
       motto: "Due sponde, un solo mercato · İki kıyı, tek pazar",
-      colophon: "WebGL · Onest · Milano — İstanbul",
+      colophon: "Milano · Roma · İstanbul",
       language: "Dil",
     },
     rail: ["İki Kıyı", "İtalyan Kıyısı", "Koridorlar", "Protokol", "Süreklilik", "Künye"],
@@ -389,7 +389,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       cta: "Inizia il mandato",
     },
     footer: {
-      statement: "Una passeggiata notturna in quattro capitoli tra Milano e Istanbul. Tre corridoi illustrati vivono dentro uno stretto Three.js, costruito per le imprese che si muovono tra l'UE e la Türkiye.",
+      statement: "Alvolo accompagna imprese e persone lungo il corridoio Italia–Türkiye: dal primo audit regolatorio alla società operativa, con un unico consulente senior responsabile da Milano a Istanbul.",
       columns: [
         {
           title: "Capitoli",
@@ -421,7 +421,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       ],
       copyright: "© 2026 Alvolo Consulting — Due Sponde",
       motto: "İki kıyı, tek pazar · Due sponde, un solo mercato",
-      colophon: "WebGL · Onest · Milano — Istanbul",
+      colophon: "Milano · Roma · Istanbul",
       language: "Lingua",
     },
     rail: ["Due Sponde", "La Sponda Italiana", "Corridoi", "Il Protocollo", "Continuità", "Colophon"],

@@ -2,40 +2,40 @@
 
 /* ══════════════════════════════════════════════════════════════════════
    ALVOLO — "Due Sponde / İki Kıyı"
-   Design system in the register of the ThreeUI "Kage" landing page: ink
-   black, bone white, one vermilion, one gold; Onest at light weights; ruled
+   Design system in the register of the ThreeUI "Kage" landing page: dusk
+   navy, bone white, one vermilion, one gold; Onest at light weights; ruled
    hairlines instead of rounded glass. Legacy token names are kept alive but
    remapped onto the same palette so every inner page shares one system.
    ══════════════════════════════════════════════════════════════════════ */
 
 @theme {
   /* ── the palette ─────────────────────────────────────────────── */
-  --color-ink: #05070a;
-  --color-ink-2: #0a0e12;
+  --color-ink: #0f1626;
+  --color-ink-2: #17203a;
   --color-bone: #dfe7e0;
   --color-bone-dim: #aab4ad;
-  --color-muted: #78837c;
-  --color-line: rgba(223, 231, 224, 0.13);
-  --color-line-soft: rgba(223, 231, 224, 0.07);
+  --color-muted: #94a09a;
+  --color-line: rgba(223, 231, 224, 0.16);
+  --color-line-soft: rgba(223, 231, 224, 0.09);
   --color-vermilion: #e0231c;
   --color-ember: #ff5a3c;
   --color-gold: #c9a24a;
 
   /* ── names used by the section components, remapped ─────────── */
-  --color-obsidian: #05070a;
-  --color-titanium: #0a0e12;
-  --color-glass: rgba(5, 7, 10, 0.72);
+  --color-obsidian: #0f1626;
+  --color-titanium: #17203a;
+  --color-glass: rgba(15, 22, 38, 0.72);
   --color-azure: #e0231c;
   --color-emerald: #c9a24a;
   --color-white: #dfe7e0;
 
   /* ── legacy names (methodology / portal / GlassCard) ─────────── */
-  --color-void-black: #05070a;
-  --color-obsidian-plate: #0a0e12;
+  --color-void-black: #0f1626;
+  --color-obsidian-plate: #17203a;
   --color-electric-platinum: #dfe7e0;
-  --color-tungsten-grey: #2a3134;
+  --color-tungsten-grey: #354052;
   --color-holographic-cyan: #c9a24a;
-  --color-deep-indigo: #0f1a26;
+  --color-deep-indigo: #1b2740;
   --color-glass-surface: rgba(223, 231, 224, 0.04);
   --color-glass-border: rgba(223, 231, 224, 0.1);
   --color-glass-highlight: rgba(223, 231, 224, 0.2);
@@ -44,10 +44,10 @@
   --color-accent-orange: #c9a24a;
   --color-accent-black: #dfe7e0;
   --color-text-primary: #dfe7e0;
-  --color-text-muted: #78837c;
+  --color-text-muted: #94a09a;
   --color-text-secondary: #aab4ad;
-  --color-void: #05070a;
-  --color-deep: #0a0e12;
+  --color-void: #0f1626;
+  --color-deep: #17203a;
   --color-platinum: #dfe7e0;
 
   /* ── hairline geometry: the system is ruled, not rounded ─────── */
@@ -67,13 +67,13 @@
 }
 
 :root {
-  --ink: #05070a;
-  --ink-2: #0a0e12;
+  --ink: #0f1626;
+  --ink-2: #17203a;
   --bone: #dfe7e0;
   --bone-dim: #aab4ad;
-  --muted: #78837c;
-  --line: rgba(223, 231, 224, 0.13);
-  --line-soft: rgba(223, 231, 224, 0.07);
+  --muted: #94a09a;
+  --line: rgba(223, 231, 224, 0.16);
+  --line-soft: rgba(223, 231, 224, 0.09);
   --vermilion: #e0231c;
   --ember: #ff5a3c;
   --gold: #c9a24a;
@@ -84,16 +84,16 @@
   --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
 
   /* legacy CSS variables still read by GlassCard / methodology */
-  --background: #05070a;
+  --background: #0f1626;
   --foreground: #dfe7e0;
-  --void-black: #05070a;
-  --obsidian-plate: #0a0e12;
+  --void-black: #0f1626;
+  --obsidian-plate: #17203a;
   --electric-platinum: #dfe7e0;
   --tungsten-grey: #2a3134;
   --holographic-cyan: #c9a24a;
   --deep-indigo: #0f1a26;
-  --void: #05070a;
-  --deep: #0a0e12;
+  --void: #0f1626;
+  --deep: #17203a;
   --glass-surface: rgba(223, 231, 224, 0.04);
   --glass-border: rgba(223, 231, 224, 0.1);
   --glass-highlight: rgba(223, 231, 224, 0.2);
@@ -205,7 +205,7 @@ html.hud-cursor-active [contenteditable] {
   height: 100%;
   display: block;
   z-index: 0;
-  background: #05070a;
+  background: #0f1626;
 }
 #grain {
   position: fixed;
@@ -222,7 +222,7 @@ html.hud-cursor-active [contenteditable] {
   inset: 0;
   z-index: 55;
   pointer-events: none;
-  background: radial-gradient(125% 95% at 50% 42%, transparent 40%, rgba(2, 4, 6, 0.55) 100%);
+  background: radial-gradient(125% 95% at 50% 42%, transparent 40%, rgba(6, 10, 18, 0.48) 100%);
 }
 .page {
   position: relative;
@@ -331,7 +331,7 @@ html.hud-cursor-active [contenteditable] {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: #05070a;
+  background: #0f1626;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -406,7 +406,7 @@ html.hud-cursor-active [contenteditable] {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: rgba(5, 7, 10, 0.62);
+  background: rgba(15, 22, 38, 0.62);
   backdrop-filter: blur(14px) saturate(1.1);
   -webkit-backdrop-filter: blur(14px) saturate(1.1);
   opacity: 0;
@@ -581,7 +581,7 @@ html.hud-cursor-active [contenteditable] {
   top: 0;
   height: 46%;
   pointer-events: none;
-  background: linear-gradient(rgba(3, 6, 9, 0.72), rgba(3, 6, 9, 0.34) 46%, transparent);
+  background: linear-gradient(rgba(11, 17, 30, 0.72), rgba(11, 17, 30, 0.34) 46%, transparent);
 }
 .hero-top {
   padding-top: calc(var(--nav-h) + clamp(12px, 2.6vh, 34px));
@@ -713,7 +713,7 @@ html.hud-cursor-active [contenteditable] {
   right: var(--pad);
   top: auto;
   bottom: clamp(38px, 7vh, 96px);
-  width: clamp(150px, 16vw, 262px);
+  width: clamp(168px, 17vw, 262px);
   display: block;
   transition: transform 0.8s var(--ease-out);
 }
@@ -722,7 +722,7 @@ html.hud-cursor-active [contenteditable] {
   position: relative;
   aspect-ratio: 16/10;
   overflow: hidden;
-  background: #0a0e12;
+  background: #17203a;
   outline: 1px solid rgba(223, 231, 224, 0.16);
   outline-offset: -1px;
   box-shadow: 0 34px 70px -30px rgba(0, 0, 0, 0.9);
@@ -738,7 +738,7 @@ html.hud-cursor-active [contenteditable] {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(3, 6, 9, 0.04) 24%, rgba(3, 6, 9, 0.48) 100%);
+  background: linear-gradient(180deg, rgba(11, 17, 30, 0.04) 24%, rgba(11, 17, 30, 0.48) 100%);
 }
 .peek:hover {
   transform: translate3d(0, -5px, 0);
@@ -767,8 +767,9 @@ html.hud-cursor-active [contenteditable] {
 }
 .peek-cap {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 9px;
+  gap: 4px 9px;
   margin-top: 9px;
 }
 .peek-cap b {
@@ -779,8 +780,11 @@ html.hud-cursor-active [contenteditable] {
   text-transform: uppercase;
 }
 .peek-cap i {
+  flex: 1 1 96px;
+  min-width: 96px;
   font-style: normal;
   font-size: 9px;
+  line-height: 1.5;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -831,7 +835,7 @@ html.no-webgl .shore::before {
   z-index: 0;
   pointer-events: none;
   background: radial-gradient(11vw 11vw at 73% 17%, rgba(245, 230, 196, 0.9), rgba(201, 162, 74, 0.35) 44%, transparent 72%),
-    radial-gradient(120% 80% at 50% 0%, rgba(30, 50, 80, 0.4), transparent 60%), #05070a;
+    radial-gradient(120% 80% at 50% 0%, rgba(62, 88, 134, 0.5), transparent 60%), #0f1626;
 }
 
 /* ══════════════════════════════════════════════ sections */
@@ -845,15 +849,15 @@ html.no-webgl .shore::before {
   inset: -22% -4%;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(110% 62% at 30% 50%, rgba(4, 7, 10, 0.88), rgba(4, 7, 10, 0.62) 42%, rgba(4, 7, 10, 0.18) 74%, rgba(4, 7, 10, 0));
+  background: radial-gradient(110% 62% at 30% 50%, rgba(12, 18, 32, 0.88), rgba(12, 18, 32, 0.62) 42%, rgba(12, 18, 32, 0.18) 74%, rgba(12, 18, 32, 0));
   -webkit-mask-image: linear-gradient(transparent, #000 44%);
   mask-image: linear-gradient(transparent, #000 44%);
 }
 #pathways::before {
-  background: radial-gradient(108% 64% at 50% 50%, rgba(4, 7, 10, 0.7), rgba(4, 7, 10, 0.44) 50%, rgba(4, 7, 10, 0));
+  background: radial-gradient(108% 64% at 50% 50%, rgba(12, 18, 32, 0.7), rgba(12, 18, 32, 0.44) 50%, rgba(12, 18, 32, 0));
 }
 #eternity::before {
-  background: radial-gradient(82% 58% at 50% 46%, rgba(4, 7, 10, 0.26), rgba(4, 7, 10, 0.66) 56%, rgba(4, 7, 10, 0.9) 82%, rgba(4, 7, 10, 0));
+  background: radial-gradient(82% 58% at 50% 46%, rgba(12, 18, 32, 0.26), rgba(12, 18, 32, 0.66) 56%, rgba(12, 18, 32, 0.9) 82%, rgba(12, 18, 32, 0));
 }
 .sec,
 .foot {
@@ -929,7 +933,7 @@ html.no-webgl .shore::before {
 .arrowlink:hover .ar {
   background: var(--bone);
   border-color: var(--bone);
-  color: #05070a;
+  color: #0f1626;
 }
 .arrowlink:hover .ar svg {
   transform: translate3d(2px, -2px, 0);
@@ -986,7 +990,7 @@ html.no-webgl .shore::before {
   min-height: 200px;
   overflow: hidden;
   isolation: isolate;
-  background: #0a0e12;
+  background: #17203a;
   outline: 1px solid var(--line-soft);
   outline-offset: -1px;
   transition: outline-color 0.5s var(--ease);
@@ -1181,7 +1185,7 @@ html.no-webgl .shore::before {
   min-height: 250px;
   padding: 24px;
   gap: 14px;
-  background: rgba(5, 7, 10, 0.84);
+  background: rgba(15, 22, 38, 0.84);
   overflow: hidden;
   cursor: pointer;
   transition: padding 0.5s var(--ease-out);
@@ -1336,7 +1340,7 @@ html.no-webgl .shore::before {
   height: 13px;
 }
 .cta:hover {
-  color: #05070a;
+  color: #0f1626;
   border-color: var(--bone);
 }
 .cta:hover i {
@@ -1361,7 +1365,7 @@ html.no-webgl .shore::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(rgba(4, 7, 10, 0.55), rgba(4, 7, 10, 0.94) 40%, rgba(4, 7, 10, 0.98));
+  background: linear-gradient(rgba(12, 18, 32, 0.55), rgba(12, 18, 32, 0.94) 40%, rgba(12, 18, 32, 0.98));
 }
 .foot-grid {
   display: grid;
@@ -1580,7 +1584,7 @@ html.no-webgl .shore::before {
 /* — the legacy glass helpers, now ruled */
 .glass-card,
 .glass-panel {
-  background: rgba(5, 7, 10, 0.72);
+  background: rgba(15, 22, 38, 0.72);
   border: 1px solid var(--line-soft);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -1651,21 +1655,21 @@ html.no-webgl .shore::before {
   margin-top: -8px;
   border-radius: 999px;
   border: 1px solid var(--accent, #dfe7e0);
-  background: #05070a;
-  box-shadow: 0 0 0 4px #05070a;
+  background: #0f1626;
+  box-shadow: 0 0 0 4px #0f1626;
 }
 .hud-range::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 999px;
   border: 1px solid var(--accent, #dfe7e0);
-  background: #05070a;
+  background: #0f1626;
 }
 .hud-range:focus-visible {
   outline: none;
 }
 .hud-range:focus-visible::-webkit-slider-thumb {
-  box-shadow: 0 0 0 4px #05070a, 0 0 0 6px rgba(223, 231, 224, 0.35);
+  box-shadow: 0 0 0 4px #0f1626, 0 0 0 6px rgba(223, 231, 224, 0.35);
 }
 
 /* ══════════════════════════════════════════════ corridor diagram */
@@ -1731,7 +1735,7 @@ html.no-webgl .shore::before {
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    background: rgba(3, 6, 9, 0.98);
+    background: rgba(11, 17, 30, 0.98);
     border-left: 1px solid var(--line-soft);
     transform: translate3d(100%, 0, 0);
     opacity: 0;

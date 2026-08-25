@@ -21,7 +21,7 @@ export default function ShoreFooter({ locale }: { locale: Locale }) {
   const pieces = useMemo<ForegroundPiece[]>(
     () => [
       { key: "reeds", enter: "up", style: { left: "-6%", bottom: "-70px", width: "clamp(260px,30vw,520px)" }, node: <Reeds seed={31} /> },
-      { key: "caique", enter: "up", style: { right: "-3%", bottom: "-20px", width: "clamp(180px,22vw,360px)" }, node: <Caique /> },
+      { key: "caique", enter: "up", style: { right: "-6%", bottom: "-96px", width: "clamp(180px,22vw,360px)" }, node: <Caique /> },
       { key: "bal", enter: "up", style: { left: "34%", bottom: "-74px", width: "clamp(220px,26vw,440px)" }, node: <Balustrade count={6} /> },
     ],
     [],

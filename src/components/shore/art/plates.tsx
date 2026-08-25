@@ -24,9 +24,9 @@ function Sky({ id, w, h }: { id: string; w: number; h: number }) {
     <>
       <defs>
         <linearGradient id={`${id}-sky`} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#070b12" />
-          <stop offset="0.6" stopColor="#0c1420" />
-          <stop offset="1" stopColor="#1a2233" />
+          <stop offset="0" stopColor="#101c33" />
+          <stop offset="0.6" stopColor="#1d2c48" />
+          <stop offset="1" stopColor="#3a4a6a" />
         </linearGradient>
         <radialGradient id={`${id}-moon`} cx="50%" cy="50%" r="50%">
           <stop offset="0" stopColor="rgba(245,230,196,0.55)" />
@@ -34,12 +34,12 @@ function Sky({ id, w, h }: { id: string; w: number; h: number }) {
           <stop offset="1" stopColor="rgba(245,230,196,0)" />
         </radialGradient>
         <linearGradient id={`${id}-water`} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#0b1622" />
-          <stop offset="1" stopColor="#050a10" />
+          <stop offset="0" stopColor="#1a2b44" />
+          <stop offset="1" stopColor="#0f1a2c" />
         </linearGradient>
         <linearGradient id={`${id}-fog`} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="rgba(5,7,10,0)" />
-          <stop offset="1" stopColor="rgba(5,7,10,0.85)" />
+          <stop offset="0" stopColor="rgba(15,22,38,0)" />
+          <stop offset="1" stopColor="rgba(15,22,38,0.8)" />
         </linearGradient>
       </defs>
       <rect width={w} height={h} fill={`url(#${id}-sky)`} />

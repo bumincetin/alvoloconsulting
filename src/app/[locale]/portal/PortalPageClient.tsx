@@ -1,368 +1,230 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { FaLock, FaFileAlt, FaComments, FaChartLine, FaShieldAlt, FaUserShield, FaArrowRight } from 'react-icons/fa';
-import GlassCard from '../../components/ui/GlassCard';
-import { type Locale } from '@/lib/translations';
+import { useRef } from "react";
+import Link from "next/link";
+import { ArrowUpRight, ChartLine, FileText, Lock, MessageSquare, ShieldCheck, UserCheck, type LucideIcon } from "lucide-react";
+import PageHeader from "@/components/UI/PageHeader";
+import Eyebrow from "@/components/UI/Eyebrow";
+import { Arrow, useReveals } from "@/components/shore/Reveal";
+import { useConsultation } from "@/components/providers/ConsultationProvider";
+import { getTranslation, type Locale } from "@/lib/translations";
 
 interface PortalPageClientProps {
   locale: Locale;
 }
 
-// Portal URL - in production this would be your deployed Django portal URL
-// For production: https://portal.alvoloconsulting.com or your custom domain
-const PORTAL_URL = process.env.NEXT_PUBLIC_PORTAL_URL || '';
+// Portal URL — the deployed client portal. When unset, every portal link falls
+// back to the contact page so nothing dead-ends.
+const PORTAL_URL = process.env.NEXT_PUBLIC_PORTAL_URL || "";
+
+const FEATURE_ICONS: LucideIcon[] = [FileText, MessageSquare, ChartLine, ShieldCheck];
+const SECURITY_ICONS: LucideIcon[] = [Lock, UserCheck, ShieldCheck];
 
 const content = {
   en: {
-    badge: 'SECURE CLIENT PORTAL',
-    title: 'Your Private',
-    titleHighlight: 'Command Center',
-    subtitle: 'Access your documents, track your metrics, and communicate securely with our team—all in one encrypted environment.',
-    loginButton: 'Access Portal',
-    registerButton: 'Request Access',
+    badge: "Secure client portal",
+    title: "Your Private Command Center",
+    subtitle: "Access your documents, track your metrics, and communicate securely with our team—all in one encrypted environment.",
+    loginButton: "Access portal",
+    registerButton: "Request access",
+    featuresTitle: "What you get",
     features: [
-      {
-        icon: FaFileAlt,
-        title: 'Document Management',
-        desc: 'Securely upload, download, and manage all your important documents. Organized by project with full version history.',
-      },
-      {
-        icon: FaComments,
-        title: 'Secure Messaging',
-        desc: 'Direct, encrypted communication with your dedicated consultant. Real-time notifications and message history.',
-      },
-      {
-        icon: FaChartLine,
-        title: 'Analytics Dashboard',
-        desc: 'Track your key metrics and KPIs with interactive charts. Monitor project progress and financial indicators.',
-      },
-      {
-        icon: FaShieldAlt,
-        title: 'Bank-Level Security',
-        desc: 'End-to-end encryption, two-factor authentication, and strict access controls protect your sensitive data.',
-      },
+      { title: "Document Management", desc: "Securely upload, download, and manage all your important documents. Organized by project with full version history." },
+      { title: "Secure Messaging", desc: "Direct, encrypted communication with your dedicated consultant. Real-time notifications and message history." },
+      { title: "Analytics Dashboard", desc: "Track your key metrics and KPIs with interactive charts. Monitor project progress and financial indicators." },
+      { title: "Bank-Level Security", desc: "End-to-end encryption, two-factor authentication, and strict access controls protect your sensitive data." },
     ],
-    securityTitle: 'SECURITY FIRST',
-    securityFeatures: [
-      { icon: FaLock, text: 'AES-256 Encryption' },
-      { icon: FaUserShield, text: 'Role-Based Access' },
-      { icon: FaShieldAlt, text: 'GDPR Compliant' },
-    ],
-    ctaTitle: 'Ready to Get Started?',
-    ctaDesc: 'Contact us to set up your secure client portal account.',
-    ctaButton: 'Request Portal Access',
-    existingClient: 'Already have an account?',
-    loginLink: 'Log in here',
+    statusLabel: "Status",
+    statusOnline: "Portal online",
+    statusByRequest: "Access by request",
+    securityTitle: "Security first",
+    securityFeatures: ["AES-256 Encryption", "Role-Based Access", "GDPR Compliant"],
+    ctaTitle: "Ready to get started?",
+    ctaDesc: "Contact us to set up your secure client portal account.",
+    ctaButton: "Request portal access",
+    existingClient: "Already have an account?",
+    loginLink: "Log in here",
   },
   tr: {
-    badge: 'GÜVENLİ MÜŞTERİ PORTALI',
-    title: 'Özel',
-    titleHighlight: 'Komuta Merkeziniz',
-    subtitle: 'Belgelerinize erişin, metriklerinizi takip edin ve ekibimizle güvenli bir şekilde iletişim kurun—tümü şifreli bir ortamda.',
-    loginButton: 'Portala Eriş',
-    registerButton: 'Erişim Talep Et',
+    badge: "Güvenli müşteri portalı",
+    title: "Özel Komuta Merkeziniz",
+    subtitle: "Belgelerinize erişin, metriklerinizi takip edin ve ekibimizle güvenli bir şekilde iletişim kurun—tümü şifreli bir ortamda.",
+    loginButton: "Portala eriş",
+    registerButton: "Erişim talep et",
+    featuresTitle: "Neler sunuyoruz",
     features: [
-      {
-        icon: FaFileAlt,
-        title: 'Belge Yönetimi',
-        desc: 'Tüm önemli belgelerinizi güvenli bir şekilde yükleyin, indirin ve yönetin. Tam sürüm geçmişi ile projeye göre düzenlenmiş.',
-      },
-      {
-        icon: FaComments,
-        title: 'Güvenli Mesajlaşma',
-        desc: 'Özel danışmanınızla doğrudan, şifreli iletişim. Gerçek zamanlı bildirimler ve mesaj geçmişi.',
-      },
-      {
-        icon: FaChartLine,
-        title: 'Analitik Panosu',
-        desc: 'Etkileşimli grafiklerle temel metriklerinizi ve KPI\'larınızı takip edin. Proje ilerlemesini ve finansal göstergeleri izleyin.',
-      },
-      {
-        icon: FaShieldAlt,
-        title: 'Banka Düzeyinde Güvenlik',
-        desc: 'Uçtan uca şifreleme, iki faktörlü kimlik doğrulama ve katı erişim kontrolleri hassas verilerinizi korur.',
-      },
+      { title: "Belge Yönetimi", desc: "Tüm önemli belgelerinizi güvenli bir şekilde yükleyin, indirin ve yönetin. Tam sürüm geçmişi ile projeye göre düzenlenmiş." },
+      { title: "Güvenli Mesajlaşma", desc: "Özel danışmanınızla doğrudan, şifreli iletişim. Gerçek zamanlı bildirimler ve mesaj geçmişi." },
+      { title: "Analitik Panosu", desc: "Etkileşimli grafiklerle temel metriklerinizi ve KPI'larınızı takip edin. Proje ilerlemesini ve finansal göstergeleri izleyin." },
+      { title: "Banka Düzeyinde Güvenlik", desc: "Uçtan uca şifreleme, iki faktörlü kimlik doğrulama ve katı erişim kontrolleri hassas verilerinizi korur." },
     ],
-    securityTitle: 'GÜVENLİK ÖNCELİKLİ',
-    securityFeatures: [
-      { icon: FaLock, text: 'AES-256 Şifreleme' },
-      { icon: FaUserShield, text: 'Rol Tabanlı Erişim' },
-      { icon: FaShieldAlt, text: 'KVKK Uyumlu' },
-    ],
-    ctaTitle: 'Başlamaya Hazır mısınız?',
-    ctaDesc: 'Güvenli müşteri portalı hesabınızı oluşturmak için bizimle iletişime geçin.',
-    ctaButton: 'Portal Erişimi Talep Et',
-    existingClient: 'Zaten bir hesabınız var mı?',
-    loginLink: 'Buradan giriş yapın',
+    statusLabel: "Durum",
+    statusOnline: "Portal çevrimiçi",
+    statusByRequest: "Talep üzerine erişim",
+    securityTitle: "Güvenlik öncelikli",
+    securityFeatures: ["AES-256 Şifreleme", "Rol Tabanlı Erişim", "KVKK Uyumlu"],
+    ctaTitle: "Başlamaya hazır mısınız?",
+    ctaDesc: "Güvenli müşteri portalı hesabınızı oluşturmak için bizimle iletişime geçin.",
+    ctaButton: "Portal erişimi talep et",
+    existingClient: "Zaten bir hesabınız var mı?",
+    loginLink: "Buradan giriş yapın",
   },
   it: {
-    badge: 'PORTALE CLIENTI SICURO',
-    title: 'Il Tuo',
-    titleHighlight: 'Centro di Comando',
-    subtitle: 'Accedi ai tuoi documenti, monitora le tue metriche e comunica in modo sicuro con il nostro team—tutto in un ambiente crittografato.',
-    loginButton: 'Accedi al Portale',
-    registerButton: 'Richiedi Accesso',
+    badge: "Portale clienti sicuro",
+    title: "Il Tuo Centro di Comando",
+    subtitle: "Accedi ai tuoi documenti, monitora le tue metriche e comunica in modo sicuro con il nostro team—tutto in un ambiente crittografato.",
+    loginButton: "Accedi al portale",
+    registerButton: "Richiedi accesso",
+    featuresTitle: "Cosa ottieni",
     features: [
-      {
-        icon: FaFileAlt,
-        title: 'Gestione Documenti',
-        desc: 'Carica, scarica e gestisci in sicurezza tutti i tuoi documenti importanti. Organizzati per progetto con cronologia completa delle versioni.',
-      },
-      {
-        icon: FaComments,
-        title: 'Messaggistica Sicura',
-        desc: 'Comunicazione diretta e crittografata con il tuo consulente dedicato. Notifiche in tempo reale e cronologia messaggi.',
-      },
-      {
-        icon: FaChartLine,
-        title: 'Dashboard Analytics',
-        desc: 'Monitora le tue metriche chiave e KPI con grafici interattivi. Segui l\'avanzamento dei progetti e gli indicatori finanziari.',
-      },
-      {
-        icon: FaShieldAlt,
-        title: 'Sicurezza Bancaria',
-        desc: 'Crittografia end-to-end, autenticazione a due fattori e controlli di accesso rigorosi proteggono i tuoi dati sensibili.',
-      },
+      { title: "Gestione Documenti", desc: "Carica, scarica e gestisci in sicurezza tutti i tuoi documenti importanti. Organizzati per progetto con cronologia completa delle versioni." },
+      { title: "Messaggistica Sicura", desc: "Comunicazione diretta e crittografata con il tuo consulente dedicato. Notifiche in tempo reale e cronologia messaggi." },
+      { title: "Dashboard Analytics", desc: "Monitora le tue metriche chiave e KPI con grafici interattivi. Segui l'avanzamento dei progetti e gli indicatori finanziari." },
+      { title: "Sicurezza Bancaria", desc: "Crittografia end-to-end, autenticazione a due fattori e controlli di accesso rigorosi proteggono i tuoi dati sensibili." },
     ],
-    securityTitle: 'SICUREZZA PRIMA',
-    securityFeatures: [
-      { icon: FaLock, text: 'Crittografia AES-256' },
-      { icon: FaUserShield, text: 'Accesso Basato su Ruoli' },
-      { icon: FaShieldAlt, text: 'Conforme GDPR' },
-    ],
-    ctaTitle: 'Pronto per Iniziare?',
-    ctaDesc: 'Contattaci per configurare il tuo account del portale clienti sicuro.',
-    ctaButton: 'Richiedi Accesso al Portale',
-    existingClient: 'Hai già un account?',
-    loginLink: 'Accedi qui',
+    statusLabel: "Stato",
+    statusOnline: "Portale online",
+    statusByRequest: "Accesso su richiesta",
+    securityTitle: "Sicurezza prima",
+    securityFeatures: ["Crittografia AES-256", "Accesso Basato su Ruoli", "Conforme GDPR"],
+    ctaTitle: "Pronto per iniziare?",
+    ctaDesc: "Contattaci per configurare il tuo account del portale clienti sicuro.",
+    ctaButton: "Richiedi accesso al portale",
+    existingClient: "Hai già un account?",
+    loginLink: "Accedi qui",
   },
-};
+} as const;
 
-// Animated Security Shield Component
-const SecurityShieldAnimation = () => {
-  return (
-    <div className="relative w-48 h-48 mx-auto">
-      <svg viewBox="0 0 100 120" className="w-full h-full">
-        {/* Outer Shield */}
-        <motion.path
-          d="M50 5 L90 20 L90 55 Q90 90 50 115 Q10 90 10 55 L10 20 Z"
-          fill="none"
-          stroke="#00E599"
-          strokeWidth="2"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-        />
-
-        {/* Inner Shield */}
-        <motion.path
-          d="M50 15 L80 27 L80 55 Q80 82 50 103 Q20 82 20 55 L20 27 Z"
-          fill="url(#shieldGradient)"
-          fillOpacity="0.1"
-          stroke="#0066FF"
-          strokeWidth="1"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        />
-
-        {/* Lock Icon */}
-        <motion.g
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-        >
-          <rect x="38" y="55" width="24" height="20" rx="3" fill="none" stroke="#D4AF37" strokeWidth="2" />
-          <path d="M42 55 V48 Q42 40 50 40 Q58 40 58 48 V55" fill="none" stroke="#D4AF37" strokeWidth="2" />
-          <circle cx="50" cy="65" r="3" fill="#D4AF37" />
-        </motion.g>
-
-        {/* Animated Rings */}
-        <motion.circle
-          cx="50"
-          cy="60"
-          r="40"
-          fill="none"
-          stroke="#00E599"
-          strokeWidth="0.5"
-          strokeDasharray="4 4"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1.2, opacity: [0, 0.5, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-
-        <defs>
-          <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00E599" />
-            <stop offset="100%" stopColor="#0066FF" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  );
-};
+const H2 = "mt-5 font-display text-[clamp(1.8rem,3.6vw,3rem)] font-normal uppercase leading-[1.08] tracking-[-0.012em]";
+const CONTAINER = "mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12";
+const RULED_GRID = "grid gap-px overflow-hidden rounded-[2px] border border-line-soft bg-line-soft";
 
 export default function PortalPageClient({ locale }: PortalPageClientProps) {
-  const [mounted, setMounted] = useState(false);
-  const t = content[locale];
+  const ref = useRef<HTMLElement>(null);
+  useReveals(ref, ".pg-head");
+  const t = getTranslation(locale);
+  const c = content[locale];
+  const { open } = useConsultation();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
+  const portalHref = PORTAL_URL ? `${PORTAL_URL}/login` : `/${locale}/contact/`;
+  const external = Boolean(PORTAL_URL);
+  const externalProps = external ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  const requestAccess = () => open({ source: `${t.nav.portal} · ${c.registerButton}` });
 
   return (
-    <main className="relative bg-obsidian text-electric-platinum pt-32 pb-20 px-6">
-      <div className="relative z-10 container mx-auto max-w-6xl">
-        {/* Hero Section */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="neo-pill mb-6">
-              <span className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
-              <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.badge}</span>
-            </div>
-            <h1 className="font-serif text-4xl md:text-6xl mb-6">
-              <span className="text-electric-platinum">{t.title}</span>
-              <br />
-              <span className="bg-gradient-to-r from-accent-cyan to-accent-orange bg-clip-text text-transparent">
-                {t.titleHighlight}
-              </span>
-            </h1>
-            <p className="text-electric-platinum/60 text-lg leading-relaxed mb-8">{t.subtitle}</p>
+    <main ref={ref} className="relative bg-obsidian text-white">
+      {/* Masthead */}
+      <PageHeader eyebrow={c.badge} title={c.title} sub={c.subtitle} accent="gold">
+        <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4" data-rv="up">
+          <a href={portalHref} className="cta isolate" style={{ marginTop: 0 }} data-cursor {...externalProps}>
+            <i />
+            <span>{c.loginButton}</span>
+            <Arrow className="cta-ar" />
+          </a>
+          <button type="button" onClick={requestAccess} data-cursor className="k group inline-flex items-center gap-2 text-bone-dim transition-colors hover:text-white">
+            {c.registerButton}
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none" strokeWidth={1.5} />
+          </button>
+        </div>
+      </PageHeader>
 
-            <div className="flex flex-wrap gap-4">
-              <a
-                href={PORTAL_URL ? `${PORTAL_URL}/login` : `/${locale}/contact`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-black text-void font-mono font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(229,228,226,0.3)]"
-              >
-                <FaLock className="w-4 h-4" />
-                {t.loginButton}
+      {/* 01 — What you get */}
+      <section className="border-t border-line py-20 lg:py-28" aria-labelledby="portal-features">
+        <div className={CONTAINER}>
+          <div className="max-w-2xl" data-rv="up">
+            <Eyebrow index="01">{c.badge}</Eyebrow>
+            <h2 id="portal-features" className={H2}>
+              {c.featuresTitle}
+            </h2>
+          </div>
+
+          <ol className={`mt-10 sm:grid-cols-2 ${RULED_GRID}`}>
+            {c.features.map((feature, i) => {
+              const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length];
+              return (
+                <li key={feature.title} className="flex flex-col bg-titanium/70 p-6 lg:p-8" data-rv="up">
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-[2px] border border-line text-gold">
+                      <Icon className="h-4.5 w-4.5" strokeWidth={1.25} />
+                    </span>
+                    <span className="k">
+                      <b>0{i + 1}</b>
+                    </span>
+                  </div>
+                  <h3 className="mt-6 font-display text-[clamp(1.25rem,1.9vw,1.75rem)] font-normal leading-tight tracking-[-0.005em]">{feature.title}</h3>
+                  <p className="body mt-3 max-w-[40ch]">{feature.desc}</p>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* 02 — Status / security strip */}
+      <section className="border-t border-line py-16 lg:py-20" aria-labelledby="portal-security">
+        <div className={CONTAINER}>
+          <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4" data-rv="up">
+            <div>
+              <Eyebrow index="02">{c.statusLabel}</Eyebrow>
+              <h2 id="portal-security" className={H2}>
+                {c.securityTitle}
+              </h2>
+            </div>
+            <div className="k inline-flex items-center gap-3 pb-1">
+              <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${external ? "bg-gold" : "bg-muted"}`} />
+              {external ? c.statusOnline : c.statusByRequest}
+            </div>
+          </div>
+
+          <ol className={`mt-8 sm:grid-cols-3 ${RULED_GRID}`}>
+            {c.securityFeatures.map((text, i) => {
+              const Icon = SECURITY_ICONS[i % SECURITY_ICONS.length];
+              return (
+                <li key={text} className="flex items-center gap-4 bg-titanium/70 px-6 py-5" data-rv="up">
+                  <span className="k shrink-0">
+                    <b>0{i + 1}</b>
+                  </span>
+                  <Icon className="h-4 w-4 shrink-0 text-gold" strokeWidth={1.25} />
+                  <span className="text-[14px] font-light text-white/85">{text}</span>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* 03 — Access CTA row */}
+      <section className="border-t border-line py-20 lg:py-28" aria-labelledby="portal-cta">
+        <div className={CONTAINER}>
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8" data-rv="up">
+              <Eyebrow index="03">{c.loginButton}</Eyebrow>
+              <h2 id="portal-cta" className={`${H2} max-w-[22ch]`}>
+                {c.ctaTitle}
+              </h2>
+              <p className="body-lg mt-5 max-w-[56ch]">{c.ctaDesc}</p>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:col-span-4 lg:justify-end" data-rv="up">
+              <a href={portalHref} className="cta isolate" style={{ marginTop: 0 }} data-cursor {...externalProps}>
+                <i />
+                <span>{c.loginButton}</span>
+                <Arrow className="cta-ar" />
               </a>
-              <Link
-                href={`/${locale}/contact`}
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-tungsten-grey/60 text-electric-platinum font-mono uppercase tracking-wider text-sm hover:bg-obsidian-plate/60 transition-all"
-              >
-                {t.registerButton}
-                <FaArrowRight className="w-4 h-4" />
+              <Link href={`/${locale}/contact/`} data-cursor className="k group inline-flex items-center gap-2 text-bone-dim transition-colors hover:text-white">
+                {c.ctaButton}
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none" strokeWidth={1.5} />
               </Link>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center"
-          >
-            <SecurityShieldAnimation />
-          </motion.div>
+          <p className="body mt-12 border-t border-line pt-6" data-rv="fade">
+            {c.existingClient}{" "}
+            <a href={portalHref} className="text-white underline decoration-line underline-offset-4 transition-colors hover:decoration-gold" {...externalProps}>
+              {c.loginLink}
+            </a>
+          </p>
         </div>
-
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-20">
-          {t.features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <GlassCard className="h-full">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30 flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-5 h-5 text-accent-cyan" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-electric-platinum mb-2">{feature.title}</h3>
-                    <p className="text-sm text-electric-platinum/60 leading-relaxed">{feature.desc}</p>
-                  </div>
-                </div>
-              </GlassCard>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Security Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
-        >
-          <GlassCard>
-            <div className="text-center">
-              <div className="font-mono text-xs text-accent-orange tracking-[0.3em] mb-4">{t.securityTitle}</div>
-              <div className="flex flex-wrap justify-center gap-8">
-                {t.securityFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-center gap-3"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-glass-surface border border-glass-border flex items-center justify-center">
-                      <feature.icon className="w-4 h-4 text-accent-cyan" />
-                    </div>
-                    <span className="text-sm text-electric-platinum/60 font-mono">{feature.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </GlassCard>
-        </motion.div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <GlassCard className="py-12">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">{t.ctaTitle}</h2>
-            <p className="text-electric-platinum/60 mb-8 max-w-lg mx-auto">{t.ctaDesc}</p>
-            <Link
-              href={`/${locale}/contact`}
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-accent-orange text-void font-mono font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(245,134,67,0.3)]"
-            >
-              {t.ctaButton}
-              <FaArrowRight className="w-4 h-4" />
-            </Link>
-
-            <div className="mt-8 pt-8 border-t border-glass-border">
-              <p className="text-sm text-electric-platinum/60">
-                {t.existingClient}{' '}
-                <a
-                  href={PORTAL_URL ? `${PORTAL_URL}/login` : `/${locale}/contact`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent-cyan hover:underline"
-                >
-                  {t.loginLink}
-                </a>
-              </p>
-            </div>
-          </GlassCard>
-        </motion.div>
-      </div>
+      </section>
     </main>
   );
 }
-
