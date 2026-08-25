@@ -101,7 +101,7 @@ export default function ConsultationForm({ locale, prefill, onDone, autoFocus = 
       .join("\n");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name.trim(), email: email.trim(), message: composed, privacyConsent: true, marketingConsent: false }),

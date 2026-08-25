@@ -26,7 +26,8 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://www.alvoloconsulting.com";
+// Apex host: the www subdomain is not attached to the Pages project (returns 522), so canonical / OG URLs use the apex.
+const siteUrl = "https://alvoloconsulting.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
