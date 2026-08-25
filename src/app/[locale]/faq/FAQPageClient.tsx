@@ -54,7 +54,7 @@ export default function FAQPageClient() {
                         className="flex w-full items-start gap-5 px-6 py-6 text-left transition-colors hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/30"
                       >
                         <span className="pt-1 font-mono text-[10px] tracking-[0.25em] text-gold">{String(i + 1).padStart(2, "0")}</span>
-                        <span className="flex-1 font-display text-lg font-semibold tracking-[-0.02em] text-white">{item.q}</span>
+                        <span className="flex-1 font-display text-lg font-normal tracking-[-0.005em] text-white">{item.q}</span>
                         <ChevronDown className={clsx("mt-1 h-4 w-4 shrink-0 text-white/50 transition-transform duration-300", isOpen && "rotate-180")} strokeWidth={1.5} />
                       </button>
                       <AnimatePresence initial={false}>
@@ -79,7 +79,7 @@ export default function FAQPageClient() {
 
             <aside className="lg:col-span-4">
               <div className="sticky top-32 rounded-3xl border border-line bg-glass p-7 backdrop-blur-xl">
-                <h2 className="font-display text-2xl font-semibold tracking-[-0.02em]">{CTA[locale].title}</h2>
+                <h2 className="font-display text-2xl font-normal tracking-[-0.005em]">{CTA[locale].title}</h2>
                 <p className="mt-3 text-[13.5px] leading-relaxed text-white/60">{CTA[locale].body}</p>
                 <button
                   type="button"

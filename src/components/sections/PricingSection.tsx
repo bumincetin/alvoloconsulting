@@ -45,7 +45,7 @@ export default function PricingSection({ locale, hideHeader = false }: PricingSe
             <Eyebrow index="04" accent="emerald">
               {t.eyebrow}
             </Eyebrow>
-            <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-semibold leading-[1.02] tracking-[-0.03em]">
+            <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-normal uppercase leading-[1.05] tracking-[-0.012em]">
               {t.heading}
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-white/60">{t.sub}</p>
@@ -81,7 +81,7 @@ export default function PricingSection({ locale, hideHeader = false }: PricingSe
                   {tier.name}
                 </div>
                 <div id={`${baseId}-${tier.id}`} className="mt-4 flex items-baseline gap-2">
-                  <span className="font-display text-5xl font-semibold tracking-[-0.04em]">{tier.price}</span>
+                  <span className="font-display text-5xl font-normal tracking-[-0.02em]">{tier.price}</span>
                   <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">{tier.cadence}</span>
                 </div>
                 <p className="mt-3 text-[13.5px] leading-relaxed text-white/60">{tier.tagline}</p>

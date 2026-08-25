@@ -58,7 +58,7 @@ export default function StartupCorridorClient() {
             <Eyebrow index="01" accent="emerald">
               {p.frameworkTitle}
             </Eyebrow>
-            <h2 className="mt-5 font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em]">{p.frameworkTitle}</h2>
+            <h2 className="mt-5 font-display text-[clamp(1.8rem,3.6vw,3rem)] font-normal uppercase leading-[1.08] tracking-[-0.012em]">{p.frameworkTitle}</h2>
             <p className="mt-4 text-[15px] leading-relaxed text-white/60">{p.frameworkSubtitle}</p>
           </div>
           <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -72,7 +72,7 @@ export default function StartupCorridorClient() {
                     </span>
                     <span className="font-mono text-[10px] tracking-[0.3em] text-white/35">0{i + 1}</span>
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-semibold tracking-[-0.02em]">{mod.title}</h3>
+                  <h3 className="mt-5 font-display text-lg font-normal tracking-[-0.005em]">{mod.title}</h3>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">{mod.desc}</p>
                 </li>
               );
@@ -87,7 +87,7 @@ export default function StartupCorridorClient() {
           <Eyebrow index="02" accent="gold">
             {p.tiersTitle}
           </Eyebrow>
-          <h2 className="mt-5 font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em]">{p.tiersTitle}</h2>
+          <h2 className="mt-5 font-display text-[clamp(1.8rem,3.6vw,3rem)] font-normal uppercase leading-[1.08] tracking-[-0.012em]">{p.tiersTitle}</h2>
           <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:items-end">
             {p.tiers.map((tier, i) => {
               const accent = TIER_ACCENT[i % TIER_ACCENT.length];
@@ -104,7 +104,7 @@ export default function StartupCorridorClient() {
                   <div className="font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: accent }}>
                     {p.tierLabel} {i + 1}
                   </div>
-                  <h3 className="mt-3 font-display text-3xl font-semibold tracking-[-0.03em]">{tier.name}</h3>
+                  <h3 className="mt-3 font-display text-3xl font-normal tracking-[-0.012em]">{tier.name}</h3>
                   <span className="mt-3 inline-flex w-fit rounded-full border border-line bg-obsidian/60 px-3 py-1 font-mono text-[10px] tracking-[0.2em] text-white/70">{tier.duration}</span>
                   <p className="mt-5 flex-1 text-[13.5px] leading-relaxed text-white/60">{tier.desc}</p>
                   <button

@@ -30,7 +30,7 @@ export default function TeamSection({ locale, hideHeader = false }: TeamSectionP
                 <Eyebrow index="05" accent="gold">
                   {t.eyebrow}
                 </Eyebrow>
-                <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-semibold leading-[1.02] tracking-[-0.03em]">
+                <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-normal uppercase leading-[1.05] tracking-[-0.012em]">
                   {t.heading}
                 </h2>
                 <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-white/60">{t.sub}</p>
@@ -91,7 +91,7 @@ function PartnerCard({
 
         {/* Dossier reveal */}
         <div className="absolute inset-x-0 bottom-0 translate-y-[calc(100%-4.5rem)] p-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-focus-within:translate-y-0">
-          <h3 className="font-display text-2xl font-semibold tracking-[-0.02em] text-white">{partner.name}</h3>
+          <h3 className="font-display text-2xl font-normal tracking-[-0.005em] text-white">{partner.name}</h3>
           <div className="mt-1 text-[12.5px] font-medium" style={{ color: accent }}>
             {partner.role}
           </div>

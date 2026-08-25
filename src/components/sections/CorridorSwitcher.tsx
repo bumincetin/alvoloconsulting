@@ -126,7 +126,7 @@ function ServiceCard({ item, accent, deliverablesLabel }: { item: ServiceItem; a
           <Icon className="h-5 w-5" strokeWidth={1.25} />
         </span>
       </div>
-      <h4 className="mt-5 font-display text-lg font-semibold tracking-[-0.02em] text-white">{item.title}</h4>
+      <h4 className="mt-5 font-display text-lg font-normal tracking-[-0.005em] text-white">{item.title}</h4>
       <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">{item.description}</p>
       <div className="mt-auto pt-5">
         <div className="font-mono text-[9px] uppercase tracking-[0.28em] text-white/35">{deliverablesLabel}</div>
@@ -259,7 +259,7 @@ export default function CorridorSwitcher({ locale, defaultMode = "inbound", hide
                 <Eyebrow index="01" accent={content.accent}>
                   {ui.eyebrow}
                 </Eyebrow>
-                <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-semibold leading-[1.02] tracking-[-0.03em]">
+                <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-normal uppercase leading-[1.05] tracking-[-0.012em]">
                   {ui.heading}
                 </h2>
                 <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/60">{ui.sub}</p>
@@ -339,7 +339,7 @@ export default function CorridorSwitcher({ locale, defaultMode = "inbound", hide
               >
                 {/* Intro band */}
                 <div className="grid gap-6 border-b border-line pb-10 lg:grid-cols-12">
-                  <h3 className="font-display text-[clamp(1.4rem,2.4vw,2rem)] font-semibold leading-tight tracking-[-0.02em] text-white lg:col-span-6">
+                  <h3 className="font-display text-[clamp(1.4rem,2.4vw,2rem)] font-normal leading-tight tracking-[-0.005em] text-white lg:col-span-6">
                     {content.title}
                   </h3>
                   <p className="text-[14.5px] leading-relaxed text-white/60 lg:col-span-6">{content.summary}</p>

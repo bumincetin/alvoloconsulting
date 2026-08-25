@@ -53,7 +53,7 @@ export default function ExpansionPage({ locale, mode, copy }: ExpansionPageProps
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-obsidian/70" style={{ color: accent }}>
                   <Icon className="h-5 w-5" strokeWidth={1.25} />
                 </span>
-                <h3 className="mt-5 font-display text-lg font-semibold tracking-[-0.02em]">{title}</h3>
+                <h3 className="mt-5 font-display text-lg font-normal tracking-[-0.005em]">{title}</h3>
                 <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">{desc}</p>
               </article>
             ))}
@@ -72,7 +72,7 @@ export default function ExpansionPage({ locale, mode, copy }: ExpansionPageProps
             <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center">
               <div className="lg:col-span-8">
                 <Eyebrow accent={accentKey}>{copy.badge}</Eyebrow>
-                <h2 className="mt-4 font-display text-[clamp(1.8rem,3.4vw,2.8rem)] font-semibold leading-[1.05] tracking-[-0.03em]">{copy.ctaTitle}</h2>
+                <h2 className="mt-4 font-display text-[clamp(1.8rem,3.4vw,2.8rem)] font-normal uppercase leading-[1.08] tracking-[-0.012em]">{copy.ctaTitle}</h2>
                 <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/60">{copy.ctaDesc}</p>
               </div>
               <div className="lg:col-span-4 lg:justify-self-end">

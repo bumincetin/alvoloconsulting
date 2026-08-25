@@ -34,7 +34,7 @@ function ServiceList({
   return (
     <div>
       <div className="flex items-baseline justify-between gap-4">
-        <h2 className="font-display text-2xl font-semibold tracking-[-0.02em]">{title}</h2>
+        <h2 className="font-display text-2xl font-normal tracking-[-0.005em]">{title}</h2>
         <span className="font-mono text-[10px] tracking-[0.25em] text-white/35">{index}</span>
       </div>
       <ol className="mt-5 overflow-hidden rounded-2xl border border-line bg-titanium/60 backdrop-blur">
@@ -91,7 +91,7 @@ export default function ServicesPageClient({ locale }: ServicesPageClientProps) 
                   </span>
                   <Eyebrow accent="gold">{s.startupCorridor.label}</Eyebrow>
                 </div>
-                <h2 className="mt-5 font-display text-[clamp(1.6rem,3vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.03em]">{s.startupCorridor.title}</h2>
+                <h2 className="mt-5 font-display text-[clamp(1.6rem,3vw,2.5rem)] font-normal uppercase leading-[1.08] tracking-[-0.012em]">{s.startupCorridor.title}</h2>
                 <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-white/60">{s.startupCorridor.description}</p>
               </div>
               <div className="flex flex-col gap-2 lg:col-span-4 lg:items-end">

@@ -44,7 +44,7 @@ export default function AboutPageClient() {
                 {home.philosophyPoints.map((point, i) => (
                   <li key={point} className="relative overflow-hidden rounded-2xl border border-line bg-titanium/80 p-6 backdrop-blur">
                     <span className="font-mono text-[10px] tracking-[0.3em] text-azure">0{i + 1}</span>
-                    <p className="mt-4 font-display text-xl font-semibold leading-tight tracking-[-0.02em]">{point}</p>
+                    <p className="mt-4 font-display text-xl font-normal leading-tight tracking-[-0.005em]">{point}</p>
                   </li>
                 ))}
               </ol>

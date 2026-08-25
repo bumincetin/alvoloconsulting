@@ -100,7 +100,7 @@ export default function MarketEntryProtocol({ locale }: MarketEntryProtocolProps
               <Eyebrow index="02" accent="gold">
                 {t.eyebrow}
               </Eyebrow>
-              <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-semibold leading-[1.02] tracking-[-0.03em]">
+              <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-normal uppercase leading-[1.05] tracking-[-0.012em]">
                 {t.heading}
               </h2>
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/60">{t.sub}</p>
@@ -161,7 +161,7 @@ export default function MarketEntryProtocol({ locale }: MarketEntryProtocolProps
                             {phase.index}
                           </span>
                           <span className="flex-1">
-                            <span className={clsx("block font-display text-lg font-semibold tracking-[-0.02em]", isActive ? "text-white" : "")}>{phase.title}</span>
+                            <span className={clsx("block font-display text-lg font-normal tracking-[-0.005em]", isActive ? "text-white" : "")}>{phase.title}</span>
                             <AnimatePresence initial={false}>
                               {isActive ? (
                                 <motion.span
@@ -214,7 +214,7 @@ export default function MarketEntryProtocol({ locale }: MarketEntryProtocolProps
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">{phase.duration}</span>
                   </div>
-                  <h3 className="mt-3 font-display text-xl font-semibold tracking-[-0.02em]">{phase.title}</h3>
+                  <h3 className="mt-3 font-display text-xl font-normal tracking-[-0.005em]">{phase.title}</h3>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">{phase.summary}</p>
                 </div>
                 <div className="mt-2">
@@ -249,7 +249,7 @@ function SpecPanel({
             <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
               {phase.index} · {phase.badge}
             </div>
-            <h3 className="mt-2 font-display text-2xl font-semibold tracking-[-0.02em] text-white">{phase.title}</h3>
+            <h3 className="mt-2 font-display text-2xl font-normal tracking-[-0.005em] text-white">{phase.title}</h3>
           </div>
           <div className="text-right font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
             {t.durationLabel}

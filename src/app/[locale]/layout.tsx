@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { JetBrains_Mono, Onest } from "next/font/google";
 import "../globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import { locales, type Locale } from "@/lib/translations";
@@ -12,10 +12,10 @@ import LocaleLayoutClient from "./LocaleLayoutClient";
 
 export const runtime = "edge";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-jakarta",
+const onest = Onest({
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-onest",
   display: "swap",
 });
 
@@ -119,25 +119,17 @@ export default async function LocaleLayout({
   const locale = resolveLocale(raw);
 
   return (
-    <html lang={locale} className={`${jakarta.variable} ${jetbrains.variable}`}>
+    <html lang={locale} className={`${onest.variable} ${jetbrains.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-screen overflow-x-hidden bg-obsidian font-sans text-white antialiased selection:bg-emerald selection:text-obsidian"
+        className="min-h-screen overflow-x-hidden bg-ink font-sans text-bone antialiased"
       >
         <SmoothScrollProvider>
           <LocaleLayoutClient locale={locale}>{children}</LocaleLayoutClient>
         </SmoothScrollProvider>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-[60] opacity-[0.16] mix-blend-soft-light"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E\")",
-          }}
-        />
       </body>
     </html>
   );

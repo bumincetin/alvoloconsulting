@@ -100,7 +100,7 @@ export default function ContactPageClient() {
               <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald/80 to-transparent" />
               <div className="mb-6">
                 <Eyebrow accent="emerald">{t.getInTouch}</Eyebrow>
-                <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.02em]">{c.title}</h2>
+                <h2 className="mt-4 font-display text-2xl font-normal tracking-[-0.005em]">{c.title}</h2>
                 <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/55">{c.sub}</p>
               </div>
               <ConsultationForm locale={locale} prefill={prefill} />

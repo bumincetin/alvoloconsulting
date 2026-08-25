@@ -156,7 +156,7 @@ export default function ExpansionCalculator({ locale, defaultJurisdiction = "ita
   const sizeIndex = SIZES.indexOf(input.size);
 
   return (
-    <section id="planner" className="relative border-t border-line bg-obsidian py-24 text-white lg:py-36" aria-labelledby={`${baseId}-heading`}>
+    <section id="planner" className="relative overflow-hidden border-t border-line bg-obsidian py-24 text-white lg:py-36" aria-labelledby={`${baseId}-heading`}>
       <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-[36rem] w-[36rem] translate-x-1/3 rounded-full blur-[180px]" style={{ backgroundColor: `${accent}14`, transition: "background-color 600ms" }} />
 
       <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
@@ -165,7 +165,7 @@ export default function ExpansionCalculator({ locale, defaultJurisdiction = "ita
             <Eyebrow index="03" accent={input.jurisdiction === "italy" ? "azure" : "emerald"}>
               {t.eyebrow}
             </Eyebrow>
-            <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-semibold leading-[1.02] tracking-[-0.03em]">
+            <h2 id={`${baseId}-heading`} className="mt-5 font-display text-[clamp(2rem,4.2vw,3.6rem)] font-normal uppercase leading-[1.05] tracking-[-0.012em]">
               {t.heading}
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-white/60">{t.sub}</p>
@@ -242,14 +242,14 @@ export default function ExpansionCalculator({ locale, defaultJurisdiction = "ita
                     exit={reducedMotion ? undefined : { opacity: 0, y: -6 }}
                     transition={{ duration: reducedMotion ? 0 : 0.25 }}
                   >
-                    <div className="font-display text-4xl font-semibold tracking-[-0.03em]">{entity.name}</div>
+                    <div className="font-display text-4xl font-normal tracking-[-0.012em]">{entity.name}</div>
                     <p className="mt-2 text-[12.5px] leading-relaxed text-white/55">{entity.note}</p>
                   </motion.div>
                 </AnimatePresence>
               </OutputCard>
 
               <OutputCard label={t.outputs.timeline} accent={accent}>
-                <div className="flex items-baseline gap-2 font-display text-4xl font-semibold tracking-[-0.03em]">
+                <div className="flex items-baseline gap-2 font-display text-4xl font-normal tracking-[-0.012em]">
                   <AnimatedNumber value={result.timelineWeeks[0]} reducedMotion={reducedMotion} />
                   <span className="text-white/35">–</span>
                   <AnimatedNumber value={result.timelineWeeks[1]} reducedMotion={reducedMotion} />
@@ -269,7 +269,7 @@ export default function ExpansionCalculator({ locale, defaultJurisdiction = "ita
               </OutputCard>
 
               <OutputCard label={t.outputs.capital} accent={accent}>
-                <div className="font-display text-3xl font-semibold tracking-[-0.03em] tabular-nums">
+                <div className="font-display text-3xl font-normal tracking-[-0.012em] tabular-nums">
                   {formatCapital(result.capital.amount, result.capital.currency, intlLocale)}
                 </div>
                 <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">
@@ -278,7 +278,7 @@ export default function ExpansionCalculator({ locale, defaultJurisdiction = "ita
               </OutputCard>
 
               <OutputCard label={t.outputs.savings} accent={accent}>
-                <div className="flex items-baseline gap-1 font-display text-3xl font-semibold tracking-[-0.03em]">
+                <div className="flex items-baseline gap-1 font-display text-3xl font-normal tracking-[-0.012em]">
                   <AnimatedNumber value={result.savings.range[0]} reducedMotion={reducedMotion} />
                   <span className="text-white/35">–</span>
                   <AnimatedNumber value={result.savings.range[1]} reducedMotion={reducedMotion} />
