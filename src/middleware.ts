@@ -33,7 +33,12 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(url);
     }
 
-    return NextResponse.next();
+    // Forward the locale to the root layout so <html lang> matches the route.
+    const first = pathname.split('/').filter(Boolean)[0];
+    const locale = first === 'tr' || first === 'it' ? first : 'en';
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('x-locale', locale);
+    return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = {

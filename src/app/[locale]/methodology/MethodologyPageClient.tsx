@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import ScrambleText from '@/components/UI/ScrambleText';
 import { type Locale } from '@/lib/translations';
-import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 interface MethodologyPageClientProps {
   locale: Locale;
@@ -20,17 +19,14 @@ const NeuralNetworkAnimation = () => {
         {/* Input Layer */}
         <g className="input-layer">
           {[20, 40, 60, 80].map((y, i) => (
-            <motion.circle
+            <circle
               key={`input-${i}`}
               cx="30"
               cy={y}
               r="8"
               fill="none"
-              stroke="#00f0ff"
+              stroke="#00E599"
               strokeWidth="1.5"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
             />
           ))}
           <motion.text
@@ -50,33 +46,27 @@ const NeuralNetworkAnimation = () => {
         {[100, 150, 200].map((cx, layerIndex) => (
           <g key={`layer-${layerIndex}`}>
             {[25, 50, 75].map((cy, nodeIndex) => (
-              <motion.circle
+              <circle
                 key={`hidden-${layerIndex}-${nodeIndex}`}
                 cx={cx}
                 cy={cy}
                 r="6"
                 fill="none"
-                stroke="#7000ff"
+                stroke="#0066FF"
                 strokeWidth="1"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 0.6 }}
-                transition={{ delay: 0.3 + layerIndex * 0.15 + nodeIndex * 0.05, duration: 0.4 }}
               />
             ))}
           </g>
         ))}
 
         {/* Output Layer */}
-        <motion.circle
+        <circle
           cx="270"
           cy="50"
           r="10"
           fill="none"
-          stroke="#f58643"
+          stroke="#D4AF37"
           strokeWidth="2"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [1, 1.2, 1], opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6, repeat: Infinity, repeatDelay: 2 }}
         />
         <motion.text
           x="270"
@@ -99,7 +89,7 @@ const NeuralNetworkAnimation = () => {
               y1={y1}
               x2="94"
               y2={y2}
-              stroke="#00f0ff"
+              stroke="#00E599"
               strokeWidth="0.5"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 0.2 }}
@@ -128,9 +118,9 @@ const RiskMatrixAnimation = () => {
 
   const getColor = (risk: string) => {
     switch (risk) {
-      case 'low': return '#00f0ff33';
-      case 'medium': return '#f5864366';
-      case 'high': return '#f5864399';
+      case 'low': return '#00E59933';
+      case 'medium': return '#D4AF3766';
+      case 'high': return '#D4AF3799';
       case 'critical': return '#ff4444cc';
       default: return '#ffffff11';
     }
@@ -156,14 +146,11 @@ const RiskMatrixAnimation = () => {
           />
         ))}
         {/* Animated indicator */}
-        <motion.circle
+        <circle
           cx="90"
           cy="90"
           r="8"
           fill="#ff4444"
-          initial={{ scale: 0 }}
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ delay: 1, duration: 1.5, repeat: Infinity }}
         />
         <motion.text
           x="60"
@@ -245,7 +232,7 @@ const CrossBorderNetworkAnimation = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <circle cx="40" cy="50" r="25" fill="none" stroke="#00f0ff" strokeWidth="2" />
+          <circle cx="40" cy="50" r="25" fill="none" stroke="#00E599" strokeWidth="2" />
           <text x="40" y="54" textAnchor="middle" className="fill-accent-cyan text-[12px] font-bold">IT</text>
         </motion.g>
 
@@ -255,7 +242,7 @@ const CrossBorderNetworkAnimation = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <circle cx="160" cy="50" r="25" fill="none" stroke="#f58643" strokeWidth="2" />
+          <circle cx="160" cy="50" r="25" fill="none" stroke="#D4AF37" strokeWidth="2" />
           <text x="160" y="54" textAnchor="middle" className="fill-accent-orange text-[12px] font-bold">TR</text>
         </motion.g>
 
@@ -282,33 +269,23 @@ const CrossBorderNetworkAnimation = () => {
         />
 
         {/* Animated data packets */}
-        <motion.circle
+        <circle
           cx="40"
           cy="50"
           r="4"
-          fill="#00f0ff"
-          animate={{
-            cx: [40, 100, 160],
-            cy: [50, 20, 50],
-          }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+          fill="#00E599"
         />
-        <motion.circle
+        <circle
           cx="160"
           cy="50"
           r="4"
-          fill="#f58643"
-          animate={{
-            cx: [160, 100, 40],
-            cy: [50, 80, 50],
-          }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, delay: 1 }}
+          fill="#D4AF37"
         />
 
         <defs>
           <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#00f0ff" />
-            <stop offset="100%" stopColor="#f58643" />
+            <stop offset="0%" stopColor="#00E599" />
+            <stop offset="100%" stopColor="#D4AF37" />
           </linearGradient>
         </defs>
       </svg>
@@ -546,8 +523,7 @@ export default function MethodologyPageClient({ locale }: MethodologyPageClientP
   }
 
   return (
-    <main className="relative bg-transparent text-electric-platinum min-h-screen pt-32 pb-20 px-6">
-      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/dd17599dfa77f41517133fa7a4967535/manifest/video.m3u8" />
+    <main className="relative bg-obsidian text-electric-platinum min-h-screen pt-32 pb-20 px-6">
       <div className="relative z-10 container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div

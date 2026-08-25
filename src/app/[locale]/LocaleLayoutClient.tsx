@@ -1,28 +1,18 @@
-'use client';
+"use client";
 
-import { type Locale, getTranslation } from '@/lib/translations';
-import Navbar from '../components/Navbar';
-import BackgroundMesh from '../components/BackgroundMesh';
-import Footer from '../components/Footer';
+import { type Locale, getTranslation } from "@/lib/translations";
+import Navbar from "../components/Navbar";
+import Footer from "@/components/sections/Footer";
+import ConsultationProvider from "@/components/providers/ConsultationProvider";
 
-export default function LocaleLayoutClient({
-  children,
-  locale,
-}: {
-  children: React.ReactNode;
-  locale: Locale;
-}) {
+export default function LocaleLayoutClient({ children, locale }: { children: React.ReactNode; locale: Locale }) {
   const t = getTranslation(locale);
 
   return (
-    <>
-      <BackgroundMesh />
+    <ConsultationProvider locale={locale}>
       <Navbar locale={locale} t={t} />
-      <div className="relative z-10 min-h-screen">
-        {children}
-      </div>
-      <Footer locale={locale} t={t} />
-    </>
+      <div className="relative z-10 min-h-screen">{children}</div>
+      <Footer locale={locale} />
+    </ConsultationProvider>
   );
 }
-

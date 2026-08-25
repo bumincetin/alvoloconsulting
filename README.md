@@ -20,7 +20,7 @@ To create a visually appealing, responsive, and informative website providing co
 *   **Animations:** (Framer Motion - for subtle animations - to be integrated)
 *   **Linting & Formatting:** ESLint, Prettier
 *   **Git Hooks:** Husky & lint-staged (assumed from general good practice)
-*   **Deployment:** Vercel (assumed)
+*   **Deployment:** Cloudflare Pages via `@cloudflare/next-on-pages` (see Deployment below)
 *   **Containerization:** Docker (for local development consistency, if used)
 
 ## 🛠️ Installation
@@ -143,3 +143,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
+
+
+## Deployment
+
+The site runs on Cloudflare Pages (project `alvoloconsulting`, custom domain alvoloconsulting.com) as a **direct upload**, not a Git integration.
+
+```bash
+npm run build          # sanity check (Next.js)
+npm run pages:build    # @cloudflare/next-on-pages → .vercel/output/static  (run on Linux/WSL; the Vercel CLI it spawns is unreliable on Windows)
+npm run pages:deploy   # wrangler pages deploy … --project-name alvoloconsulting
+```
+
+Add `--branch main` to `pages:deploy` to publish to production. `RESEND_API_KEY` and `CONTACT_EMAIL` must be set in the Pages project environment for the consultation intake (`/api/contact`) to send email.

@@ -6,16 +6,14 @@ import { motion } from 'framer-motion';
 import { FaLock, FaFileAlt, FaComments, FaChartLine, FaShieldAlt, FaUserShield, FaArrowRight } from 'react-icons/fa';
 import GlassCard from '../../components/ui/GlassCard';
 import { type Locale } from '@/lib/translations';
-import PageVideoBackground from '@/components/Media/PageVideoBackground';
 
 interface PortalPageClientProps {
   locale: Locale;
 }
 
 // Portal URL - in production this would be your deployed Django portal URL
-// For local development: http://localhost:8000
 // For production: https://portal.alvoloconsulting.com or your custom domain
-const PORTAL_URL = process.env.NEXT_PUBLIC_PORTAL_URL || 'http://localhost:8000';
+const PORTAL_URL = process.env.NEXT_PUBLIC_PORTAL_URL || '';
 
 const content = {
   en: {
@@ -152,7 +150,7 @@ const SecurityShieldAnimation = () => {
         <motion.path
           d="M50 5 L90 20 L90 55 Q90 90 50 115 Q10 90 10 55 L10 20 Z"
           fill="none"
-          stroke="#00f0ff"
+          stroke="#00E599"
           strokeWidth="2"
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
@@ -164,7 +162,7 @@ const SecurityShieldAnimation = () => {
           d="M50 15 L80 27 L80 55 Q80 82 50 103 Q20 82 20 55 L20 27 Z"
           fill="url(#shieldGradient)"
           fillOpacity="0.1"
-          stroke="#7000ff"
+          stroke="#0066FF"
           strokeWidth="1"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -177,9 +175,9 @@ const SecurityShieldAnimation = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 1 }}
         >
-          <rect x="38" y="55" width="24" height="20" rx="3" fill="none" stroke="#f58643" strokeWidth="2" />
-          <path d="M42 55 V48 Q42 40 50 40 Q58 40 58 48 V55" fill="none" stroke="#f58643" strokeWidth="2" />
-          <circle cx="50" cy="65" r="3" fill="#f58643" />
+          <rect x="38" y="55" width="24" height="20" rx="3" fill="none" stroke="#D4AF37" strokeWidth="2" />
+          <path d="M42 55 V48 Q42 40 50 40 Q58 40 58 48 V55" fill="none" stroke="#D4AF37" strokeWidth="2" />
+          <circle cx="50" cy="65" r="3" fill="#D4AF37" />
         </motion.g>
 
         {/* Animated Rings */}
@@ -188,7 +186,7 @@ const SecurityShieldAnimation = () => {
           cy="60"
           r="40"
           fill="none"
-          stroke="#00f0ff"
+          stroke="#00E599"
           strokeWidth="0.5"
           strokeDasharray="4 4"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -198,8 +196,8 @@ const SecurityShieldAnimation = () => {
 
         <defs>
           <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00f0ff" />
-            <stop offset="100%" stopColor="#7000ff" />
+            <stop offset="0%" stopColor="#00E599" />
+            <stop offset="100%" stopColor="#0066FF" />
           </linearGradient>
         </defs>
       </svg>
@@ -220,8 +218,7 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
   }
 
   return (
-    <main className="relative bg-transparent text-electric-platinum pt-32 pb-20 px-6">
-      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/e923e67d71fed3e0853ec57f0348451e/manifest/video.m3u8" />
+    <main className="relative bg-obsidian text-electric-platinum pt-32 pb-20 px-6">
       <div className="relative z-10 container mx-auto max-w-6xl">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
@@ -245,7 +242,7 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
 
             <div className="flex flex-wrap gap-4">
               <a
-                href={`${PORTAL_URL}/login`}
+                href={PORTAL_URL ? `${PORTAL_URL}/login` : `/${locale}/contact`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-black text-void font-mono font-bold uppercase tracking-wider text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(229,228,226,0.3)]"
@@ -353,7 +350,7 @@ export default function PortalPageClient({ locale }: PortalPageClientProps) {
               <p className="text-sm text-electric-platinum/60">
                 {t.existingClient}{' '}
                 <a
-                  href={`${PORTAL_URL}/login`}
+                  href={PORTAL_URL ? `${PORTAL_URL}/login` : `/${locale}/contact`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent-cyan hover:underline"

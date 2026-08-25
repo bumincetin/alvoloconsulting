@@ -1,49 +1,21 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaIndustry, FaCogs, FaShippingFast, FaMoneyBillWave, FaUserTie, FaBalanceScale } from 'react-icons/fa';
-import GlassCard from '@/app/components/ui/GlassCard';
-import { type Locale } from '@/lib/translations';
-import PageVideoBackground from '@/components/Media/PageVideoBackground';
+import { Banknote, Boxes, Factory, Route, Scale, Users } from "lucide-react";
+import ExpansionPage, { type ExpansionPageCopy } from "@/components/pages/ExpansionPage";
+import type { Locale } from "@/lib/translations";
 
 interface TurkeyExpansionClientProps {
   locale: Locale;
 }
 
-const services = [
-  {
-    icon: FaIndustry,
-    titleKey: 'manufacturing',
-    descKey: 'manufacturingDesc',
-  },
-  {
-    icon: FaCogs,
-    titleKey: 'sourcing',
-    descKey: 'sourcingDesc',
-  },
-  {
-    icon: FaShippingFast,
-    titleKey: 'logistics',
-    descKey: 'logisticsDesc',
-  },
-  {
-    icon: FaMoneyBillWave,
-    titleKey: 'costOptimization',
-    descKey: 'costOptimizationDesc',
-  },
-  {
-    icon: FaUserTie,
-    titleKey: 'localTeam',
-    descKey: 'localTeamDesc',
-  },
-  {
-    icon: FaBalanceScale,
-    titleKey: 'legal',
-    descKey: 'legalDesc',
-  },
-];
+const SERVICES = [
+  { icon: Factory, titleKey: "manufacturing", descKey: "manufacturingDesc" },
+  { icon: Boxes, titleKey: "sourcing", descKey: "sourcingDesc" },
+  { icon: Route, titleKey: "logistics", descKey: "logisticsDesc" },
+  { icon: Banknote, titleKey: "costOptimization", descKey: "costOptimizationDesc" },
+  { icon: Users, titleKey: "localTeam", descKey: "localTeamDesc" },
+  { icon: Scale, titleKey: "legal", descKey: "legalDesc" }
+] as const;
 
 const content = {
   en: {
@@ -111,105 +83,17 @@ const content = {
   },
 };
 
-const TurkeyExpansionClient: React.FC<TurkeyExpansionClientProps> = ({ locale }) => {
-  const [mounted, setMounted] = useState(false);
+export default function TurkeyExpansionClient({ locale }: TurkeyExpansionClientProps) {
   const t = content[locale];
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+  const copy: ExpansionPageCopy = {
+    badge: t.badge,
+    title: t.title,
+    subtitle: t.subtitle,
+    services: SERVICES.map(({ icon, titleKey, descKey }) => ({ icon, title: t[titleKey], desc: t[descKey] })),
+    ctaTitle: t.ctaTitle,
+    ctaDesc: t.ctaDesc,
+    ctaButton: t.ctaButton,
+    backLink: t.backLink,
   };
-
-  return (
-    <main className="relative bg-transparent text-electric-platinum min-h-screen pt-32 pb-24 px-6">
-      <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/257c7359efd4b4aaebcc03aa8fc78a36/manifest/video.m3u8" />
-      <div className="relative z-10 container mx-auto max-w-6xl">
-        {/* Back Link */}
-        <Link
-          href={`/${locale}/services`}
-          className="inline-flex items-center gap-2 text-electric-platinum/60 hover:text-holographic-cyan transition-colors mb-8 font-mono text-sm"
-        >
-          <FaArrowRight className="w-3 h-3 rotate-180" />
-          {t.backLink}
-        </Link>
-
-        {/* Header */}
-        <AnimatePresence>
-          {mounted && (
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeInUp}
-              transition={{ duration: 0.6 }}
-              className="mb-16"
-            >
-              <div className="neo-pill mb-6">
-                <span className="w-2 h-2 rounded-full bg-accent-orange"></span>
-                <span className="text-[11px] tracking-[0.2em] uppercase font-mono">{t.badge}</span>
-              </div>
-              <h1 className="font-serif text-4xl md:text-6xl mb-6">{t.title}</h1>
-              <p className="text-xl text-electric-platinum/60 max-w-3xl">{t.subtitle}</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {services.map((service, index) => (
-            <AnimatePresence key={index}>
-              {mounted && (
-                <motion.div
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeInUp}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <GlassCard className="h-full">
-                    <service.icon className="w-10 h-10 text-accent-orange mb-4" />
-                    <h3 className="text-xl font-bold text-electric-platinum mb-2">
-                      {t[service.titleKey as keyof typeof t]}
-                    </h3>
-                    <p className="text-electric-platinum/60 text-sm leading-relaxed">
-                      {t[service.descKey as keyof typeof t]}
-                    </p>
-                  </GlassCard>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          ))}
-        </div>
-
-        {/* CTA Section */}
-        <AnimatePresence>
-          {mounted && (
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeInUp}
-              transition={{ duration: 0.6 }}
-            >
-              <GlassCard className="text-center py-12">
-                <h2 className="font-serif text-3xl md:text-4xl mb-4">{t.ctaTitle}</h2>
-                <p className="text-electric-platinum/60 mb-8 max-w-2xl mx-auto">{t.ctaDesc}</p>
-                <Link
-                  href={`/${locale}/contact`}
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-accent-orange text-void font-semibold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105 shadow-[0_0_30px_rgba(245,134,67,0.3)]"
-                >
-                  {t.ctaButton}
-                  <FaArrowRight className="w-4 h-4" />
-                </Link>
-              </GlassCard>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </main>
-  );
-};
-
-export default TurkeyExpansionClient;
-
+  return <ExpansionPage locale={locale} mode="outbound" copy={copy} />;
+}

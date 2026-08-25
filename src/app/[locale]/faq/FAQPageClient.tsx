@@ -1,124 +1,108 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronDown, FaArrowRight } from 'react-icons/fa';
-import { useParams } from 'next/navigation';
-import Link from 'next/link';
-import { getTranslation, type Locale } from '@/lib/translations';
-import GlassCard from '@/app/components/ui/GlassCard';
-import PageVideoBackground from '@/components/Media/PageVideoBackground';
+import { useId, useState } from "react";
+import { useParams } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import clsx from "clsx";
+import PageHeader from "@/components/UI/PageHeader";
+import { useConsultation } from "@/components/providers/ConsultationProvider";
+import { useSmoothScroll } from "@/components/providers/SmoothScrollProvider";
+import { BEZIER } from "@/lib/motion/gsap";
+import { CONTACT, footerContent } from "@/lib/content/footer";
+import { getTranslation, locales, type Locale } from "@/lib/translations";
 
-function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
-    const [open, setOpen] = useState(false);
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.06 }}
-            className="border-b border-tungsten-grey/40 last:border-b-0"
-        >
-            <button
-                onClick={() => setOpen(!open)}
-                className="flex w-full items-center justify-between gap-4 py-7 text-left group"
-            >
-                <span className="text-base md:text-lg font-semibold text-white group-hover:text-electric-platinum transition-colors pr-4">
-                    {question}
-                </span>
-                <motion.span
-                    animate={{ rotate: open ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex-shrink-0 text-electric-platinum/50"
-                >
-                    <FaChevronDown className="w-4 h-4" />
-                </motion.span>
-            </button>
-            <AnimatePresence>
-                {open && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden"
-                    >
-                        <p className="pb-7 text-sm md:text-base text-electric-platinum/70 leading-relaxed max-w-3xl">
-                            {answer}
-                        </p>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.div>
-    );
+function resolveLocale(value: unknown): Locale {
+  return typeof value === "string" && (locales as readonly string[]).includes(value) ? (value as Locale) : "en";
 }
 
+const CTA = {
+  en: { title: "Still have questions?", body: "Open a line to the partners — we reply within one business day." },
+  tr: { title: "Hâlâ sorunuz mu var?", body: "Ortaklara bir hat açın — bir iş günü içinde yanıt veririz." },
+  it: { title: "Hai ancora domande?", body: "Apri una linea con i partner — rispondiamo entro un giorno lavorativo." },
+} as const;
+
 export default function FAQPageClient() {
-    const params = useParams();
-    const locale = (params?.locale as Locale) || 'en';
-    const t = getTranslation(locale);
+  const params = useParams();
+  const locale = resolveLocale(params?.locale);
+  const t = getTranslation(locale);
+  const f = footerContent[locale];
+  const { open } = useConsultation();
+  const { reducedMotion } = useSmoothScroll();
+  const baseId = useId();
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    return (
-        <main className="relative min-h-screen bg-transparent text-electric-platinum pt-32 pb-20">
-            <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/964cb3eddff1a67e3772aac9a7aceea2/manifest/video.m3u8" />
-            <div className="relative z-10 container-wide mx-auto px-6">
-                {/* Header */}
-                <div className="max-w-3xl mx-auto text-center mb-20 space-y-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-block px-4 py-2 rounded-full border border-tungsten-grey/60 bg-white/5 backdrop-blur-sm text-xs uppercase tracking-widest text-electric-platinum/80"
-                    >
-                        {t.nav.faq}
-                    </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-serif text-white"
-                    >
-                        {t.faq.title}
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-electric-platinum/60 text-base md:text-lg max-w-xl mx-auto"
-                    >
-                        {t.faq.subtitle}
-                    </motion.p>
-                </div>
+  return (
+    <main className="relative bg-obsidian text-white">
+      <PageHeader eyebrow={t.nav.faq} title={t.faq.title} sub={t.faq.subtitle} accent="gold" />
 
-                {/* Questions */}
-                <section className="container-wide mx-auto px-0 md:px-0 mb-20 md:mb-32">
-                    <GlassCard className="p-6 md:p-12 max-w-4xl mx-auto">
-                        <div className="space-y-4">
-                            {t.faq.questions.map((item, idx) => (
-                                <FAQItem key={idx} question={item.q} answer={item.a} index={idx} />
-                            ))}
-                        </div>
-                    </GlassCard>
-                </section>
-
-                {/* CTA */}
-                <section className="container-wide mx-auto px-0 md:px-0 text-center">
-                    <GlassCard className="p-8 md:p-16 max-w-3xl mx-auto bg-gradient-to-br from-white/[0.03] to-transparent">
-                        <h2 className="text-2xl md:text-4xl font-serif text-white mb-4 md:mb-6">
-                            Still have questions?
-                        </h2>
-                        <p className="text-electric-platinum/70 text-sm md:text-lg mb-8 md:mb-10 leading-relaxed">
-                            We are here to help you navigate your expansion journey.
-                        </p>
-                        <Link
-                            href={`/${locale}/contact`}
-                            className="inline-flex items-center gap-3 rounded-full bg-black text-white px-6 py-3 md:px-8 md:py-3 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-                        >
-                            {t.nav.contact}
-                            <FaArrowRight className="w-3 h-3" />
-                        </Link>
-                    </GlassCard>
-                </section>
+      <section className="pb-24 lg:pb-36">
+        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <div className="overflow-hidden rounded-3xl border border-line bg-titanium/60 backdrop-blur">
+                {t.faq.questions.map((item, i) => {
+                  const isOpen = openIndex === i;
+                  const panelId = `${baseId}-panel-${i}`;
+                  return (
+                    <div key={item.q} className={clsx(i > 0 && "border-t border-line")}>
+                      <button
+                        type="button"
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                        onClick={() => setOpenIndex(isOpen ? null : i)}
+                        className="flex w-full items-start gap-5 px-6 py-6 text-left transition-colors hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/30"
+                      >
+                        <span className="pt-1 font-mono text-[10px] tracking-[0.25em] text-gold">{String(i + 1).padStart(2, "0")}</span>
+                        <span className="flex-1 font-display text-lg font-semibold tracking-[-0.02em] text-white">{item.q}</span>
+                        <ChevronDown className={clsx("mt-1 h-4 w-4 shrink-0 text-white/50 transition-transform duration-300", isOpen && "rotate-180")} strokeWidth={1.5} />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen ? (
+                          <motion.div
+                            id={panelId}
+                            initial={reducedMotion ? { height: "auto" } : { height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={reducedMotion ? { height: "auto" } : { height: 0, opacity: 0 }}
+                            transition={{ duration: reducedMotion ? 0 : 0.4, ease: BEZIER.inOut }}
+                            className="overflow-hidden"
+                          >
+                            <p className="max-w-3xl px-6 pb-7 pl-[4.4rem] text-[14px] leading-relaxed text-white/65">{item.a}</p>
+                          </motion.div>
+                        ) : null}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-        </main>
-    );
+
+            <aside className="lg:col-span-4">
+              <div className="sticky top-32 rounded-3xl border border-line bg-glass p-7 backdrop-blur-xl">
+                <h2 className="font-display text-2xl font-semibold tracking-[-0.02em]">{CTA[locale].title}</h2>
+                <p className="mt-3 text-[13.5px] leading-relaxed text-white/60">{CTA[locale].body}</p>
+                <button
+                  type="button"
+                  data-cursor="magnetic"
+                  onClick={() => open({ source: t.nav.faq })}
+                  className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-obsidian transition-colors hover:bg-emerald"
+                >
+                  {f.schedule}
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
+                </button>
+                <a
+                  href={`https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(f.whatsappMessage)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-2 inline-flex w-full items-center justify-center rounded-full border border-line px-6 py-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
+                >
+                  {f.whatsapp}
+                </a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

@@ -1,149 +1,156 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaRocket, FaChartLine, FaBuilding, FaHandshake, FaCoins, FaCogs } from 'react-icons/fa';
-import { useParams } from 'next/navigation';
-import { getTranslation, type Locale } from '@/lib/translations';
-import PageVideoBackground from '@/components/Media/PageVideoBackground';
-import GlassCard from '@/app/components/ui/GlassCard';
-import MagneticButton from '@/components/UI/MagneticButton';
+import { useParams } from "next/navigation";
+import { ArrowUpRight, Building2, Coins, Handshake, Rocket, Settings2, TrendingUp, type LucideIcon } from "lucide-react";
+import clsx from "clsx";
+import PageHeader from "@/components/UI/PageHeader";
+import Eyebrow from "@/components/UI/Eyebrow";
+import { useConsultation } from "@/components/providers/ConsultationProvider";
+import { ACCENT_HEX } from "@/lib/geo/cities";
+import { getTranslation, locales, type Locale } from "@/lib/translations";
 
-const moduleIcons = [
-    <FaChartLine key={0} className="w-6 h-6" />,
-    <FaBuilding key={1} className="w-6 h-6" />,
-    <FaRocket key={2} className="w-6 h-6" />,
-    <FaHandshake key={3} className="w-6 h-6" />,
-    <FaCoins key={4} className="w-6 h-6" />,
-    <FaCogs key={5} className="w-6 h-6" />,
-];
+function resolveLocale(value: unknown): Locale {
+  return typeof value === "string" && (locales as readonly string[]).includes(value) ? (value as Locale) : "en";
+}
+
+const MODULE_ICONS: LucideIcon[] = [TrendingUp, Building2, Rocket, Handshake, Coins, Settings2];
+const TIER_ACCENT = [ACCENT_HEX.azure, ACCENT_HEX.emerald, ACCENT_HEX.gold];
 
 export default function StartupCorridorClient() {
-    const params = useParams();
-    const locale = (params?.locale as Locale) || 'en';
-    const t = getTranslation(locale);
-    const p = t.startupCorridorPage;
+  const params = useParams();
+  const locale = resolveLocale(params?.locale);
+  const p = getTranslation(locale).startupCorridorPage;
+  const { open } = useConsultation();
 
-    return (
-        <main className="relative min-h-screen bg-transparent text-electric-platinum pt-32 pb-20">
-            <PageVideoBackground src="https://customer-cbeadsgr09pnsezs.cloudflarestream.com/136a8a211c6c3b1cc1fd7b1c7d836c58/manifest/video.m3u8" />
-            <div className="relative z-10">
-                {/* Hero Section */}
-                <section className="container-wide mx-auto px-6 mb-24">
-                    <div className="max-w-4xl mx-auto text-center space-y-8">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="inline-block px-4 py-2 rounded-full border border-tungsten-grey/60 bg-white/5 backdrop-blur-sm text-xs uppercase tracking-widest text-electric-platinum/80"
-                        >
-                            {p.badge}
-                        </motion.div>
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-4xl md:text-6xl font-serif text-white leading-tight"
-                        >
-                            {p.title}
-                        </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="text-xl text-electric-platinum/60 max-w-2xl mx-auto"
-                        >
-                            {p.subtitle}
-                        </motion.p>
-                    </div>
-                </section>
+  return (
+    <main className="relative bg-obsidian text-white">
+      <PageHeader eyebrow={p.badge} title={p.title} sub={p.subtitle} accent="gold" />
 
-                {/* Mission */}
-                <section className="container-wide mx-auto px-6 mb-24 md:mb-32">
-                    <GlassCard className="p-8 md:p-16 max-w-5xl mx-auto">
-                        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
-                            <div className="flex-1 space-y-6 text-center md:text-left">
-                                <h2 className="text-2xl md:text-3xl font-serif text-white">{p.missionTitle}</h2>
-                                <p className="text-electric-platinum/80 leading-relaxed text-sm md:text-base">
-                                    {p.missionP1}
-                                </p>
-                                <p className="text-electric-platinum/80 leading-relaxed text-sm md:text-base">
-                                    {p.missionP2} <span className="text-white font-semibold">{p.missionHighlight}</span>.
-                                </p>
-                            </div>
-                            <div className="w-full md:w-1/3 flex justify-center">
-                                <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full border border-tungsten-grey/40 flex items-center justify-center">
-                                    <div className="absolute inset-0 rounded-full border border-white/10 animate-[spin_10s_linear_infinite]" />
-                                    <div className="absolute inset-4 rounded-full border border-white/20 animate-[spin_15s_linear_infinite_reverse]" />
-                                    <FaRocket className="w-10 h-10 md:w-12 md:h-12 text-white/80" />
-                                </div>
-                            </div>
-                        </div>
-                    </GlassCard>
-                </section>
-
-                {/* 6-Module Framework */}
-                <section className="container-wide mx-auto px-6 mb-24 md:mb-32">
-                    <div className="text-center mb-12 md:mb-16 space-y-4">
-                        <h2 className="text-3xl md:text-4xl font-serif text-white">{p.frameworkTitle}</h2>
-                        <p className="text-electric-platinum/60 max-w-2xl mx-auto text-sm md:text-base">
-                            {p.frameworkSubtitle}
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {p.modules.map((mod, idx) => (
-                            <GlassCard key={idx} className="p-6 md:p-8 hover:bg-white/5 transition-colors group">
-                                <div className="mb-6 p-4 rounded-full bg-white/5 w-fit border border-white/10 group-hover:border-white/30 transition-colors">
-                                    {moduleIcons[idx]}
-                                </div>
-                                <h3 className="text-lg md:text-xl font-semibold text-white mb-3">{mod.title}</h3>
-                                <p className="text-sm text-electric-platinum/70 leading-relaxed">{mod.desc}</p>
-                            </GlassCard>
-                        ))}
-                    </div>
-                </section>
-
-                {/* 3 Tiers */}
-                <section className="container-wide mx-auto px-6 mb-24 md:mb-32">
-                    <h2 className="text-3xl md:text-4xl font-serif text-white text-center mb-12 md:mb-16">{p.tiersTitle}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {p.tiers.map((tier, idx) => (
-                            <div key={idx} className="relative group">
-                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="relative h-full border border-tungsten-grey/60 rounded-3xl p-8 flex flex-col items-center text-center bg-void-black/50 backdrop-blur-md">
-                                    <div className="mb-2 text-xs uppercase tracking-widest text-electric-platinum/50">{p.tierLabel} {idx + 1}</div>
-                                    <h3 className="text-3xl font-serif text-white mb-2">{tier.name}</h3>
-                                    <div className="px-4 py-1 rounded-full border border-white/20 text-xs font-mono mb-6 bg-white/5">
-                                        {tier.duration}
-                                    </div>
-                                    <p className="text-electric-platinum/70 text-sm leading-relaxed mb-8 flex-1">
-                                        {tier.desc}
-                                    </p>
-                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />
-                                    <MagneticButton
-                                        label={p.tierCta}
-                                        onClick={() => window.location.href = `/${locale}/contact`}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* Why Alvolo */}
-                <section className="container-wide mx-auto px-6 mb-24">
-                    <GlassCard className="p-12 md:p-20 text-center max-w-4xl mx-auto bg-gradient-to-br from-white/[0.03] to-transparent">
-                        <h2 className="text-3xl font-serif text-white mb-8">{p.whyTitle}</h2>
-                        <p className="text-lg text-electric-platinum/80 leading-relaxed mb-10 max-w-3xl mx-auto">
-                            {p.whyBody}
-                        </p>
-                        <MagneticButton
-                            label={p.whyCta}
-                            onClick={() => window.location.href = `/${locale}/contact`}
-                        />
-                    </GlassCard>
-                </section>
+      {/* Mission */}
+      <section className="pb-20 lg:pb-28">
+        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div className="relative overflow-hidden rounded-3xl border border-line bg-glass p-8 backdrop-blur-xl lg:p-12">
+            <div aria-hidden="true" className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-azure/10 blur-[120px]" />
+            <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-8">
+                <Eyebrow accent="azure">{p.missionTitle}</Eyebrow>
+                <p className="mt-5 text-[15px] leading-relaxed text-white/75">{p.missionP1}</p>
+                <p className="mt-4 text-[15px] leading-relaxed text-white/60">
+                  {p.missionP2} <span className="font-medium text-white">{p.missionHighlight}</span>.
+                </p>
+              </div>
+              <div className="flex justify-center lg:col-span-4">
+                <div className="relative flex h-40 w-40 items-center justify-center rounded-full border border-line">
+                  <div className="absolute inset-0 rounded-full border border-white/10 motion-safe:animate-[spin_14s_linear_infinite]" />
+                  <div className="absolute inset-4 rounded-full border border-emerald/30 motion-safe:animate-[spin_20s_linear_infinite_reverse]" />
+                  <Rocket className="h-8 w-8 text-white/80" strokeWidth={1.25} />
+                </div>
+              </div>
             </div>
-        </main>
-    );
+          </div>
+        </div>
+      </section>
+
+      {/* 6-module framework */}
+      <section className="border-t border-line py-24 lg:py-32">
+        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div className="max-w-2xl">
+            <Eyebrow index="01" accent="emerald">
+              {p.frameworkTitle}
+            </Eyebrow>
+            <h2 className="mt-5 font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em]">{p.frameworkTitle}</h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-white/60">{p.frameworkSubtitle}</p>
+          </div>
+          <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {p.modules.map((mod, i) => {
+              const Icon = MODULE_ICONS[i % MODULE_ICONS.length];
+              return (
+                <li key={mod.title} className="relative overflow-hidden rounded-2xl border border-line bg-titanium/80 p-6 backdrop-blur transition-colors hover:border-white/15">
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-obsidian/70 text-emerald">
+                      <Icon className="h-5 w-5" strokeWidth={1.25} />
+                    </span>
+                    <span className="font-mono text-[10px] tracking-[0.3em] text-white/35">0{i + 1}</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-semibold tracking-[-0.02em]">{mod.title}</h3>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-white/60">{mod.desc}</p>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* Tiers */}
+      <section className="border-t border-line py-24 lg:py-32">
+        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <Eyebrow index="02" accent="gold">
+            {p.tiersTitle}
+          </Eyebrow>
+          <h2 className="mt-5 font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em]">{p.tiersTitle}</h2>
+          <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:items-end">
+            {p.tiers.map((tier, i) => {
+              const accent = TIER_ACCENT[i % TIER_ACCENT.length];
+              const featured = i === 1;
+              return (
+                <article
+                  key={tier.name}
+                  className={clsx(
+                    "relative flex flex-col overflow-hidden rounded-3xl border p-7 backdrop-blur-xl",
+                    featured ? "border-emerald/40 bg-glass lg:-translate-y-3" : "border-line bg-titanium/70",
+                  )}
+                >
+                  <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
+                  <div className="font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: accent }}>
+                    {p.tierLabel} {i + 1}
+                  </div>
+                  <h3 className="mt-3 font-display text-3xl font-semibold tracking-[-0.03em]">{tier.name}</h3>
+                  <span className="mt-3 inline-flex w-fit rounded-full border border-line bg-obsidian/60 px-3 py-1 font-mono text-[10px] tracking-[0.2em] text-white/70">{tier.duration}</span>
+                  <p className="mt-5 flex-1 text-[13.5px] leading-relaxed text-white/60">{tier.desc}</p>
+                  <button
+                    type="button"
+                    data-cursor="magnetic"
+                    onClick={() => open({ source: `${p.badge} · ${tier.name}`, service: "startup-corridor" })}
+                    className={clsx(
+                      "mt-7 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors",
+                      featured ? "bg-white text-obsidian hover:bg-emerald" : "border border-line bg-white/[0.04] text-white hover:bg-white/[0.08]",
+                    )}
+                  >
+                    {p.tierCta}
+                    <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                  </button>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why */}
+      <section className="border-t border-line pb-24 pt-20 lg:pb-36 lg:pt-28">
+        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <div className="relative overflow-hidden rounded-3xl border border-line bg-glass p-8 backdrop-blur-xl lg:p-12">
+            <div aria-hidden="true" className="pointer-events-none absolute -right-20 -bottom-24 h-80 w-80 rounded-full bg-gold/10 blur-[120px]" />
+            <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-8">
+                <Eyebrow accent="gold">{p.whyTitle}</Eyebrow>
+                <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-white/70">{p.whyBody}</p>
+              </div>
+              <div className="lg:col-span-4 lg:justify-self-end">
+                <button
+                  type="button"
+                  data-cursor="magnetic"
+                  onClick={() => open({ source: p.badge, service: "startup-corridor" })}
+                  className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-obsidian transition-colors hover:bg-emerald"
+                >
+                  {p.whyCta}
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

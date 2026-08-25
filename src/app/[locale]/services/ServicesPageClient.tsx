@@ -1,475 +1,122 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import GlassCard from "@/app/components/ui/GlassCard";
-import {
-  FaRocket,
-  FaArrowRight,
-  FaBalanceScale,
-  FaBuilding,
-  FaChartLine,
-  FaFileAlt,
-  FaGraduationCap,
-  FaHandshake,
-  FaHome,
-  FaPassport,
-  FaShieldAlt,
-  FaUniversity,
-} from "react-icons/fa";
-import ScrambleText from "@/components/UI/ScrambleText";
-import HlsVideo from "@/components/Media/HlsVideo";
+import { ArrowUpRight, Banknote, Briefcase, Building2, FileBadge, GraduationCap, Home, IdCard, Landmark, LineChart, Plane, Rocket, Scale, ShieldCheck, Users, type LucideIcon } from "lucide-react";
+import PageHeader from "@/components/UI/PageHeader";
+import Eyebrow from "@/components/UI/Eyebrow";
+import CorridorSwitcher from "@/components/sections/CorridorSwitcher";
+import MarketEntryProtocol from "@/components/sections/MarketEntryProtocol";
+import { useConsultation } from "@/components/providers/ConsultationProvider";
+import { ACCENT_HEX } from "@/lib/geo/cities";
+import { consultationContent } from "@/lib/content/consultation";
 import { getTranslation, type Locale } from "@/lib/translations";
-import PageVideoBackground from "@/components/Media/PageVideoBackground";
 
 interface ServicesPageClientProps {
   locale: Locale;
 }
 
-const integrationIcons = [
-  FaGraduationCap,
-  FaPassport,
-  FaHome,
-  FaHandshake,
-  FaUniversity,
-  FaPassport,
-  FaFileAlt,
-];
-const financialIcons = [
-  FaBuilding,
-  FaChartLine,
-  FaBalanceScale,
-  FaUniversity,
-  FaHandshake,
-  FaShieldAlt,
-  FaFileAlt,
-];
+const INTEGRATION_ICONS: LucideIcon[] = [GraduationCap, IdCard, Home, Plane, Users, FileBadge, ShieldCheck];
+const FINANCIAL_ICONS: LucideIcon[] = [Building2, LineChart, Scale, Landmark, Banknote, ShieldCheck, Briefcase];
 
-const gridVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const tileVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
-
-function MetricTicker({ label }: { label: string }) {
-  const [value, setValue] = useState(label);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const jitter = Math.floor(Math.random() * 6) - 3;
-      setValue(label.replace(/\d+/, (match) => String(Number(match) + jitter)));
-    }, 1200);
-    return () => clearInterval(interval);
-  }, [label]);
-
-  return <p className="text-xs uppercase tracking-[0.25em] text-electric-platinum/60">{value}</p>;
-}
-
-/**
- * Renders a persistent HlsVideo that plays/pauses based on hover state.
- * Avoids destroying and recreating the HLS instance on each hover.
- */
-function ServiceCardVideo({ src, isActive }: { src: string; isActive: boolean }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (isActive) {
-      video.play().catch(() => undefined);
-    } else {
-      video.pause();
-    }
-  }, [isActive]);
-
-  return (
-    <HlsVideo
-      ref={videoRef}
-      src={src}
-      lazy
-      autoPlay={false}
-      className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
-    />
-  );
-}
-
-const mockMetrics = [
-  ["Efficiency: +400%", "Latency: -18%", "Signal: 9.6"],
-  ["Risk: -62%", "Audit: 24/7", "Assurance: 99.9%"],
-  ["Velocity: +310%", "Access: Tier V", "Coverage: 12X"],
-  ["Yield: +220%", "Hedge: Active", "Flow: Stable"],
-  ["Confidential: 100%", "SLA: 20m", "Control: Max"],
-  ["Uptime: 99.99%", "Resilience: 8X", "Recovery: 2m"],
-];
-
-const serviceVideos = [
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/90bb1b34646b81b3b63e5a854ea00da3/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/df176a2fb2ea2b64bd21ae1c10d3af6a/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/12a9780eeb1ea015801a5f55cf2e9d3d/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/964cb3eddff1a67e3772aac9a7aceea2/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/dd17599dfa77f41517133fa7a4967535/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/408ad52e3f15bc8f01ae69d194a8cf3a/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/e923e67d71fed3e0853ec57f0348451e/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/136a8a211c6c3b1cc1fd7b1c7d836c58/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/c9ddd33ac3d964e5d33b31ce849e8f95/manifest/video.m3u8",
-  "https://customer-cbeadsgr09pnsezs.cloudflarestream.com/257c7359efd4b4aaebcc03aa8fc78a36/manifest/video.m3u8",
-];
-
-interface ServiceItem {
+function ServiceList({
+  title,
+  items,
+  icons,
+  accent,
+  index,
+}: {
   title: string;
-  description: string;
-  type: 'integration' | 'financial';
-  Icon: React.ElementType;
-  metrics: string[];
-  video: string;
+  items: { title: string; description: string }[];
+  icons: LucideIcon[];
+  accent: string;
+  index: string;
+}) {
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-4">
+        <h2 className="font-display text-2xl font-semibold tracking-[-0.02em]">{title}</h2>
+        <span className="font-mono text-[10px] tracking-[0.25em] text-white/35">{index}</span>
+      </div>
+      <ol className="mt-5 overflow-hidden rounded-2xl border border-line bg-titanium/60 backdrop-blur">
+        {items.map((item, i) => {
+          const Icon = icons[i % icons.length];
+          return (
+            <li key={item.title} className={i > 0 ? "border-t border-line" : undefined}>
+              <div className="flex items-start gap-4 px-5 py-4">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line bg-obsidian/70" style={{ color: accent }}>
+                  <Icon className="h-4 w-4" strokeWidth={1.25} />
+                </span>
+                <div>
+                  <div className="text-[14px] font-medium text-white">{item.title}</div>
+                  <p className="mt-1 text-[12.5px] leading-relaxed text-white/55">{item.description}</p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
 }
 
 export default function ServicesPageClient({ locale }: ServicesPageClientProps) {
   const t = getTranslation(locale);
-
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
-  // Pre-calculate randomized metrics once on mount to avoid hydration mismatch
-  const [randomizedServices, setRandomizedServices] = useState<ServiceItem[]>([]);
-
-  useEffect(() => {
-    // Combine integration and financial services with their assigned icons/metrics/videos
-    const combinedServices = [
-      ...t.services.integrationServices.map((service, index) => ({
-        ...service,
-        type: 'integration' as const,
-        Icon: integrationIcons[index % integrationIcons.length],
-        metrics: mockMetrics[index % mockMetrics.length],
-        video: serviceVideos[index % serviceVideos.length],
-      })),
-      ...t.services.financialServices.map((service, index) => ({
-        ...service,
-        type: 'financial' as const,
-        Icon: financialIcons[index % financialIcons.length],
-        metrics: mockMetrics[(index + 3) % mockMetrics.length],
-        video: serviceVideos[(index + 4) % serviceVideos.length],
-      }))
-    ];
-    setRandomizedServices(combinedServices);
-  }, [t]);
-
+  const s = t.services;
+  const c = consultationContent[locale];
+  const { open } = useConsultation();
 
   return (
-    <main className="relative min-h-screen bg-transparent text-electric-platinum">
-      <PageVideoBackground src={serviceVideos[0]} />
+    <main className="relative bg-obsidian text-white">
+      <PageHeader eyebrow={s.label.replace(/^\d+\s*\/\/\s*/, "")} title={s.title} sub={s.subtitle} accent="azure" />
 
-      <div className="relative z-10 px-8 py-16">
-        <div className="mb-12 space-y-4">
-          <ScrambleText
-            as="h1"
-            text={t.services.title}
-            className="text-5xl font-serif text-electric-platinum"
-          />
-          <ScrambleText
-            as="h2"
-            text={t.services.label}
-            className="text-sm uppercase tracking-[0.5em] text-electric-platinum/50"
-          />
-          <p className="max-w-2xl text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
-            {t.services.subtitle}
-          </p>
-        </div>
+      <CorridorSwitcher locale={locale} hideHeader />
 
-        {/* ── Startup Corridor Feature ── */}
-        <section className="mb-24">
-          <GlassCard className="relative overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-16 group">
-            <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-50" />
-            <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-white/5 blur-3xl group-hover:bg-white/10 transition-colors duration-700" />
+      {/* Service catalogue */}
+      <section className="border-t border-line py-24 lg:py-32">
+        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
+          <Eyebrow accent="gold">{s.viewAll}</Eyebrow>
+          <div className="mt-8 grid gap-8 lg:grid-cols-2">
+            <ServiceList title={s.financialTitle} items={s.financialServices} icons={FINANCIAL_ICONS} accent={ACCENT_HEX.azure} index="F" />
+            <ServiceList title={s.integrationTitle} items={s.integrationServices} icons={INTEGRATION_ICONS} accent={ACCENT_HEX.emerald} index="I" />
+          </div>
 
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              {/* Text Content */}
-              <div className="relative z-10 flex-1 text-center md:text-left order-2 md:order-1">
-                <div className="inline-block px-3 py-1 mb-4 rounded-full border border-white/20 bg-white/5 text-[10px] uppercase tracking-widest text-electric-platinum">
-                  {t.services.startupCorridor.label}
+          {/* Startup corridor promo */}
+          <div className="relative mt-8 overflow-hidden rounded-3xl border border-line bg-glass p-8 backdrop-blur-xl lg:p-10">
+            <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full bg-gold/10 blur-[120px]" />
+            <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-8">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-obsidian/70 text-gold">
+                    <Rocket className="h-4 w-4" strokeWidth={1.25} />
+                  </span>
+                  <Eyebrow accent="gold">{s.startupCorridor.label}</Eyebrow>
                 </div>
-                <h2 className="text-2xl md:text-4xl font-serif text-white mb-4">
-                  {t.services.startupCorridor.title}
-                </h2>
-                <p className="text-electric-platinum/70 text-xs md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0">
-                  {t.services.startupCorridor.description}
-                </p>
+                <h2 className="mt-5 font-display text-[clamp(1.6rem,3vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.03em]">{s.startupCorridor.title}</h2>
+                <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-white/60">{s.startupCorridor.description}</p>
+              </div>
+              <div className="flex flex-col gap-2 lg:col-span-4 lg:items-end">
                 <Link
-                  href={`/${locale}/services/startup-corridor`}
-                  className="inline-flex items-center gap-3 rounded-full bg-black text-white px-6 py-3 md:px-8 md:py-3 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                  href={`/${locale}/services/startup-corridor/`}
+                  data-cursor="magnetic"
+                  className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-obsidian transition-colors hover:bg-emerald"
                 >
-                  {t.services.startupCorridor.button}
-                  <FaArrowRight />
+                  {s.startupCorridor.button}
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
                 </Link>
-              </div>
-
-              {/* Visual/Icon */}
-              <div className="relative flex-shrink-0 w-32 h-32 md:w-48 md:h-48 order-1 md:order-2">
-                <div className="absolute inset-0 rounded-full border border-white/10 animate-[spin_10s_linear_infinite]" />
-                <div className="absolute inset-4 rounded-full border border-white/20 animate-[spin_15s_linear_infinite_reverse]" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <FaRocket className="w-12 h-12 md:w-16 md:h-16 text-white/80" />
-                </div>
+                <button
+                  type="button"
+                  onClick={() => open({ source: s.title })}
+                  className="inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
+                >
+                  {c.title}
+                </button>
               </div>
             </div>
-          </GlassCard>
-        </section>
-
-        <section className="mb-16">
-          <div className="mb-6 flex items-center justify-between">
-            <ScrambleText
-              as="h2"
-              text={t.services.integrationTitle}
-              className="text-2xl font-serif text-electric-platinum"
-            />
-            <div className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
-              Vault Access: Integration
-            </div>
           </div>
+        </div>
+      </section>
 
-          <motion.div
-            variants={gridVariants}
-            initial="hidden"
-            animate="show"
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
-          >
-            {randomizedServices.filter(s => s.type === 'integration').map((service) => (
-              <motion.div
-                key={service.title}
-                variants={tileVariants}
-                whileHover={{ scale: 1.03 }}
-                onMouseEnter={() => setHoveredCard(service.title)}
-                onMouseLeave={() => setHoveredCard(null)}
-                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className={`absolute inset-0 transition ${hoveredCard === service.title ? 'opacity-100' : 'opacity-0'}`}>
-                  <ServiceCardVideo src={service.video} isActive={hoveredCard === service.title} />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.2),_transparent_65%)]" />
-                  <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
-                </div>
-                <div className="relative z-10 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
-                      <service.Icon className="h-4 w-4 text-electric-platinum" />
-                    </span>
-                    <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
-                  </div>
-                  <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
-                    {service.description}
-                  </p>
-                  <div className="space-y-2">
-                    {service.metrics.map((metric: string) => (
-                      <MetricTicker key={`${service.title}-${metric}`} label={metric} />
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        <section className="mb-16">
-          <div className="mb-6 flex items-center justify-between">
-            <ScrambleText
-              as="h2"
-              text={t.services.financialTitle}
-              className="text-2xl font-serif text-electric-platinum"
-            />
-            <div className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
-              Vault Access: Finance
-            </div>
-          </div>
-
-          <motion.div
-            variants={gridVariants}
-            initial="hidden"
-            animate="show"
-            className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
-          >
-            {randomizedServices.filter(s => s.type === 'financial').map((service) => (
-              <motion.div
-                key={service.title}
-                variants={tileVariants}
-                whileHover={{ scale: 1.03 }}
-                onMouseEnter={() => setHoveredCard(service.title)}
-                onMouseLeave={() => setHoveredCard(null)}
-                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className={`absolute inset-0 transition ${hoveredCard === service.title ? 'opacity-100' : 'opacity-0'}`}>
-                  <ServiceCardVideo src={service.video} isActive={hoveredCard === service.title} />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(229,228,226,0.15),_transparent_65%)]" />
-                  <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(229,228,226,0.08),_transparent)]" />
-                </div>
-                <div className="relative z-10 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian-plate/70 border border-tungsten-grey/50">
-                      <service.Icon className="h-4 w-4 text-electric-platinum" />
-                    </span>
-                    <h3 className="text-xl font-semibold text-electric-platinum">{service.title}</h3>
-                  </div>
-                  <p className="text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
-                    {service.description}
-                  </p>
-                  <div className="space-y-2">
-                    {service.metrics.map((metric: string) => (
-                      <MetricTicker key={`${service.title}-${metric}`} label={metric} />
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* ── Intelligence Deck ── */}
-        <section className="mb-16">
-          <div className="mb-6">
-            <p className="text-xs uppercase tracking-[0.5em] text-electric-platinum/60">
-              {t.home.deckVault}
-            </p>
-            <h2 className="mt-4 text-4xl font-serif text-electric-platinum md:text-5xl">
-              {t.home.deckTitle}
-            </h2>
-            <p className="mt-4 max-w-xl text-sm uppercase tracking-[0.25em] text-electric-platinum/60">
-              {t.home.deckSubtitle}
-            </p>
-          </div>
-
-          <motion.div
-            variants={gridVariants}
-            initial="hidden"
-            animate="show"
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
-          >
-            {t.home.deckCards.map((card) => (
-              <motion.div
-                key={card.title}
-                variants={tileVariants}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition hover:border-holographic-cyan/40 hover:shadow-[0_25px_80px_rgba(46,46,94,0.4)]"
-              >
-                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className="pointer-events-none absolute inset-0 rounded-3xl border border-tungsten-grey/40 shadow-[0_0_25px_rgba(229,228,226,0.08)]" />
-                <div className="relative z-10 flex h-full min-h-[180px] flex-col justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
-                      Module
-                    </p>
-                    <h3 className="mt-3 text-lg font-semibold text-electric-platinum">
-                      {card.title}
-                    </h3>
-                  </div>
-                  <p className="mt-4 text-[10px] tracking-[0.1em] text-electric-platinum/40 font-mono">
-                    {card.footer}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* ── Expansion Packages ── */}
-        <section className="mb-16">
-          <div className="mb-6 flex items-center justify-between">
-            <ScrambleText
-              as="h2"
-              text={locale === "tr" ? "Genişleme Paketleri" : locale === "it" ? "Pacchetti di Espansione" : "Expansion Packages"}
-              className="text-2xl font-serif text-electric-platinum"
-            />
-            <div className="text-xs uppercase tracking-[0.4em] text-electric-platinum/50">
-              Vault Access: Expansion
-            </div>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Italy Expansion */}
-            <Link href={`/${locale}/services/expansion/italy`}>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition hover:border-holographic-cyan/40"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className="relative z-10 space-y-4">
-                  <div className="flex items-center gap-4">
-                    <span className="text-4xl">🇮🇹</span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-electric-platinum">
-                        {locale === "tr" ? "İtalya Genişleme Paketi" : locale === "it" ? "Pacchetto Espansione Italia" : "Italy Expansion Package"}
-                      </h3>
-                      <p className="text-xs uppercase tracking-[0.3em] text-electric-platinum/60 mt-1">
-                        {locale === "tr" ? "İtalya pazarına giriş çözümleri" : locale === "it" ? "Soluzioni per l'ingresso nel mercato italiano" : "Complete market entry solutions for Italy"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-holographic-cyan/80">
-                    <span>{locale === "tr" ? "Detayları Gör" : locale === "it" ? "Vedi Dettagli" : "View Details"}</span>
-                    <FaArrowRight className="h-3 w-3" />
-                  </div>
-                </div>
-              </motion.div>
-            </Link>
-
-            {/* Turkey Expansion */}
-            <Link href={`/${locale}/services/expansion/turkey`}>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="group relative overflow-hidden rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition hover:border-holographic-cyan/40"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-electric-platinum/10 via-transparent to-transparent opacity-70" />
-                <div className="relative z-10 space-y-4">
-                  <div className="flex items-center gap-4">
-                    <span className="text-4xl">🇹🇷</span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-electric-platinum">
-                        {locale === "tr" ? "Türkiye Genişleme Paketi" : locale === "it" ? "Pacchetto Espansione Turchia" : "Turkey Expansion Package"}
-                      </h3>
-                      <p className="text-xs uppercase tracking-[0.3em] text-electric-platinum/60 mt-1">
-                        {locale === "tr" ? "Türkiye pazarına giriş çözümleri" : locale === "it" ? "Soluzioni per l'ingresso nel mercato turco" : "Complete market entry solutions for Turkey"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-holographic-cyan/80">
-                    <span>{locale === "tr" ? "Detayları Gör" : locale === "it" ? "Vedi Dettagli" : "View Details"}</span>
-                    <FaArrowRight className="h-3 w-3" />
-                  </div>
-                </div>
-              </motion.div>
-            </Link>
-          </div>
-        </section>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col items-start gap-4 rounded-3xl border border-tungsten-grey/60 bg-obsidian-plate/70 p-6 text-sm uppercase tracking-[0.3em] text-electric-platinum/60 md:flex-row md:items-center md:justify-between"
-        >
-          <span>
-            {locale === "tr"
-              ? "Hizmetlerimiz hakkında daha fazla bilgi almak ister misiniz?"
-              : locale === "it"
-                ? "Vuoi saperne di più sui nostri servizi?"
-                : "Want to learn more about our services?"}
-          </span>
-          <Link
-            href={`/${locale}/contact`}
-            className="inline-flex items-center gap-3 rounded-full border border-tungsten-grey/80 px-6 py-3 text-xs font-semibold uppercase tracking-[0.4em] text-electric-platinum transition hover:border-holographic-cyan/80"
-          >
-            {t.nav.contact}
-            <FaArrowRight className="h-3 w-3" />
-          </Link>
-        </motion.div>
-      </div>
+      <MarketEntryProtocol locale={locale} />
     </main>
   );
 }
-

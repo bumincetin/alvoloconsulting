@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { createElement, useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
 type ScrambleTextProps = {
   text: string;
-  as?: React.ElementType;
+  as?: keyof React.JSX.IntrinsicElements;
   className?: string;
   durationMs?: number;
 };
@@ -18,7 +18,6 @@ export default function ScrambleText({
   className,
   durationMs = 900,
 }: ScrambleTextProps) {
-  const Tag = as;
   const ref = useRef<HTMLElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
   const [display, setDisplay] = useState("");
@@ -52,9 +51,6 @@ export default function ScrambleText({
     return () => cancelAnimationFrame(rafId);
   }, [isInView, text, durationMs]);
 
-  return (
-    <Tag ref={ref} className={className}>
-      {display || text}
-    </Tag>
-  );
+  // createElement keeps the polymorphic `as` prop type-safe under React 19's stricter JSX typings.
+  return createElement(as, { ref, className }, display || text);
 }
