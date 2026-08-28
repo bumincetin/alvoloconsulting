@@ -125,7 +125,7 @@ export default function HeroChapter({ t, sceneOff }: { t: ShoreContent; sceneOff
         </span>
         <span className="peek-play">
           <svg viewBox="0 0 22 22" fill="none" aria-hidden="true">
-            <path d="M8 5.6 16.4 11 8 16.4z" fill="#dfe7e0" />
+            <path d="M8 5.6 16.4 11 8 16.4z" fill="#1b2230" />
           </svg>
         </span>
         <span className="peek-cap">

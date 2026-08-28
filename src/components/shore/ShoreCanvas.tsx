@@ -71,10 +71,10 @@ export default function ShoreCanvas({ quality, reducedMotion, word, onFallback }
         gl={{ antialias: quality === "high", alpha: false, powerPreference: "high-performance", stencil: false }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 1.05;
-          gl.setClearColor("#1c2842", 1);
+          gl.toneMappingExposure = 1.0;
+          gl.setClearColor("#e6dcc6", 1);
         }}
-        style={{ position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, background: "#1c2842" }}
+        style={{ position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, background: "#e6dcc6" }}
         aria-hidden="true"
       >
         <Suspense fallback={null}>

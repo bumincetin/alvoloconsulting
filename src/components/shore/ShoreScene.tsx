@@ -7,14 +7,14 @@ import { Line } from "@react-three/drei";
 import { chapterState, markSceneReady, subscribeChapters } from "./chapters";
 
 /**
- * "Due Sponde / İki Kıyı" — the live strait behind the page.
+ * "Due Sponde / İki Kıyı" — the live strait behind the page, in late-afternoon light.
  *
  * World layout (metres, camera looks down −z):
  *   x < −4   the Italian shore: Duomo, Galleria, cypresses, lit quay lamps
  *   −4…22    the strait: shader water carrying the moon path and lamp reflections
  *   x > 22   the Turkish shore: mosque with four minarets, Galata tower, houses
  *   z ≈ −26  the bridge — the corridor — crossing the strait, lit end to end
- *   moon     pale gold, high right, with an additive halo
+ *   sun      warm and high right, with an additive halo (the old moon slot)
  *
  * The camera rides a Catmull-Rom path through one waypoint per chapter section
  * (`[data-cam]`), damped from the page's scroll progress, with a hand-held
@@ -79,16 +79,16 @@ function moonTexture(): THREE.CanvasTexture {
   return canvasTexture(512, 512, (x, w, h) => {
     const r = w * 0.46;
     const g = x.createRadialGradient(w / 2, h / 2, r * 0.2, w / 2, h / 2, r);
-    g.addColorStop(0, "#f4eacf");
-    g.addColorStop(0.82, "#e8d9b4");
-    g.addColorStop(1, "#cbbd98");
+    g.addColorStop(0, "#fffbe9");
+    g.addColorStop(0.82, "#ffecb8");
+    g.addColorStop(1, "#f8d68c");
     x.fillStyle = g;
     x.beginPath();
     x.arc(w / 2, h / 2, r, 0, TAU);
     x.fill();
     const rnd = mulberry32(77);
     x.globalCompositeOperation = "multiply";
-    for (let i = 0; i < 34; i++) {
+    for (let i = 0; i < 0; i++) {
       const a = rnd() * TAU;
       const d = Math.sqrt(rnd()) * r * 0.82;
       const cx = w / 2 + Math.cos(a) * d;
@@ -150,7 +150,7 @@ const CAM: Waypoint[] = [
   { p: [1.0, 5.5, -36.0], t: [15.0, 5.0, -52.0], fov: 44 }, // 5 colophon — across the water to the Maiden's Tower
 ];
 
-const FOG_COLOR = new THREE.Color("#1c2842");
+const FOG_COLOR = new THREE.Color("#e6dcc6");
 const MOON_POS = new THREE.Vector3(30, 34, -84);
 
 function aspectFix(w: number, h: number) {
@@ -242,13 +242,13 @@ function Rig({ reducedMotion }: { reducedMotion: boolean }) {
 function SkyAndMoon({ quality }: { quality: ShoreQuality }) {
   const { scene, size } = useThree();
   const moonTex = useMemo(() => moonTexture(), []);
-  const haloTex = useMemo(() => glowTexture("rgba(255,236,200,0.85)", "rgba(220,200,150,0.22)"), []);
-  const hazeTex = useMemo(() => glowTexture("rgba(150,190,210,0.5)", "rgba(110,150,175,0.16)"), []);
+  const haloTex = useMemo(() => glowTexture("rgba(255,232,170,0.95)", "rgba(255,205,120,0.38)"), []);
+  const hazeTex = useMemo(() => glowTexture("rgba(255,250,240,0.6)", "rgba(255,240,220,0.2)"), []);
   const haloRef = useRef<THREE.Mesh>(null);
   const hazeRefs = useRef<THREE.Mesh[]>([]);
 
   useEffect(() => {
-    scene.background = new THREE.Color("#1c2842");
+    scene.background = new THREE.Color("#e6dcc6");
     scene.fog = new THREE.Fog(FOG_COLOR, 30, 170);
     return () => {
       scene.fog = null;
@@ -257,21 +257,6 @@ function SkyAndMoon({ quality }: { quality: ShoreQuality }) {
       hazeTex.dispose();
     };
   }, [scene, moonTex, haloTex, hazeTex]);
-
-  const stars = useMemo(() => {
-    const n = quality === "high" ? 520 : 260;
-    const arr = new Float32Array(n * 3);
-    const rnd = mulberry32(9);
-    for (let i = 0; i < n; i++) {
-      const a = rnd() * TAU;
-      const el = 0.12 + rnd() * 0.75;
-      const R = 180;
-      arr[i * 3] = Math.cos(a) * Math.cos(el) * R;
-      arr[i * 3 + 1] = Math.sin(el) * R * 0.75 + 4;
-      arr[i * 3 + 2] = Math.sin(a) * Math.cos(el) * R - 30;
-    }
-    return arr;
-  }, [quality]);
 
   const haze = useMemo(() => {
     const rnd = mulberry32(66);
@@ -291,7 +276,7 @@ function SkyAndMoon({ quality }: { quality: ShoreQuality }) {
   useFrame(({ clock, camera }) => {
     const t = clock.elapsedTime;
     const f = chapterState.focus >= 0 ? 1 : 0;
-    if (haloRef.current) (haloRef.current.material as THREE.MeshBasicMaterial).opacity = 0.42 + f * 0.1 + Math.sin(t * 0.34) * 0.05;
+    if (haloRef.current) (haloRef.current.material as THREE.MeshBasicMaterial).opacity = 0.6 + f * 0.1 + Math.sin(t * 0.34) * 0.05;
     // iterate the data, not the ref array: refs outlive a quality change that shrinks the haze count
     haze.forEach((h, i) => {
       const m = hazeRefs.current[i];
@@ -303,19 +288,12 @@ function SkyAndMoon({ quality }: { quality: ShoreQuality }) {
 
   return (
     <group>
-      <points frustumCulled={false}>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[stars, 3]} />
-        </bufferGeometry>
-        <pointsMaterial color="#dfe7e0" size={0.9} sizeAttenuation transparent opacity={0.55} depthWrite={false} fog={false} />
-      </points>
-
       <mesh position={[moonX, MOON_POS.y, MOON_POS.z]} renderOrder={1}>
-        <planeGeometry args={[15, 15]} />
-        <meshBasicMaterial map={moonTex} transparent depthWrite={false} fog={false} toneMapped={false} color="#fff6dc" />
+        <planeGeometry args={[13, 13]} />
+        <meshBasicMaterial map={moonTex} transparent depthWrite={false} fog={false} toneMapped={false} color="#fffbea" />
       </mesh>
       <mesh ref={haloRef} position={[moonX, MOON_POS.y, MOON_POS.z - 0.4]} renderOrder={0}>
-        <planeGeometry args={[52, 52]} />
+        <planeGeometry args={[74, 74]} />
         <meshBasicMaterial map={haloTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} fog={false} opacity={0.42} />
       </mesh>
 
@@ -379,20 +357,20 @@ const WATER_FRAG = /* glsl */ `
     vec3 v = normalize(uCam - vWorld);
     vec3 r = reflect(-v, n);
     vec3 md = normalize(uMoon - vWorld);
-    vec3 col = vec3(0.075, 0.115, 0.175);
+    vec3 col = vec3(0.15, 0.39, 0.50);
     float spec = pow(max(dot(r, md), 0.0), 160.0);
     float path = pow(max(dot(r, md), 0.0), 9.0);
-    col += vec3(0.95, 0.88, 0.70) * (spec * 0.9 + path * 0.05);
+    col += vec3(1.0, 0.93, 0.74) * (spec * 1.3 + path * 0.14);
     float ripple = 0.55 + 0.45 * (n2 * 0.5 + 0.5);
     for (int i = 0; i < 10; i++) {
       vec4 L = uLights[i];
       vec2 d = p - L.xy;
       float a = exp(-d.x * d.x * 1.6) * exp(-d.y * d.y * 0.045) * L.z;
       float flick = 0.8 + 0.2 * sin(t * (2.2 + float(i) * 0.4) + float(i) * 1.7);
-      col += uLightColors[i] * a * 0.55 * ripple * flick;
+      col += uLightColors[i] * a * 0.12 * ripple * flick;
     }
     float fres = pow(1.0 - max(dot(v, n), 0.0), 3.0);
-    col += vec3(0.11, 0.15, 0.21) * fres;
+    col += vec3(0.5, 0.6, 0.68) * fres * 0.8;
     float dist = length(uCam - vWorld);
     float f = smoothstep(30.0, 170.0, dist);
     col = mix(col, uFog, f);
@@ -428,22 +406,22 @@ function Water() {
 /* ───────────────────────────── shores ───────────────────────────── */
 
 const M = {
-  ground: "#1a2622",
-  quay: "#2a3138",
-  marble: "#5c646d",
-  marbleLight: "#707882",
+  ground: "#8d9d6c",
+  quay: "#cbc1a8",
+  marble: "#e9e3d4",
+  marbleLight: "#f5f0e4",
   gold: "#d9b45a",
-  lead: "#5a6a7c",
-  stone: "#4d5560",
-  tower: "#47505a",
-  cypress: "#182a1e",
-  bridge: "#2c343c",
-  cable: "#b4c0ba",
+  lead: "#7f909e",
+  stone: "#d3c5aa",
+  tower: "#bcae92",
+  cypress: "#3d5a38",
+  bridge: "#6f7782",
+  cable: "#4d5661",
   lamp: "#ffb469",
-  window: "#ffb469",
-  glass: "#ff9a52",
-  brick: "#7c5b4e",
-  travertine: "#7a6f62",
+  window: "#55677a",
+  glass: "#c7d3dc",
+  brick: "#c07a63",
+  travertine: "#dccbae",
 };
 
 function Shores() {
@@ -475,16 +453,16 @@ function Shores() {
       {/* Turkish ridge behind the mosque */}
       <mesh position={[52, 5, -70]} rotation={[0, 0.3, 0]}>
         <cylinderGeometry args={[0, 34, 10, 7]} />
-        <meshStandardMaterial color="#1b2536" roughness={1} flatShading />
+        <meshStandardMaterial color="#7f9a70" roughness={1} flatShading />
       </mesh>
       <mesh position={[26, 4, -96]}>
         <cylinderGeometry args={[0, 40, 8, 6]} />
-        <meshStandardMaterial color="#1b2536" roughness={1} flatShading />
+        <meshStandardMaterial color="#8aa27a" roughness={1} flatShading />
       </mesh>
       {/* Italian hills */}
       <mesh position={[-40, 3, -70]}>
         <cylinderGeometry args={[0, 42, 7, 7]} />
-        <meshStandardMaterial color="#1b2536" roughness={1} flatShading />
+        <meshStandardMaterial color="#7f9a70" roughness={1} flatShading />
       </mesh>
     </group>
   );
@@ -548,7 +526,7 @@ function Duomo({ position }: { position: [number, number, number] }) {
         <sphereGeometry args={[0.32, 10, 10]} />
         <meshStandardMaterial color="#ffd77a" emissive="#ffc44f" emissiveIntensity={1.4} roughness={0.25} />
       </mesh>
-      <pointLight position={[0, 15.3, 0]} color="#ffd27a" intensity={4} distance={26} decay={2} />
+      <pointLight position={[0, 15.3, 0]} color="#ffd27a" intensity={1.2} distance={26} decay={2} />
     </group>
   );
 }
@@ -570,13 +548,13 @@ function Galleria({ position }: { position: [number, number, number] }) {
       {/* the barrel-vaulted glass roof behind, lit from inside */}
       <mesh position={[0, 3.4, -7]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[2.6, 2.6, 12, 16, 1, true, 0, Math.PI]} />
-        <meshStandardMaterial color="#161b20" roughness={0.6} side={THREE.DoubleSide} transparent opacity={0.9} />
+        <meshStandardMaterial color="#a9b8c4" roughness={0.5} side={THREE.DoubleSide} transparent opacity={0.9} />
       </mesh>
       <mesh position={[0, 1.4, -7]}>
         <planeGeometry args={[4.2, 12]} />
-        <meshBasicMaterial color={M.glass} toneMapped={false} transparent opacity={0.22} side={THREE.DoubleSide} />
+        <meshBasicMaterial color={M.glass} toneMapped={false} transparent opacity={0.35} side={THREE.DoubleSide} />
       </mesh>
-      <pointLight position={[0, 2.5, -7]} color="#ff9a52" intensity={3} distance={18} decay={2} />
+      <pointLight position={[0, 2.5, -7]} color="#ffd6a8" intensity={0.5} distance={18} decay={2} />
     </group>
   );
 }
@@ -625,7 +603,7 @@ function QuayLamps() {
     const f = chapterState.focus >= 0 ? 1 : 0;
     const t = clock.elapsedTime;
     lightRefs.current.forEach((l, i) => {
-      if (l) l.intensity = 3.2 * (1 + f * 0.5) * (0.88 + 0.16 * Math.sin(t * (2.3 + i * 0.7) + i * 2.1));
+      if (l) l.intensity = 0.5 * (1 + f * 0.5) * (0.88 + 0.16 * Math.sin(t * (2.3 + i * 0.7) + i * 2.1));
     });
   });
   useEffect(() => () => glowTex.dispose(), [glowTex]);
@@ -635,14 +613,14 @@ function QuayLamps() {
         <group key={i} position={[x, 1.2, z]}>
           <mesh position={[0, 1.6, 0]}>
             <cylinderGeometry args={[0.07, 0.1, 3.2, 6]} />
-            <meshStandardMaterial color="#1d2329" roughness={0.9} />
+            <meshStandardMaterial color="#3a4149" roughness={0.9} />
           </mesh>
           <mesh position={[0, 3.35, 0]}>
             <boxGeometry args={[0.42, 0.5, 0.42]} />
             <meshBasicMaterial color={M.lamp} toneMapped={false} />
           </mesh>
           <sprite position={[0, 3.35, 0]} scale={[3.2, 3.2, 1]}>
-            <spriteMaterial map={glowTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.75} />
+            <spriteMaterial map={glowTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.14} />
           </sprite>
           <pointLight
             ref={(el) => {
@@ -650,7 +628,7 @@ function QuayLamps() {
             }}
             position={[0, 3.3, 0]}
             color="#ffb469"
-            intensity={3.2}
+            intensity={0.5}
             distance={20}
             decay={2}
           />
@@ -756,7 +734,7 @@ function Mosque({ position }: { position: [number, number, number] }) {
       <Minaret position={[-8.6, 0, 8.6]} />
       <Minaret position={[8.6, 0, -8.6]} />
       <Minaret position={[-8.6, 0, -8.6]} />
-      <pointLight position={[0, 5, 9]} color="#ffc27a" intensity={6} distance={42} decay={2} />
+      <pointLight position={[0, 5, 9]} color="#ffc27a" intensity={0.8} distance={42} decay={2} />
     </group>
   );
 }
@@ -789,7 +767,7 @@ function Galata({ position }: { position: [number, number, number] }) {
         <coneGeometry args={[2.4, 4.2, 14]} />
         <meshStandardMaterial color={M.lead} roughness={0.7} />
       </mesh>
-      <pointLight position={[0, 12, 0]} color="#ffc27a" intensity={3} distance={24} decay={2} />
+      <pointLight position={[0, 12, 0]} color="#ffc27a" intensity={0.5} distance={24} decay={2} />
     </group>
   );
 }
@@ -831,11 +809,11 @@ function Houses({ quality }: { quality: ShoreQuality }) {
     <group>
       <instancedMesh ref={ref} args={[undefined, undefined, items.length]}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="#1b2127" roughness={1} />
+        <meshStandardMaterial color="#e8dac3" roughness={1} />
       </instancedMesh>
       <instancedMesh ref={winRef} args={[undefined, undefined, items.length]}>
         <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial color={M.window} toneMapped={false} side={THREE.DoubleSide} transparent opacity={0.8} />
+        <meshBasicMaterial color={M.window} toneMapped={false} side={THREE.DoubleSide} transparent opacity={0.6} />
       </instancedMesh>
     </group>
   );
@@ -864,12 +842,12 @@ const SKY_FRAG = /* glsl */ `
     float h = clamp(vDir.y, -0.2, 1.0);
     vec3 col = mix(uHorizon, uMid, smoothstep(0.0, 0.22, h));
     col = mix(col, uZenith, smoothstep(0.2, 0.85, h));
-    // the last warmth of the day lingers on the western horizon
+    // late-afternoon warmth on the western horizon
     float west = pow(max(dot(normalize(vec3(vDir.x, 0.0, vDir.z)), vec3(-0.72, 0.0, 0.69)), 0.0), 3.0);
-    col += uWarm * west * (1.0 - smoothstep(0.0, 0.28, h)) * 0.55;
+    col += uWarm * west * (1.0 - smoothstep(0.0, 0.32, h)) * 0.7;
     // a soft sheen around the moon
     float m = pow(max(dot(vDir, uMoonDir), 0.0), 18.0);
-    col += vec3(0.62, 0.58, 0.46) * m * 0.16;
+    col += vec3(1.0, 0.92, 0.72) * m * 0.42;
     gl_FragColor = vec4(col, 1.0);
   }
 `;
@@ -877,10 +855,10 @@ const SKY_FRAG = /* glsl */ `
 function SkyDome() {
   const uniforms = useMemo(
     () => ({
-      uZenith: { value: new THREE.Color("#0e1a33") },
-      uMid: { value: new THREE.Color("#233658") },
-      uHorizon: { value: new THREE.Color("#5b6b8e") },
-      uWarm: { value: new THREE.Color("#b08a62") },
+      uZenith: { value: new THREE.Color("#4b84c8") },
+      uMid: { value: new THREE.Color("#a6c5e6") },
+      uHorizon: { value: new THREE.Color("#f3e1bf") },
+      uWarm: { value: new THREE.Color("#f2a35a") },
       uMoonDir: { value: MOON_POS.clone().normalize() },
     }),
     [],
@@ -972,7 +950,7 @@ function HagiaSophia({ position }: { position: [number, number, number] }) {
       <Minaret position={[-11.2, 0, 10.4]} height={19} />
       <Minaret position={[11.2, 0, -10.4]} height={19} />
       <Minaret position={[-11.2, 0, -10.4]} height={19} />
-      <pointLight position={[0, 6, 11]} color="#ffc27a" intensity={7} distance={48} decay={2} />
+      <pointLight position={[0, 6, 11]} color="#ffc27a" intensity={1} distance={48} decay={2} />
     </group>
   );
 }
@@ -1028,7 +1006,7 @@ function MaidenTower({ position }: { position: [number, number, number] }) {
         <sphereGeometry args={[0.16, 6, 6]} />
         <meshBasicMaterial color="#fff2cf" toneMapped={false} />
       </mesh>
-      <pointLight position={[0, 11, 0]} color="#ffd9a0" intensity={4} distance={30} decay={2} />
+      <pointLight position={[0, 11, 0]} color="#ffd9a0" intensity={0.7} distance={30} decay={2} />
     </group>
   );
 }
@@ -1056,7 +1034,7 @@ function Colosseum({ position }: { position: [number, number, number] }) {
       {/* the lower inner ring */}
       <mesh position={[0, 2.6, 0]}>
         <cylinderGeometry args={[R - 1.6, R - 1.6, 5.2, 40, 1, true]} />
-        <meshStandardMaterial color="#5e554b" roughness={1} side={THREE.DoubleSide} />
+        <meshStandardMaterial color="#c4b394" roughness={1} side={THREE.DoubleSide} />
       </mesh>
       <mesh position={[0, 0.2, 0]}>
         <cylinderGeometry args={[R + 1.2, R + 1.6, 0.4, 40]} />
@@ -1066,10 +1044,10 @@ function Colosseum({ position }: { position: [number, number, number] }) {
       {arches.map(({ a, y }, i) => (
         <mesh key={i} position={[Math.sin(a) * (R + 0.03), y, Math.cos(a) * (R + 0.03)]} rotation={[0, a, 0]}>
           <planeGeometry args={[0.7, 1.5]} />
-          <meshBasicMaterial color="#e0a866" toneMapped={false} side={THREE.DoubleSide} />
+          <meshBasicMaterial color="#6f6151" toneMapped={false} side={THREE.DoubleSide} />
         </mesh>
       ))}
-      <pointLight position={[0, 5, 0]} color="#ffb469" intensity={6} distance={40} decay={2} />
+      <pointLight position={[0, 5, 0]} color="#ffb469" intensity={0.8} distance={40} decay={2} />
     </group>
   );
 }
@@ -1222,50 +1200,10 @@ function Ferry({ reducedMotion }: { reducedMotion: boolean }) {
         <meshStandardMaterial color="#4a525c" />
       </mesh>
       <sprite position={[0, 2.4, 1.3]} scale={[1.4, 1.4, 1]}>
-        <spriteMaterial map={glowTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.75} />
+        <spriteMaterial map={glowTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.2} />
       </sprite>
-      <pointLight position={[0, 1.6, 0]} color="#ffc27a" intensity={1.6} distance={12} decay={2} />
+      <pointLight position={[0, 1.6, 0]} color="#ffc27a" intensity={0.4} distance={12} decay={2} />
     </group>
-  );
-}
-
-/* ───────────────────────────── shooting stars ───────────────────────────── */
-
-function ShootingStars({ reducedMotion }: { reducedMotion: boolean }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const state = useRef({ next: 6, start: 0, active: false, from: new THREE.Vector3(), dir: new THREE.Vector3(1, 0, 0), rnd: mulberry32(77) });
-  useFrame(({ clock }) => {
-    const m = ref.current;
-    if (!m || reducedMotion) return;
-    const t = clock.elapsedTime;
-    const s = state.current;
-    if (!s.active) {
-      m.visible = false;
-      if (t < s.next) return;
-      s.active = true;
-      s.start = t;
-      s.from.set(-50 + s.rnd() * 110, 30 + s.rnd() * 22, -150);
-      const a = Math.PI + (s.rnd() - 0.5) * 0.9;
-      s.dir.set(Math.cos(a), Math.sin(a) * 0.45 - 0.25, 0).normalize();
-      m.rotation.z = Math.atan2(s.dir.y, s.dir.x);
-      return;
-    }
-    const p = (t - s.start) / 0.9;
-    if (p >= 1) {
-      s.active = false;
-      s.next = t + 6 + s.rnd() * 10;
-      m.visible = false;
-      return;
-    }
-    m.visible = true;
-    m.position.copy(s.from).addScaledVector(s.dir, p * 34);
-    (m.material as THREE.MeshBasicMaterial).opacity = Math.sin(p * Math.PI) * 0.85;
-  });
-  return (
-    <mesh ref={ref} visible={false} renderOrder={1} frustumCulled={false}>
-      <planeGeometry args={[7, 0.07]} />
-      <meshBasicMaterial color="#e8eee6" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} fog={false} />
-    </mesh>
   );
 }
 
@@ -1315,12 +1253,12 @@ function Bridge() {
           {[-0.7, 0.7].map((dz) => (
             <mesh key={dz} position={[0, 5.2, dz]}>
               <boxGeometry args={[0.7, 10.4, 0.5]} />
-              <meshStandardMaterial color="#343c46" roughness={0.9} />
+              <meshStandardMaterial color="#8d949d" roughness={0.9} />
             </mesh>
           ))}
           <mesh position={[0, 10.6, 0]}>
             <boxGeometry args={[1.1, 0.5, 2.1]} />
-            <meshStandardMaterial color="#343c46" roughness={0.9} />
+            <meshStandardMaterial color="#8d949d" roughness={0.9} />
           </mesh>
           <mesh position={[0, 11.1, 0]}>
             <sphereGeometry args={[0.12, 6, 6]} />
@@ -1331,7 +1269,7 @@ function Bridge() {
       {/* cables, front and back */}
       {[-0.75, 0.75].map((dz) => (
         <group key={dz} position={[0, 0, dz]}>
-          <Line points={cable} color={M.cable} lineWidth={1.1} transparent opacity={0.55} />
+          <Line points={cable} color={M.cable} lineWidth={1.1} transparent opacity={0.7} />
           {hangers.map((h, i) => (
             <Line key={i} points={h} color={M.cable} lineWidth={0.7} transparent opacity={0.35} />
           ))}
@@ -1345,11 +1283,11 @@ function Bridge() {
             <meshBasicMaterial color={M.lamp} toneMapped={false} />
           </mesh>
           <sprite scale={[1.6, 1.6, 1]}>
-            <spriteMaterial map={glowTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.55} />
+            <spriteMaterial map={glowTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.12} />
           </sprite>
         </group>
       ))}
-      <pointLight position={[9, y + 1.5, Z]} color="#ffc27a" intensity={2.5} distance={22} decay={2} />
+      <pointLight position={[9, y + 1.5, Z]} color="#ffc27a" intensity={0.4} distance={22} decay={2} />
     </group>
   );
 }
@@ -1429,7 +1367,7 @@ function OliveLeaves({ quality, reducedMotion }: { quality: ShoreQuality; reduce
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, N]} frustumCulled={false} renderOrder={5}>
       <planeGeometry args={[0.42, 0.21]} />
-      <meshStandardMaterial map={tex} alphaTest={0.4} side={THREE.DoubleSide} color="#7c8a70" roughness={0.9} emissive="#1b2418" emissiveIntensity={0.5} />
+      <meshStandardMaterial map={tex} alphaTest={0.4} side={THREE.DoubleSide} color="#8ea578" roughness={0.9} emissive="#2c3a26" emissiveIntensity={0.35} />
     </instancedMesh>
   );
 }
@@ -1480,7 +1418,7 @@ function Embers({ quality }: { quality: ShoreQuality }) {
         fragmentShader={`
           uniform sampler2D uTex; varying float vA;
           void main(){ vec4 t = texture2D(uTex, gl_PointCoord);
-            gl_FragColor = vec4(t.rgb * vec3(1.5, 0.95, 0.55), t.a * vA * 0.7); }
+            gl_FragColor = vec4(t.rgb * vec3(1.5, 0.95, 0.55), t.a * vA * 0.24); }
         `}
       />
     </points>
@@ -1540,9 +1478,9 @@ function Wordmark({ word, reducedMotion }: { word: string; reducedMotion: boolea
           const gy0 = PAD + g.asc - ascMax;
           const gy1 = PAD + g.asc + descMax * 0.4;
           const grad = x.createLinearGradient(0, gy0, 0, gy1);
-          grad.addColorStop(0, "rgb(230,236,229)");
-          grad.addColorStop(0.52, "rgb(200,212,204)");
-          grad.addColorStop(1, "rgb(150,166,157)");
+          grad.addColorStop(0, "rgb(255,251,242)");
+          grad.addColorStop(0.52, "rgb(243,235,218)");
+          grad.addColorStop(1, "rgb(214,200,170)");
           x.fillStyle = grad;
           x.fillText(g.ch, PAD + g.l, PAD + g.asc);
         });
@@ -1634,12 +1572,12 @@ function Wordmark({ word, reducedMotion }: { word: string; reducedMotion: boolea
 function Lighting() {
   return (
     <>
-      <ambientLight color="#3a4c6a" intensity={1.05} />
-      <hemisphereLight args={["#5872a4", "#1a2230", 1.15]} />
-      {/* moonlight */}
-      <directionalLight position={[40, 50, -70]} color="#e6ecff" intensity={1.35} />
-      {/* the last of the sunset, low from the west */}
-      <directionalLight position={[-60, 10, 30]} color="#d9a875" intensity={0.38} />
+      <ambientLight color="#e3e9f1" intensity={0.7} />
+      <hemisphereLight args={["#cfe0f4", "#c9b58f", 1.0]} />
+      {/* the afternoon sun, high from the south-west */}
+      <directionalLight position={[-40, 46, 24]} color="#ffe6c0" intensity={2.3} />
+      {/* blue-sky fill from the east */}
+      <directionalLight position={[50, 26, -40]} color="#d7e5f6" intensity={0.55} />
     </>
   );
 }
@@ -1680,7 +1618,6 @@ export default function ShoreScene({ quality, reducedMotion, word }: ShoreSceneP
       <Flag kind="it" position={[2.5, 11.4, BRIDGE_Z]} phase={0} />
       <Flag kind="tr" position={[15.5, 11.4, BRIDGE_Z]} phase={2.1} />
       <Ferry reducedMotion={reducedMotion} />
-      <ShootingStars reducedMotion={reducedMotion} />
       <OliveLeaves quality={quality} reducedMotion={reducedMotion} />
       <Embers quality={quality} />
       <Wordmark word={word} reducedMotion={reducedMotion} />

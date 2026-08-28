@@ -11,6 +11,10 @@ Marketing site for [Alvolo Consulting](https://alvoloconsulting.com), a cross-bo
 - Resend for the contact and brief intake (`/api/contact`)
 - `@cloudflare/next-on-pages` + Wrangler for deployment
 
+## Design
+
+Light "golden hour" theme: Carrara paper ground, navy ink, and the two flags as accents. Tokens live in `src/app/globals.css` (`@theme` plus `:root`); the historic names are kept but remapped, so `--ink`/`obsidian`/`titanium` are the paper ground and `--bone`/`white` is the text. Accents: `vermilion` = rosso `#cf2734` (primary actions), `azure` = azzurro `#1f5fa8` (Italy corridor), `emerald` = Bosphorus `#178f9a` (Türkiye corridor), `gold` `#b8902e`; `--verde` and `--turk-red` draw the flag bands (`.band-shores`, footer, gate stats, proposal sheet). `src/lib/geo/cities.ts` mirrors the accents for the 3D scene, which renders the strait in afternoon light (`ShoreScene.tsx`).
+
 ## Pages
 
 | Route | What it is |

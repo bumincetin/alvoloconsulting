@@ -88,7 +88,7 @@ export default function ConsultationModal({ locale, isOpen, onClose, prefill }: 
             exit={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20, scale: 0.985 }}
             transition={{ duration: reducedMotion ? 0 : 0.4, ease: BEZIER.out }}
             data-lenis-prevent
-            className="relative flex max-h-[92svh] w-full max-w-xl flex-col overflow-hidden rounded-t-3xl border border-line bg-titanium shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)] sm:rounded-3xl"
+            className="relative flex max-h-[92svh] w-full max-w-xl flex-col overflow-hidden rounded-t-3xl border border-line bg-titanium shadow-[0_40px_120px_-30px_rgba(40,30,10,0.35)] sm:rounded-3xl"
           >
             <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald/80 to-transparent" />
 

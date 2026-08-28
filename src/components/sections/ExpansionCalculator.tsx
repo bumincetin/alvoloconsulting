@@ -262,7 +262,7 @@ export default function ExpansionCalculator({ locale, defaultJurisdiction = "ita
                   </div>
                   <div className="flex gap-1">
                     {[1, 2, 3, 4, 5].map((n) => (
-                      <span key={n} className="h-1.5 flex-1 rounded-full transition-colors duration-500" style={{ backgroundColor: n <= result.complexity ? accent : "rgba(255,255,255,0.08)" }} />
+                      <span key={n} className="h-1.5 flex-1 rounded-full transition-colors duration-500" style={{ backgroundColor: n <= result.complexity ? accent : "rgba(27,34,48,0.08)" }} />
                     ))}
                   </div>
                 </div>

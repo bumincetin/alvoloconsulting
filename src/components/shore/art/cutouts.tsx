@@ -8,9 +8,9 @@
 
 import { useId } from "react";
 
-const INK = "#060809";
-const INK_SOFT = "#0b1013";
-const RIM = "rgba(223,231,224,0.10)";
+const INK = "#22293a";
+const INK_SOFT = "#2d3547";
+const RIM = "rgba(246,241,231,0.3)";
 
 function mulberry32(seed: number) {
   let a = seed >>> 0;
@@ -48,7 +48,7 @@ export function Cypress({ seed = 1, className }: { seed?: number; className?: st
         <linearGradient id={`cy-${seed}`} x1="0" x2="1">
           <stop offset="0" stopColor={INK} />
           <stop offset="0.55" stopColor={INK_SOFT} />
-          <stop offset="1" stopColor="#111a15" />
+          <stop offset="1" stopColor="#2f4a3a" />
         </linearGradient>
       </defs>
       <polygon points={outline} fill={`url(#cy-${seed})`} />
@@ -143,14 +143,14 @@ export function OliveBranch({ seed = 3, flip = false, className }: { seed?: numb
     <svg viewBox="0 0 720 420" className={className} aria-hidden="true" preserveAspectRatio="xMinYMax meet" style={flip ? { transform: "scaleX(-1)" } : undefined}>
       <defs>
         <linearGradient id={`ol-${seed}`} x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#0a100d" />
-          <stop offset="1" stopColor="#1a2620" />
+          <stop offset="0" stopColor="#2c4a3a" />
+          <stop offset="1" stopColor="#4d6f54" />
         </linearGradient>
       </defs>
-      <path d={segs.join(" ")} fill="none" stroke="#0b0e0c" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
-      <path d={segs.join(" ")} fill="none" stroke="#2a2118" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
+      <path d={segs.join(" ")} fill="none" stroke="#3a3128" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={segs.join(" ")} fill="none" stroke="#6b5a45" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
       {twigs.map((d, i) => (
-        <path key={i} d={d} fill="none" stroke="#0b0e0c" strokeWidth="4" strokeLinecap="round" />
+        <path key={i} d={d} fill="none" stroke="#3a3128" strokeWidth="4" strokeLinecap="round" />
       ))}
       {leaves.map((l, i) => (
         <ellipse
@@ -166,7 +166,7 @@ export function OliveBranch({ seed = 3, flip = false, className }: { seed?: numb
         />
       ))}
       {fruits.map((f, i) => (
-        <circle key={i} cx={f.x} cy={f.y} r="6.5" fill="#101a14" stroke="#2f3a2b" strokeWidth="0.8" />
+        <circle key={i} cx={f.x} cy={f.y} r="6.5" fill="#2b3a2f" stroke="#5c7a5f" strokeWidth="0.8" />
       ))}
     </svg>
   );
@@ -183,21 +183,21 @@ export function Balustrade({ count = 9, className }: { count?: number; className
     <svg viewBox={`0 0 ${W} ${H}`} className={className} aria-hidden="true" preserveAspectRatio="xMidYMax meet">
       <defs>
         <linearGradient id={`bal-g-${uid}`} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#15191b" />
+          <stop offset="0" stopColor="#3a4254" />
           <stop offset="1" stopColor={INK} />
         </linearGradient>
       </defs>
       {/* base */}
       <rect x="0" y={H - 56} width={W} height="56" fill={INK} />
-      <rect x="0" y={H - 62} width={W} height="8" fill="#13181a" />
+      <rect x="0" y={H - 62} width={W} height="8" fill="#343c4e" />
       {Array.from({ length: count }, (_, i) => (
         <g key={i} transform={`translate(${gap * (i + 1)} ${H - 62})`}>
           <path d={baluster} fill={`url(#bal-g-${uid})`} stroke={RIM} strokeWidth="0.8" />
-          <rect x="-22" y="-112" width="44" height="8" fill="#13181a" />
+          <rect x="-22" y="-112" width="44" height="8" fill="#343c4e" />
         </g>
       ))}
       {/* handrail */}
-      <rect x="0" y={H - 62 - 128} width={W} height="18" rx="2" fill="#171c1e" stroke={RIM} strokeWidth="0.8" />
+      <rect x="0" y={H - 62 - 128} width={W} height="18" rx="2" fill="#343c4e" stroke={RIM} strokeWidth="0.8" />
       <rect x="0" y={H - 62 - 110} width={W} height="6" fill={INK} />
     </svg>
   );
@@ -216,7 +216,7 @@ export function Reeds({ seed = 11, className }: { seed?: number; className?: str
     <svg viewBox="0 0 900 420" className={className} aria-hidden="true" preserveAspectRatio="xMidYMax meet">
       <path d="M0 420 L0 372 Q220 348 450 366 Q690 384 900 356 L900 420 Z" fill={INK} />
       {blades.map((d, i) => (
-        <path key={i} d={d} fill="none" stroke={i % 3 ? INK : "#121a16"} strokeWidth={1.4 + (i % 4) * 0.6} strokeLinecap="round" />
+        <path key={i} d={d} fill="none" stroke={i % 3 ? INK : "#3b5a42"} strokeWidth={1.4 + (i % 4) * 0.6} strokeLinecap="round" />
       ))}
     </svg>
   );
@@ -229,8 +229,8 @@ export function StreetLamp({ className, lit = true }: { className?: string; lit?
     <svg viewBox="0 0 220 640" className={className} aria-hidden="true" preserveAspectRatio="xMidYMax meet">
       <defs>
         <radialGradient id={`lamp-glow-${uid}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0" stopColor="rgba(255,196,120,0.75)" />
-          <stop offset="0.45" stopColor="rgba(255,150,70,0.22)" />
+          <stop offset="0" stopColor="rgba(255,196,120,0.3)" />
+          <stop offset="0.45" stopColor="rgba(255,150,70,0.08)" />
           <stop offset="1" stopColor="rgba(255,120,40,0)" />
         </radialGradient>
         <linearGradient id={`lamp-glass-${uid}`} x1="0" x2="0" y1="0" y2="1">
@@ -284,7 +284,7 @@ export function DomeSilhouette({ className }: { className?: string }) {
     <svg viewBox="0 0 900 380" className={className} aria-hidden="true" preserveAspectRatio="xMidYMax meet">
       <defs>
         <linearGradient id={`dome-g-${uid}`} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#111619" />
+          <stop offset="0" stopColor="#333c4e" />
           <stop offset="1" stopColor={INK} />
         </linearGradient>
       </defs>
@@ -311,7 +311,7 @@ export function DomeSilhouette({ className }: { className?: string }) {
       <circle cx="450" cy="100" r="6" fill={INK} />
       {/* lit windows on the drum */}
       {Array.from({ length: 9 }, (_, i) => (
-        <rect key={i} x={372 + i * 19} y="224" width="7" height="18" rx="3" fill="rgba(255,196,120,0.55)" />
+        <rect key={i} x={372 + i * 19} y="224" width="7" height="18" rx="3" fill="rgba(246,241,231,0.35)" />
       ))}
     </svg>
   );
@@ -324,7 +324,7 @@ export function Caique({ className }: { className?: string }) {
     <svg viewBox="0 0 520 220" className={className} aria-hidden="true" preserveAspectRatio="xMidYMax meet">
       <defs>
         <radialGradient id={`caique-glow-${uid}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0" stopColor="rgba(255,190,110,0.6)" />
+          <stop offset="0" stopColor="rgba(255,190,110,0.25)" />
           <stop offset="1" stopColor="rgba(255,150,70,0)" />
         </radialGradient>
       </defs>
@@ -333,7 +333,7 @@ export function Caique({ className }: { className?: string }) {
       <path d="M30 150 C120 140 380 140 500 128" fill="none" stroke={RIM} strokeWidth="1" />
       <rect x="150" y="96" width="120" height="54" rx="6" fill={INK} />
       <rect x="326" y="70" width="8" height="80" fill={INK} />
-      <rect x="318" y="74" width="24" height="22" rx="3" fill="rgba(255,196,120,0.85)" />
+      <rect x="318" y="74" width="24" height="22" rx="3" fill="rgba(255,226,170,0.9)" />
       <path d="M322 78 L338 78 M322 86 L338 86" stroke={INK} strokeWidth="1.5" />
     </svg>
   );
@@ -346,7 +346,7 @@ export function Hills({ className }: { className?: string }) {
     <svg viewBox="0 0 1600 420" className={className} aria-hidden="true" preserveAspectRatio="xMidYMax slice">
       <defs>
         <linearGradient id={`hill-g-${uid}`} x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#0d1215" />
+          <stop offset="0" stopColor="#5b7a62" />
           <stop offset="1" stopColor={INK} />
         </linearGradient>
       </defs>
@@ -373,7 +373,7 @@ export function DuomoSilhouette({ className }: { className?: string }) {
       <path d="M430 262 L450 40 L470 262 Z" fill={INK} />
       <circle cx="450" cy="34" r="5" fill="#e3c26a" />
       {Array.from({ length: 8 }, (_, i) => (
-        <rect key={i} x={140 + i * 90} y="290" width="14" height="36" rx="7" fill="rgba(255,196,120,0.35)" />
+        <rect key={i} x={140 + i * 90} y="290" width="14" height="36" rx="7" fill="rgba(246,241,231,0.3)" />
       ))}
     </svg>
   );

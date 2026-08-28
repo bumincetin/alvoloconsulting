@@ -9,9 +9,9 @@ export type AccentKey = "azure" | "emerald" | "gold";
 
 /** The three accents of the "Due Sponde" system: vermilion (Italy), gold (Türkiye), bone (neutral). */
 export const ACCENT_HEX: Record<AccentKey, string> = {
-  azure: "#e0231c",
-  emerald: "#c9a24a",
-  gold: "#dfe7e0",
+  azure: "#1f5fa8",
+  emerald: "#178f9a",
+  gold: "#b8902e",
 };
 
 export interface City {

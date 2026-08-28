@@ -47,7 +47,7 @@ const CATEGORY_COLOR: Record<ChecklistCategory, string> = {
   STATUTORY: ACCENT_HEX.azure,
   FISCAL: ACCENT_HEX.gold,
   IMMIGRATION: ACCENT_HEX.emerald,
-  OPERATIONAL: "rgba(255,255,255,0.6)",
+  OPERATIONAL: "rgba(27,34,48,0.6)",
   COMMERCIAL: ACCENT_HEX.gold,
 };
 
@@ -176,7 +176,7 @@ function RouteDiagram({ mode, accent, label, reducedMotion }: { mode: CorridorMo
             <stop offset="1" stopColor={ACCENT_HEX.emerald} />
           </linearGradient>
         </defs>
-        <path d="M44 40 C 110 -6, 210 -6, 276 40" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+        <path d="M44 40 C 110 -6, 210 -6, 276 40" fill="none" stroke="rgba(27,34,48,0.08)" strokeWidth="1" />
         <path
           d="M44 40 C 110 -6, 210 -6, 276 40"
           fill="none"
@@ -191,10 +191,10 @@ function RouteDiagram({ mode, accent, label, reducedMotion }: { mode: CorridorMo
         <circle cx="44" cy="40" r="9" fill="none" stroke={ACCENT_HEX.azure} strokeOpacity="0.35" />
         <circle cx="276" cy="40" r="4" fill={ACCENT_HEX.emerald} />
         <circle cx="276" cy="40" r="9" fill="none" stroke={ACCENT_HEX.emerald} strokeOpacity="0.35" />
-        <text x="44" y="60" textAnchor="middle" fontFamily="var(--font-jetbrains), monospace" fontSize="9" letterSpacing="2" fill="rgba(255,255,255,0.5)">
+        <text x="44" y="60" textAnchor="middle" fontFamily="var(--font-jetbrains), monospace" fontSize="9" letterSpacing="2" fill="rgba(27,34,48,0.5)">
           MIL / ROM
         </text>
-        <text x="276" y="60" textAnchor="middle" fontFamily="var(--font-jetbrains), monospace" fontSize="9" letterSpacing="2" fill="rgba(255,255,255,0.5)">
+        <text x="276" y="60" textAnchor="middle" fontFamily="var(--font-jetbrains), monospace" fontSize="9" letterSpacing="2" fill="rgba(27,34,48,0.5)">
           IST
         </text>
       </svg>
@@ -245,7 +245,7 @@ export default function CorridorSwitcher({ locale, defaultMode = "inbound", hide
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.25] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
         style={{
-          backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(to right, rgba(27,34,48,0.05) 1px, transparent 1px)",
           backgroundSize: "88px 88px",
         }}
       />

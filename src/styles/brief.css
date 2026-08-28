@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════════════════════════════
    BRIEF — /[locale]/brief/
    The needs-assessment wizard and its proposal sheet, in the Kage register:
-   ruled hairlines, 2px radii, Onest at light weights, one vermilion, one gold.
+   ruled hairlines, 2px radii, Onest at light weights, the rosso and the gold.
    Reads only the tokens declared in globals.css.
    ══════════════════════════════════════════════════════════════════════ */
 
@@ -276,7 +276,7 @@
   text-align: left;
   padding: 18px 18px 18px 20px;
   min-height: 96px;
-  background: rgba(15, 22, 38, 0.86);
+  background: rgba(246, 241, 231, 0.86);
   color: var(--bone);
   transition: background 0.35s var(--ease);
 }
@@ -297,14 +297,14 @@
   transition: transform 0.45s var(--ease-out);
 }
 .brief-opt:hover {
-  background: rgba(23, 32, 58, 0.78);
+  background: rgba(236, 228, 211, 0.78);
 }
 .brief-opt:focus-visible {
   outline: 1px solid var(--bone);
   outline-offset: -1px;
 }
 .brief-opt[aria-checked="true"] {
-  background: rgba(23, 32, 58, 0.96);
+  background: rgba(236, 228, 211, 0.96);
 }
 .brief-opt[aria-checked="true"]::before {
   transform: scaleY(1);
@@ -458,7 +458,7 @@
   position: relative;
   border: 1px solid var(--line);
   border-radius: 2px;
-  background: rgba(15, 22, 38, 0.86);
+  background: rgba(246, 241, 231, 0.86);
   padding: clamp(22px, 4vw, 60px);
 }
 .brief-sheet-top {
@@ -526,7 +526,7 @@
   grid-template-columns: 30px minmax(0, 1fr);
   gap: 4px 12px;
   padding: 18px 20px;
-  background: rgba(15, 22, 38, 0.92);
+  background: rgba(246, 241, 231, 0.92);
 }
 .brief-mod .k {
   padding-top: 3px;
@@ -654,7 +654,7 @@
   align-content: start;
   margin: 0;
   padding: 20px;
-  background: rgba(15, 22, 38, 0.92);
+  background: rgba(246, 241, 231, 0.92);
 }
 .brief-eng dd {
   margin: 0;
@@ -819,7 +819,7 @@
   transition: border-color 0.3s;
 }
 .brief-in::placeholder {
-  color: rgba(223, 231, 224, 0.3);
+  color: rgba(27, 34, 48, 0.38);
 }
 .brief-in:focus-visible {
   border-bottom-color: var(--bone);

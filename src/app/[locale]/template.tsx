@@ -17,12 +17,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="pointer-events-none fixed inset-0 z-[70]"
         >
-          <div className="absolute inset-0 bg-black" />
+          <div className="absolute inset-0 bg-paper" />
           <div
-            className="absolute inset-0 opacity-30 mix-blend-screen"
+            className="absolute inset-0 opacity-30 mix-blend-multiply"
             style={{
               backgroundImage:
-                "linear-gradient(transparent 0%, rgba(255,255,255,0.08) 1px)",
+                "linear-gradient(transparent 0%, rgba(27,34,48,0.06) 1px)",
               backgroundSize: "100% 4px",
             }}
           />
@@ -32,14 +32,14 @@ export default function Template({ children }: { children: React.ReactNode }) {
           animate={{ scaleY: 0 }}
           exit={{ scaleY: 1 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="pointer-events-none fixed inset-0 z-[80] origin-top bg-[#060606]"
+          className="pointer-events-none fixed inset-0 z-[80] origin-top bg-[#ece4d3]"
         />
         <motion.div
           initial={{ scaleY: 1 }}
           animate={{ scaleY: 0 }}
           exit={{ scaleY: 1 }}
           transition={{ duration: 0.7, ease: "easeInOut", delay: 0.05 }}
-          className="pointer-events-none fixed inset-0 z-[81] origin-bottom bg-[#0a0a0a]"
+          className="pointer-events-none fixed inset-0 z-[81] origin-bottom bg-[#f6f1e7]"
         />
       </motion.div>
     </AnimatePresence>

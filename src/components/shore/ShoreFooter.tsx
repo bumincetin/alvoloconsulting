@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useRef } from "react";
 import { BrandMark } from "./ShoreNav";
 import { ForegroundStage, type ForegroundPiece } from "./Foreground";
-import { Caique, Reeds, Balustrade } from "./art/cutouts";
+import { Caique, Reeds } from "./art/cutouts";
 import { useReveals, Mark } from "./Reveal";
 import { useConsultation } from "@/components/providers/ConsultationProvider";
 import { CONTACT } from "@/lib/content/footer";
@@ -22,7 +22,6 @@ export default function ShoreFooter({ locale }: { locale: Locale }) {
     () => [
       { key: "reeds", enter: "up", style: { left: "-6%", bottom: "-70px", width: "clamp(260px,30vw,520px)" }, node: <Reeds seed={31} /> },
       { key: "caique", enter: "up", style: { right: "-6%", bottom: "-96px", width: "clamp(180px,22vw,360px)" }, node: <Caique /> },
-      { key: "bal", enter: "up", style: { left: "34%", bottom: "-74px", width: "clamp(220px,26vw,440px)" }, node: <Balustrade count={6} /> },
     ],
     [],
   );

@@ -131,7 +131,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       alt: "La Sponda Italiana",
       heading: "Marble, stone, one gate left open.",
       lead: "Alvolo begins where the Duomo's spires meet the fog: a market of sixty million people, entered through a notary's deed, a Partita IVA and a bank willing to open its doors. The paperwork is how a company learns to survive its first Italian winter, and the first thing this shore asks you to understand.",
-      body: "Cross the piazza and the Galleria lifts out of the mist, its glass roof lit from inside like a lantern the size of a city block. Above the roofs a pale moon holds its place, patient, half hidden. The city takes its time here, and for the next few weeks so will your incorporation.",
+      body: "Cross the piazza and the Galleria lifts out of the mist, its glass roof lit from inside like a lantern the size of a city block. Above the roofs the afternoon sun holds its place, warm and unhurried. The city takes its time here, and for the next few weeks so will your incorporation.",
       link: "Cross the corridor",
       stats: [
         { value: "02", label: "Jurisdictions" },
@@ -161,7 +161,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
         { num: "02", title: "Tax Architecture", alt: "Architettura", text: "Entity choice, holding layers and treaty positioning, modelled quantitatively and signed off by the founders.", time: "2–3 weeks" },
         { num: "03", title: "Formation", alt: "Kuruluş", text: "Notarial deed, Partita IVA, PEC and banking in parallel with Codice Fiscale, permits and executive relocation.", time: "3–8 weeks" },
         { num: "04", title: "Onboarding", alt: "Onboarding", text: "Manufacturing partners audited and contracted, the Customs Union corridor designed, quality and IP governance embedded.", time: "4–14 weeks" },
-        { num: "05", title: "The Pale Moon", alt: "Süreklilik", text: "The corridor stays open after the first invoice, and the mandate keeps walking it.", time: "ongoing" },
+        { num: "05", title: "The Long Afternoon", alt: "Süreklilik", text: "The corridor stays open after the first invoice, and the mandate keeps walking it.", time: "ongoing" },
       ],
     },
     eternity: {
@@ -240,7 +240,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       alt: "La Sponda Italiana",
       heading: "Mermer, taş, açık bırakılmış tek bir kapı.",
       lead: "Alvolo, Duomo'nun kulelerinin sisle buluştuğu yerde başlar: noter senedi, Partita IVA ve kapılarını açmaya hazır bir bankayla girilen altmış milyonluk bir pazar. Evrak, bir şirketin ilk İtalyan kışını atlatmayı öğrenme biçimidir ve bu kıyının sizden anlamanızı istediği ilk şeydir.",
-      body: "Meydanı geçin; Galleria sisin içinden yükselir, cam çatısı bir blok büyüklüğünde bir fener gibi içeriden aydınlanır. Çatıların üzerinde solgun bir ay yerini korur, sabırlı, yarı gizli. Bu şehir acele etmez; önümüzdeki birkaç hafta boyunca kuruluşunuz da etmeyecek.",
+      body: "Meydanı geçin; Galleria sisin içinden yükselir, cam çatısı bir blok büyüklüğünde bir fener gibi içeriden aydınlanır. Çatıların üzerinde ikindi güneşi yerini korur, sıcak ve acelesiz. Bu şehir acele etmez; önümüzdeki birkaç hafta boyunca kuruluşunuz da etmeyecek.",
       link: "Koridoru geçin",
       stats: [
         { value: "02", label: "Yargı alanı" },
@@ -270,7 +270,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
         { num: "02", title: "Vergi Mimarisi", alt: "Architettura", text: "Şirket türü, holding katmanları ve anlaşma konumlandırması nicel olarak modellenir ve kurucular tarafından onaylanır.", time: "2–3 hafta" },
         { num: "03", title: "Kuruluş", alt: "Costituzione", text: "Noter senedi, Partita IVA, PEC ve bankacılık; Codice Fiscale, izinler ve yönetici taşınmasıyla paralel yürür.", time: "3–8 hafta" },
         { num: "04", title: "Entegrasyon", alt: "Onboarding", text: "İmalat ortakları denetlenir ve sözleşmeye bağlanır, Gümrük Birliği koridoru tasarlanır, kalite ve fikri mülkiyet yönetişimi yerleştirilir.", time: "4–14 hafta" },
-        { num: "05", title: "Solgun Ay", alt: "Continuità", text: "Koridor ilk faturadan sonra da açık kalır; mandat o yolda yürümeye devam eder.", time: "sürekli" },
+        { num: "05", title: "Uzun İkindi", alt: "Continuità", text: "Koridor ilk faturadan sonra da açık kalır; mandat o yolda yürümeye devam eder.", time: "sürekli" },
       ],
     },
     eternity: {
@@ -349,7 +349,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
       alt: "İtalyan Kıyısı",
       heading: "Marmo, pietra, una porta lasciata aperta.",
       lead: "Alvolo comincia dove le guglie del Duomo incontrano la nebbia: un mercato di sessanta milioni di persone, in cui si entra con un atto notarile, una Partita IVA e una banca disposta ad aprire le porte. Le carte sono il modo in cui un'impresa impara a superare il primo inverno italiano, e la prima cosa che questa sponda ti chiede di capire.",
-      body: "Attraversa la piazza e la Galleria emerge dalla foschia, il tetto di vetro acceso dall'interno come una lanterna grande quanto un isolato. Sopra i tetti una luna pallida tiene il suo posto, paziente, mezza nascosta. La città qui prende il suo tempo, e per le prossime settimane lo prenderà anche la tua costituzione.",
+      body: "Attraversa la piazza e la Galleria emerge dalla foschia, il tetto di vetro acceso dall'interno come una lanterna grande quanto un isolato. Sopra i tetti il sole del pomeriggio tiene il suo posto, caldo e senza fretta. La città qui prende il suo tempo, e per le prossime settimane lo prenderà anche la tua costituzione.",
       link: "Attraversa il corridoio",
       stats: [
         { value: "02", label: "Giurisdizioni" },
@@ -379,7 +379,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
         { num: "02", title: "Architettura Fiscale", alt: "Vergi Mimarisi", text: "Scelta del veicolo, livelli di holding e posizionamento convenzionale, modellati quantitativamente e approvati dai founder.", time: "2–3 settimane" },
         { num: "03", title: "Costituzione", alt: "Kuruluş", text: "Atto notarile, Partita IVA, PEC e banking in parallelo con Codice Fiscale, permessi e relocation dei dirigenti.", time: "3–8 settimane" },
         { num: "04", title: "Onboarding", alt: "Entegrasyon", text: "Partner manifatturieri verificati e contrattualizzati, corridoio doganale progettato, governance di qualità e IP integrata.", time: "4–14 settimane" },
-        { num: "05", title: "La Luna Pallida", alt: "Süreklilik", text: "Il corridoio resta aperto dopo la prima fattura, e il mandato continua a percorrerlo.", time: "continuativo" },
+        { num: "05", title: "Il Lungo Pomeriggio", alt: "Süreklilik", text: "Il corridoio resta aperto dopo la prima fattura, e il mandato continua a percorrerlo.", time: "continuativo" },
       ],
     },
     eternity: {

@@ -14,11 +14,11 @@ import { locales, type Locale } from "@/lib/translations";
 export function BrandMark({ size = 34 }: { size?: number }) {
   return (
     <svg viewBox="0 0 44 44" width={size} height={size} fill="none" aria-hidden="true">
-      <circle cx="30" cy="14" r="6.4" fill="#e0231c" fillOpacity=".92" />
-      <path d="M4 30h36" stroke="#dfe7e0" strokeWidth="1.5" />
-      <path d="M8 30c4-9 10-13 14-13s10 4 14 13" stroke="#dfe7e0" strokeWidth="1.3" />
-      <path d="M14 30v-7M30 30v-7" stroke="#dfe7e0" strokeWidth="1.2" strokeOpacity=".7" />
-      <path d="M10 36h24" stroke="#dfe7e0" strokeWidth="1.1" strokeOpacity=".55" />
+      <circle cx="30" cy="14" r="6.4" fill="#cf2734" fillOpacity=".95" />
+      <path d="M4 30h36" stroke="#1b2230" strokeWidth="1.5" />
+      <path d="M8 30c4-9 10-13 14-13s10 4 14 13" stroke="#1b2230" strokeWidth="1.3" />
+      <path d="M14 30v-7M30 30v-7" stroke="#1b2230" strokeWidth="1.2" strokeOpacity=".7" />
+      <path d="M10 36h24" stroke="#1b2230" strokeWidth="1.1" strokeOpacity=".55" />
     </svg>
   );
 }
