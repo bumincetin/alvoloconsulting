@@ -415,6 +415,7 @@ function Water() {
   useFrame(({ clock, camera }) => {
     uniforms.uTime.value = clock.elapsedTime;
     uniforms.uCam.value.copy(camera.position);
+    (uniforms.uLights.value[7] as THREE.Vector4).set(FERRY.x, FERRY.z, 0.95, 0);
   });
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[9, 0, -30]} renderOrder={2}>
@@ -1073,6 +1074,201 @@ function Colosseum({ position }: { position: [number, number, number] }) {
   );
 }
 
+/* ───────────────────────────── flags ───────────────────────────── */
+
+function flagTexture(kind: "it" | "tr"): THREE.CanvasTexture {
+  return canvasTexture(96, 64, (x, w, h) => {
+    if (kind === "it") {
+      x.fillStyle = "#1f8f5a";
+      x.fillRect(0, 0, w / 3, h);
+      x.fillStyle = "#e9ece7";
+      x.fillRect(w / 3, 0, w / 3, h);
+      x.fillStyle = "#c9262f";
+      x.fillRect((2 * w) / 3, 0, w / 3, h);
+    } else {
+      x.fillStyle = "#d21520";
+      x.fillRect(0, 0, w, h);
+      x.fillStyle = "#f3f3f0";
+      x.beginPath();
+      x.arc(34, 32, 17, 0, TAU);
+      x.fill();
+      x.fillStyle = "#d21520";
+      x.beginPath();
+      x.arc(39, 32, 13.5, 0, TAU);
+      x.fill();
+      x.fillStyle = "#f3f3f0";
+      x.beginPath();
+      for (let i = 0; i < 10; i++) {
+        const r = i % 2 === 0 ? 7 : 2.9;
+        const a = -Math.PI / 2 + (i / 10) * TAU;
+        const px = 56 + Math.cos(a) * r;
+        const py = 32 + Math.sin(a) * r;
+        if (i === 0) x.moveTo(px, py);
+        else x.lineTo(px, py);
+      }
+      x.closePath();
+      x.fill();
+    }
+    // cloth shading
+    const g = x.createLinearGradient(0, 0, w, 0);
+    g.addColorStop(0, "rgba(0,0,0,0.28)");
+    g.addColorStop(0.5, "rgba(255,255,255,0.06)");
+    g.addColorStop(1, "rgba(0,0,0,0.22)");
+    x.fillStyle = g;
+    x.fillRect(0, 0, w, h);
+  });
+}
+
+function Flag({ kind, position, phase }: { kind: "it" | "tr"; position: [number, number, number]; phase: number }) {
+  const tex = useMemo(() => flagTexture(kind), [kind]);
+  const geo = useMemo(() => {
+    const g = new THREE.PlaneGeometry(1.7, 1.1, 8, 1);
+    g.translate(0.85, 0, 0);
+    return g;
+  }, []);
+  const ref = useRef<THREE.Mesh>(null);
+  useEffect(
+    () => () => {
+      tex.dispose();
+      geo.dispose();
+    },
+    [tex, geo],
+  );
+  useFrame(({ clock }) => {
+    const m = ref.current;
+    if (!m) return;
+    const t = clock.elapsedTime * 1.9 + phase;
+    m.rotation.y = 0.35 + Math.sin(t) * 0.3;
+    m.rotation.z = Math.sin(t * 1.7) * 0.05;
+    m.scale.x = 0.92 + Math.abs(Math.cos(t)) * 0.08;
+  });
+  return (
+    <group position={position}>
+      <mesh position={[0, -0.2, 0]}>
+        <cylinderGeometry args={[0.03, 0.04, 2.6, 6]} />
+        <meshStandardMaterial color="#4a525c" roughness={0.8} metalness={0.3} />
+      </mesh>
+      <mesh position={[0, 1.1, 0]}>
+        <sphereGeometry args={[0.07, 6, 6]} />
+        <meshStandardMaterial color={M.gold} emissive={M.gold} emissiveIntensity={0.6} />
+      </mesh>
+      <mesh ref={ref} geometry={geo} position={[0, 0.45, 0]}>
+        <meshBasicMaterial map={tex} side={THREE.DoubleSide} />
+      </mesh>
+    </group>
+  );
+}
+
+/* ───────────────────────────── the ferry ───────────────────────────── */
+
+/** shared with the water shader so the ferry's lamp glints on the strait */
+const FERRY = { x: 6.2, z: -60 };
+const FERRY_SPAN = { from: -118, to: 18 };
+
+function Ferry({ reducedMotion }: { reducedMotion: boolean }) {
+  const ref = useRef<THREE.Group>(null);
+  const glowTex = useMemo(() => glowTexture("rgba(255,214,150,0.95)", "rgba(255,160,80,0.3)"), []);
+  useEffect(() => () => glowTex.dispose(), [glowTex]);
+  useFrame(({ clock }) => {
+    const g = ref.current;
+    if (!g) return;
+    const t = clock.elapsedTime;
+    const len = FERRY_SPAN.to - FERRY_SPAN.from;
+    const z = reducedMotion ? -58 : FERRY_SPAN.from + ((t * 2.1 + 40) % len);
+    g.position.set(FERRY.x, 0.32 + Math.sin(t * 1.6) * 0.045, z);
+    g.rotation.z = Math.sin(t * 1.3) * 0.02;
+    g.rotation.x = Math.sin(t * 1.1 + 1) * 0.015;
+    FERRY.z = z;
+  });
+  return (
+    <group ref={ref} position={[FERRY.x, 0.32, FERRY.z]}>
+      {/* hull */}
+      <mesh position={[0, 0.3, 0]}>
+        <boxGeometry args={[1.5, 0.7, 4.4]} />
+        <meshStandardMaterial color="#e6e1d6" roughness={0.7} />
+      </mesh>
+      <mesh position={[0, 0.02, 0]}>
+        <boxGeometry args={[1.56, 0.26, 4.5]} />
+        <meshStandardMaterial color="#1b2230" roughness={0.9} />
+      </mesh>
+      {/* bow */}
+      <mesh position={[0, 0.3, 2.55]} rotation={[0, Math.PI / 4, 0]}>
+        <boxGeometry args={[1.06, 0.7, 1.06]} />
+        <meshStandardMaterial color="#e6e1d6" roughness={0.7} />
+      </mesh>
+      {/* upper deck + cabin */}
+      <mesh position={[0, 0.95, -0.2]}>
+        <boxGeometry args={[1.3, 0.6, 3.2]} />
+        <meshStandardMaterial color="#d9d3c6" roughness={0.75} />
+      </mesh>
+      {[-0.66, 0.66].map((sx) => (
+        <mesh key={sx} position={[sx, 0.95, -0.2]} rotation={[0, (sx > 0 ? 1 : -1) * (Math.PI / 2), 0]}>
+          <planeGeometry args={[2.9, 0.26]} />
+          <meshBasicMaterial color="#ffc98a" toneMapped={false} side={THREE.DoubleSide} />
+        </mesh>
+      ))}
+      {/* funnel */}
+      <mesh position={[0, 1.55, -0.8]}>
+        <cylinderGeometry args={[0.13, 0.16, 0.8, 8]} />
+        <meshStandardMaterial color="#c9a24a" roughness={0.6} />
+      </mesh>
+      <mesh position={[0, 1.98, -0.8]}>
+        <cylinderGeometry args={[0.14, 0.13, 0.12, 8]} />
+        <meshStandardMaterial color="#1b2230" roughness={0.9} />
+      </mesh>
+      {/* mast lamp */}
+      <mesh position={[0, 1.8, 1.3]}>
+        <cylinderGeometry args={[0.02, 0.02, 1.2, 4]} />
+        <meshStandardMaterial color="#4a525c" />
+      </mesh>
+      <sprite position={[0, 2.4, 1.3]} scale={[1.4, 1.4, 1]}>
+        <spriteMaterial map={glowTex} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.75} />
+      </sprite>
+      <pointLight position={[0, 1.6, 0]} color="#ffc27a" intensity={1.6} distance={12} decay={2} />
+    </group>
+  );
+}
+
+/* ───────────────────────────── shooting stars ───────────────────────────── */
+
+function ShootingStars({ reducedMotion }: { reducedMotion: boolean }) {
+  const ref = useRef<THREE.Mesh>(null);
+  const state = useRef({ next: 6, start: 0, active: false, from: new THREE.Vector3(), dir: new THREE.Vector3(1, 0, 0), rnd: mulberry32(77) });
+  useFrame(({ clock }) => {
+    const m = ref.current;
+    if (!m || reducedMotion) return;
+    const t = clock.elapsedTime;
+    const s = state.current;
+    if (!s.active) {
+      m.visible = false;
+      if (t < s.next) return;
+      s.active = true;
+      s.start = t;
+      s.from.set(-50 + s.rnd() * 110, 30 + s.rnd() * 22, -150);
+      const a = Math.PI + (s.rnd() - 0.5) * 0.9;
+      s.dir.set(Math.cos(a), Math.sin(a) * 0.45 - 0.25, 0).normalize();
+      m.rotation.z = Math.atan2(s.dir.y, s.dir.x);
+      return;
+    }
+    const p = (t - s.start) / 0.9;
+    if (p >= 1) {
+      s.active = false;
+      s.next = t + 6 + s.rnd() * 10;
+      m.visible = false;
+      return;
+    }
+    m.visible = true;
+    m.position.copy(s.from).addScaledVector(s.dir, p * 34);
+    (m.material as THREE.MeshBasicMaterial).opacity = Math.sin(p * Math.PI) * 0.85;
+  });
+  return (
+    <mesh ref={ref} visible={false} renderOrder={1} frustumCulled={false}>
+      <planeGeometry args={[7, 0.07]} />
+      <meshBasicMaterial color="#e8eee6" transparent opacity={0} blending={THREE.AdditiveBlending} depthWrite={false} fog={false} />
+    </mesh>
+  );
+}
+
 /* ───────────────────────────── bridge ───────────────────────────── */
 
 const BRIDGE_Z = -26;
@@ -1481,6 +1677,10 @@ export default function ShoreScene({ quality, reducedMotion, word }: ShoreSceneP
       <MaidenTower position={[15, 0, -52]} />
       <Houses quality={quality} />
       <Bridge />
+      <Flag kind="it" position={[2.5, 11.4, BRIDGE_Z]} phase={0} />
+      <Flag kind="tr" position={[15.5, 11.4, BRIDGE_Z]} phase={2.1} />
+      <Ferry reducedMotion={reducedMotion} />
+      <ShootingStars reducedMotion={reducedMotion} />
       <OliveLeaves quality={quality} reducedMotion={reducedMotion} />
       <Embers quality={quality} />
       <Wordmark word={word} reducedMotion={reducedMotion} />

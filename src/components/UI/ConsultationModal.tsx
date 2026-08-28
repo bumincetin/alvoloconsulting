@@ -87,6 +87,7 @@ export default function ConsultationModal({ locale, isOpen, onClose, prefill }: 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 20, scale: 0.985 }}
             transition={{ duration: reducedMotion ? 0 : 0.4, ease: BEZIER.out }}
+            data-lenis-prevent
             className="relative flex max-h-[92svh] w-full max-w-xl flex-col overflow-hidden rounded-t-3xl border border-line bg-titanium shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)] sm:rounded-3xl"
           >
             <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald/80 to-transparent" />
@@ -106,7 +107,8 @@ export default function ConsultationModal({ locale, isOpen, onClose, prefill }: 
                 type="button"
                 onClick={onClose}
                 aria-label={t.close}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                data-cursor="hover"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-white/60 transition-[color,background-color,border-color] duration-300 hover:border-bone/50 hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               >
                 <X className="h-4 w-4" strokeWidth={1.5} />
               </button>

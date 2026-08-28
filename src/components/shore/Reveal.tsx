@@ -90,11 +90,37 @@ export function WordReveal({
 }
 
 /** `.sec-head` — "01 — Label ———— Alt" */
-export function SectionHead({ index, label, alt }: { index: string; label: string; alt: string }) {
+export type MarkKind = "it" | "tr" | "both";
+
+/** The two shores' colours as a small typographic mark: tricolore bars, crescent and star. */
+export function Mark({ kind, className }: { kind: MarkKind; className?: string }) {
+  const it = kind === "it" || kind === "both";
+  const tr = kind === "tr" || kind === "both";
+  return (
+    <span className={clsx("mark", `mark--${kind}`, className)} aria-hidden="true">
+      {it ? (
+        <>
+          <i className="m-verde" />
+          <i className="m-bianco" />
+          <i className="m-rosso" />
+        </>
+      ) : null}
+      {tr ? (
+        <svg viewBox="0 0 16 12" className="m-crescent">
+          <path d="M8 1A5 5 0 1 0 8 11A5.5 5.5 0 0 1 8 1Z" fill="var(--turk-red)" />
+          <path d="M12.3 4 12.77 5.35 14.2 5.38 13.06 6.25 13.48 7.62 12.3 6.8 11.12 7.62 11.54 6.25 10.4 5.38 11.83 5.35Z" fill="var(--turk-red)" />
+        </svg>
+      ) : null}
+    </span>
+  );
+}
+
+export function SectionHead({ index, label, alt, mark }: { index: string; label: string; alt: string; mark?: MarkKind }) {
   return (
     <div className="sec-head" data-rv="fade">
       <span className="k">
         <b>{index}</b> — {label}
+        {mark ? <Mark kind={mark} /> : null}
       </span>
       <span className="rule" />
       <span className="k alt-lang">{alt}</span>

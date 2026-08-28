@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, type CSSProperties } from "react";
 import { ForegroundStage, type ForegroundPiece } from "../Foreground";
-import { Arrow, SectionHead } from "../Reveal";
+import { Arrow, SectionHead, Mark } from "../Reveal";
 import { OliveBranch, Reeds, StreetLamp } from "../art/cutouts";
 import { IstanbulPlate, MilanPlate, RomePlate } from "../art/plates";
 import type { Locale } from "@/lib/translations";
@@ -32,7 +32,7 @@ export default function PathwaysChapter({ t, locale }: { t: ShoreContent; locale
   return (
     <section ref={ref} className="sec" id="pathways" data-cam="2">
       <ForegroundStage id="pathways" sectionRef={ref} pieces={pieces} />
-      <SectionHead index={t.pathways.index} label={t.pathways.label} alt={t.pathways.alt} />
+      <SectionHead index={t.pathways.index} label={t.pathways.label} alt={t.pathways.alt} mark="both" />
       <div className="cards" id="cards">
         {t.pathways.plates.map((plate, i) => {
           const Plate = PLATES[plate.id];
@@ -45,7 +45,10 @@ export default function PathwaysChapter({ t, locale }: { t: ShoreContent; locale
                 </span>
                 <i className={plate.id === "istanbul" ? "glow glow--flame" : "glow"} style={GLOWS[plate.id]} />
                 <div className="card-lab">
-                  <b>{plate.label}</b>
+                  <b>
+                    {plate.label}
+                    <Mark kind={plate.id === "istanbul" ? "tr" : "it"} />
+                  </b>
                   <span className="alt-lang">{plate.alt}</span>
                 </div>
               </div>

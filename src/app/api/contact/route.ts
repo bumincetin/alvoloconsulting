@@ -5,6 +5,38 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 
 export const runtime = 'edge';
 
+const SUBJECT_MAX = 180;
+const FIELD_MAX = 300;
+
+/** Minimal HTML escaping for user-supplied strings interpolated into the email template. */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/** Coerce an optional user field to a trimmed, length-capped string (or undefined). */
+function optionalString(value: unknown, max = FIELD_MAX): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  return trimmed.slice(0, max);
+}
+
+/** Subjects must be a single line — strip CR/LF so a crafted value cannot inject headers. */
+function subjectLine(value: unknown): string | undefined {
+  const s = optionalString(value, SUBJECT_MAX);
+  return s ? s.replace(/[\r\n]+/g, ' ').trim() : undefined;
+}
+
+function row(label: string, value: string | undefined): string {
+  if (!value) return '';
+  return `<p style="margin: 10px 0;"><strong>${label}:</strong> ${escapeHtml(value)}</p>`;
+}
+
 export async function POST(request: Request) {
   const toEmail = process.env.CONTACT_EMAIL || 'alvoloconsulting@gmail.com';
 
@@ -14,12 +46,27 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, message, privacyConsent, marketingConsent } = body;
 
+    // Optional intake fields (consultation brief)
+    const kind = body?.kind === 'brief' ? 'brief' : 'contact';
+    const phone = optionalString(body?.phone, 40);
+    const company = optionalString(body?.company);
+    const channel = optionalString(body?.channel, 20);
+    const language = optionalString(body?.language, 10);
+    const contactAs = optionalString(body?.contactAs, 20);
+    const subject = subjectLine(body?.subject);
+
     console.log('Received form data:', {
+      kind,
       name,
       email,
       messageLength: message?.length,
       privacyConsent,
-      marketingConsent
+      marketingConsent,
+      hasPhone: !!phone,
+      hasCompany: !!company,
+      channel,
+      language,
+      contactAs,
     });
 
     // Basic validation
@@ -32,6 +79,13 @@ export async function POST(request: Request) {
           email: !email ? 'Email is required' : null,
           message: !message ? 'Message is required' : null
         }
+      }, { status: 400 });
+    }
+
+    if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
+      return NextResponse.json({
+        error: 'Missing required fields',
+        details: 'Name, email and message must be text'
       }, { status: 400 });
     }
 
@@ -63,23 +117,34 @@ export async function POST(request: Request) {
       }, { status: 500 });
     }
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeMessage = escapeHtml(message).replace(/\r?\n/g, '<br>');
+    const heading = kind === 'brief' ? 'New Consultation Brief' : 'New Contact Form Submission';
+    const finalSubject = subject ?? (kind === 'brief' ? `New Consultation Brief from ${name}` : `New Contact Form Submission from ${name}`);
+
     try {
       const { error } = await resend.emails.send({
         from: 'Alvolo Consulting <onboarding@resend.dev>',
         to: [toEmail],
         replyTo: email,
-        subject: `New Contact Form Submission from ${name}`,
+        subject: finalSubject,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #1a365d;">New Contact Form Submission</h2>
+            <h2 style="color: #1a365d;">${heading}</h2>
             <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-top: 20px;">
-              <p style="margin: 10px 0;"><strong>Name:</strong> ${name}</p>
-              <p style="margin: 10px 0;"><strong>Email:</strong> ${email}</p>
+              <p style="margin: 10px 0;"><strong>Name:</strong> ${safeName}</p>
+              <p style="margin: 10px 0;"><strong>Email:</strong> ${safeEmail}</p>
+              ${row('Contacting as', contactAs)}
+              ${row('Company', company)}
+              ${row('Phone / WhatsApp', phone)}
+              ${row('Preferred channel', channel)}
+              ${row('Preferred language', language)}
               <p style="margin: 10px 0;"><strong>Privacy Consent:</strong> ${privacyConsent ? 'Yes' : 'No'}</p>
               <p style="margin: 10px 0;"><strong>Marketing Consent:</strong> ${marketingConsent ? 'Yes' : 'No'}</p>
-              <p style="margin: 10px 0;"><strong>Message:</strong></p>
-              <div style="background-color: white; padding: 15px; border-radius: 4px; margin-top: 10px;">
-                ${message.replace(/\n/g, '<br>')}
+              <p style="margin: 10px 0;"><strong>${kind === 'brief' ? 'Mandate brief' : 'Message'}:</strong></p>
+              <div style="background-color: white; padding: 15px; border-radius: 4px; margin-top: 10px; white-space: normal;">
+                ${safeMessage}
               </div>
             </div>
           </div>
@@ -115,4 +180,4 @@ export async function POST(request: Request) {
       details: error instanceof Error ? error.message : 'An unexpected error occurred'
     }, { status: 500 });
   }
-} 
+}

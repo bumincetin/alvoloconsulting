@@ -22,7 +22,7 @@ export default function GateChapter({ t }: { t: ShoreContent }) {
   return (
     <section ref={ref} className="sec" id="gate" data-cam="1">
       <ForegroundStage id="gate" sectionRef={ref} pieces={pieces} />
-      <SectionHead index={t.gate.index} label={t.gate.label} alt={t.gate.alt} />
+      <SectionHead index={t.gate.index} label={t.gate.label} alt={t.gate.alt} mark="it" />
       <div className="gate-grid">
         <WordReveal lines={[t.gate.heading]} className="h-sec" />
         <div className="gate-copy">

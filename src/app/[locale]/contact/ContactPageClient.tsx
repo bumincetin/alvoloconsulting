@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
-import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import clsx from "clsx";
+import { ArrowUpRight, Check, Clock, Copy, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import PageHeader from "@/components/UI/PageHeader";
 import ConsultationForm from "@/components/UI/ConsultationForm";
 import Eyebrow from "@/components/UI/Eyebrow";
@@ -24,13 +25,26 @@ export default function ContactPageClient() {
   const c = consultationContent[locale];
   const clocks = useCityClocks(locale, false);
   const prefill = useMemo(() => ({ source: t.title }), [t.title]);
-  const whatsappHref = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(f.whatsappMessage)}`;
+  const whatsappHref = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(`${f.whatsappMessage}\n\n[${locale.toUpperCase()}]`)}`;
+
+  const [emailCopied, setEmailCopied] = useState(false);
+  const copyEmail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT.email);
+      setEmailCopied(true);
+      window.setTimeout(() => setEmailCopied(false), 1800);
+    } catch {
+      /* clipboard unavailable — the mailto link remains */
+    }
+  }, []);
 
   const channels = [
     { icon: MessageCircle, label: f.whatsapp, value: CONTACT.whatsappDisplay, href: whatsappHref, accent: ACCENT_HEX.emerald, external: true },
-    { icon: Mail, label: t.emailTitle, value: t.emailDetails, href: `mailto:${CONTACT.email}`, accent: ACCENT_HEX.azure, external: false },
     { icon: Phone, label: t.phoneTitle, value: t.phoneDetails, href: `tel:+${CONTACT.whatsappNumber}`, accent: ACCENT_HEX.gold, external: false },
   ];
+
+  const cardClass =
+    "group flex items-center justify-between gap-4 rounded-2xl border border-line bg-titanium/70 px-5 py-4 transition-[background-color,border-color] duration-300 hover:border-bone/30 hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
 
   return (
     <main className="relative bg-obsidian text-white">
@@ -42,15 +56,58 @@ export default function ContactPageClient() {
           <div className="lg:col-span-5">
             <Eyebrow accent="emerald">{t.contactInfo}</Eyebrow>
             <div className="mt-5 space-y-2">
-              {channels.map(({ icon: Icon, label, value, href, accent, external }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noreferrer" : undefined}
+              {channels.slice(0, 1).map(({ icon: Icon, label, value, href, accent, external }) => (
+                <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} data-cursor="magnetic" className={cardClass}>
+                  <span className="flex items-center gap-4">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.06]" style={{ color: accent }}>
+                      <Icon className="h-4 w-4" strokeWidth={1.5} />
+                    </span>
+                    <span>
+                      <span className="block text-[14px] font-medium text-white">{label}</span>
+                      <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">{value}</span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-white/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
+                </a>
+              ))}
+
+              {/* Email — click-to-copy card; the mailto link stays reachable as its own control */}
+              <div className={cardClass}>
+                <button
+                  type="button"
+                  onClick={copyEmail}
                   data-cursor="magnetic"
-                  className="group flex items-center justify-between gap-4 rounded-2xl border border-line bg-titanium/70 px-5 py-4 transition-colors hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                  aria-live="polite"
+                  aria-label={`${t.emailTitle} · ${CONTACT.email} · ${c.copyEmail}`}
+                  className="flex min-w-0 flex-1 items-center justify-between gap-4 text-left focus-visible:outline-none"
                 >
+                  <span className="flex min-w-0 items-center gap-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/[0.06]" style={{ color: ACCENT_HEX.azure }}>
+                      <Mail className="h-4 w-4" strokeWidth={1.5} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[14px] font-medium text-white">{t.emailTitle}</span>
+                      <span className="block truncate font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">{t.emailDetails}</span>
+                    </span>
+                  </span>
+                  <span className={clsx("k inline-flex shrink-0 items-center gap-1.5 transition-colors", emailCopied ? "text-gold" : "text-white/45 group-hover:text-white/80")}>
+                    {emailCopied ? <Check className="h-3.5 w-3.5" strokeWidth={1.5} /> : <Copy className="h-3.5 w-3.5" strokeWidth={1.5} />}
+                    <span className="hidden sm:inline">{emailCopied ? c.copied : c.copyEmail}</span>
+                  </span>
+                </button>
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  aria-label={c.openMail}
+                  title={c.openMail}
+                  data-cursor="hover"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-transparent text-white/50 transition-[color,border-color] duration-300 hover:border-line hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                >
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
+                </a>
+              </div>
+
+              {channels.slice(1).map(({ icon: Icon, label, value, href, accent, external }) => (
+                <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} data-cursor="magnetic" className={cardClass}>
                   <span className="flex items-center gap-4">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.06]" style={{ color: accent }}>
                       <Icon className="h-4 w-4" strokeWidth={1.5} />
@@ -101,7 +158,11 @@ export default function ContactPageClient() {
               <div className="mb-6">
                 <Eyebrow accent="emerald">{t.getInTouch}</Eyebrow>
                 <h2 className="mt-4 font-display text-2xl font-normal tracking-[-0.005em]">{c.title}</h2>
-                <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/55">{c.sub}</p>
+                <p className="k mt-2 inline-flex items-center gap-2 text-gold">
+                  <span aria-hidden="true" className="h-px w-4 bg-gold/70" />
+                  {c.responseLine}
+                </p>
+                <p className="mt-2 text-[13.5px] leading-relaxed text-white/55">{c.sub}</p>
               </div>
               <ConsultationForm locale={locale} prefill={prefill} />
             </div>

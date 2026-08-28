@@ -5,7 +5,7 @@ import { useMemo, useRef } from "react";
 import { BrandMark } from "./ShoreNav";
 import { ForegroundStage, type ForegroundPiece } from "./Foreground";
 import { Caique, Reeds, Balustrade } from "./art/cutouts";
-import { useReveals } from "./Reveal";
+import { useReveals, Mark } from "./Reveal";
 import { useConsultation } from "@/components/providers/ConsultationProvider";
 import { CONTACT } from "@/lib/content/footer";
 import { shoreContent } from "@/lib/content/shore";
@@ -66,7 +66,11 @@ export default function ShoreFooter({ locale }: { locale: Locale }) {
       </div>
       <div className="foot-base">
         <span>{t.footer.copyright}</span>
-        <span className="alt-lang">{t.footer.motto}</span>
+        <span className="alt-lang foot-motto">
+          <Mark kind="tr" />
+          {t.footer.motto}
+          <Mark kind="it" />
+        </span>
         <span>{t.footer.colophon}</span>
       </div>
     </footer>

@@ -188,7 +188,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
             { label: "Italy expansion", href: "/services/expansion/italy/" },
             { label: "Türkiye sourcing", href: "/services/expansion/turkey/" },
             { label: "Startup corridor", href: "/services/startup-corridor/" },
-            { label: "Engagement tiers", href: "/pricing/" },
+            { label: "Your tailored mandate", href: "/brief/" },
           ],
         },
         {
@@ -297,7 +297,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
             { label: "İtalya genişleme", href: "/services/expansion/italy/" },
             { label: "Türkiye tedarik", href: "/services/expansion/turkey/" },
             { label: "Startup koridoru", href: "/services/startup-corridor/" },
-            { label: "Hizmet seviyeleri", href: "/pricing/" },
+            { label: "Size özel mandat", href: "/brief/" },
           ],
         },
         {
@@ -406,7 +406,7 @@ export const shoreContent: Record<Locale, ShoreContent> = {
             { label: "Espansione Italia", href: "/services/expansion/italy/" },
             { label: "Sourcing Türkiye", href: "/services/expansion/turkey/" },
             { label: "Corridoio startup", href: "/services/startup-corridor/" },
-            { label: "Livelli di incarico", href: "/pricing/" },
+            { label: "Il vostro mandato su misura", href: "/brief/" },
           ],
         },
         {

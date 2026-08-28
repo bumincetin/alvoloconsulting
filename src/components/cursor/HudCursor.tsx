@@ -281,7 +281,7 @@ export default function HudCursor() {
   }, []);
 
   return (
-    <div ref={rootRef} aria-hidden="true" className="hud-cursor pointer-events-none fixed inset-0 z-[95]">
+    <div ref={rootRef} aria-hidden="true" className="hud-cursor pointer-events-none fixed inset-0 z-[10050]">
       {/* Slow layer: reticle ring + crosshair ticks */}
       <div ref={slowRef} className="absolute left-0 top-0 will-change-transform">
         <div className="relative flex items-center justify-center">

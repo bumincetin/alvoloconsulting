@@ -23,7 +23,7 @@ export default function LessonsChapter({ t }: { t: ShoreContent }) {
   return (
     <section ref={ref} className="sec" id="lessons" data-cam="3">
       <ForegroundStage id="lessons" sectionRef={ref} pieces={pieces} />
-      <SectionHead index={t.lessons.index} label={t.lessons.label} alt={t.lessons.alt} />
+      <SectionHead index={t.lessons.index} label={t.lessons.label} alt={t.lessons.alt} mark="tr" />
       <div className="cur-head">
         <WordReveal lines={[t.lessons.heading]} className="h-sec" />
         <p className="body-lg" data-rv="up">

@@ -8,7 +8,7 @@ const priorities: Record<PageKey, number> = {
   italy: 0.9,
   turkey: 0.9,
   startup: 0.8,
-  pricing: 0.8,
+  brief: 0.9,
   about: 0.7,
   methodology: 0.7,
   contact: 0.7,

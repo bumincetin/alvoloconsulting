@@ -4,6 +4,7 @@ import { type Locale } from "@/lib/translations";
 import ShoreNav from "@/components/shore/ShoreNav";
 import ShoreFooter from "@/components/shore/ShoreFooter";
 import Grain from "@/components/shore/Grain";
+import ConciergeDock from "@/components/shore/ConciergeDock";
 import { ForegroundProvider } from "@/components/shore/Foreground";
 import ConsultationProvider from "@/components/providers/ConsultationProvider";
 
@@ -14,6 +15,7 @@ export default function LocaleLayoutClient({ children, locale }: { children: Rea
         <ShoreNav locale={locale} />
         <div className="relative z-10 min-h-screen">{children}</div>
         <ShoreFooter locale={locale} />
+        <ConciergeDock locale={locale} />
         <Grain />
       </ForegroundProvider>
     </ConsultationProvider>

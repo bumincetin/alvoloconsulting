@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Arrow } from "./Reveal";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
@@ -21,6 +22,8 @@ export function BrandMark({ size = 34 }: { size?: number }) {
     </svg>
   );
 }
+
+const NAV_CTA: Record<Locale, string> = { en: "Your mandate", tr: "Mandatınız", it: "Il vostro mandato" };
 
 export default function ShoreNav({ locale }: { locale: Locale }) {
   const t = shoreContent[locale];
@@ -96,6 +99,10 @@ export default function ShoreNav({ locale }: { locale: Locale }) {
             </a>
           );
         })}
+        <Link href={`/${locale}/brief/`} className="nav-cta" data-cursor="magnetic" onClick={() => setOpen(false)}>
+          <span>{NAV_CTA[locale]}</span>
+          <Arrow />
+        </Link>
         <div className="nav-lang" role="group" aria-label={t.footer.language}>
           {locales.map((loc) => (
             <Link key={loc} href={`/${loc}${rest}`} hrefLang={loc} lang={loc} className={clsx(loc === locale && "on")} onClick={() => setOpen(false)} data-cursor>

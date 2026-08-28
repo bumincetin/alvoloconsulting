@@ -16,7 +16,7 @@ export const pageKeys = [
   "home",
   "services",
   "about",
-  "pricing",
+  "brief",
   "faq",
   "contact",
   "portal",
@@ -33,7 +33,7 @@ export const pagePaths: Record<PageKey, string> = {
   home: "/",
   services: "/services/",
   about: "/about/",
-  pricing: "/pricing/",
+  brief: "/brief/",
   faq: "/faq/",
   contact: "/contact/",
   portal: "/portal/",
@@ -103,21 +103,21 @@ export const seoCopy: Record<PageKey, Record<Locale, Copy>> = {
         "Il team Alvolo Consulting, formato in Bocconi: consulenti cross-border con sedi a Milano, Roma e Istanbul che collegano il business italiano e turco.",
     },
   },
-  pricing: {
+  brief: {
     en: {
-      title: "Pricing & Packages — Alvolo Consulting",
+      title: "Your Tailored Mandate — Alvolo Consulting",
       description:
-        "Transparent fixed-fee packages for Italian company formation, tax and residency setup, executive relocation and Turkish sourcing. Clear scope, no hidden costs.",
+        "Answer five questions and receive a tailored service proposal for your Italy or Türkiye mandate: incorporation, tax, permits, banking, sourcing or a delegation programme.",
     },
     tr: {
-      title: "Fiyatlar ve Paketler — Alvolo Consulting",
+      title: "Size Özel Mandat — Alvolo Consulting",
       description:
-        "İtalya'da şirket kuruluşu, vergi ve oturma izni, yönetici taşınması ve Türkiye tedarik hizmetleri için sabit ücretli, kapsamı net paketler. Gizli maliyet yok.",
+        "Beş soruyu yanıtlayın, İtalya veya Türkiye mandatınız için size özel bir hizmet teklifi alın: şirket kuruluşu, vergi, izinler, bankacılık, tedarik veya heyet programı.",
     },
     it: {
-      title: "Prezzi e Pacchetti — Alvolo Consulting",
+      title: "Il Vostro Mandato su Misura — Alvolo Consulting",
       description:
-        "Pacchetti a tariffa fissa per costituzione societaria, fisco e permessi di soggiorno, relocation di dirigenti e sourcing in Turchia. Nessun costo nascosto.",
+        "Rispondete a cinque domande e ricevete una proposta di servizi su misura per il vostro mandato in Italia o Türkiye: costituzione, fisco, permessi, banche, sourcing o delegazioni.",
     },
   },
   faq: {

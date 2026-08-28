@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Onest } from "next/font/google";
 import "../globals.css";
+import "../../styles/brief.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import { locales, type Locale } from "@/lib/translations";
 import LocaleLayoutClient from "./LocaleLayoutClient";
