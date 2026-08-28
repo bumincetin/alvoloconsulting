@@ -36,7 +36,7 @@ export const teamContent: Record<Locale, TeamContent> = {
   en: {
     eyebrow: "Founding Partners",
     heading: "Bocconi-trained specialists with a seat in both markets.",
-    sub: "A compact partnership that runs every mandate personally — quantitative, legal and institutional expertise across Milan, Rome and Istanbul.",
+    sub: "A compact partnership: the three partners run each mandate themselves, with quantitative, legal and institutional expertise across Milan, Rome and Istanbul.",
     credentialsLabel: "Credentials",
     trackLabel: "Track record",
     revealHint: "Hover or focus to open the dossier",
@@ -50,7 +50,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         image: IMAGES.bumin,
         linkedin: LINKS.bumin,
         website: LINKS.buminSite,
-        bio: "Leads the quantitative side of every mandate — effective-tax-rate modelling, landed-cost models and the risk architecture behind cross-border structures.",
+        bio: "Leads the quantitative side of each mandate: effective-tax-rate modelling, landed-cost models and the risk architecture behind cross-border structures.",
         credentials: ["Università Bocconi", "Quantitative finance & risk modelling", "Applied AI for advisory workflows"],
         track: [
           { k: "Focus", v: "Tax architecture · financial modelling" },
@@ -65,7 +65,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         affiliation: "Milan – Istanbul desk",
         image: IMAGES.oguzhan,
         linkedin: LINKS.oguzhan,
-        bio: "Owns the counterparties — notaries, chambers, registries, banks and industrial partners on both sides of the corridor — and sequences the multi-jurisdiction programme.",
+        bio: "Owns the counterparties (notaries, chambers, registries, banks and industrial partners on both sides of the corridor) and sequences the multi-jurisdiction programme.",
         credentials: ["Multi-jurisdiction strategy", "Institutional & registry liaison", "Industrial partner network (Marmara · Aegean)"],
         track: [
           { k: "Focus", v: "Entity formation · supplier matchmaking" },
@@ -80,7 +80,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         affiliation: "Private client desk · Milan",
         image: IMAGES.ece,
         linkedin: LINKS.ece,
-        bio: "Runs client governance — intake, KYC readiness, document integrity and executive relocation — with the discretion private clients and family offices require.",
+        bio: "Runs client governance (intake, KYC readiness, document integrity and executive relocation) with the discretion private clients and family offices require.",
         credentials: ["Private client governance", "KYC / AML readiness", "Executive & family relocation"],
         track: [
           { k: "Focus", v: "Intake · relocation · continuity" },
@@ -93,7 +93,7 @@ export const teamContent: Record<Locale, TeamContent> = {
   tr: {
     eyebrow: "Kurucu Ortaklar",
     heading: "Her iki pazarda da yer alan Bocconi eğitimli uzmanlar.",
-    sub: "Her görevi bizzat yürüten kompakt bir ortaklık — Milano, Roma ve İstanbul'da nicel, hukuki ve kurumsal uzmanlık.",
+    sub: "Kompakt bir ortaklık: üç ortak her mandatı bizzat yürütür; Milano, Roma ve İstanbul'da nicel, hukuki ve kurumsal uzmanlık.",
     credentialsLabel: "Yetkinlikler",
     trackLabel: "Sicil",
     revealHint: "Dosyayı açmak için üzerine gelin veya odaklanın",
@@ -107,7 +107,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         image: IMAGES.bumin,
         linkedin: LINKS.bumin,
         website: LINKS.buminSite,
-        bio: "Her görevin nicel tarafını yönetir — efektif vergi oranı modellemesi, teslim maliyeti modelleri ve sınır ötesi yapıların arkasındaki risk mimarisi.",
+        bio: "Her mandatın nicel tarafını yönetir: efektif vergi oranı modellemesi, teslim maliyeti modelleri ve sınır ötesi yapıların arkasındaki risk mimarisi.",
         credentials: ["Università Bocconi", "Nicel finans ve risk modellemesi", "Danışmanlık iş akışları için uygulamalı yapay zekâ"],
         track: [
           { k: "Odak", v: "Vergi mimarisi · finansal modelleme" },
@@ -122,7 +122,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         affiliation: "Milano – İstanbul masası",
         image: IMAGES.oguzhan,
         linkedin: LINKS.oguzhan,
-        bio: "Muhatapları yönetir — koridorun her iki tarafındaki noterler, odalar, siciller, bankalar ve sanayi ortakları — ve çok yargı alanlı programı sıralar.",
+        bio: "Muhatapları (koridorun iki tarafındaki noterler, odalar, siciller, bankalar ve sanayi ortakları) yönetir ve çok yargı alanlı programı sıralar.",
         credentials: ["Çok yargı alanlı strateji", "Kurumsal ve sicil irtibatı", "Sanayi ortağı ağı (Marmara · Ege)"],
         track: [
           { k: "Odak", v: "Şirket kuruluşu · tedarikçi eşleştirme" },
@@ -137,7 +137,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         affiliation: "Özel müşteri masası · Milano",
         image: IMAGES.ece,
         linkedin: LINKS.ece,
-        bio: "Müşteri yönetişimini yürütür — başlangıç, KYC hazırlığı, belge bütünlüğü ve yönetici taşınması — özel müşterilerin ve aile ofislerinin gerektirdiği gizlilikle.",
+        bio: "Müşteri yönetişimini (başlangıç, KYC hazırlığı, belge bütünlüğü ve yönetici taşınması) özel müşterilerin ve aile ofislerinin gerektirdiği gizlilikle yürütür.",
         credentials: ["Özel müşteri yönetişimi", "KYC / AML hazırlığı", "Yönetici ve aile taşınması"],
         track: [
           { k: "Odak", v: "Başlangıç · taşınma · süreklilik" },
@@ -150,7 +150,7 @@ export const teamContent: Record<Locale, TeamContent> = {
   it: {
     eyebrow: "Partner Fondatori",
     heading: "Specialisti formati in Bocconi con una presenza in entrambi i mercati.",
-    sub: "Una partnership compatta che segue personalmente ogni mandato — competenze quantitative, legali e istituzionali tra Milano, Roma e Istanbul.",
+    sub: "Una partnership compatta: i tre partner seguono ogni mandato in prima persona, con competenze quantitative, legali e istituzionali tra Milano, Roma e Istanbul.",
     credentialsLabel: "Credenziali",
     trackLabel: "Track record",
     revealHint: "Passa il mouse o metti a fuoco per aprire il dossier",
@@ -164,7 +164,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         image: IMAGES.bumin,
         linkedin: LINKS.bumin,
         website: LINKS.buminSite,
-        bio: "Guida la parte quantitativa di ogni mandato — modellazione dell'aliquota effettiva, modelli di landed cost e architettura del rischio dietro le strutture transfrontaliere.",
+        bio: "Guida la parte quantitativa di ogni mandato: modellazione dell'aliquota effettiva, modelli di landed cost e architettura del rischio dietro le strutture transfrontaliere.",
         credentials: ["Università Bocconi", "Finanza quantitativa e modellazione del rischio", "AI applicata ai flussi di advisory"],
         track: [
           { k: "Focus", v: "Architettura fiscale · modellazione finanziaria" },
@@ -179,7 +179,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         affiliation: "Desk Milano – Istanbul",
         image: IMAGES.oguzhan,
         linkedin: LINKS.oguzhan,
-        bio: "Gestisce le controparti — notai, camere, registri, banche e partner industriali su entrambi i lati del corridoio — e sequenzia il programma multi-giurisdizione.",
+        bio: "Gestisce le controparti (notai, camere, registri, banche e partner industriali su entrambi i lati del corridoio) e sequenzia il programma multi-giurisdizione.",
         credentials: ["Strategia multi-giurisdizione", "Liaison istituzionale e con i registri", "Rete di partner industriali (Marmara · Egeo)"],
         track: [
           { k: "Focus", v: "Costituzione · matchmaking fornitori" },
@@ -194,7 +194,7 @@ export const teamContent: Record<Locale, TeamContent> = {
         affiliation: "Desk private client · Milano",
         image: IMAGES.ece,
         linkedin: LINKS.ece,
-        bio: "Gestisce la governance del cliente — intake, prontezza KYC, integrità documentale e relocation dei dirigenti — con la riservatezza richiesta da private client e family office.",
+        bio: "Gestisce la governance del cliente (intake, prontezza KYC, integrità documentale e relocation dei dirigenti) con la riservatezza richiesta da private client e family office.",
         credentials: ["Governance private client", "Prontezza KYC / AML", "Relocation dirigenti e famiglie"],
         track: [
           { k: "Focus", v: "Intake · relocation · continuità" },

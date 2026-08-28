@@ -17,9 +17,9 @@ function resolveLocale(value: unknown): Locale {
 }
 
 const CTA = {
-  en: { title: "Still have questions?", body: "Open a line to the partners — we reply within one business day." },
-  tr: { title: "Hâlâ sorunuz mu var?", body: "Ortaklara bir hat açın — bir iş günü içinde yanıt veririz." },
-  it: { title: "Hai ancora domande?", body: "Apri una linea con i partner — rispondiamo entro un giorno lavorativo." },
+  en: { title: "Another question", body: "Write to the partners; we reply within one business day." },
+  tr: { title: "Başka bir soru", body: "Ortaklara yazın; bir iş günü içinde yanıt veririz." },
+  it: { title: "Un'altra domanda", body: "Scrivete ai partner; rispondiamo entro un giorno lavorativo." },
 } as const;
 
 export default function FAQPageClient() {

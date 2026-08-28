@@ -1,153 +1,69 @@
-# Italia Consultant - Next.js Project
+# Alvolo Consulting
 
-This project is a modern website for "Çetin & Aslan Danışmanlık," a consultancy firm aimed at Turkish students and individuals planning to study or relocate to Italy. It's built with Next.js 14 (App Router) and TypeScript, focusing on a professional look and feel, multilingual support (planned), and content-driven services.
+Marketing site for [Alvolo Consulting](https://alvoloconsulting.com), a cross-border advisory between Italy and Türkiye (Milan, Rome, Istanbul). The site runs in three languages (`en`, `tr`, `it`) and ships to Cloudflare Pages.
 
-## 🚀 Project Goal
+## Stack
 
-To create a visually appealing, responsive, and informative website providing comprehensive information and consultancy services related to studying and living in Italy. The site aims to support Turkish, with potential for English and Italian in the future.
+- Next.js 15.0.3 (App Router, `[locale]` segment, edge runtime on every route)
+- React 19, TypeScript 5.8
+- Tailwind CSS 4 plus hand-written CSS in `src/app/globals.css` and `src/styles/brief.css`
+- GSAP + Lenis for scroll, Framer Motion for panel transitions, Three.js via React Three Fiber for the home scene
+- Resend for the contact and brief intake (`/api/contact`)
+- `@cloudflare/next-on-pages` + Wrangler for deployment
 
-## 💻 Tech Stack
+## Pages
 
-*   **Framework:** Next.js 14 (App Router)
-*   **Language:** TypeScript
-*   **Styling:** Tailwind CSS
-*   **UI Components:** (Shadcn/ui - to be integrated or custom components)
-*   **Icons:** React Icons
-*   **Internationalization (i18n):** (next-i18next or similar - to be integrated)
-*   **Content Management:** (Contentlayer - for potential blog/dynamic service pages - to be integrated)
-*   **Form Handling:** (React-Hook-Form & Zod - to be integrated)
-*   **Emailing:** (Nodemailer - for contact form, server-side - to be integrated)
-*   **Animations:** (Framer Motion - for subtle animations - to be integrated)
-*   **Linting & Formatting:** ESLint, Prettier
-*   **Git Hooks:** Husky & lint-staged (assumed from general good practice)
-*   **Deployment:** Cloudflare Pages via `@cloudflare/next-on-pages` (see Deployment below)
-*   **Containerization:** Docker (for local development consistency, if used)
+| Route | What it is |
+| --- | --- |
+| `/[locale]/` | "Two Shores" home: a scrolled walk from Milan to Istanbul in five chapters |
+| `/[locale]/services/` | Service catalogue, corridor switcher (Italy inbound / Türkiye outbound), four-phase protocol |
+| `/[locale]/services/expansion/italy/` and `/turkey/` | Corridor dossiers with the expansion planner |
+| `/[locale]/services/startup-corridor/` | Six-module programme for founders |
+| `/[locale]/brief/` | Five-question intake that draws a proposal sheet (modules, phases, desks, checklist) and lets the visitor request it |
+| `/[locale]/methodology/`, `/about/`, `/faq/`, `/contact/`, `/portal/` | Inner pages |
 
-## 🛠️ Installation
+`/[locale]/pricing/` redirects to `/brief/` (see `next.config.ts`).
 
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/bumincetin/alvoloconsulting.git
-    ```
-2.  Navigate to the project directory:
-    ```bash
-    cd alvoloconsulting
-    ```
-3.  Install dependencies:
-    ```bash
-    npm install
-    # or
-    # pnpm install
-    # or
-    # yarn install
-    ```
-4.  Run the development server:
-    ```bash
-    npm run dev
-    # or
-    # pnpm run dev
-    # or
-    # yarn dev
-    ```
-5.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where the copy lives
 
-## 📧 Email Configuration
+All visitor-facing text is data, not JSX, so it can be edited without touching components:
 
-The contact form requires email service configuration to send messages. You have two options:
+| File | Content |
+| --- | --- |
+| `src/lib/content/shore.ts` | Home chapters, nav, footer columns |
+| `src/lib/content/brief.ts` | Brief wizard: questions, options, proposal vocabulary |
+| `src/lib/content/consultation.ts` | Consultation form labels and messages |
+| `src/lib/content/corridors.ts`, `protocol.ts`, `calculator.ts`, `team.ts`, `footer.ts` | Section content |
+| `src/lib/translations.ts` | Services, methodology, about, contact, FAQ and startup-corridor pages |
+| `src/lib/seo.ts` | Per-page titles, descriptions, canonical and hreflang |
 
-### Option 1: Resend (Recommended - Free tier available)
+Copy follows the [stop-slop](https://skills.sh/hardikpandya/stop-slop) rules, vendored at `.agents/skills/stop-slop`: active voice, no filler adverbs, no "not X but Y" contrasts, no em dashes inside sentences. Em dashes remain only as separators in labels ("Chapter 01 — The Italian Shore").
 
-1. Sign up at [Resend](https://resend.com) and get your API key
-2. Create a `.env.local` file in the root directory:
-   ```bash
-   RESEND_API_KEY=your_resend_api_key_here
-   CONTACT_EMAIL=alvoloconsulting@gmail.com
-   ```
-
-### Option 2: Gmail with Nodemailer
-
-1. Enable 2-factor authentication on your Gmail account
-2. Generate an App Password: Google Account → Security → App Passwords
-3. Create a `.env.local` file in the root directory:
-   ```bash
-   GMAIL_USER=your_gmail@gmail.com
-   GMAIL_APP_PASSWORD=your_gmail_app_password_here
-   CONTACT_EMAIL=alvoloconsulting@gmail.com
-   ```
-
-### Environment Variables
-
-Create a `.env.local` file in the root directory with the following variables:
+## Development
 
 ```bash
-# Choose one of the email options above
-RESEND_API_KEY=your_resend_api_key_here
-# OR
-GMAIL_USER=your_gmail@gmail.com
-GMAIL_APP_PASSWORD=your_gmail_app_password_here
-
-# Where contact form submissions will be sent
-CONTACT_EMAIL=alvoloconsulting@gmail.com
+npm install
+npm run dev        # http://localhost:3000 → redirects to /en/
+npm run lint
+npx tsc --noEmit
+npm run build
 ```
 
-**Note:** The `.env.local` file is automatically ignored by Git for security reasons.
+### Environment
 
-## 📁 Project Structure (Simplified)
+Create `.env.local` (ignored by git):
 
-```
-src/
-├── app/
-│   ├── (pages)/                # Route groups for main pages
-│   │   ├── page.tsx            # Main page (Home)
-│   │   ├── hizmetlerimiz/page.tsx # Services page
-│   │   ├── pricing/page.tsx      # Pricing page
-│   │   ├── our-story/page.tsx    # Our Story page
-│   │   └── ...                 # Other page routes
-│   ├── layout.tsx              # Root layout
-│   └── globals.css             # Global styles
-├── components/
-│   ├── layout/
-│   │   └── Navbar.tsx          # Navigation component
-│   │   └── Footer.tsx          # Footer component (if exists)
-│   └── sections/               # Components for page sections (Hero, About, Contact, etc.)
-│   └── ui/                     # UI elements (buttons, cards, etc.)
-├── public/                     # Static assets (images, fonts)
-├── styles/                     # Potentially other global styles or theme files (if any)
-├── lib/                        # Utility functions, helper scripts (if any)
-├── content/                    # (If using Contentlayer) MDX files for blog/services
-├── next.config.mjs             # Next.js configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-└── tsconfig.json               # TypeScript configuration
+```bash
+RESEND_API_KEY=re_xxxxxxxx
+CONTACT_EMAIL=info@alvoloconsulting.com   # where intake emails are delivered
+NEXT_PUBLIC_PORTAL_URL=                    # optional; when empty, portal links fall back to /contact/
 ```
 
-## 🌟 Key Features
-
-*   **Professional Design**: Modern and clean design reflecting the consultancy's nature.
-*   **Responsive Layout**: Fully responsive design working across all devices.
-*   **Interactive Elements**: Smooth transitions and user-friendly interactions.
-*   **Service Showcase**: Detailed presentation of consultancy services.
-*   **Pricing Information**: Clear pricing packages.
-*   **Company Story**: Narrative about the consultancy's origins.
-*   **(Planned) Multilingual Support**: To cater to a wider audience.
-*   **(Planned) Content-driven services**: Using a CMS like Contentlayer for easy updates.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details (assuming MIT, please create one if it doesn't exist).
-
-## 👤 Author
-
-**Bumin Kağan Çetin**
-*   GitHub: [@bumincetin](https://github.com/bumincetin)
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
+The intake route sends from `onboarding@resend.dev`; switch `from` in `src/app/api/contact/route.ts` to a verified domain sender once the domain is set up in Resend.
 
 ## Deployment
 
-The site runs on Cloudflare Pages (project `alvoloconsulting`, custom domain alvoloconsulting.com) as a **direct upload**, not a Git integration.
+The site runs on Cloudflare Pages (project `alvoloconsulting`, custom domain alvoloconsulting.com) as a direct upload, not a Git integration.
 
 ```bash
 npm run build          # sanity check (Next.js)
@@ -155,4 +71,13 @@ npm run pages:build    # @cloudflare/next-on-pages → .vercel/output/static  (r
 npm run pages:deploy   # wrangler pages deploy … --project-name alvoloconsulting
 ```
 
-Add `--branch main` to `pages:deploy` to publish to production. `RESEND_API_KEY` and `CONTACT_EMAIL` must be set in the Pages project environment for the consultation intake (`/api/contact`) to send email.
+Add `--branch main` to `pages:deploy` to publish to production. `RESEND_API_KEY` and `CONTACT_EMAIL` must be set in the Pages project environment for `/api/contact` to send email.
+
+## Repository notes
+
+- `client_portal/` is a separate Django prototype for the client portal. It is not part of the Next.js build; its virtualenv, database and bytecode are ignored.
+- `.agents/skills/` holds vendored agent skills; `skills-lock.json` pins them.
+
+## Author
+
+Bumin Kağan Çetin ([@bumincetin](https://github.com/bumincetin)). MIT licence, see [LICENSE](LICENSE).

@@ -5,19 +5,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { Arrow } from "./Reveal";
-import { CONTACT } from "@/lib/content/footer";
+import { CONTACT, footerContent } from "@/lib/content/footer";
 import type { Locale } from "@/lib/translations";
 
 /**
- * Concierge dock — a discreet fixed pill with the two shortest routes to a partner:
+ * Concierge dock: a fixed pill with the two shortest routes to a partner,
  * the WhatsApp line and the tailored-mandate brief. On the home page it waits until
  * the visitor has crossed the hero; on inner pages it appears after a short beat.
  */
 
-const LABELS: Record<Locale, { whatsapp: string; brief: string; message: string }> = {
-  en: { whatsapp: "Concierge", brief: "Your mandate", message: "Hello Alvolo — I would like to discuss a cross-border mandate." },
-  tr: { whatsapp: "Concierge", brief: "Mandatınız", message: "Merhaba Alvolo — sınır ötesi bir mandat hakkında görüşmek istiyorum." },
-  it: { whatsapp: "Concierge", brief: "Il vostro mandato", message: "Buongiorno Alvolo — vorrei parlare di un mandato cross-border." },
+const LABELS: Record<Locale, { whatsapp: string; brief: string }> = {
+  en: { whatsapp: "Concierge", brief: "Your mandate" },
+  tr: { whatsapp: "Concierge", brief: "Mandatınız" },
+  it: { whatsapp: "Concierge", brief: "Il vostro mandato" },
 };
 
 export default function ConciergeDock({ locale }: { locale: Locale }) {
@@ -38,7 +38,7 @@ export default function ConciergeDock({ locale }: { locale: Locale }) {
     return () => window.removeEventListener("scroll", check);
   }, [isHome, pathname]);
 
-  const wa = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(t.message)}`;
+  const wa = `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(footerContent[locale].whatsappMessage)}`;
 
   // the contact page already carries every channel — no dock there
   if (pathname.includes("/contact")) return null;

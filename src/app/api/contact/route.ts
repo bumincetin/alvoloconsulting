@@ -41,8 +41,6 @@ export async function POST(request: Request) {
   const toEmail = process.env.CONTACT_EMAIL || 'alvoloconsulting@gmail.com';
 
   try {
-    console.log('Starting contact form submission...');
-
     const body = await request.json();
     const { name, email, message, privacyConsent, marketingConsent } = body;
 
@@ -55,23 +53,11 @@ export async function POST(request: Request) {
     const contactAs = optionalString(body?.contactAs, 20);
     const subject = subjectLine(body?.subject);
 
-    console.log('Received form data:', {
-      kind,
-      name,
-      email,
-      messageLength: message?.length,
-      privacyConsent,
-      marketingConsent,
-      hasPhone: !!phone,
-      hasCompany: !!company,
-      channel,
-      language,
-      contactAs,
-    });
+    // Log shape only; name, email and message are personal data and stay out of the logs.
+    console.log('Contact intake:', { kind, messageLength: message?.length, hasPhone: !!phone, hasCompany: !!company, channel, language, contactAs });
 
     // Basic validation
     if (!name || !email || !message) {
-      console.log('Validation failed:', { name: !!name, email: !!email, message: !!message });
       return NextResponse.json({
         error: 'Missing required fields',
         details: {
@@ -100,14 +86,11 @@ export async function POST(request: Request) {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      console.log('Invalid email format:', email);
       return NextResponse.json({
         error: 'Invalid email format',
         details: 'Please provide a valid email address'
       }, { status: 400 });
     }
-
-    console.log('Attempting to send email...');
 
     // Send email using Resend
     if (!resend) {
@@ -159,7 +142,6 @@ export async function POST(request: Request) {
         }, { status: 500 });
       }
 
-      console.log('Email sent successfully via Resend');
       return NextResponse.json({
         message: 'Email sent successfully',
         details: 'Your message has been delivered'

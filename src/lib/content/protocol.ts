@@ -27,7 +27,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
   en: {
     eyebrow: "Market Entry Protocol",
     heading: "Four phases. One accountable programme.",
-    sub: "Every mandate runs the same sequenced protocol, so timelines, authorities and deliverables are visible before the first filing.",
+    sub: "Each mandate runs the same sequenced protocol, so you see timelines, counterparties and deliverables before the first filing.",
     progressLabel: "Protocol progress",
     deliverablesLabel: "Deliverables",
     authoritiesLabel: "Counterparties",
@@ -39,7 +39,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Jurisdictional & Compliance Audit",
         badge: "Audit",
         duration: "1–2 weeks",
-        summary: "We map the client's shareholding, activity and people against Italian and Turkish regulatory perimeters — licensing, immigration, AML and sector rules — before any structure is drawn.",
+        summary: "We map your shareholding, activity and people against the Italian and Turkish regulatory perimeters (licensing, immigration, AML and sector rules) before we draw any structure.",
         specs: [
           { k: "Inputs", v: "Cap table · activity description · founder profiles" },
           { k: "Method", v: "Regulatory perimeter matrix · risk scoring" },
@@ -53,7 +53,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Tax Architecture & Corporate Structuring",
         badge: "Structure",
         duration: "2–3 weeks",
-        summary: "Entity choice, holding layers, IP location and treaty positioning are modelled quantitatively — effective tax rate, cash repatriation and exit scenarios — and signed off by the founders.",
+        summary: "We model entity choice, holding layers, IP location and treaty position on effective tax rate, cash repatriation and exit scenarios, and the founders sign the structure off.",
         specs: [
           { k: "Inputs", v: "Audit memo · 3-year financial model" },
           { k: "Method", v: "ETR modelling · treaty analysis · PEX / patent box screening" },
@@ -67,7 +67,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Entity Formation, Codice Fiscale & Executive Relocation",
         badge: "Formation",
         duration: "3–8 weeks",
-        summary: "Notarial deed, registry filings, VAT and PEC activation run in parallel with Codice Fiscale issuance, permits and executive relocation, so the company and its people land on the same date.",
+        summary: "We run the notarial deed, registry filings, VAT and PEC activation in parallel with Codice Fiscale, permits and executive relocation, so the company and its people land on the same date.",
         specs: [
           { k: "Inputs", v: "Signed structure · KYC pack · apostilled documents" },
           { k: "Method", v: "Parallel tracks: corporate · fiscal · immigration" },
@@ -95,7 +95,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
   tr: {
     eyebrow: "Pazar Giriş Protokolü",
     heading: "Dört aşama. Tek sorumlu program.",
-    sub: "Her görev aynı sıralı protokolü izler; böylece takvimler, kurumlar ve çıktılar ilk başvurudan önce görünür olur.",
+    sub: "Her mandat aynı sıralı protokolü izler; takvimleri, muhatapları ve çıktıları ilk başvurudan önce görürsünüz.",
     progressLabel: "Protokol ilerlemesi",
     deliverablesLabel: "Çıktılar",
     authoritiesLabel: "Muhataplar",
@@ -107,7 +107,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Yargı Alanı ve Uyum Denetimi",
         badge: "Denetim",
         duration: "1–2 hafta",
-        summary: "Herhangi bir yapı çizilmeden önce müşterinin ortaklık yapısını, faaliyetini ve kadrosunu İtalyan ve Türk düzenleyici çerçevelerine — lisanslama, göç, AML ve sektör kuralları — göre haritalarız.",
+        summary: "Herhangi bir yapı çizmeden önce ortaklık yapınızı, faaliyetinizi ve kadronuzu İtalyan ve Türk düzenleyici çerçevelerine (lisanslama, göç, AML ve sektör kuralları) göre haritalarız.",
         specs: [
           { k: "Girdiler", v: "Ortaklık tablosu · faaliyet tanımı · kurucu profilleri" },
           { k: "Yöntem", v: "Düzenleyici çerçeve matrisi · risk puanlama" },
@@ -121,7 +121,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Vergi Mimarisi ve Kurumsal Yapılandırma",
         badge: "Yapı",
         duration: "2–3 hafta",
-        summary: "Şirket türü, holding katmanları, fikri mülkiyet konumu ve anlaşma konumlandırması nicel olarak modellenir — efektif vergi oranı, nakit transferi ve çıkış senaryoları — ve kurucular tarafından onaylanır.",
+        summary: "Şirket türünü, holding katmanlarını, fikri mülkiyet konumunu ve anlaşma pozisyonunu efektif vergi oranı, nakit transferi ve çıkış senaryoları üzerinden modelleriz; yapıyı kurucular onaylar.",
         specs: [
           { k: "Girdiler", v: "Denetim notu · 3 yıllık finansal model" },
           { k: "Yöntem", v: "EVO modelleme · anlaşma analizi · PEX / patent box taraması" },
@@ -135,7 +135,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Şirket Kuruluşu, Codice Fiscale ve Yönetici Taşınması",
         badge: "Kuruluş",
         duration: "3–8 hafta",
-        summary: "Noter senedi, sicil tescili, KDV ve PEC aktivasyonu; Codice Fiscale, izinler ve yönetici taşınmasıyla paralel yürür — şirket ve insanları aynı tarihte yerleşir.",
+        summary: "Noter senedini, sicil tescilini, KDV ve PEC aktivasyonunu Codice Fiscale, izinler ve yönetici taşınmasıyla paralel yürütürüz; şirket ve insanları aynı tarihte yerleşir.",
         specs: [
           { k: "Girdiler", v: "Onaylı yapı · KYC paketi · apostilli belgeler" },
           { k: "Yöntem", v: "Paralel hatlar: kurumsal · mali · göç" },
@@ -163,7 +163,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
   it: {
     eyebrow: "Protocollo di Ingresso nel Mercato",
     heading: "Quattro fasi. Un unico programma responsabile.",
-    sub: "Ogni mandato segue lo stesso protocollo sequenziato, così tempistiche, controparti e deliverable sono visibili prima del primo deposito.",
+    sub: "Ogni mandato segue lo stesso protocollo sequenziato, così vedete tempistiche, controparti e deliverable prima del primo deposito.",
     progressLabel: "Avanzamento del protocollo",
     deliverablesLabel: "Deliverable",
     authoritiesLabel: "Controparti",
@@ -175,7 +175,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Audit Giurisdizionale e di Compliance",
         badge: "Audit",
         duration: "1–2 settimane",
-        summary: "Mappiamo assetto proprietario, attività e persone del cliente rispetto ai perimetri regolatori italiani e turchi — autorizzazioni, immigrazione, antiriciclaggio e norme di settore — prima di disegnare qualsiasi struttura.",
+        summary: "Mappiamo il vostro assetto proprietario, l'attività e le persone rispetto ai perimetri regolatori italiani e turchi (autorizzazioni, immigrazione, antiriciclaggio e norme di settore) prima di disegnare qualsiasi struttura.",
         specs: [
           { k: "Input", v: "Cap table · descrizione attività · profili dei founder" },
           { k: "Metodo", v: "Matrice dei perimetri regolatori · risk scoring" },
@@ -189,7 +189,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Architettura Fiscale e Strutturazione Societaria",
         badge: "Struttura",
         duration: "2–3 settimane",
-        summary: "Scelta del veicolo, livelli di holding, localizzazione dell'IP e posizionamento convenzionale sono modellati quantitativamente — aliquota effettiva, rimpatrio di cassa e scenari di exit — e approvati dai founder.",
+        summary: "Modelliamo scelta del veicolo, livelli di holding, localizzazione dell'IP e posizione convenzionale su aliquota effettiva, rimpatrio di cassa e scenari di exit, e i founder approvano la struttura.",
         specs: [
           { k: "Input", v: "Memo di audit · modello finanziario a 3 anni" },
           { k: "Metodo", v: "Modellazione ETR · analisi convenzionale · screening PEX / patent box" },
@@ -203,7 +203,7 @@ export const protocolContent: Record<Locale, ProtocolContent> = {
         title: "Costituzione, Codice Fiscale e Relocation dei Dirigenti",
         badge: "Costituzione",
         duration: "3–8 settimane",
-        summary: "Atto notarile, iscrizioni, attivazione IVA e PEC procedono in parallelo con Codice Fiscale, permessi e relocation dei dirigenti, così la società e le sue persone arrivano nella stessa data.",
+        summary: "Portiamo avanti atto notarile, iscrizioni, attivazione IVA e PEC in parallelo con Codice Fiscale, permessi e relocation dei dirigenti, così la società e le sue persone arrivano nella stessa data.",
         specs: [
           { k: "Input", v: "Struttura firmata · pacchetto KYC · documenti apostillati" },
           { k: "Metodo", v: "Binari paralleli: societario · fiscale · immigrazione" },

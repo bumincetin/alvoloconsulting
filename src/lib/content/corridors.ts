@@ -71,11 +71,11 @@ export const corridorUi: Record<Locale, CorridorUi> = {
   en: {
     eyebrow: "Dual-Corridor Strategy",
     heading: "Two directions. One integrated mandate.",
-    sub: "Select the corridor that matches your expansion vector. Service architecture, regulatory checklist and engagement profiles reconfigure instantly.",
+    sub: "Select the corridor that matches your direction. The services, regulatory checklist and engagement profiles below change with it.",
     servicesLabel: "Service Architecture",
     checklistLabel: "Regulatory Checklist",
     profilesLabel: "Engagement Profiles",
-    profilesDisclaimer: "Representative engagement archetypes — client identities are never disclosed.",
+    profilesDisclaimer: "Representative engagement archetypes; we do not disclose client identities.",
     deliverables: "Deliverables",
     categories: {
       STATUTORY: "Statutory",
@@ -89,11 +89,11 @@ export const corridorUi: Record<Locale, CorridorUi> = {
   tr: {
     eyebrow: "Çift Koridor Stratejisi",
     heading: "İki yön. Tek bütünleşik mandat.",
-    sub: "Genişleme vektörünüze uyan koridoru seçin. Hizmet mimarisi, düzenleyici kontrol listesi ve görev profilleri anında yeniden yapılanır.",
+    sub: "Yönünüze uyan koridoru seçin. Aşağıdaki hizmetler, düzenleyici kontrol listesi ve görev profilleri seçiminize göre değişir.",
     servicesLabel: "Hizmet Mimarisi",
     checklistLabel: "Düzenleyici Kontrol Listesi",
     profilesLabel: "Görev Profilleri",
-    profilesDisclaimer: "Temsili görev arketipleri — müşteri kimlikleri asla açıklanmaz.",
+    profilesDisclaimer: "Temsili görev arketipleri; müşteri kimliklerini açıklamıyoruz.",
     deliverables: "Çıktılar",
     categories: {
       STATUTORY: "Yasal",
@@ -107,11 +107,11 @@ export const corridorUi: Record<Locale, CorridorUi> = {
   it: {
     eyebrow: "Strategia a Doppio Corridoio",
     heading: "Due direzioni. Un unico mandato integrato.",
-    sub: "Seleziona il corridoio che corrisponde al tuo vettore di espansione. Architettura dei servizi, checklist regolatoria e profili di incarico si riconfigurano all'istante.",
+    sub: "Seleziona il corridoio che corrisponde alla tua direzione. Servizi, checklist regolatoria e profili di incarico qui sotto cambiano di conseguenza.",
     servicesLabel: "Architettura dei Servizi",
     checklistLabel: "Checklist Regolatoria",
     profilesLabel: "Profili di Incarico",
-    profilesDisclaimer: "Archetipi di incarico rappresentativi — le identità dei clienti non vengono mai divulgate.",
+    profilesDisclaimer: "Archetipi di incarico rappresentativi; non divulghiamo le identità dei clienti.",
     deliverables: "Deliverable",
     categories: {
       STATUTORY: "Societario",
@@ -131,7 +131,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
       accent: "azure",
       tabLabel: "Enter the Italian Market",
       tabHint: "Inbound · EU",
-      title: "Establish a compliant, bankable Italian entity — without the friction.",
+      title: "Establish a compliant, bankable Italian entity.",
       summary: "From notarial deed to first invoice: we run incorporation, tax architecture, immigration and banking as one sequenced programme, with Bocconi-trained specialists on every file.",
       from: "istanbul",
       to: "milan",
@@ -211,7 +211,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
         {
           icon: "factory",
           title: "Manufacturing Partnerships",
-          description: "Shortlisting and capability audits of OEM / ODM producers in Istanbul, Bursa, Kocaeli and İzmir — from automotive components to technical textiles.",
+          description: "Shortlisting and capability audits of OEM / ODM producers in Istanbul, Bursa, Kocaeli and İzmir, from automotive components to technical textiles.",
           deliverables: ["Supplier long-list", "Site audit", "Capability scorecard", "Partner term sheet"],
         },
         {
@@ -223,7 +223,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
         {
           icon: "route",
           title: "Supply Chain Optimization",
-          description: "Customs Union routing, origin and A.TR compliance, Incoterms allocation and multimodal corridors — Ro-Ro via Trieste, rail through the Balkans.",
+          description: "Customs Union routing, origin and A.TR compliance, Incoterms allocation and multimodal corridors: Ro-Ro via Trieste, rail through the Balkans.",
           deliverables: ["Corridor design", "Customs memo", "Incoterms matrix", "Logistics RFP"],
         },
         {
@@ -275,7 +275,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
       accent: "azure",
       tabLabel: "İtalya Pazarına Giriş",
       tabHint: "İçe Dönük · AB",
-      title: "Uyumlu ve bankalanabilir bir İtalyan şirketi kurun — sürtünmesiz.",
+      title: "Uyumlu ve bankalanabilir bir İtalyan şirketi kurun.",
       summary: "Noter senedinden ilk faturaya: kuruluş, vergi mimarisi, göç ve bankacılığı Bocconi eğitimli uzmanlarla tek bir sıralı program olarak yürütürüz.",
       from: "istanbul",
       to: "milan",
@@ -355,7 +355,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
         {
           icon: "factory",
           title: "İmalat Ortaklıkları",
-          description: "İstanbul, Bursa, Kocaeli ve İzmir'deki OEM / ODM üreticilerin kısa listesi ve yetkinlik denetimleri — otomotiv parçalarından teknik tekstile.",
+          description: "İstanbul, Bursa, Kocaeli ve İzmir'deki OEM / ODM üreticilerin kısa listesi ve yetkinlik denetimleri, otomotiv parçalarından teknik tekstile.",
           deliverables: ["Tedarikçi uzun listesi", "Saha denetimi", "Yetkinlik karnesi", "Ortaklık term sheet"],
         },
         {
@@ -367,7 +367,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
         {
           icon: "route",
           title: "Tedarik Zinciri Optimizasyonu",
-          description: "Gümrük Birliği rotalaması, menşe ve A.TR uyumu, Incoterms dağılımı ve çok modlu koridorlar — Trieste üzerinden Ro-Ro, Balkanlar üzerinden demiryolu.",
+          description: "Gümrük Birliği rotalaması, menşe ve A.TR uyumu, Incoterms dağılımı ve çok modlu koridorlar: Trieste üzerinden Ro-Ro, Balkanlar üzerinden demiryolu.",
           deliverables: ["Koridor tasarımı", "Gümrük notu", "Incoterms matrisi", "Lojistik RFP"],
         },
         {
@@ -419,7 +419,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
       accent: "azure",
       tabLabel: "Entra nel Mercato Italiano",
       tabHint: "Inbound · UE",
-      title: "Costituisci un'entità italiana conforme e bancabile — senza attriti.",
+      title: "Costituisci un'entità italiana conforme e bancabile.",
       summary: "Dall'atto notarile alla prima fattura: gestiamo costituzione, architettura fiscale, immigrazione e banking come un unico programma sequenziato, con specialisti formati in Bocconi su ogni pratica.",
       from: "istanbul",
       to: "milan",
@@ -499,7 +499,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
         {
           icon: "factory",
           title: "Partnership Industriali",
-          description: "Shortlist e audit di capacità di produttori OEM / ODM a Istanbul, Bursa, Kocaeli e İzmir — dalla componentistica automotive ai tessili tecnici.",
+          description: "Shortlist e audit di capacità di produttori OEM / ODM a Istanbul, Bursa, Kocaeli e İzmir, dalla componentistica automotive ai tessili tecnici.",
           deliverables: ["Long-list fornitori", "Audit di stabilimento", "Scorecard di capacità", "Term sheet partner"],
         },
         {
@@ -511,7 +511,7 @@ export const corridorContent: Record<Locale, Record<CorridorMode, CorridorConten
         {
           icon: "route",
           title: "Ottimizzazione della Supply Chain",
-          description: "Instradamento in Unione doganale, conformità origine e A.TR, allocazione Incoterms e corridoi multimodali — Ro-Ro via Trieste, ferrovia attraverso i Balcani.",
+          description: "Instradamento in Unione doganale, conformità origine e A.TR, allocazione Incoterms e corridoi multimodali: Ro-Ro via Trieste, ferrovia attraverso i Balcani.",
           deliverables: ["Design del corridoio", "Memo doganale", "Matrice Incoterms", "RFP logistica"],
         },
         {

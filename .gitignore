@@ -40,3 +40,16 @@ next-env.d.ts
 
 # wrangler scratch
 .wrangler/
+
+# build logs written by ad-hoc debugging runs
+build_*.log
+build_*.txt
+build_output*.txt
+
+# agent tooling (skills are vendored under .agents/; .claude/ only holds a local symlink)
+.claude/
+
+# client_portal (Django) local state
+client_portal/venv/
+__pycache__/
+*.sqlite3

@@ -14,9 +14,9 @@ interface MethodologyPageClientProps {
 }
 
 /**
- * Page-local copy that has no home in `translations.ts` yet: the four service
- * areas, the section labels, the expertise stack and the closing CTA. The
- * masthead and the engagement phases come from `translations.methodology`.
+ * Page-local copy: the four service areas, the section labels, the expertise
+ * stack and the closing CTA. The masthead and the engagement phases come from
+ * `translations.methodology`.
  */
 const content = {
   en: {
@@ -28,9 +28,9 @@ const content = {
         title: "Corporate Structuring & Incorporation",
         arch: "S.r.l. · S.p.A. · A.Ş. / Ltd. Şti. · Holding layers",
         desc1:
-          "We choose the vehicle before we draw the chart: S.r.l. or S.p.A. in Italy, A.Ş. or Ltd. Şti. in Türkiye, and whether a holding layer earns its keep. The decision rests on capital needs, governance, exit and how the founders will actually be paid.",
+          "We choose the vehicle before we draw the chart: S.r.l. or S.p.A. in Italy, A.Ş. or Ltd. Şti. in Türkiye, and whether a holding layer pays for itself. The decision rests on capital needs, governance, exit and how the founders will be paid.",
         desc2:
-          "Then we run the formation end to end — notarial deed, statuto, Registro delle Imprese filing, Partita IVA, PEC and SDI — with the notaio and the commercialista briefed from a single file, so nothing is re-explained at the desk.",
+          "Then we run the formation end to end (notarial deed, statuto, Registro delle Imprese filing, Partita IVA, PEC and SDI) and brief the notaio and the commercialista from a single file, so you explain nothing twice.",
         features: ["Vehicle selection & shareholder agreements", "Notarial deed & statuto drafting", "Registro delle Imprese, Partita IVA, PEC & SDI", "Turkish Trade Registry (MERSİS) filings"],
       },
       {
@@ -38,9 +38,9 @@ const content = {
         title: "Tax & Compliance Architecture",
         arch: "IRES · IRAP · Turkish corporate tax · Treaty positioning",
         desc1:
-          "The Italy–Türkiye double-tax treaty, IRES and IRAP, Turkish corporate tax and withholding on dividends, royalties and services are modelled together, so the effective rate and the cash that reaches the shareholders are known before signing.",
+          "We model the Italy–Türkiye double-tax treaty, IRES and IRAP, Turkish corporate tax and withholding on dividends, royalties and services together, so you know the effective rate and the cash that reaches the shareholders before signing.",
         desc2:
-          "The structure is then documented for the authorities that will read it: transfer-pricing file, VAT and Intrastat set-up, AML / KYC pack for the banks, and a compliance calendar shared by the commercialista and the Turkish YMM.",
+          "We then document the structure for the authorities that will read it: transfer-pricing file, VAT and Intrastat set-up, AML / KYC pack for the banks, and a compliance calendar shared by the commercialista and the Turkish YMM.",
         features: ["Effective tax rate & repatriation modelling", "Treaty position & withholding analysis", "Transfer-pricing documentation", "VAT, Intrastat & compliance calendar"],
       },
       {
@@ -48,9 +48,9 @@ const content = {
         title: "Relocation, Permits & Banking",
         arch: "Codice Fiscale · Permesso di soggiorno · Corporate & personal banking",
         desc1:
-          "Founders and executives land with the company, not after it. Codice Fiscale, the right visa route — self-employment, intra-company or investor — permesso di soggiorno and Anagrafe registration run in parallel with the corporate filings.",
+          "Founders and executives land on the same date as the company. Codice Fiscale, the visa route (self-employment, intra-company or investor), permesso di soggiorno and Anagrafe registration run in parallel with the corporate filings.",
         desc2:
-          "Banking is handled as its own workstream: a capital-deposit account for the incorporation, then operating accounts and signatories, with the KYC pack prepared in the form each bank's compliance desk expects.",
+          "We treat banking as its own workstream: a capital-deposit account for the incorporation, then operating accounts and signatories, with the KYC pack prepared in the form each bank's compliance desk expects.",
         features: ["Codice Fiscale & SPID activation", "Visa route, nulla osta & permesso di soggiorno", "Capital-deposit & operating bank accounts", "Impatriate regime & tax residency planning"],
       },
       {
@@ -60,7 +60,7 @@ const content = {
         desc1:
           "For Italian companies moving production or procurement to Türkiye we shortlist suppliers through the Chambers of Industry and OSB zones, audit them on site, and run the RFQ on landed cost rather than unit price.",
         desc2:
-          "Contracts, quality gates and IP protection are in place before the first purchase order; A.TR and EUR.1 documentation, Incoterms and the logistics corridor are designed so goods clear the Customs Union without surprises.",
+          "We put contracts, quality gates and IP protection in place before the first purchase order, and design the A.TR and EUR.1 documentation, Incoterms and logistics corridor so goods clear the Customs Union without surprises.",
         features: ["Supplier shortlist & on-site audits", "RFQ & landed-cost comparison", "Framework agreements, QC & IP governance", "A.TR / EUR.1 & Incoterms set-up"],
       },
     ],
@@ -73,7 +73,7 @@ const content = {
       { title: "Turkish counterparties", items: ["Chambers of Industry & OSB zones", "Turkish Trade Registry (MERSİS) filings", "YMM / SMMM tax practitioners", "Supplier audit & QC checklists"] },
       { title: "Trade & banking", items: ["A.TR / EUR.1 & Customs Union documentation", "Incoterms & landed-cost matrix", "Banking KYC packs & signatory set-up", "Framework agreements & IP governance"] },
     ],
-    ctaTitle: "Ready to start the first phase?",
+    ctaTitle: "Start with the audit phase",
     ctaDesc: "A first call with a senior advisor: we map your case against the four phases and tell you what is needed, what it costs and how long it takes.",
     ctaButton: "Request a consultation",
   },
@@ -86,9 +86,9 @@ const content = {
         title: "Kurumsal Yapılandırma ve Şirket Kuruluşu",
         arch: "S.r.l. · S.p.A. · A.Ş. / Ltd. Şti. · Holding katmanları",
         desc1:
-          "Şemayı çizmeden önce aracı seçeriz: İtalya'da S.r.l. mi S.p.A. mı, Türkiye'de A.Ş. mi Ltd. Şti. mi ve bir holding katmanının gerçekten gerekip gerekmediği. Karar sermaye ihtiyacına, yönetişime, çıkış senaryosuna ve kurucuların fiilen nasıl ödeme alacağına göre verilir.",
+          "Şemayı çizmeden önce şirket türünü seçeriz: İtalya'da S.r.l. mi S.p.A. mı, Türkiye'de A.Ş. mi Ltd. Şti. mi ve bir holding katmanının kendini amorti edip etmediği. Kararı sermaye ihtiyacı, yönetişim, çıkış senaryosu ve kurucuların nasıl ödeme alacağı belirler.",
         desc2:
-          "Ardından kuruluşu uçtan uca yürütürüz — noter senedi, ana sözleşme (statuto), Registro delle Imprese tescili, Partita IVA, PEC ve SDI — noter ve commercialista tek bir dosyadan bilgilendirilir; masada hiçbir şey yeniden anlatılmaz.",
+          "Ardından kuruluşu uçtan uca yürütürüz (noter senedi, ana sözleşme, Registro delle Imprese tescili, Partita IVA, PEC ve SDI) ve noter ile commercialista'yı tek bir dosyadan bilgilendiririz; hiçbir şeyi iki kez anlatmazsınız.",
         features: ["Şirket türü seçimi ve ortaklık sözleşmeleri", "Noter senedi ve ana sözleşme hazırlığı", "Registro delle Imprese, Partita IVA, PEC ve SDI", "Ticaret Sicili (MERSİS) tescilleri"],
       },
       {
@@ -96,9 +96,9 @@ const content = {
         title: "Vergi ve Uyum Mimarisi",
         arch: "IRES · IRAP · Kurumlar vergisi · Anlaşma konumlandırması",
         desc1:
-          "İtalya–Türkiye çifte vergilendirmeyi önleme anlaşması, IRES ve IRAP, Türkiye'de kurumlar vergisi ile temettü, royalti ve hizmet ödemelerindeki stopaj birlikte modellenir; böylece efektif oran ve ortaklara ulaşan nakit imzadan önce bilinir.",
+          "İtalya–Türkiye çifte vergilendirmeyi önleme anlaşmasını, IRES ve IRAP'ı, Türkiye'de kurumlar vergisini ve temettü, royalti ve hizmet ödemelerindeki stopajı birlikte modelleriz; efektif oranı ve ortaklara ulaşan nakdi imzadan önce bilirsiniz.",
         desc2:
-          "Yapı, onu okuyacak kurumlar için belgelenir: transfer fiyatlandırması dosyası, KDV ve Intrastat kurulumu, bankalar için AML / KYC paketi ve commercialista ile YMM'nin ortak kullandığı bir uyum takvimi.",
+          "Ardından yapıyı onu okuyacak kurumlar için belgeleriz: transfer fiyatlandırması dosyası, KDV ve Intrastat kurulumu, bankalar için AML / KYC paketi ve commercialista ile YMM'nin ortak kullandığı bir uyum takvimi.",
         features: ["Efektif vergi oranı ve nakit transferi modellemesi", "Anlaşma pozisyonu ve stopaj analizi", "Transfer fiyatlandırması dokümantasyonu", "KDV, Intrastat ve uyum takvimi"],
       },
       {
@@ -106,9 +106,9 @@ const content = {
         title: "Taşınma, İzinler ve Bankacılık",
         arch: "Codice Fiscale · Permesso di soggiorno · Kurumsal ve bireysel bankacılık",
         desc1:
-          "Kurucular ve yöneticiler şirketle aynı anda yerleşir, sonrasında değil. Codice Fiscale, doğru vize rotası — serbest meslek, şirket içi transfer veya yatırımcı — permesso di soggiorno ve Anagrafe kaydı, kurumsal tescillerle paralel yürütülür.",
+          "Kurucular ve yöneticiler şirketle aynı tarihte yerleşir. Codice Fiscale, vize rotası (serbest meslek, şirket içi transfer ya da yatırımcı), permesso di soggiorno ve Anagrafe kaydı kurumsal tescillerle paralel yürür.",
         desc2:
-          "Bankacılık ayrı bir iş kolu olarak ele alınır: kuruluş için sermaye blokaj hesabı, ardından operasyonel hesaplar ve imza yetkilileri; KYC paketi her bankanın uyum biriminin beklediği formatta hazırlanır.",
+          "Bankacılığı ayrı bir iş kolu olarak ele alırız: kuruluş için sermaye blokaj hesabı, ardından operasyonel hesaplar ve imza yetkilileri; KYC paketini her bankanın uyum biriminin beklediği formatta hazırlarız.",
         features: ["Codice Fiscale ve SPID aktivasyonu", "Vize rotası, nulla osta ve permesso di soggiorno", "Sermaye blokaj ve operasyonel banka hesapları", "Impatriati rejimi ve vergi mukimliği planlaması"],
       },
       {
@@ -118,7 +118,7 @@ const content = {
         desc1:
           "Üretimini veya satın almasını Türkiye'ye taşıyan İtalyan şirketleri için tedarikçileri Sanayi Odaları ve OSB'ler üzerinden kısa listeye alır, sahada denetler ve RFQ'yu birim fiyat yerine teslim maliyeti üzerinden yürütürüz.",
         desc2:
-          "Sözleşmeler, kalite kapıları ve fikri mülkiyet koruması ilk siparişten önce kurulur; A.TR ve EUR.1 belgeleri, Incoterms ve lojistik koridoru, mallar Gümrük Birliği'nden sürprizsiz geçsin diye tasarlanır.",
+          "Sözleşmeleri, kalite kapılarını ve fikri mülkiyet korumasını ilk siparişten önce kurar; A.TR ve EUR.1 belgelerini, Incoterms'i ve lojistik koridorunu mallar Gümrük Birliği'nden sürprizsiz geçsin diye tasarlarız.",
         features: ["Tedarikçi kısa listesi ve saha denetimleri", "RFQ ve teslim maliyeti karşılaştırması", "Çerçeve sözleşmeler, kalite kontrol ve FM yönetişimi", "A.TR / EUR.1 ve Incoterms kurulumu"],
       },
     ],
@@ -131,7 +131,7 @@ const content = {
       { title: "Türkiye'deki muhataplar", items: ["Sanayi Odaları ve OSB'ler", "Ticaret Sicili (MERSİS) tescilleri", "YMM / SMMM mali müşavirler", "Tedarikçi denetim ve kalite kontrol listeleri"] },
       { title: "Ticaret ve bankacılık", items: ["A.TR / EUR.1 ve Gümrük Birliği belgeleri", "Incoterms ve teslim maliyeti matrisi", "Banka KYC paketleri ve imza yetkisi kurulumu", "Çerçeve sözleşmeler ve FM yönetişimi"] },
     ],
-    ctaTitle: "İlk aşamaya başlamaya hazır mısınız?",
+    ctaTitle: "Denetim aşamasıyla başlayın",
     ctaDesc: "Kıdemli bir danışmanla ilk görüşme: durumunuzu dört aşamaya göre haritalar; neye ihtiyaç olduğunu, maliyetini ve süresini söyleriz.",
     ctaButton: "Danışmanlık talep edin",
   },
@@ -144,9 +144,9 @@ const content = {
         title: "Strutturazione Societaria e Costituzione",
         arch: "S.r.l. · S.p.A. · A.Ş. / Ltd. Şti. · Livelli di holding",
         desc1:
-          "Scegliamo il veicolo prima di disegnare l'organigramma: S.r.l. o S.p.A. in Italia, A.Ş. o Ltd. Şti. in Turchia, e se un livello di holding si giustifica davvero. La decisione si basa su fabbisogno di capitale, governance, exit e su come i founder verranno effettivamente remunerati.",
+          "Scegliamo il veicolo prima di disegnare l'organigramma: S.r.l. o S.p.A. in Italia, A.Ş. o Ltd. Şti. in Turchia, e se un livello di holding si ripaga. La decisione si basa su fabbisogno di capitale, governance, exit e su come i founder verranno remunerati.",
         desc2:
-          "Poi seguiamo la costituzione dall'inizio alla fine — atto notarile, statuto, iscrizione al Registro delle Imprese, Partita IVA, PEC e SDI — con notaio e commercialista istruiti da un unico fascicolo, così nulla viene rispiegato allo sportello.",
+          "Poi seguiamo la costituzione dall'inizio alla fine (atto notarile, statuto, iscrizione al Registro delle Imprese, Partita IVA, PEC e SDI) e istruiamo notaio e commercialista da un unico fascicolo, così non spiegate nulla due volte.",
         features: ["Scelta del veicolo e patti parasociali", "Atto costitutivo e redazione dello statuto", "Registro delle Imprese, Partita IVA, PEC e SDI", "Iscrizioni al Registro del Commercio turco (MERSİS)"],
       },
       {
@@ -154,9 +154,9 @@ const content = {
         title: "Architettura Fiscale e di Compliance",
         arch: "IRES · IRAP · Imposta societaria turca · Posizionamento convenzionale",
         desc1:
-          "Convenzione Italia–Turchia contro le doppie imposizioni, IRES e IRAP, imposta societaria turca e ritenute su dividendi, royalty e servizi vengono modellate insieme, così aliquota effettiva e cassa che arriva ai soci sono note prima della firma.",
+          "Modelliamo insieme la convenzione Italia–Turchia contro le doppie imposizioni, IRES e IRAP, l'imposta societaria turca e le ritenute su dividendi, royalty e servizi, così conoscete aliquota effettiva e cassa che arriva ai soci prima della firma.",
         desc2:
-          "La struttura viene poi documentata per le autorità che la leggeranno: fascicolo transfer pricing, impostazione IVA e Intrastat, pacchetto AML / KYC per le banche e un calendario degli adempimenti condiviso tra commercialista e YMM turco.",
+          "Documentiamo poi la struttura per le autorità che la leggeranno: fascicolo transfer pricing, impostazione IVA e Intrastat, pacchetto AML / KYC per le banche e un calendario degli adempimenti condiviso tra commercialista e YMM turco.",
         features: ["Modellazione di aliquota effettiva e rimpatrio", "Posizione convenzionale e analisi delle ritenute", "Documentazione transfer pricing", "IVA, Intrastat e calendario degli adempimenti"],
       },
       {
@@ -164,9 +164,9 @@ const content = {
         title: "Relocation, Permessi e Banche",
         arch: "Codice Fiscale · Permesso di soggiorno · Conti aziendali e personali",
         desc1:
-          "Founder e dirigenti arrivano insieme alla società, non dopo. Codice Fiscale, il percorso di visto corretto — lavoro autonomo, trasferimento intra-societario o investitori — permesso di soggiorno e iscrizione anagrafica procedono in parallelo con gli adempimenti societari.",
+          "Founder e dirigenti arrivano nella stessa data della società. Codice Fiscale, il percorso di visto (lavoro autonomo, trasferimento intra-societario o investitori), permesso di soggiorno e iscrizione anagrafica procedono in parallelo con gli adempimenti societari.",
         desc2:
-          "L'apertura dei conti è un filone a sé: conto per il deposito del capitale in fase di costituzione, poi conti operativi e firmatari, con il pacchetto KYC preparato nel formato che l'ufficio compliance di ciascuna banca si aspetta.",
+          "Trattiamo l'apertura dei conti come un filone a sé: conto per il deposito del capitale in fase di costituzione, poi conti operativi e firmatari, con il pacchetto KYC preparato nel formato che l'ufficio compliance di ciascuna banca si aspetta.",
         features: ["Codice Fiscale e attivazione SPID", "Percorso di visto, nulla osta e permesso di soggiorno", "Conto di deposito capitale e conti operativi", "Regime impatriati e pianificazione della residenza fiscale"],
       },
       {
@@ -176,7 +176,7 @@ const content = {
         desc1:
           "Per le aziende italiane che spostano produzione o approvvigionamento in Turchia selezioniamo i fornitori tramite le Camere dell'Industria e le zone OSB, li verifichiamo in loco e gestiamo la RFQ sul landed cost, non sul prezzo unitario.",
         desc2:
-          "Contratti, controlli qualità e tutela dell'IP vengono impostati prima del primo ordine; documentazione A.TR ed EUR.1, Incoterms e corridoio logistico sono progettati perché la merce attraversi l'Unione doganale senza sorprese.",
+          "Impostiamo contratti, controlli qualità e tutela dell'IP prima del primo ordine, e progettiamo documentazione A.TR ed EUR.1, Incoterms e corridoio logistico perché la merce attraversi l'Unione doganale senza sorprese.",
         features: ["Shortlist fornitori e audit in loco", "RFQ e confronto sul landed cost", "Accordi quadro, QC e governance dell'IP", "Impostazione A.TR / EUR.1 e Incoterms"],
       },
     ],
@@ -189,7 +189,7 @@ const content = {
       { title: "Controparti turche", items: ["Camere dell'Industria e zone OSB", "Iscrizioni al Registro del Commercio (MERSİS)", "Professionisti fiscali YMM / SMMM", "Checklist di audit fornitori e controllo qualità"] },
       { title: "Commercio e banche", items: ["Documentazione A.TR / EUR.1 e Unione doganale", "Matrice Incoterms e landed cost", "Pacchetti KYC bancari e impostazione firmatari", "Accordi quadro e governance dell'IP"] },
     ],
-    ctaTitle: "Pronti ad avviare la prima fase?",
+    ctaTitle: "Iniziate dalla fase di audit",
     ctaDesc: "Una prima call con un advisor senior: mappiamo il vostro caso sulle quattro fasi e vi diciamo cosa serve, quanto costa e quanto tempo richiede.",
     ctaButton: "Richiedi una consulenza",
   },

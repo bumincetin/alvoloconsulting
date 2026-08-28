@@ -1,48 +1,16 @@
-export const locales = ['en', 'tr', 'it'] as const;
+export const locales = ["en", "tr", "it"] as const;
 export type Locale = (typeof locales)[number];
 
+/**
+ * Inner-page copy that is not owned by a dedicated content module.
+ * Home, footer, consultation, brief, corridors, protocol, team and calculator copy
+ * live under `src/lib/content/`; SEO titles and descriptions in `src/lib/seo.ts`.
+ */
 export interface TranslationType {
   nav: {
-    home: string;
-    services: string;
-    about: string;
-    pricing: string;
     contact: string;
-    blog: string;
-    announcements: string;
     portal: string;
     faq: string;
-  };
-  home: {
-    heroTitle: string;
-    heroSubtitle: string;
-    heroBadge1: string;
-    heroBadge2: string;
-    heroCta: string;
-    philosophyTitle: string;
-    philosophyPoints: string[];
-    philosophyCta: string;
-    deckVault: string;
-    deckTitle: string;
-    deckSubtitle: string;
-    deckCards: Array<{ title: string; footer: string }>;
-    contactTitle: string;
-    contactSubtitle: string;
-    contactCta: string;
-  };
-  hero: {
-    title1: string;
-    title2: string;
-    subtitle: string;
-    cta1: string;
-    cta2: string;
-    stat1Value: string;
-    stat1Label: string;
-    stat2Value: string;
-    stat2Label: string;
-  };
-  ticker: {
-    items: string[];
   };
   services: {
     label: string;
@@ -60,30 +28,11 @@ export interface TranslationType {
     integrationServices: Array<{ title: string; description: string }>;
     financialServices: Array<{ title: string; description: string }>;
   };
-  expansion: {
-    left: {
-      direction: string;
-      title: string;
-      body: string;
-      cta: string;
-    };
-    right: {
-      direction: string;
-      title: string;
-      body: string;
-      cta: string;
-    };
-  };
   methodology: {
     label: string;
     title: string;
     subtitle: string;
-    explore: string;
-    steps: Array<{
-      num: string;
-      title: string;
-      description: string;
-    }>;
+    steps: Array<{ num: string; title: string; description: string }>;
   };
   about: {
     label: string;
@@ -91,83 +40,25 @@ export interface TranslationType {
     paragraph1: string;
     paragraph2: string;
     paragraph3: string;
+    philosophyTitle: string;
+    philosophyPoints: string[];
+    philosophyCta: string;
     valuesTitle: string;
     values: string[];
-    successRateStat: string;
-    happyClientsStat: string;
-    teamTitle: string;
-    viewMore: string;
   };
   contact: {
     title: string;
     subtitle: string;
-    formNameLabel: string;
-    formEmailLabel: string;
-    formInterestLabel: string;
-    formMessageLabel: string;
-    formSubmitButton: string;
-    formSendingButton: string;
-    successTitle: string;
-    successMessage: string;
-    sendViaEmail: string;
-    proposeTimeslots: string;
-    interestOptions: {
-      italy: string;
-      turkey: string;
-      tax: string;
-    };
-    privacyCheckbox1: string;
-    privacyCheckbox2: string;
+    contactInfo: string;
+    getInTouch: string;
     phoneTitle: string;
     phoneDetails: string;
-    whatsappDetails: string;
     emailTitle: string;
     emailDetails: string;
     addressTitle: string;
     addressDetails: string;
     hoursTitle: string;
     hoursDetails: string;
-    getInTouch: string;
-    contactInfo: string;
-    followUs: string;
-  };
-  footer: {
-    companyName: string;
-    companyTitle: string;
-    companySubtitle: string;
-    companyAddress: string;
-    corporateTitle: string;
-    corporateLinks: Array<{ label: string; href: string }>;
-    servicesTitle: string;
-    servicesLinks: Array<{ label: string; href: string }>;
-    hoursTitle: string;
-    hoursWeekday: string;
-    hoursTime: string;
-    hoursClosed: string;
-    disclaimer: string;
-    reserved: string;
-    cta: string;
-    button: string;
-    linkedin: string;
-    instagram: string;
-    email: string;
-  };
-  pricing: {
-    label: string;
-    title: string;
-    subtitle: string;
-    packages: Array<{
-      name: string;
-      price: string;
-      description: string;
-      features: string[];
-      cta: string;
-      popular?: boolean;
-    }>;
-  };
-  trustedCompanies: {
-    title: string;
-    subtitle: string;
   };
   faq: {
     title: string;
@@ -198,863 +89,452 @@ export interface TranslationType {
 export const translations: Record<Locale, TranslationType> = {
   en: {
     nav: {
-      home: 'Home',
-      services: 'Services',
-      about: 'About',
-      pricing: 'Tailored offer',
-      contact: 'Contact',
-      blog: 'Blog',
-      announcements: 'News',
-      portal: 'Portal',
-      faq: 'FAQs',
-    },
-    home: {
-      heroTitle: 'ALVOLO',
-      heroSubtitle: 'Swiss watchmaking precision engineered for sovereign data flows.',
-      heroBadge1: 'Alvolo Consulting',
-      heroBadge2: 'Luxury Data Exclusivity',
-      heroCta: 'Access remains curated. Signal by invitation only.',
-      philosophyTitle: 'THE ALVOLO PHILOSOPHY',
-      philosophyPoints: [
-        'Precision-first intelligence.',
-        'Systems that anticipate.',
-        'Scale without exposure.',
-      ],
-      philosophyCta: 'Explore Methodology',
-      deckVault: 'The Vault',
-      deckTitle: 'Secured channels, glassed in platinum optics.',
-      deckSubtitle: 'Private intelligence modules engineered for sovereign data flows.',
-      deckCards: [
-        { title: 'PREDICTIVE INTEL', footer: 'STATUS: OPTIMIZED // LATENCY: 4ms' },
-        { title: 'ALGORITHMIC SCALE', footer: 'STATUS: ACTIVE // NODES: 1200' },
-        { title: 'GLOBAL NEXUS', footer: 'STATUS: LINKED // ROUTES: 88' },
-        { title: 'SIGNAL HELIX', footer: 'STATUS: CALIBRATED // FLOW: 9.2' },
-        { title: 'VAULT PULSE', footer: 'STATUS: SYNCED // VAULT: LOCKED' },
-      ],
-      contactTitle: 'SIGNAL RECEIVED.',
-      contactSubtitle: 'Access to Alvolo private channels is by verification only. Initiate the protocol to begin calibration.',
-      contactCta: 'Initialize Contact',
-    },
-    hero: {
-      title1: 'Cross-Border',
-      title2: 'Scale Engineering.',
-      subtitle: "We don't just advise. We architect your expansion. A data-driven financial bridge for SMEs and Professionals moving between Italy and Turkey.",
-      cta1: 'Analyze Your Potential',
-      cta2: 'View Methodology',
-      stat1Value: '€50M+',
-      stat1Label: 'Trade Volume Analyzed',
-      stat2Value: '100%',
-      stat2Label: 'Bocconi Alumni Team',
-    },
-    ticker: {
-      items: ['FINANCIAL CONSULTING', 'ITALY EXPANSION', 'INTEGRATION SOLUTIONS', 'TAX OPTIMIZATION', 'RESIDENCE PERMITS', 'COMPANY FORMATION'],
+      contact: "Contact",
+      portal: "Portal",
+      faq: "FAQ",
     },
     services: {
-      label: '01 // SERVICES',
-      title: 'Our Service Areas',
-      subtitle: 'Incorporation, tax, permits and Turkish sourcing — one senior team for every stage of a cross-border mandate.',
+      label: "01 // SERVICES",
+      title: "Our service areas",
+      subtitle: "Incorporation, tax, permits and Turkish sourcing, run by one senior team from the first audit to the first invoice.",
       startupCorridor: {
-        label: 'New Strategic Pillar',
-        title: 'The Turkey-Italy Startup Corridor',
-        description: 'A structured path between the Turkish and Italian startup ecosystems: incorporation, tax, compliance and first customers, delivered in a standardised, repeatable sequence.',
-        button: 'Explore the Corridor',
+        label: "Startup programme",
+        title: "The Türkiye–Italy Startup Corridor",
+        description: "A sequenced programme for founders moving between the Turkish and Italian startup ecosystems: incorporation, tax, compliance and the first customers, in that order.",
+        button: "Explore the corridor",
       },
-      integrationTitle: 'Integration Services',
-      financialTitle: 'Financial Consultancy',
-      viewAll: 'View All Services',
+      integrationTitle: "Integration services",
+      financialTitle: "Financial consultancy",
+      viewAll: "All services",
       integrationServices: [
-        { title: 'Family Reunification & Dependants', description: 'Family reunification (ricongiungimento familiare), dependants\' permits and school placement for the families of relocating executives.' },
-        { title: 'Residence Permit (Permesso di Soggiorno)', description: 'Obtaining the necessary permits to legally reside in Italy.' },
-        { title: 'Executive Housing & Relocation', description: 'Housing search, lease negotiation and Anagrafe registration for executives and their families relocating to Italy.' },
-        { title: 'Welcome and Orientation', description: 'Welcome upon your arrival in Italy and support for adapting to your new life.' },
-        { title: 'Tax Residency & Impatriate Regime', description: 'Tax residency planning and access to the Italian impatriate regime for executives moving from Türkiye.' },
-        { title: 'Work & Investor Visas', description: 'Self-employment, intra-company and investor visa routes, from nulla osta to entry visa and first registrations.' },
-        { title: 'Bureaucratic Procedures Support', description: 'Assistance with official procedures such as Codice Fiscale, health insurance.' },
+        { title: "Family reunification and dependants", description: "Ricongiungimento familiare, dependants' permits and school placement for the families of relocating executives." },
+        { title: "Residence permit (permesso di soggiorno)", description: "The permit application, Questura appointments and renewals for legal residence in Italy." },
+        { title: "Executive housing and relocation", description: "Housing search, lease negotiation and Anagrafe registration for executives and their families moving to Italy." },
+        { title: "Arrival and orientation", description: "First appointments, registrations and the practical set-up of daily life in the first weeks in Italy." },
+        { title: "Tax residency and impatriate regime", description: "Tax residency planning and the Italian impatriate regime for executives moving from Türkiye." },
+        { title: "Work and investor visas", description: "Self-employment, intra-company and investor visa routes, from nulla osta to entry visa and first registrations." },
+        { title: "Bureaucratic procedures", description: "Codice Fiscale, SSN health registration and the other filings that come with arrival." },
       ],
       financialServices: [
-        { title: 'Company Formation and Legal Processes', description: 'Company formation in Italy, legal processes, and choosing the right company type.' },
-        { title: 'Financial Planning and Budget Management', description: 'Comprehensive financial planning and budget management for your business.' },
-        { title: 'Tax Planning and Compliance', description: 'Tax planning and compliance services in line with Italian regulations.' },
-        { title: 'Bank Account Opening and Financial Systems', description: 'Bank account opening and financial system integration for your company.' },
-        { title: 'Investment Advisory and Fund Management', description: 'Investment opportunities, fund management, and international finance consulting.' },
-        { title: 'Risk Management and Insurance Planning', description: 'Risk management and insurance planning for your business.' },
-        { title: 'Ongoing Financial Consulting and Reporting', description: 'Continuous financial consulting and reporting support for the first year and beyond.' },
+        { title: "Company formation and legal set-up", description: "S.r.l. or S.p.A. selection, notarial deed, Registro delle Imprese filing and the statutory steps that follow." },
+        { title: "Financial planning and budgeting", description: "Budget, cash-flow and financing plans for the new entity, built on the three-year model from the audit phase." },
+        { title: "Tax planning and compliance", description: "IRES, IRAP and VAT planning, the filings and the compliance calendar under Italian rules." },
+        { title: "Bank accounts and payment set-up", description: "Capital-deposit and operating accounts, the KYC pack and payment rails for the company." },
+        { title: "Investment advisory and fund management", description: "Investment screening, fund structuring and cross-border finance advice." },
+        { title: "Risk management and insurance", description: "Insurance cover and risk review for the Italian operation." },
+        { title: "Ongoing advisory and reporting", description: "Monthly reporting and advisory support through the first year and after." },
       ],
     },
-    expansion: {
-      left: {
-        direction: 'DIRECTION: WEST',
-        title: 'Expand to Italy',
-        body: 'P.IVA, fiscal rep, and Milan network orchestration for Turkish SMEs.',
-        cta: 'Start Italian Entry',
-      },
-      right: {
-        direction: 'DIRECTION: EAST',
-        title: 'Scale in Turkey',
-        body: 'Manufacturing partnerships and cost optimization for Italian firms.',
-        cta: 'Start Turkish Expansion',
-      },
-    },
     methodology: {
-      label: 'OUR APPROACH',
-      title: 'Methodology',
-      subtitle: 'How a cross-border mandate runs: one sequenced method from the first regulatory audit to an operating company, with counterparties, timelines and deliverables agreed before the first filing.',
-      explore: 'Explore Full Methodology',
+      label: "OUR APPROACH",
+      title: "Methodology",
+      subtitle: "How a cross-border mandate runs: one sequenced method from the first regulatory audit to an operating company, with counterparties, timelines and deliverables agreed before the first filing.",
       steps: [
-        { num: '01', title: 'Audit', description: 'We map shareholding, activity and people against Italian and Turkish rules — licensing, immigration, AML, sector requirements — before any structure is drawn.' },
-        { num: '02', title: 'Tax Architecture', description: 'Entity choice, holding layers and treaty position are modelled on effective tax rate, cash repatriation and exit, then signed off with the founders.' },
-        { num: '03', title: 'Formation', description: 'Notarial deed, registry filings, VAT and PEC run in parallel with Codice Fiscale, permits and executive relocation, so company and people land on the same date.' },
-        { num: '04', title: 'Onboarding', description: 'Suppliers, manufacturing partners, banks, payroll and local advisors are contracted and handed over with a clear operating cadence.' },
+        { num: "01", title: "Audit", description: "We map shareholding, activity and people against Italian and Turkish rules (licensing, immigration, AML, sector requirements) before we draw any structure." },
+        { num: "02", title: "Tax architecture", description: "We model entity choice, holding layers and treaty position on effective tax rate, cash repatriation and exit, then sign the structure off with the founders." },
+        { num: "03", title: "Formation", description: "We run the notarial deed, registry filings, VAT and PEC in parallel with Codice Fiscale, permits and executive relocation, so the company and its people land on the same date." },
+        { num: "04", title: "Onboarding", description: "We contract suppliers, manufacturing partners, banks, payroll and local advisors, then hand them over with a monthly operating cadence." },
       ],
     },
     about: {
-      label: 'THE TEAM',
-      title: 'About Us',
-      paragraph1: 'Alvolo Consulting is a cross-border advisory between Italy and Türkiye. Our Bocconi-trained team works from Milano, Roma and Istanbul, taking companies and their executives from the first regulatory audit to an operating entity.',
-      paragraph2: 'Our advisors walk you through the notary, the tax office, the Questura and the bank, so that every step of your Italian or Turkish set-up is planned, sequenced and completed on time.',
-      paragraph3: 'One senior advisor stays accountable from the first audit to the first invoice — and remains your point of contact for filings, payroll and the next expansion.',
-      valuesTitle: 'Our Values',
-      values: ['Transparency and Honesty', 'Expertise and Professionalism', 'Personalized Approach', 'Reliability', 'Continuous Support'],
-      successRateStat: 'Success Rate',
-      happyClientsStat: 'Happy Clients',
-      teamTitle: 'Meet Our Team',
-      viewMore: 'View Full Profile',
+      label: "THE TEAM",
+      title: "About us",
+      paragraph1: "Alvolo Consulting is a cross-border advisory between Italy and Türkiye. Our Bocconi-trained team works from Milano, Roma and Istanbul, taking companies and their executives from the first regulatory audit to an operating entity.",
+      paragraph2: "Our advisors sit with you at the notary, the tax office, the Questura and the bank, and sequence each step of the Italian or Turkish set-up so it completes on the planned date.",
+      paragraph3: "One senior advisor stays accountable from the first audit to the first invoice, and remains your contact for filings, payroll and the next expansion.",
+      philosophyTitle: "How we work",
+      philosophyPoints: ["We model the numbers before we file the papers.", "One advisor answers for the whole mandate.", "The corridor stays open after the first invoice."],
+      philosophyCta: "See the methodology",
+      valuesTitle: "What you can hold us to",
+      values: [
+        "Scope and fees agreed in writing before work starts",
+        "Licensed notaries, commercialisti and immigration counsel on each file",
+        "One senior advisor from the first audit to the first invoice",
+        "A reply within one business day",
+        "Filings, payroll and supplier reviews after the entity is live",
+      ],
     },
     contact: {
-      title: 'Contact',
-      subtitle: 'Contact us for integration solutions and financial consultancy services for doing business and living in Italy.',
-      formNameLabel: 'Full Name',
-      formEmailLabel: 'Email',
-      formInterestLabel: 'Interest',
-      formMessageLabel: 'Your Message',
-      formSubmitButton: 'Request Analysis',
-      formSendingButton: 'Processing...',
-      successTitle: 'Profile Generated',
-      successMessage: 'Data modeled. Choose your next step:',
-      sendViaEmail: 'Send via Email App',
-      proposeTimeslots: 'Propose 3 Different Timeslots',
-      interestOptions: {
-        italy: 'Expansion to Italy',
-        turkey: 'Expansion to Turkey',
-        tax: 'Tax Optimization',
-      },
-      privacyCheckbox1: 'I authorize the processing of my personal data in accordance with EU Regulation No. 679/2016',
-      privacyCheckbox2: 'I authorize the processing of data for marketing purposes',
-      phoneTitle: 'Phone',
-      phoneDetails: '+39 348 170 5207',
-      whatsappDetails: 'WhatsApp: +39 348 170 5207',
-      emailTitle: 'Email',
-      emailDetails: 'info@alvoloconsulting.com',
-      addressTitle: 'Address',
-      addressDetails: 'Via Valsugana, 20139 Milano (MI), Italy',
-      hoursTitle: 'Business Hours',
-      hoursDetails: 'Monday - Friday: 09:00 - 18:00',
-      getInTouch: 'Get In Touch',
-      contactInfo: 'Contact Information',
-      followUs: 'Follow Us',
-    },
-    footer: {
-      companyName: 'ALVOLO CONSULTING',
-      companyTitle: 'Financial Consultancy & Italy Integration Solutions',
-      companySubtitle: 'Chamber of Certified Public Accountants',
-      companyAddress: 'Via Valsugana 6, 20139 Milan, Italy',
-      corporateTitle: 'Corporate',
-      corporateLinks: [
-        { label: 'Home', href: '/' },
-        { label: 'About Us', href: '/about' },
-        { label: 'Services', href: '/services' },
-        { label: 'Contact', href: '/contact' },
-      ],
-      servicesTitle: 'Services',
-      servicesLinks: [
-        { label: 'Tailored offer', href: '/brief' },
-      ],
-      hoursTitle: 'Working Hours',
-      hoursWeekday: 'Monday – Friday',
-      hoursTime: '09:00 – 18:00',
-      hoursClosed: 'Closed on Saturday and Sunday.',
-      disclaimer: 'All content on this website may not be copied, reproduced, distributed, or used on other platforms without written permission. The site content is for informational purposes only and does not constitute professional financial consulting.',
-      reserved: '© 2024 – All Rights Reserved.',
-      cta: 'START NOW',
-      button: 'Initiate Protocol',
-      linkedin: 'LinkedIn',
-      instagram: 'Instagram',
-      email: 'Email',
-    },
-    pricing: {
-      label: 'PRICING',
-      title: 'Integration Packages',
-      subtitle: 'Choose the package that best fits your needs for moving to Italy.',
-      packages: [
-        {
-          name: 'Essential',
-          price: '€299',
-          description: 'Basic support for your Italian journey',
-          features: ['Codice Fiscale assistance', 'Basic document preparation', 'Email support', 'FAQ access'],
-          cta: 'Get Started',
-        },
-        {
-          name: 'Professional',
-          price: '€599',
-          description: 'Comprehensive support for professionals',
-          features: ['Everything in Essential', 'Residence permit support', 'Accommodation search', 'Priority support', 'Video consultations'],
-          cta: 'Get Started',
-          popular: true,
-        },
-        {
-          name: 'Enterprise',
-          price: 'Custom',
-          description: 'Full-service for businesses',
-          features: ['Everything in Professional', 'Company formation', 'Tax planning', 'Dedicated account manager', 'On-site support'],
-          cta: 'Contact Us',
-        },
-      ],
-    },
-    trustedCompanies: {
-      title: 'Trusted By',
-      subtitle: 'Our partners and affiliations',
+      title: "Contact",
+      subtitle: "Reach the partners in Milan, Rome or Istanbul about incorporation, relocation, tax or sourcing.",
+      contactInfo: "Contact information",
+      getInTouch: "Write to us",
+      phoneTitle: "Phone",
+      phoneDetails: "+39 348 170 5207",
+      emailTitle: "Email",
+      emailDetails: "info@alvoloconsulting.com",
+      addressTitle: "Address",
+      addressDetails: "Via Valsugana 6, 20139 Milano (MI), Italy",
+      hoursTitle: "Business hours",
+      hoursDetails: "Monday to Friday, 09:00 to 18:00 CET",
     },
     faq: {
-      title: 'Frequently Asked Questions',
-      subtitle: 'Everything you need to know about working with Alvolo Consulting.',
+      title: "Frequently asked questions",
+      subtitle: "Timelines, scope and what a mandate with Alvolo Consulting involves.",
       questions: [
         {
-          q: 'What makes Alvolo different from a traditional consultancy?',
-          a: 'We are not advisors who hand you a report and walk away. Alvolo works as an embedded expansion partner: business development, regulatory navigation and day-to-day operations run through one sequenced playbook, with a senior advisor accountable from the first audit to the first invoice. Think of us as your in-house international team — without building one from scratch.',
+          q: "What makes Alvolo different from a traditional consultancy?",
+          a: "Alvolo runs the mandate rather than writing a report about it. Business development, regulatory filings and day-to-day operations follow one sequenced playbook, and a senior advisor stays accountable from the first audit to the first invoice. You get an international team without hiring one.",
         },
         {
-          q: 'I have a startup in Turkey. How do I know if I am ready to expand to Italy?',
-          a: 'Readiness is not just about revenue—it is about product-market signal. Through our Startup Corridor, we run an ICP (Ideal Customer Profile) validation and competitive landscaping analysis before you commit a single euro. If the data says the timing is right, we activate. If it does not, we save you from a costly misfire.',
+          q: "I have a startup in Türkiye. How do I know if I am ready to expand to Italy?",
+          a: "Readiness shows in product-market signal more than in revenue. Through the Startup Corridor we validate your ideal customer profile and map the Italian competition before you commit a euro. If the numbers support the timing, we start the incorporation. If they do not, we say so before you spend on a company.",
         },
         {
-          q: 'Can you help with company formation, or is it just strategy?',
-          a: 'We go far beyond strategy. Our Company Setup & Compliance module handles legal entity selection (SRL, SPA, A.Ş., Ltd. Şti.), tax registration, banking onboarding, and initial accounting setup. We coordinate with licensed local partners to ensure every step is compliant from day one.',
+          q: "Do you handle company formation as well as strategy?",
+          a: "Yes. The Company Setup & Compliance module covers entity selection (S.r.l., S.p.A., A.Ş., Ltd. Şti.), tax registration, banking onboarding and the first accounting set-up. Licensed local partners sign the filings, and we coordinate them from one file.",
         },
         {
-          q: 'How does the Startup Corridor differ from the Expansion Packages?',
-          a: 'The Expansion Packages (Italy and Turkey) are focused, market-entry solutions for businesses that already know where they want to go. The Startup Corridor is a broader, 6-module framework designed for founders who need end-to-end support—from market validation all the way through to scaling operations. It is the full-stack experience.',
+          q: "How does the Startup Corridor differ from the expansion mandates?",
+          a: "The Italy and Türkiye expansion mandates are market-entry programmes for companies that already know where they are going. The Startup Corridor is a six-module programme for founders who need support from market validation through to scaling operations.",
         },
         {
-          q: 'Do you help with hiring and talent in the target country?',
-          a: 'Yes. Our People & Mobility module coordinates visa and relocation processes with licensed immigration partners. We also establish local hiring pathways and contractor frameworks, giving you flexible options to build your team without navigating bureaucracy alone.',
+          q: "Do you help with hiring and talent in the target country?",
+          a: "Yes. The People & Mobility module coordinates visas and relocation with licensed immigration partners, and sets up local hiring routes and contractor frameworks so you can build the team on either shore.",
         },
         {
-          q: 'What kind of businesses do you typically work with?',
-          a: 'Our sweet spot is SMEs, scaleups, and professionals moving between Turkey and Italy. Whether you are a tech startup looking for European customers, a manufacturing firm seeking Italian suppliers, or a professional relocating for work—we have a structured program for you.',
+          q: "What kind of businesses do you work with?",
+          a: "SMEs, scale-ups and professionals moving between Türkiye and Italy: a tech startup looking for European customers, a manufacturer looking for Italian or Turkish suppliers, or an executive relocating for a role. Each has a structured programme.",
         },
         {
-          q: 'How long does a typical engagement last?',
-          a: 'It depends on your tier. Our Launch tier delivers entity creation and compliance in 6-8 weeks. The Grow tier deepens into commercial enablement over 3-6 months. And our Scale tier is a 6-12 month embedded partnership with quarterly reviews and executive reporting. You scale the relationship as your needs evolve.',
+          q: "How long does an engagement last?",
+          a: "It depends on the tier. Launch delivers entity creation and compliance in 6 to 8 weeks. Grow adds commercial enablement over 3 to 6 months. Scale is a 6 to 12 month embedded partnership with quarterly reviews and executive reporting.",
         },
         {
-          q: 'Is there a way to test working with Alvolo before committing?',
-          a: 'Absolutely. We offer a complimentary discovery call where we assess your situation and outline a preliminary roadmap. There are no commitments until we both agree there is a clear, well-founded path forward. We believe in earning trust through transparency, not pressure.',
+          q: "Can I test working with Alvolo before committing?",
+          a: "Yes. The first discovery call is free: we assess your situation and outline a preliminary roadmap. You commit only once both sides agree the path is clear and the scope is written down.",
         },
       ],
     },
     startupCorridorPage: {
-      badge: 'New Strategic Pillar',
-      title: 'The Turkey-Italy Startup Corridor',
-      subtitle: 'A structured expansion programme. Removing the friction of cross-border expansion with a standardised, repeatable playbook.',
-      missionTitle: 'Our Mission',
-      missionP1: 'We aim to solve the specific "market gap" where founders struggle to navigate the complexities of incorporation, tax, compliance, and go-to-market strategy when expanding between these two regions.',
-      missionP2: 'Our ambition is to be the',
-      missionHighlight: 'first full-service TR-IT expansion operator, from incorporation to first customers',
-      frameworkTitle: 'The 6-Module Expansion Framework',
-      frameworkSubtitle: 'We don\'t just give advice; we implement a configured service model designed to guide you through every stage.',
+      badge: "Startup programme",
+      title: "The Türkiye–Italy Startup Corridor",
+      subtitle: "A sequenced programme for founders moving between Türkiye and Italy, run on one repeatable playbook.",
+      missionTitle: "Our mission",
+      missionP1: "Founders expanding between Türkiye and Italy face incorporation, tax, compliance and go-to-market at the same time, with no single counterparty who owns all four. The corridor closes that gap.",
+      missionP2: "Our ambition is to be the",
+      missionHighlight: "first full-service TR–IT expansion operator, from incorporation to first customers",
+      frameworkTitle: "The six-module expansion framework",
+      frameworkSubtitle: "Six modules, each with a named owner and a deliverable, run in the order a company needs them.",
       modules: [
-        { title: 'Market Discovery & Entry', desc: 'Ideal Customer Profile (ICP) validation, competitor landscaping, and pricing signal analysis. Mapping potential partners for a clear lay of the land.' },
-        { title: 'Company Setup & Compliance', desc: 'Handling legal entity selection (SRL/SPA or A.Ş./Ltd. Şti.), tax registrations, accounting setup, and local banking onboarding.' },
-        { title: 'People & Mobility', desc: 'Coordinating visa/relocation processes and establishing hiring pathways. Contractor frameworks for flexible workforce options.' },
-        { title: 'Commercial Enablement', desc: 'Assisting with channel partner setup, reseller agreements, and "First-10-Customers" plan. Localizing collateral for the target region.' },
-        { title: 'Capital & Incentives', desc: 'Introductions to investors/accelerators, mapping non-dilutive incentives, and grant application support.' },
-        { title: 'Operate to Scale', desc: 'KPI instrumentation, OKR coaching, and quarterly operations reviews to ensure sustainable expansion.' },
+        { title: "Market discovery and entry", desc: "Ideal customer profile validation, competitor mapping and pricing signals, plus a map of potential partners." },
+        { title: "Company setup and compliance", desc: "Entity selection (S.r.l./S.p.A. or A.Ş./Ltd. Şti.), tax registrations, accounting set-up and local banking onboarding." },
+        { title: "People and mobility", desc: "Visa and relocation coordination, local hiring routes and contractor frameworks for the first team." },
+        { title: "Commercial enablement", desc: "Channel partners, reseller agreements and a first-ten-customers plan, with collateral localised for the target market." },
+        { title: "Capital and incentives", desc: "Introductions to investors and accelerators, a map of non-dilutive incentives and support on grant applications." },
+        { title: "Operate to scale", desc: "KPI instrumentation, OKR coaching and quarterly operations reviews." },
       ],
-      tiersTitle: 'Your Growth Journey',
-      tierLabel: 'Tier',
-      tierCta: 'Get Started',
+      tiersTitle: "Three tiers",
+      tierLabel: "Tier",
+      tierCta: "Get started",
       tiers: [
-        { name: 'Launch', duration: '6-8 Weeks', desc: 'A "Fast-Start" program focusing on entity creation, essential compliance, and light Go-To-Market support.' },
-        { name: 'Grow', duration: '3-6 Months', desc: 'A deepening phase handling full compliance, commercial enablement, and active hiring support.' },
-        { name: 'Scale', duration: '6-12 Months', desc: 'Long-term partnership with embedded operating cadence, executive reporting, and strategic partnerships.' },
+        { name: "Launch", duration: "6–8 weeks", desc: "Entity creation, core compliance and a light go-to-market plan." },
+        { name: "Grow", duration: "3–6 months", desc: "Full compliance, commercial enablement and active hiring support." },
+        { name: "Scale", duration: "6–12 months", desc: "An embedded operating cadence, executive reporting and strategic partnerships over the long term." },
       ],
-      whyTitle: 'Why Alvolo?',
-      whyBody: 'We are not only consultants; we operate. Business development, regulatory work and end-to-end operations sit with one team, which is what a boutique in the Türkiye–Italy corridor rarely offers. Every mandate adds notaries, banks, suppliers and investors to a network our next clients can use from day one.',
-      whyCta: 'Book a Discovery Call',
+      whyTitle: "Why Alvolo?",
+      whyBody: "Alvolo operates the expansion as well as advising on it. Business development, regulatory work and operations sit with one team, which few boutiques in the Türkiye–Italy corridor offer. Each mandate adds notaries, banks, suppliers and investors to a network the next client can use from day one.",
+      whyCta: "Book a discovery call",
     },
   },
   tr: {
     nav: {
-      home: 'Ana Sayfa',
-      services: 'Hizmetler',
-      about: 'Hakkımızda',
-      pricing: 'Size özel teklif',
-      contact: 'İletişim',
-      blog: 'Blog',
-      announcements: 'Duyurular',
-      portal: 'Portal',
-      faq: 'SSS',
-    },
-    home: {
-      heroTitle: 'ALVOLO',
-      heroSubtitle: 'Egemen veri akışları için tasarlanmış İsviçre saat işçiliği hassasiyeti.',
-      heroBadge1: 'Alvolo Danışmanlık',
-      heroBadge2: 'Lüks Veri Ayrıcalığı',
-      heroCta: 'Erişim küratörlü kalır. Sinyal sadece davetiye ile.',
-      philosophyTitle: 'ALVOLO FELSEFESİ',
-      philosophyPoints: [
-        'Hassasiyet öncelikli istihbarat.',
-        'Öngören sistemler.',
-        'Maruz kalmadan ölçeklenme.',
-      ],
-      philosophyCta: 'Metodolojiyi Keşfet',
-      deckVault: 'Kasa',
-      deckTitle: 'Güvenli kanallar, platin optiklerle camlanmış.',
-      deckSubtitle: 'Egemen veri akışları için tasarlanmış özel istihbarat modülleri.',
-      deckCards: [
-        { title: 'ÖNGÖRÜSEL İSTİHBARAT', footer: 'DURUM: OPTİMİZE // GECİKME: 4ms' },
-        { title: 'ALGORİTMİK ÖLÇEK', footer: 'DURUM: AKTİF // DÜĞÜMLER: 1200' },
-        { title: 'KÜRESEL BAĞLANTI', footer: 'DURUM: BAĞLI // ROTALAR: 88' },
-        { title: 'SİNYAL SARMALI', footer: 'DURUM: KALİBRE // AKIŞ: 9.2' },
-        { title: 'KASA NABZI', footer: 'DURUM: SENKRONİZE // KASA: KİLİTLİ' },
-      ],
-      contactTitle: 'SİNYAL ALINDI.',
-      contactSubtitle: 'Alvolo özel kanallarına erişim sadece doğrulama ile mümkündür. Kalibrasyonu başlatmak için protokolü başlatın.',
-      contactCta: 'İletişimi Başlat',
-    },
-    hero: {
-      title1: 'Sınır Ötesi',
-      title2: 'Ölçek Mühendisliği.',
-      subtitle: 'Sadece tavsiye vermiyoruz. Büyümenizi tasarlıyoruz. İtalya ve Türkiye arasında hareket eden KOBİ\'ler ve profesyoneller için veri odaklı finansal köprü.',
-      cta1: 'Potansiyelinizi Analiz Edin',
-      cta2: 'Metodolojiyi Görüntüle',
-      stat1Value: '€50M+',
-      stat1Label: 'Analiz Edilen Ticaret Hacmi',
-      stat2Value: '100%',
-      stat2Label: 'Bocconi Mezunu Ekip',
-    },
-    ticker: {
-      items: ['FİNANSAL DANIŞMANLIK', 'İTALYA GENİŞLEME', 'ENTEGRASYON ÇÖZÜMLERİ', 'VERGİ OPTİMİZASYONU', 'OTURUM İZNİ', 'ŞİRKET KURULUŞU'],
+      contact: "İletişim",
+      portal: "Portal",
+      faq: "SSS",
     },
     services: {
-      label: '01 // HİZMETLER',
-      title: 'Hizmet Alanlarımız',
-      subtitle: 'Şirket kuruluşu, vergi, izinler ve Türkiye tedariki — sınır ötesi bir görevin her aşaması için tek bir kıdemli ekip.',
+      label: "01 // HİZMETLER",
+      title: "Hizmet alanlarımız",
+      subtitle: "Şirket kuruluşu, vergi, izinler ve Türkiye tedariki; ilk denetimden ilk faturaya kadar tek bir kıdemli ekip tarafından yürütülür.",
       startupCorridor: {
-        label: 'Yeni Stratejik Sütun',
-        title: 'Türkiye-İtalya Startup Koridoru',
-        description: 'Türk ve İtalyan startup ekosistemleri arasında yapılandırılmış bir yol: şirket kuruluşu, vergi, uyum ve ilk müşteriler; standart ve tekrarlanabilir bir sırayla.',
-        button: 'Koridoru Keşfet',
+        label: "Startup programı",
+        title: "Türkiye–İtalya Startup Koridoru",
+        description: "Türk ve İtalyan startup ekosistemleri arasında hareket eden kurucular için sıralı bir program: şirket kuruluşu, vergi, uyum ve ilk müşteriler, bu sırayla.",
+        button: "Koridoru keşfedin",
       },
-      integrationTitle: 'Entegrasyon Hizmetleri',
-      financialTitle: 'Finansal Danışmanlık',
-      viewAll: 'Tüm Hizmetleri Görüntüle',
+      integrationTitle: "Entegrasyon hizmetleri",
+      financialTitle: "Finansal danışmanlık",
+      viewAll: "Tüm hizmetler",
       integrationServices: [
-        { title: 'Aile Birleşimi ve Bağımlı Aile Üyeleri', description: 'Taşınan yöneticilerin aileleri için aile birleşimi (ricongiungimento familiare), aile üyesi izinleri ve okul yerleştirmesi.' },
-        { title: 'Oturum İzni (Permesso di Soggiorno)', description: 'İtalya\'da yasal olarak ikamet etmek için gerekli izinlerin alınması konusunda destek.' },
-        { title: 'Yönetici Konut ve Taşınma Desteği', description: 'İtalya\'ya taşınan yöneticiler ve aileleri için konut arayışı, kira sözleşmesi müzakeresi ve Anagrafe (nüfus) kaydı.' },
-        { title: 'Karşılama ve Oryantasyon', description: 'İtalya\'ya varışınızda karşılama ve yeni yaşamınıza adaptasyon desteği.' },
-        { title: 'Vergi Mukimliği ve Impatriati Rejimi', description: 'Türkiye\'den taşınan yöneticiler için vergi mukimliği planlaması ve İtalyan impatriati rejiminden yararlanma.' },
-        { title: 'Çalışma ve Yatırımcı Vizeleri', description: 'Serbest meslek, şirket içi transfer ve yatırımcı vizesi rotaları; nulla osta\'dan giriş vizesine ve ilk kayıtlara kadar.' },
-        { title: 'Bürokratik İşlemler Desteği', description: 'Codice Fiscale, sağlık sigortası gibi resmi işlemlerinizde yardım.' },
+        { title: "Aile birleşimi ve bağımlı aile üyeleri", description: "Taşınan yöneticilerin aileleri için ricongiungimento familiare, aile üyesi izinleri ve okul yerleştirmesi." },
+        { title: "Oturum izni (permesso di soggiorno)", description: "İtalya'da yasal ikamet için izin başvurusu, Questura randevuları ve yenilemeler." },
+        { title: "Yönetici konut ve taşınma desteği", description: "İtalya'ya taşınan yöneticiler ve aileleri için konut arayışı, kira müzakeresi ve Anagrafe kaydı." },
+        { title: "Varış ve oryantasyon", description: "İtalya'daki ilk haftalarda ilk randevular, kayıtlar ve günlük yaşamın pratik kurulumu." },
+        { title: "Vergi mukimliği ve impatriati rejimi", description: "Türkiye'den taşınan yöneticiler için vergi mukimliği planlaması ve İtalyan impatriati rejimi." },
+        { title: "Çalışma ve yatırımcı vizeleri", description: "Serbest meslek, şirket içi transfer ve yatırımcı vizesi rotaları; nulla osta'dan giriş vizesine ve ilk kayıtlara kadar." },
+        { title: "Bürokratik işlemler", description: "Codice Fiscale, SSN sağlık kaydı ve varışla birlikte gelen diğer başvurular." },
       ],
       financialServices: [
-        { title: 'Şirket Kuruluşu ve Yasal Süreçler', description: 'İtalya\'da şirket kuruluşu, yasal süreçler ve uygun şirket türü seçimi.' },
-        { title: 'Finansal Planlama ve Bütçe Yönetimi', description: 'İşletmeniz için kapsamlı finansal planlama ve bütçe yönetimi hizmetleri.' },
-        { title: 'Vergi Planlaması ve Uyumluluk', description: 'İtalyan vergi mevzuatına uygun vergi planlaması ve uyumluluk hizmetleri.' },
-        { title: 'Banka Hesabı Açılışı ve Finansal Sistemler', description: 'Şirketiniz için banka hesabı açılışı ve finansal sistem entegrasyonu.' },
-        { title: 'Yatırım Danışmanlığı ve Fon Yönetimi', description: 'Yatırım fırsatları, fon yönetimi ve uluslararası finans danışmanlığı.' },
-        { title: 'Risk Yönetimi ve Sigorta Planlaması', description: 'İşletmeniz için risk yönetimi ve sigorta planlaması hizmetleri.' },
-        { title: 'Sürekli Finansal Danışmanlık ve Raporlama', description: 'İlk yıl ve sonrasında sürekli finansal danışmanlık ve raporlama desteği.' },
+        { title: "Şirket kuruluşu ve hukuki kurulum", description: "S.r.l. ya da S.p.A. seçimi, noter senedi, Registro delle Imprese tescili ve ardından gelen yasal adımlar." },
+        { title: "Finansal planlama ve bütçe", description: "Denetim aşamasındaki üç yıllık modele dayanan bütçe, nakit akışı ve finansman planları." },
+        { title: "Vergi planlaması ve uyum", description: "İtalyan kurallarına göre IRES, IRAP ve KDV planlaması, beyanlar ve uyum takvimi." },
+        { title: "Banka hesapları ve ödeme kurulumu", description: "Sermaye blokaj ve operasyon hesapları, KYC paketi ve şirketin ödeme altyapısı." },
+        { title: "Yatırım danışmanlığı ve fon yönetimi", description: "Yatırım taraması, fon yapılandırması ve sınır ötesi finansman danışmanlığı." },
+        { title: "Risk yönetimi ve sigorta", description: "İtalya operasyonu için sigorta kapsamı ve risk incelemesi." },
+        { title: "Sürekli danışmanlık ve raporlama", description: "İlk yıl ve sonrasında aylık raporlama ve danışmanlık desteği." },
       ],
     },
-    expansion: {
-      left: {
-        direction: 'YÖN: BATI',
-        title: 'İtalya\'ya Açılın',
-        body: 'Türk KOBİ\'leri için P.IVA, mali temsilcilik ve Milano ağı yönetimi.',
-        cta: 'İtalya Girişi Başlat',
-      },
-      right: {
-        direction: 'YÖN: DOĞU',
-        title: 'Türkiye\'de Ölçeklendirin',
-        body: 'İtalyan firmaları için üretim ortaklıkları ve maliyet optimizasyonu.',
-        cta: 'Türkiye Genişlemesini Başlat',
-      },
-    },
     methodology: {
-      label: 'YAKLAŞIMIMIZ',
-      title: 'Metodoloji',
-      subtitle: 'Bir sınır ötesi görev nasıl yürür: ilk düzenleyici denetimden faaliyete geçmiş şirkete kadar tek bir sıralı yöntem; muhataplar, takvim ve çıktılar ilk başvurudan önce netleşir.',
-      explore: 'Tam Metodolojiyi Keşfedin',
+      label: "YAKLAŞIMIMIZ",
+      title: "Metodoloji",
+      subtitle: "Bir sınır ötesi mandat nasıl yürür: ilk düzenleyici denetimden faaliyetteki şirkete kadar tek bir sıralı yöntem; muhataplar, takvim ve çıktılar ilk başvurudan önce netleşir.",
       steps: [
-        { num: '01', title: 'Denetim', description: 'Herhangi bir yapı çizilmeden önce ortaklık yapısı, faaliyet ve kadro İtalyan ve Türk kurallarına — lisans, göç, AML, sektör gereklilikleri — göre haritalanır.' },
-        { num: '02', title: 'Vergi Mimarisi', description: 'Şirket türü, holding katmanları ve anlaşma pozisyonu efektif vergi oranı, nakit transferi ve çıkış senaryoları üzerinden modellenir; kurucularla birlikte onaylanır.' },
-        { num: '03', title: 'Kuruluş', description: 'Noter senedi, sicil tescili, KDV ve PEC; Codice Fiscale, izinler ve yönetici taşınmasıyla paralel yürür — şirket ve insanları aynı tarihte yerleşir.' },
-        { num: '04', title: 'Entegrasyon', description: 'Tedarikçiler, üretim ortakları, bankalar, bordro ve yerel danışmanlar sözleşmeye bağlanır ve net bir operasyon ritmiyle devredilir.' },
+        { num: "01", title: "Denetim", description: "Herhangi bir yapı çizmeden önce ortaklık yapısını, faaliyeti ve kadroyu İtalyan ve Türk kurallarına (lisans, göç, AML, sektör gereklilikleri) göre haritalarız." },
+        { num: "02", title: "Vergi mimarisi", description: "Şirket türünü, holding katmanlarını ve anlaşma pozisyonunu efektif vergi oranı, nakit transferi ve çıkış senaryoları üzerinden modeller, ardından yapıyı kurucularla birlikte onaylarız." },
+        { num: "03", title: "Kuruluş", description: "Noter senedini, sicil tescilini, KDV ve PEC'i Codice Fiscale, izinler ve yönetici taşınmasıyla paralel yürütürüz; şirket ve insanları aynı tarihte yerleşir." },
+        { num: "04", title: "Entegrasyon", description: "Tedarikçileri, üretim ortaklarını, bankaları, bordroyu ve yerel danışmanları sözleşmeye bağlar, ardından aylık bir operasyon ritmiyle devrederiz." },
       ],
     },
     about: {
-      label: 'EKİP',
-      title: 'Hakkımızda',
-      paragraph1: 'Alvolo Consulting, İtalya ile Türkiye arasında çalışan bir sınır ötesi danışmanlık firmasıdır. Bocconi eğitimli ekibimiz Milano, Roma ve İstanbul\'dan çalışır; şirketleri ve yöneticilerini ilk düzenleyici denetimden faaliyete geçmiş bir şirkete kadar taşır.',
-      paragraph2: 'Danışmanlarımız noter, vergi dairesi, Questura ve banka süreçlerinde yanınızda olur; İtalya veya Türkiye kurulumunuzun her adımı planlanır, sıralanır ve zamanında tamamlanır.',
-      paragraph3: 'İlk denetimden ilk faturaya kadar tek bir kıdemli danışman sorumluluğu üstlenir; beyanlar, bordro ve bir sonraki genişleme için de muhatabınız olmaya devam eder.',
-      valuesTitle: 'Değerlerimiz',
-      values: ['Şeffaflık ve Dürüstlük', 'Uzmanlık ve Profesyonellik', 'Kişiye Özel Yaklaşım', 'Güvenilirlik', 'Sürekli Destek'],
-      successRateStat: 'Başarı Oranı',
-      happyClientsStat: 'Mutlu Müşteri',
-      teamTitle: 'Ekibimizle Tanışın',
-      viewMore: 'Tam Profili Görüntüle',
+      label: "EKİP",
+      title: "Hakkımızda",
+      paragraph1: "Alvolo Consulting, İtalya ile Türkiye arasında çalışan bir sınır ötesi danışmanlık firmasıdır. Bocconi eğitimli ekibimiz Milano, Roma ve İstanbul'dan çalışır; şirketleri ve yöneticilerini ilk düzenleyici denetimden faaliyetteki şirkete kadar taşır.",
+      paragraph2: "Danışmanlarımız noterde, vergi dairesinde, Questura'da ve bankada yanınızda oturur; İtalya ya da Türkiye kurulumunuzun her adımını planlanan tarihte tamamlanacak şekilde sıralar.",
+      paragraph3: "İlk denetimden ilk faturaya kadar tek bir kıdemli danışman sorumluluğu üstlenir; beyanlar, bordro ve bir sonraki genişleme için de muhatabınız olmaya devam eder.",
+      philosophyTitle: "Nasıl çalışıyoruz",
+      philosophyPoints: ["Evrakı vermeden önce rakamları modelleriz.", "Mandatın tamamından tek bir danışman sorumludur.", "Koridor ilk faturadan sonra da açık kalır."],
+      philosophyCta: "Metodolojiyi görün",
+      valuesTitle: "Bizden bekleyebilecekleriniz",
+      values: [
+        "Çalışma başlamadan önce yazılı olarak kararlaştırılmış kapsam ve ücret",
+        "Her dosyada lisanslı noter, commercialista ve göçmenlik danışmanı",
+        "İlk denetimden ilk faturaya kadar tek bir kıdemli danışman",
+        "Bir iş günü içinde yanıt",
+        "Şirket faaliyete geçtikten sonra beyanlar, bordro ve tedarikçi incelemeleri",
+      ],
     },
     contact: {
-      title: 'İletişim',
-      subtitle: 'İtalya\'da iş ve yaşam için entegrasyon çözümleri ve finansal danışmanlık hizmetlerimiz hakkında bize ulaşın.',
-      formNameLabel: 'Ad Soyad',
-      formEmailLabel: 'E-posta',
-      formInterestLabel: 'İlgi Alanı',
-      formMessageLabel: 'Mesajınız',
-      formSubmitButton: 'Analiz İste',
-      formSendingButton: 'İşleniyor...',
-      successTitle: 'Profil Oluşturuldu',
-      successMessage: 'Veri modellendi. Sonraki adımınızı seçin:',
-      sendViaEmail: 'E-posta Uygulaması ile Gönder',
-      proposeTimeslots: '3 Farklı Zaman Dilimi Öner',
-      interestOptions: {
-        italy: 'İtalya\'ya Genişleme',
-        turkey: 'Türkiye\'ye Genişleme',
-        tax: 'Vergi Optimizasyonu',
-      },
-      privacyCheckbox1: 'Kişisel verilerimin AB 679/2016 sayılı Tüzük uyarınca işlenmesine izin veriyorum.',
-      privacyCheckbox2: 'Pazarlama amaçlarıyla veri işlenmesine izin veriyorum.',
-      phoneTitle: 'Telefon',
-      phoneDetails: '+39 348 170 5207',
-      whatsappDetails: 'WhatsApp: +39 348 170 5207',
-      emailTitle: 'E-posta',
-      emailDetails: 'info@alvoloconsulting.com',
-      addressTitle: 'Adres',
-      addressDetails: 'Via Valsugana, 20139 Milano (MI), İtalya',
-      hoursTitle: 'Çalışma Saatleri',
-      hoursDetails: 'Pazartesi - Cuma: 09:00 - 18:00',
-      getInTouch: 'Bizimle İletişime Geçin',
-      contactInfo: 'İletişim Bilgileri',
-      followUs: 'Bizi Takip Edin',
-    },
-    footer: {
-      companyName: 'ALVOLO CONSULTING',
-      companyTitle: 'Finansal Danışmanlık ve İtalya Entegrasyon Çözümleri',
-      companySubtitle: 'Yeminli Mali Müşavirler Odası',
-      companyAddress: 'Via Valsugana 6, 20139 Milano, İtalya',
-      corporateTitle: 'Kurumsal',
-      corporateLinks: [
-        { label: 'Ana Sayfa', href: '/' },
-        { label: 'Hakkımızda', href: '/about' },
-        { label: 'Hizmetler', href: '/services' },
-        { label: 'İletişim', href: '/contact' },
-      ],
-      servicesTitle: 'Hizmetler',
-      servicesLinks: [
-        { label: 'Size özel teklif', href: '/brief' },
-      ],
-      hoursTitle: 'Çalışma Saatleri',
-      hoursWeekday: 'Pazartesi – Cuma',
-      hoursTime: '09:00 – 18:00',
-      hoursClosed: 'Cumartesi ve Pazar günleri kapalıyız.',
-      disclaimer: 'Bu web sitesinde yer alan tüm içerikler, yazılı izin alınmadıkça kopyalanamaz, çoğaltılamaz, dağıtılamaz veya başka platformlarda kullanılamaz. Site içeriği yalnızca bilgilendirme amaçlıdır ve profesyonel mali danışmanlık hizmeti yerine geçmez.',
-      reserved: '© 2024 – Tüm Hakları Saklıdır.',
-      cta: 'ŞİMDİ BAŞLA',
-      button: 'Protokolü Başlat',
-      linkedin: 'LinkedIn',
-      instagram: 'Instagram',
-      email: 'E-posta',
-    },
-    pricing: {
-      label: 'FİYATLANDIRMA',
-      title: 'Entegrasyon Paketleri',
-      subtitle: 'İtalya\'ya taşınma ihtiyaçlarınıza en uygun paketi seçin.',
-      packages: [
-        {
-          name: 'Temel',
-          price: '€299',
-          description: 'İtalya yolculuğunuz için temel destek',
-          features: ['Codice Fiscale yardımı', 'Temel belge hazırlığı', 'E-posta desteği', 'SSS erişimi'],
-          cta: 'Başla',
-        },
-        {
-          name: 'Profesyonel',
-          price: '€599',
-          description: 'Profesyoneller için kapsamlı destek',
-          features: ['Temel paketteki her şey', 'Oturum izni desteği', 'Konaklama arama', 'Öncelikli destek', 'Video görüşmeleri'],
-          cta: 'Başla',
-          popular: true,
-        },
-        {
-          name: 'Kurumsal',
-          price: 'Özel',
-          description: 'İşletmeler için tam hizmet',
-          features: ['Profesyonel paketteki her şey', 'Şirket kurulumu', 'Vergi planlaması', 'Özel hesap yöneticisi', 'Yerinde destek'],
-          cta: 'Bize Ulaşın',
-        },
-      ],
-    },
-    trustedCompanies: {
-      title: 'Güvendiğimiz',
-      subtitle: 'Ortaklarımız ve bağlantılarımız',
+      title: "İletişim",
+      subtitle: "Şirket kuruluşu, taşınma, vergi ya da tedarik için Milano, Roma ya da İstanbul'daki ortaklara ulaşın.",
+      contactInfo: "İletişim bilgileri",
+      getInTouch: "Bize yazın",
+      phoneTitle: "Telefon",
+      phoneDetails: "+39 348 170 5207",
+      emailTitle: "E-posta",
+      emailDetails: "info@alvoloconsulting.com",
+      addressTitle: "Adres",
+      addressDetails: "Via Valsugana 6, 20139 Milano (MI), İtalya",
+      hoursTitle: "Çalışma saatleri",
+      hoursDetails: "Pazartesi–Cuma, 09:00–18:00 CET",
     },
     faq: {
-      title: 'Sıkça Sorulan Sorular',
-      subtitle: 'Alvolo Consulting ile çalışmak hakkında bilmeniz gereken her şey.',
+      title: "Sıkça sorulan sorular",
+      subtitle: "Süreler, kapsam ve Alvolo Consulting ile bir mandatın neleri içerdiği.",
       questions: [
         {
-          q: 'Alvolo\'yu geleneksel bir danışmanlık firmasından farklı kılan nedir?',
-          a: 'Size bir rapor teslim edip çekilen danışmanlardan değiliz. Alvolo, şirketinize entegre bir genişleme ortağı olarak çalışır: iş geliştirme, mevzuat yönetimi ve günlük operasyonlar tek bir sıralı yol haritası üzerinden yürür; ilk denetimden ilk faturaya kadar kıdemli bir danışman sorumludur. Bizi sıfırdan kurmak zorunda kalmadığınız uluslararası şirket içi ekibiniz olarak düşünün.',
+          q: "Alvolo'yu geleneksel bir danışmanlık firmasından farklı kılan nedir?",
+          a: "Alvolo mandat hakkında rapor yazmak yerine mandatı yürütür. İş geliştirme, mevzuat başvuruları ve günlük operasyonlar tek bir sıralı yol haritasını izler; ilk denetimden ilk faturaya kadar kıdemli bir danışman sorumludur. İşe alım yapmadan uluslararası bir ekip edinirsiniz.",
         },
         {
-          q: 'Türkiye\'de bir startup\'ım var. İtalya\'ya açılmaya hazır olduğumu nasıl anlarım?',
-          a: 'Hazırlık sadece gelirle ilgili değildir—ürün-pazar sinyaliyle ilgilidir. Startup Koridorumuz aracılığıyla tek bir euro harcamadan önce ICP (İdeal Müşteri Profili) doğrulaması ve rekabet analizi yapıyoruz. Veriler zamanlamanın doğru olduğunu söylüyorsa harekete geçeriz; söylemiyorsa sizi maliyetli bir hatadan kurtarırız.',
+          q: "Türkiye'de bir startup'ım var. İtalya'ya açılmaya hazır olduğumu nasıl anlarım?",
+          a: "Hazırlık, gelirden çok ürün-pazar sinyalinde görünür. Startup Koridoru'nda tek bir euro harcamadan önce ideal müşteri profilinizi doğrular ve İtalya'daki rekabeti haritalarız. Rakamlar zamanlamayı destekliyorsa kuruluşa başlarız. Desteklemiyorsa bunu bir şirkete harcama yapmadan önce söyleriz.",
         },
         {
-          q: 'Şirket kuruluşuna yardımcı olabilir misiniz yoksa sadece strateji mi sunuyorsunuz?',
-          a: 'Stratejinin çok ötesine geçiyoruz. Şirket Kurulumu ve Uyum modülümüz, tüzel kişilik seçimi (SRL, SPA, A.Ş., Ltd. Şti.), vergi kaydı, banka entegrasyonu ve muhasebe kurulumunu kapsar. Her adımın ilk günden itibaren uyumlu olmasını sağlamak için lisanslı yerel ortaklarla koordinasyon sağlarız.',
+          q: "Stratejinin yanı sıra şirket kuruluşunu da üstleniyor musunuz?",
+          a: "Evet. Şirket Kurulumu ve Uyum modülü tüzel kişilik seçimini (S.r.l., S.p.A., A.Ş., Ltd. Şti.), vergi kaydını, banka entegrasyonunu ve ilk muhasebe kurulumunu kapsar. Başvuruları lisanslı yerel ortaklar imzalar; biz onları tek bir dosyadan koordine ederiz.",
         },
         {
-          q: 'Startup Koridoru, Genişleme Paketlerinden nasıl farklıdır?',
-          a: 'Genişleme Paketleri (İtalya ve Türkiye), nereye gitmek istediğini bilen işletmeler için odaklı pazar giriş çözümleridir. Startup Koridoru ise pazar doğrulamasından operasyonların ölçeklendirilmesine kadar uçtan uca desteğe ihtiyaç duyan kurucular için tasarlanmış 6 modüllü bir çerçevedir.',
+          q: "Startup Koridoru, genişleme mandatlarından nasıl farklıdır?",
+          a: "İtalya ve Türkiye genişleme mandatları, nereye gideceğini bilen şirketler için pazara giriş programlarıdır. Startup Koridoru ise pazar doğrulamasından operasyonların ölçeklenmesine kadar destek isteyen kurucular için altı modüllü bir programdır.",
         },
         {
-          q: 'Hedef ülkede işe alım ve yetenek konusunda yardımcı oluyor musunuz?',
-          a: 'Evet. İnsan ve Mobilite modülümüz, lisanslı göçmenlik ortaklarıyla vize ve taşınma süreçlerini koordine eder. Ayrıca yerel işe alım yolları ve yüklenici çerçeveleri oluşturarak ekibinizi bürokrasiyle tek başınıza uğraşmadan kurmanız için esnek seçenekler sunarız.',
+          q: "Hedef ülkede işe alım ve yetenek konusunda yardımcı oluyor musunuz?",
+          a: "Evet. İnsan ve Mobilite modülü, vize ve taşınma süreçlerini lisanslı göçmenlik ortaklarıyla koordine eder; iki kıyıda da ekip kurabilmeniz için yerel işe alım yolları ve yüklenici çerçeveleri oluşturur.",
         },
         {
-          q: 'Genellikle ne tür işletmelerle çalışıyorsunuz?',
-          a: 'Odak noktamız Türkiye ve İtalya arasında hareket eden KOBİ\'ler, ölçeklenen şirketler ve profesyonellerdir. Avrupa müşterileri arayan bir teknoloji startup\'ı, İtalyan tedarikçiler arayan bir üretim firması veya iş için taşınan bir profesyonel olun—sizin için yapılandırılmış bir programımız var.',
+          q: "Ne tür işletmelerle çalışıyorsunuz?",
+          a: "Türkiye ile İtalya arasında hareket eden KOBİ'ler, büyüme şirketleri ve profesyoneller: Avrupa'da müşteri arayan bir teknoloji startup'ı, İtalyan ya da Türk tedarikçi arayan bir üretici ya da bir görev için taşınan bir yönetici. Her biri için yapılandırılmış bir program vardır.",
         },
         {
-          q: 'Tipik bir iş birliği ne kadar sürer?',
-          a: 'Katmanınıza bağlıdır. Launch katmanımız 6-8 haftada kuruluş ve uyum sağlar. Grow katmanı 3-6 ay boyunca ticari etkinleştirmeyi derinleştirir. Scale katmanı ise çeyreklik incelemeler ve yönetici raporlaması içeren 6-12 aylık gömülü bir ortaklıktır.',
+          q: "Bir iş birliği ne kadar sürer?",
+          a: "Katmana bağlıdır. Launch, 6 ila 8 haftada kuruluş ve uyumu tamamlar. Grow, 3 ila 6 ay boyunca ticari etkinleştirmeyi ekler. Scale ise çeyreklik değerlendirmeler ve yönetici raporlamasıyla 6 ila 12 aylık gömülü bir ortaklıktır.",
         },
         {
-          q: 'Taahhüt vermeden önce Alvolo ile çalışmayı denemenin bir yolu var mı?',
-          a: 'Kesinlikle. Durumunuzu değerlendirdiğimiz ve ön bir yol haritası çizdiğimiz ücretsiz bir keşif görüşmesi sunuyoruz. Her iki taraf da net ve sağlam temelli bir yol olduğunda anlaşana kadar herhangi bir taahhüt yoktur. Baskıyla değil, şeffaflıkla güven kazanmaya inanıyoruz.',
+          q: "Taahhüt vermeden önce Alvolo ile çalışmayı deneyebilir miyim?",
+          a: "Evet. İlk keşif görüşmesi ücretsizdir: durumunuzu değerlendirir ve ön bir yol haritası çizeriz. Taahhüt, iki taraf da yolun net olduğunda ve kapsam yazıya döküldüğünde başlar.",
         },
       ],
     },
     startupCorridorPage: {
-      badge: 'Yeni Stratejik Sütun',
-      title: 'Türkiye-İtalya Startup Koridoru',
-      subtitle: 'Yapılandırılmış bir genişleme programı. Sınır ötesi genişlemenin sürtünmesini standart, tekrarlanabilir bir oyun planıyla ortadan kaldırıyoruz.',
-      missionTitle: 'Misyonumuz',
-      missionP1: 'Bu iki bölge arasında genişlerken kurucuların şirket kurulumu, vergi, uyum ve pazara giriş stratejisinin karmaşıklıklarında zorlandığı belirli "pazar boşluğunu" çözmeyi hedefliyoruz.',
-      missionP2: 'Hedefimiz',
-      missionHighlight: 'şirket kuruluşundan ilk müşterilere kadar tam kapsamlı ilk TR-IT genişleme operatörü olmak',
-      frameworkTitle: '6 Modüllü Genişleme Çerçevesi',
-      frameworkSubtitle: 'Sadece tavsiye vermiyoruz; sizi her aşamada yönlendirmek için tasarlanmış yapılandırılmış bir hizmet modeli uyguluyoruz.',
+      badge: "Startup programı",
+      title: "Türkiye–İtalya Startup Koridoru",
+      subtitle: "Türkiye ile İtalya arasında hareket eden kurucular için tek bir tekrarlanabilir oyun planıyla yürütülen sıralı bir program.",
+      missionTitle: "Misyonumuz",
+      missionP1: "Türkiye ile İtalya arasında genişleyen kurucular şirket kuruluşu, vergi, uyum ve pazara girişle aynı anda karşılaşır; dördünü birden üstlenen tek bir muhatap yoktur. Koridor bu boşluğu kapatır.",
+      missionP2: "Hedefimiz",
+      missionHighlight: "şirket kuruluşundan ilk müşterilere kadar tam kapsamlı ilk TR–IT genişleme operatörü olmak",
+      frameworkTitle: "Altı modüllü genişleme çerçevesi",
+      frameworkSubtitle: "Her birinin bir sahibi ve bir çıktısı olan altı modül, bir şirketin ihtiyaç duyduğu sırayla yürütülür.",
       modules: [
-        { title: 'Pazar Keşfi ve Giriş', desc: 'İdeal Müşteri Profili (ICP) doğrulaması, rakip analizi ve fiyatlandırma sinyali analizi. Net bir görüş için potansiyel ortakların haritalanması.' },
-        { title: 'Şirket Kurulumu ve Uyum', desc: 'Tüzel kişilik seçimi (SRL/SPA veya A.Ş./Ltd. Şti.), vergi kayıtları, muhasebe kurulumu ve yerel banka entegrasyonu.' },
-        { title: 'İnsan ve Mobilite', desc: 'Vize/taşınma süreçlerinin koordinasyonu ve işe alım yollarının oluşturulması. Esnek iş gücü seçenekleri için yüklenici çerçeveleri.' },
-        { title: 'Ticari Etkinleştirme', desc: 'Kanal ortağı kurulumu, bayi anlaşmaları ve "İlk 10 Müşteri" planı. Hedef bölge için materyallerin yerelleştirilmesi.' },
-        { title: 'Sermaye ve Teşvikler', desc: 'Yatırımcı/hızlandırıcı tanıştırmaları, seyreltici olmayan teşviklerin haritalanması ve hibe başvuru desteği.' },
-        { title: 'Ölçekleme Operasyonları', desc: 'KPI enstrümantasyonu, OKR koçluğu ve sürdürülebilir genişlemeyi sağlamak için üç aylık operasyon değerlendirmeleri.' },
+        { title: "Pazar keşfi ve giriş", desc: "İdeal müşteri profili doğrulaması, rakip haritalaması ve fiyat sinyalleri; ayrıca potansiyel ortakların haritası." },
+        { title: "Şirket kurulumu ve uyum", desc: "Tüzel kişilik seçimi (S.r.l./S.p.A. ya da A.Ş./Ltd. Şti.), vergi kayıtları, muhasebe kurulumu ve yerel banka entegrasyonu." },
+        { title: "İnsan ve mobilite", desc: "Vize ve taşınma koordinasyonu, ilk ekip için yerel işe alım yolları ve yüklenici çerçeveleri." },
+        { title: "Ticari etkinleştirme", desc: "Kanal ortakları, bayi anlaşmaları ve ilk on müşteri planı; materyaller hedef pazara göre yerelleştirilir." },
+        { title: "Sermaye ve teşvikler", desc: "Yatırımcı ve hızlandırıcı tanıştırmaları, seyreltici olmayan teşviklerin haritası ve hibe başvurularında destek." },
+        { title: "Ölçekleme operasyonları", desc: "KPI enstrümantasyonu, OKR koçluğu ve üç aylık operasyon değerlendirmeleri." },
       ],
-      tiersTitle: 'Büyüme Yolculuğunuz',
-      tierLabel: 'Katman',
-      tierCta: 'Başlayın',
+      tiersTitle: "Üç katman",
+      tierLabel: "Katman",
+      tierCta: "Başlayın",
       tiers: [
-        { name: 'Launch', duration: '6-8 Hafta', desc: 'Kuruluş oluşturma, temel uyum ve hafif Pazara Giriş desteğine odaklanan "Hızlı Başlangıç" programı.' },
-        { name: 'Grow', duration: '3-6 Ay', desc: 'Tam uyum, ticari etkinleştirme ve aktif işe alım desteğini kapsayan derinleştirme aşaması.' },
-        { name: 'Scale', duration: '6-12 Ay', desc: 'Gömülü operasyon temposu, yönetici raporlaması ve stratejik ortaklıklar içeren uzun vadeli ortaklık.' },
+        { name: "Launch", duration: "6–8 hafta", desc: "Kuruluş, temel uyum ve hafif bir pazara giriş planı." },
+        { name: "Grow", duration: "3–6 ay", desc: "Tam uyum, ticari etkinleştirme ve aktif işe alım desteği." },
+        { name: "Scale", duration: "6–12 ay", desc: "Uzun vadede gömülü operasyon temposu, yönetici raporlaması ve stratejik ortaklıklar." },
       ],
-      whyTitle: 'Neden Alvolo?',
-      whyBody: 'Biz yalnızca danışman değiliz; işi yürütürüz. İş geliştirme, mevzuat çalışması ve uçtan uca operasyonlar tek bir ekipte toplanır — Türkiye–İtalya koridorunda bir butik danışmanlığın nadiren sunduğu bir şey. Her mandat, sonraki müşterilerimizin ilk günden yararlanabileceği bir noter, banka, tedarikçi ve yatırımcı ağı ekler.',
-      whyCta: 'Keşif Görüşmesi Ayırtın',
+      whyTitle: "Neden Alvolo?",
+      whyBody: "Alvolo genişlemeye danışmanlık yapmakla kalmaz, onu yürütür. İş geliştirme, mevzuat çalışması ve operasyonlar tek bir ekipte toplanır; Türkiye–İtalya koridorunda bunu sunan butik danışmanlık azdır. Her mandat, bir sonraki müşterinin ilk günden yararlanabileceği ağa noterler, bankalar, tedarikçiler ve yatırımcılar ekler.",
+      whyCta: "Keşif görüşmesi ayırtın",
     },
   },
   it: {
     nav: {
-      home: 'Home',
-      services: 'Servizi',
-      about: 'Chi Siamo',
-      pricing: 'Offerta su misura',
-      contact: 'Contatti',
-      blog: 'Blog',
-      announcements: 'Annunci',
-      portal: 'Portale',
-      faq: 'FAQ',
-    },
-    home: {
-      heroTitle: 'ALVOLO',
-      heroSubtitle: 'Precisione svizzera ingegnerizzata per flussi di dati sovrani.',
-      heroBadge1: 'Alvolo Consulting',
-      heroBadge2: 'Esclusività Dati Lusso',
-      heroCta: 'L\'accesso rimane curato. Segnale solo su invito.',
-      philosophyTitle: 'LA FILOSOFIA ALVOLO',
-      philosophyPoints: [
-        'Intelligence prima della precisione.',
-        'Sistemi che anticipano.',
-        'Scalare senza esposizione.',
-      ],
-      philosophyCta: 'Esplora Metodologia',
-      deckVault: 'Il Caveau',
-      deckTitle: 'Canali sicuri, vetrati in ottica platino.',
-      deckSubtitle: 'Moduli di intelligence privata ingegnerizzati per flussi di dati sovrani.',
-      deckCards: [
-        { title: 'INTEL PREDITTIVA', footer: 'STATO: OTTIMIZZATO // LATENZA: 4ms' },
-        { title: 'SCALA ALGORITMICA', footer: 'STATO: ATTIVO // NODI: 1200' },
-        { title: 'NESSO GLOBALE', footer: 'STATO: COLLEGATO // ROTTE: 88' },
-        { title: 'ELICA DEL SEGNALE', footer: 'STATO: CALIBRATO // FLUSSO: 9.2' },
-        { title: 'IMPULSO CAVEAU', footer: 'STATO: SINCRONIZZATO // CAVEAU: BLOCCATO' },
-      ],
-      contactTitle: 'SEGNALE RICEVUTO.',
-      contactSubtitle: 'L\'accesso ai canali privati Alvolo è solo tramite verifica. Avvia il protocollo per iniziare la calibrazione.',
-      contactCta: 'Inizializza Contatto',
-    },
-    hero: {
-      title1: 'Scala Transfrontaliera',
-      title2: 'Ingegneria.',
-      subtitle: 'Non solo consigliamo. Architettiamo la tua espansione. Un ponte finanziario basato sui dati per PMI e professionisti che si muovono tra Italia e Turchia.',
-      cta1: 'Analizza il Tuo Potenziale',
-      cta2: 'Visualizza Metodologia',
-      stat1Value: '€50M+',
-      stat1Label: 'Volume Commerciale Analizzato',
-      stat2Value: '100%',
-      stat2Label: 'Team Alumni Bocconi',
-    },
-    ticker: {
-      items: ['CONSULENZA FINANZIARIA', 'ESPANSIONE ITALIA', 'SOLUZIONI DI INTEGRAZIONE', 'OTTIMIZZAZIONE FISCALE', 'PERMESSO DI SOGGIORNO', 'COSTITUZIONE AZIENDALE'],
+      contact: "Contatti",
+      portal: "Portale",
+      faq: "FAQ",
     },
     services: {
-      label: '01 // SERVIZI',
-      title: 'Le Nostre Aree di Servizio',
-      subtitle: 'Costituzione, fiscalità, permessi e sourcing in Turchia: un unico team senior per ogni fase di un mandato transfrontaliero.',
+      label: "01 // SERVIZI",
+      title: "Le nostre aree di servizio",
+      subtitle: "Costituzione, fiscalità, permessi e sourcing in Turchia, seguiti da un unico team senior dal primo audit alla prima fattura.",
       startupCorridor: {
-        label: 'Nuovo Pilastro Strategico',
-        title: 'Il Corridoio Startup Turchia-Italia',
-        description: "Un percorso strutturato tra gli ecosistemi startup turco e italiano: costituzione, fiscalità, compliance e primi clienti, in una sequenza standardizzata e ripetibile.",
-        button: 'Esplora il Corridoio',
+        label: "Programma startup",
+        title: "Il Corridoio Startup Türkiye–Italia",
+        description: "Un programma sequenziato per founder che si muovono tra gli ecosistemi startup turco e italiano: costituzione, fiscalità, compliance e primi clienti, in quest'ordine.",
+        button: "Esplora il corridoio",
       },
-      integrationTitle: 'Servizi di Integrazione',
-      financialTitle: 'Consulenza Finanziaria',
-      viewAll: 'Vedi Tutti i Servizi',
+      integrationTitle: "Servizi di integrazione",
+      financialTitle: "Consulenza finanziaria",
+      viewAll: "Tutti i servizi",
       integrationServices: [
-        { title: 'Ricongiungimento Familiare e Familiari a Carico', description: 'Ricongiungimento familiare, permessi per i familiari e inserimento scolastico per le famiglie dei dirigenti in trasferimento.' },
-        { title: 'Permesso di Soggiorno', description: 'Ottenimento dei permessi necessari per risiedere legalmente in Italia.' },
-        { title: 'Alloggio e Relocation per Dirigenti', description: 'Ricerca dell\'abitazione, negoziazione del contratto di locazione e iscrizione anagrafica per dirigenti e famiglie che si trasferiscono in Italia.' },
-        { title: 'Accoglienza e Orientamento', description: 'Accoglienza al vostro arrivo in Italia e supporto per l\'adattamento alla vostra nuova vita.' },
-        { title: 'Residenza Fiscale e Regime Impatriati', description: 'Pianificazione della residenza fiscale e accesso al regime impatriati per i dirigenti che si trasferiscono dalla Turchia.' },
-        { title: 'Visti per Lavoro e Investitori', description: 'Percorsi per visto lavoro autonomo, trasferimento intra-societario e visto investitori: dal nulla osta al visto d\'ingresso e alle prime iscrizioni.' },
-        { title: 'Supporto Procedure Burocratiche', description: 'Assistenza nelle procedure ufficiali come Codice Fiscale, assicurazione sanitaria.' },
+        { title: "Ricongiungimento familiare e familiari a carico", description: "Ricongiungimento familiare, permessi per i familiari e inserimento scolastico per le famiglie dei dirigenti in trasferimento." },
+        { title: "Permesso di soggiorno", description: "La domanda di permesso, gli appuntamenti in Questura e i rinnovi per la residenza legale in Italia." },
+        { title: "Alloggio e relocation per dirigenti", description: "Ricerca dell'abitazione, negoziazione del contratto di locazione e iscrizione anagrafica per dirigenti e famiglie che si trasferiscono in Italia." },
+        { title: "Arrivo e orientamento", description: "Primi appuntamenti, iscrizioni e organizzazione pratica della vita quotidiana nelle prime settimane in Italia." },
+        { title: "Residenza fiscale e regime impatriati", description: "Pianificazione della residenza fiscale e regime impatriati per i dirigenti che si trasferiscono dalla Turchia." },
+        { title: "Visti per lavoro e investitori", description: "Percorsi per visto lavoro autonomo, trasferimento intra-societario e visto investitori: dal nulla osta al visto d'ingresso e alle prime iscrizioni." },
+        { title: "Procedure burocratiche", description: "Codice Fiscale, iscrizione al SSN e gli altri adempimenti che accompagnano l'arrivo." },
       ],
       financialServices: [
-        { title: 'Costituzione Aziendale e Processi Legali', description: 'Costituzione aziendale in Italia, processi legali e scelta della tipologia societaria più adatta.' },
-        { title: 'Pianificazione Finanziaria e Gestione del Budget', description: 'Pianificazione finanziaria completa e gestione del budget per la tua azienda.' },
-        { title: 'Pianificazione Fiscale e Conformità', description: 'Servizi di pianificazione fiscale e conformità secondo la normativa italiana.' },
-        { title: 'Apertura Conto Bancario e Sistemi Finanziari', description: 'Apertura conto bancario e integrazione dei sistemi finanziari per la tua azienda.' },
-        { title: 'Consulenza sugli Investimenti e Gestione dei Fondi', description: 'Opportunità di investimento, gestione dei fondi e consulenza finanziaria internazionale.' },
-        { title: 'Gestione del Rischio e Pianificazione Assicurativa', description: 'Gestione del rischio e pianificazione assicurativa per la tua azienda.' },
-        { title: 'Consulenza Finanziaria Continua e Reportistica', description: 'Consulenza finanziaria continua e supporto alla reportistica per il primo anno e oltre.' },
+        { title: "Costituzione e impostazione legale", description: "Scelta tra S.r.l. e S.p.A., atto notarile, iscrizione al Registro delle Imprese e i passaggi statutari successivi." },
+        { title: "Pianificazione finanziaria e budget", description: "Budget, flussi di cassa e piani di finanziamento per la nuova società, costruiti sul modello triennale della fase di audit." },
+        { title: "Pianificazione fiscale e conformità", description: "Pianificazione IRES, IRAP e IVA, gli adempimenti e il calendario di compliance secondo le regole italiane." },
+        { title: "Conti bancari e impostazione dei pagamenti", description: "Conto di deposito capitale e conti operativi, pacchetto KYC e rail di pagamento per la società." },
+        { title: "Consulenza sugli investimenti e gestione dei fondi", description: "Screening degli investimenti, strutturazione dei fondi e consulenza finanziaria cross-border." },
+        { title: "Gestione del rischio e assicurazioni", description: "Coperture assicurative e revisione dei rischi per l'operatività italiana." },
+        { title: "Consulenza continuativa e reportistica", description: "Reportistica mensile e supporto consulenziale nel primo anno e oltre." },
       ],
     },
-    expansion: {
-      left: {
-        direction: 'DIREZIONE: OVEST',
-        title: 'Espandi in Italia',
-        body: 'P.IVA, rappresentanza fiscale e rete milanese per le PMI turche.',
-        cta: 'Avvia Ingresso in Italia',
-      },
-      right: {
-        direction: 'DIREZIONE: EST',
-        title: 'Scala in Turchia',
-        body: 'Partnership produttive e ottimizzazione costi per aziende italiane.',
-        cta: 'Avvia Espansione in Turchia',
-      },
-    },
     methodology: {
-      label: 'IL NOSTRO APPROCCIO',
-      title: 'Metodologia',
-      subtitle: 'Come si svolge un mandato transfrontaliero: un unico metodo sequenziato, dal primo audit regolatorio alla società operativa, con controparti, tempistiche e deliverable concordati prima del primo deposito.',
-      explore: 'Esplora Metodologia Completa',
+      label: "IL NOSTRO APPROCCIO",
+      title: "Metodologia",
+      subtitle: "Come si svolge un mandato transfrontaliero: un unico metodo sequenziato, dal primo audit regolatorio alla società operativa, con controparti, tempistiche e deliverable concordati prima del primo deposito.",
       steps: [
-        { num: '01', title: 'Audit', description: 'Mappiamo assetto proprietario, attività e persone rispetto alle regole italiane e turche — autorizzazioni, immigrazione, antiriciclaggio, norme di settore — prima di disegnare qualsiasi struttura.' },
-        { num: '02', title: 'Architettura Fiscale', description: 'Veicolo, livelli di holding e posizione convenzionale sono modellati su aliquota effettiva, rimpatrio di cassa ed exit, poi approvati con i founder.' },
-        { num: '03', title: 'Costituzione', description: 'Atto notarile, iscrizioni, IVA e PEC procedono in parallelo con Codice Fiscale, permessi e relocation dei dirigenti: società e persone arrivano nella stessa data.' },
-        { num: '04', title: 'Onboarding', description: 'Fornitori, partner manifatturieri, banche, payroll e consulenti locali vengono contrattualizzati e consegnati con una cadenza operativa chiara.' },
+        { num: "01", title: "Audit", description: "Mappiamo assetto proprietario, attività e persone rispetto alle regole italiane e turche (autorizzazioni, immigrazione, antiriciclaggio, norme di settore) prima di disegnare qualsiasi struttura." },
+        { num: "02", title: "Architettura fiscale", description: "Modelliamo veicolo, livelli di holding e posizione convenzionale su aliquota effettiva, rimpatrio di cassa ed exit, poi approviamo la struttura con i founder." },
+        { num: "03", title: "Costituzione", description: "Portiamo avanti atto notarile, iscrizioni, IVA e PEC in parallelo con Codice Fiscale, permessi e relocation dei dirigenti, così società e persone arrivano nella stessa data." },
+        { num: "04", title: "Onboarding", description: "Contrattualizziamo fornitori, partner manifatturieri, banche, payroll e consulenti locali, poi li consegniamo con una cadenza operativa mensile." },
       ],
     },
     about: {
-      label: 'IL TEAM',
-      title: 'Chi Siamo',
-      paragraph1: 'Alvolo Consulting è una società di consulenza transfrontaliera tra Italia e Turchia. Il nostro team, formato in Bocconi, lavora da Milano, Roma e Istanbul e accompagna aziende e dirigenti dal primo audit regolatorio alla società operativa.',
-      paragraph2: 'I nostri consulenti vi accompagnano dal notaio, all\'Agenzia delle Entrate, in Questura e in banca, così che ogni passaggio della vostra apertura in Italia o in Turchia sia pianificato, sequenziato e completato nei tempi.',
-      paragraph3: 'Un unico consulente senior resta responsabile dal primo audit alla prima fattura — e rimane il vostro riferimento per adempimenti, buste paga e la prossima espansione.',
-      valuesTitle: 'I Nostri Valori',
-      values: ['Trasparenza e Onestà', 'Competenza e Professionalità', 'Approccio Personalizzato', 'Affidabilità', 'Supporto Continuo'],
-      successRateStat: 'Tasso di Successo',
-      happyClientsStat: 'Clienti Soddisfatti',
-      teamTitle: 'Incontra il Nostro Team',
-      viewMore: 'Vedi Profilo Completo',
+      label: "IL TEAM",
+      title: "Chi siamo",
+      paragraph1: "Alvolo Consulting è una società di consulenza transfrontaliera tra Italia e Turchia. Il nostro team, formato in Bocconi, lavora da Milano, Roma e Istanbul e accompagna aziende e dirigenti dal primo audit regolatorio alla società operativa.",
+      paragraph2: "I nostri consulenti siedono con voi dal notaio, all'Agenzia delle Entrate, in Questura e in banca, e sequenziano ogni passaggio dell'apertura in Italia o in Turchia perché si completi nella data prevista.",
+      paragraph3: "Un unico consulente senior resta responsabile dal primo audit alla prima fattura, e rimane il vostro riferimento per adempimenti, buste paga e la prossima espansione.",
+      philosophyTitle: "Come lavoriamo",
+      philosophyPoints: ["Modelliamo i numeri prima di depositare le carte.", "Un solo advisor risponde dell'intero mandato.", "Il corridoio resta aperto dopo la prima fattura."],
+      philosophyCta: "Vedi la metodologia",
+      valuesTitle: "Cosa potete pretendere da noi",
+      values: [
+        "Perimetro e onorari concordati per iscritto prima di iniziare",
+        "Notai, commercialisti e consulenti immigrazione abilitati su ogni fascicolo",
+        "Un solo advisor senior dal primo audit alla prima fattura",
+        "Una risposta entro un giorno lavorativo",
+        "Adempimenti, payroll e revisioni dei fornitori dopo l'avvio della società",
+      ],
     },
     contact: {
-      title: 'Contatti',
-      subtitle: 'Contattaci per soluzioni di integrazione e consulenza finanziaria per vivere e fare business in Italia.',
-      formNameLabel: 'Nome Cognome',
-      formEmailLabel: 'Email',
-      formInterestLabel: 'Interesse',
-      formMessageLabel: 'Il Tuo Messaggio',
-      formSubmitButton: 'Richiedi Analisi',
-      formSendingButton: 'Elaborazione...',
-      successTitle: 'Profilo Generato',
-      successMessage: 'Dati modellati. Scegli il tuo prossimo passo:',
-      sendViaEmail: 'Invia tramite App Email',
-      proposeTimeslots: 'Proponi 3 Fasce Orarie Diverse',
-      interestOptions: {
-        italy: 'Espansione in Italia',
-        turkey: 'Espansione in Turchia',
-        tax: 'Ottimizzazione Fiscale',
-      },
-      privacyCheckbox1: 'Autorizzo il trattamento dei miei dati personali in base al Regolamento UE n. 679/2016',
-      privacyCheckbox2: 'Autorizzo al trattamento dei dati per finalità di marketing',
-      phoneTitle: 'Telefono',
-      phoneDetails: '+39 348 170 5207',
-      whatsappDetails: 'WhatsApp: +39 348 170 5207',
-      emailTitle: 'Email',
-      emailDetails: 'info@alvoloconsulting.com',
-      addressTitle: 'Indirizzo',
-      addressDetails: 'Via Valsugana, 20139 Milano (MI), Italia',
-      hoursTitle: 'Orari di Lavoro',
-      hoursDetails: 'Lunedì - Venerdì: 09:00 - 18:00',
-      getInTouch: 'Mettiti in Contatto',
-      contactInfo: 'Informazioni di Contatto',
-      followUs: 'Seguici',
-    },
-    footer: {
-      companyName: 'ALVOLO CONSULTING',
-      companyTitle: 'Consulenza Finanziaria & Soluzioni di Integrazione Italia',
-      companySubtitle: 'Camera dei Commercialisti Certificati',
-      companyAddress: 'Via Valsugana 6, 20139 Milan, Italy',
-      corporateTitle: 'Società',
-      corporateLinks: [
-        { label: 'Pagina Iniziale', href: '/' },
-        { label: 'Chi Siamo', href: '/about' },
-        { label: 'Servizi', href: '/services' },
-        { label: 'Contatto', href: '/contact' },
-      ],
-      servicesTitle: 'Servizi',
-      servicesLinks: [
-        { label: 'Offerta su misura', href: '/brief' },
-      ],
-      hoursTitle: 'Orari di Lavoro',
-      hoursWeekday: 'Lunedì – Venerdì',
-      hoursTime: '09:00 – 18:00',
-      hoursClosed: 'Chiuso il sabato e la domenica.',
-      disclaimer: 'Tutti i contenuti di questo sito web non possono essere copiati, riprodotti, distribuiti o utilizzati su altre piattaforme senza autorizzazione scritta. Il contenuto del sito è solo a scopo informativo e non costituisce consulenza finanziaria professionale.',
-      reserved: '© 2024 – Tutti i diritti riservati.',
-      cta: 'INIZIA ORA',
-      button: 'Avvia Protocollo',
-      linkedin: 'LinkedIn',
-      instagram: 'Instagram',
-      email: 'Email',
-    },
-    pricing: {
-      label: 'PREZZI',
-      title: 'Pacchetti di Integrazione',
-      subtitle: 'Scegli il pacchetto più adatto alle tue esigenze per trasferirti in Italia.',
-      packages: [
-        {
-          name: 'Essenziale',
-          price: '€299',
-          description: 'Supporto base per il tuo viaggio in Italia',
-          features: ['Assistenza Codice Fiscale', 'Preparazione documenti base', 'Supporto email', 'Accesso FAQ'],
-          cta: 'Inizia',
-        },
-        {
-          name: 'Professionale',
-          price: '€599',
-          description: 'Supporto completo per professionisti',
-          features: ['Tutto in Essenziale', 'Supporto permesso di soggiorno', 'Ricerca alloggio', 'Supporto prioritario', 'Videochiamate'],
-          cta: 'Inizia',
-          popular: true,
-        },
-        {
-          name: 'Enterprise',
-          price: 'Personalizzato',
-          description: 'Servizio completo per aziende',
-          features: ['Tutto in Professionale', 'Costituzione aziendale', 'Pianificazione fiscale', 'Account manager dedicato', 'Supporto in loco'],
-          cta: 'Contattaci',
-        },
-      ],
-    },
-    trustedCompanies: {
-      title: 'Di Fiducia',
-      subtitle: 'I nostri partner e affiliazioni',
+      title: "Contatti",
+      subtitle: "Contattate i partner a Milano, Roma o Istanbul per costituzione, relocation, fiscalità o sourcing.",
+      contactInfo: "Informazioni di contatto",
+      getInTouch: "Scriveteci",
+      phoneTitle: "Telefono",
+      phoneDetails: "+39 348 170 5207",
+      emailTitle: "Email",
+      emailDetails: "info@alvoloconsulting.com",
+      addressTitle: "Indirizzo",
+      addressDetails: "Via Valsugana 6, 20139 Milano (MI), Italia",
+      hoursTitle: "Orari",
+      hoursDetails: "Lunedì–venerdì, 09:00–18:00 CET",
     },
     faq: {
-      title: 'Domande Frequenti',
-      subtitle: 'Tutto ciò che devi sapere sulla collaborazione con Alvolo Consulting.',
+      title: "Domande frequenti",
+      subtitle: "Tempi, perimetro e cosa comporta un mandato con Alvolo Consulting.",
       questions: [
         {
-          q: 'Cosa rende Alvolo diverso da una consulenza tradizionale?',
-          a: 'Non siamo consulenti che consegnano un report e si allontanano. Alvolo lavora come partner di espansione integrato: sviluppo commerciale, gestione regolatoria e operatività quotidiana seguono un unico percorso sequenziato, con un consulente senior responsabile dal primo audit alla prima fattura. Consideratela il vostro team internazionale interno — senza doverlo costruire da zero.',
+          q: "Cosa rende Alvolo diversa da una consulenza tradizionale?",
+          a: "Alvolo gestisce il mandato invece di scriverci sopra un report. Sviluppo commerciale, pratiche regolatorie e operatività quotidiana seguono un unico percorso sequenziato, e un consulente senior resta responsabile dal primo audit alla prima fattura. Ottenete un team internazionale senza assumerlo.",
         },
         {
-          q: 'Ho una startup in Turchia. Come faccio a sapere se sono pronto per espandermi in Italia?',
-          a: 'La prontezza non riguarda solo il fatturato—riguarda il segnale prodotto-mercato. Attraverso il nostro Startup Corridor, eseguiamo una validazione ICP (Profilo Cliente Ideale) e un\'analisi competitiva prima di impegnare un singolo euro. Se i dati confermano il timing giusto, attiviamo. Altrimenti, vi risparmiamo un errore costoso.',
+          q: "Ho una startup in Turchia. Come faccio a sapere se sono pronto per espandermi in Italia?",
+          a: "La prontezza si vede nel segnale prodotto-mercato più che nel fatturato. Con lo Startup Corridor validiamo il vostro profilo di cliente ideale e mappiamo la concorrenza italiana prima che impegniate un euro. Se i numeri sostengono il timing, avviamo la costituzione. Se non lo fanno, ve lo diciamo prima che spendiate per una società.",
         },
         {
-          q: 'Potete aiutare con la costituzione aziendale o è solo strategia?',
-          a: 'Andiamo ben oltre la strategia. Il nostro modulo di Costituzione e Conformità gestisce la selezione dell\'entità giuridica (SRL, SPA, A.Ş., Ltd. Şti.), la registrazione fiscale, l\'apertura bancaria e la configurazione contabile iniziale. Ci coordiniamo con partner locali autorizzati per garantire la conformità dal primo giorno.',
+          q: "Vi occupate anche della costituzione, oltre che della strategia?",
+          a: "Sì. Il modulo Costituzione e Conformità copre la scelta del veicolo (S.r.l., S.p.A., A.Ş., Ltd. Şti.), la registrazione fiscale, l'apertura bancaria e la prima impostazione contabile. Le pratiche le firmano partner locali abilitati, e noi li coordiniamo da un unico fascicolo.",
         },
         {
-          q: 'In cosa si differenzia lo Startup Corridor dai Pacchetti di Espansione?',
-          a: 'I Pacchetti di Espansione (Italia e Turchia) sono soluzioni mirate per l\'ingresso nel mercato per le aziende che sanno già dove vogliono andare. Lo Startup Corridor è un framework più ampio a 6 moduli, progettato per i fondatori che necessitano di supporto end-to-end—dalla validazione del mercato fino alla scalabilità.',
+          q: "In cosa si differenzia lo Startup Corridor dai mandati di espansione?",
+          a: "I mandati di espansione Italia e Türkiye sono programmi di ingresso per aziende che sanno già dove andare. Lo Startup Corridor è un programma a sei moduli per founder che hanno bisogno di supporto dalla validazione del mercato fino alla scalabilità delle operazioni.",
         },
         {
-          q: 'Aiutate con le assunzioni e il talento nel paese di destinazione?',
-          a: 'Sì. Il nostro modulo Persone e Mobilità coordina i processi di visto e trasferimento con partner di immigrazione autorizzati. Stabiliamo anche percorsi di assunzione locali e framework per i contractor, offrendovi opzioni flessibili senza navigare la burocrazia da soli.',
+          q: "Aiutate con assunzioni e talenti nel paese di destinazione?",
+          a: "Sì. Il modulo Persone e Mobilità coordina visti e trasferimenti con partner di immigrazione abilitati, e imposta percorsi di assunzione locali e framework per i contractor, così potete costruire il team su entrambe le sponde.",
         },
         {
-          q: 'Con che tipo di aziende lavorate di solito?',
-          a: 'Il nostro punto forte sono le PMI, le scaleup e i professionisti che si muovono tra Turchia e Italia. Che siate una startup tech in cerca di clienti europei, un\'azienda manifatturiera alla ricerca di fornitori italiani o un professionista in trasferimento—abbiamo un programma strutturato per voi.',
+          q: "Con che tipo di aziende lavorate?",
+          a: "PMI, scale-up e professionisti che si muovono tra Turchia e Italia: una startup tech in cerca di clienti europei, un produttore in cerca di fornitori italiani o turchi, un dirigente che si trasferisce per un incarico. Per ciascuno esiste un programma strutturato.",
         },
         {
-          q: 'Quanto dura un tipico incarico?',
-          a: 'Dipende dal vostro livello. Il nostro tier Launch fornisce la costituzione e la conformità in 6-8 settimane. Il tier Grow approfondisce l\'abilitazione commerciale in 3-6 mesi. E il nostro tier Scale è una partnership incorporata di 6-12 mesi con revisioni trimestrali e reporting esecutivo.',
+          q: "Quanto dura un incarico?",
+          a: "Dipende dal livello. Launch consegna costituzione e conformità in 6-8 settimane. Grow aggiunge l'abilitazione commerciale in 3-6 mesi. Scale è una partnership integrata di 6-12 mesi con revisioni trimestrali e reporting esecutivo.",
         },
         {
-          q: 'C\'è un modo per provare a lavorare con Alvolo prima di impegnarsi?',
-          a: 'Assolutamente. Offriamo una discovery call gratuita in cui valutiamo la vostra situazione e delineiamo una roadmap preliminare. Non ci sono impegni finché entrambe le parti non concordano che esiste un percorso chiaro e ben fondato. Crediamo nel guadagnare fiducia attraverso la trasparenza, non la pressione.',
+          q: "Posso provare a lavorare con Alvolo prima di impegnarmi?",
+          a: "Sì. La prima discovery call è gratuita: valutiamo la vostra situazione e delineiamo una roadmap preliminare. L'impegno parte solo quando entrambe le parti concordano che il percorso è chiaro e il perimetro è messo per iscritto.",
         },
       ],
     },
     startupCorridorPage: {
-      badge: 'Nuovo Pilastro Strategico',
-      title: 'Il Corridoio Startup Turchia-Italia',
-      subtitle: 'Un programma di espansione strutturato. Eliminiamo le frizioni dell\'espansione transfrontaliera con un playbook standardizzato e ripetibile.',
-      missionTitle: 'La Nostra Missione',
-      missionP1: 'Miriamo a risolvere lo specifico "gap di mercato" in cui i fondatori faticano a navigare le complessità di costituzione, fiscalità, conformità e strategia di go-to-market nell\'espansione tra queste due regioni.',
-      missionP2: 'La nostra ambizione è essere il',
-      missionHighlight: 'primo operatore di espansione TR-IT full-service, dalla costituzione ai primi clienti',
-      frameworkTitle: 'Il Framework di Espansione a 6 Moduli',
-      frameworkSubtitle: 'Non diamo solo consigli; implementiamo un modello di servizio configurato per guidarvi in ogni fase.',
+      badge: "Programma startup",
+      title: "Il Corridoio Startup Türkiye–Italia",
+      subtitle: "Un programma sequenziato per founder che si muovono tra Turchia e Italia, condotto su un unico playbook ripetibile.",
+      missionTitle: "La nostra missione",
+      missionP1: "I founder che si espandono tra Turchia e Italia affrontano costituzione, fiscalità, compliance e go-to-market nello stesso momento, senza un'unica controparte che risponda di tutti e quattro. Il corridoio chiude questo vuoto.",
+      missionP2: "La nostra ambizione è essere il",
+      missionHighlight: "primo operatore di espansione TR–IT full-service, dalla costituzione ai primi clienti",
+      frameworkTitle: "Il framework di espansione a sei moduli",
+      frameworkSubtitle: "Sei moduli, ciascuno con un responsabile e un deliverable, condotti nell'ordine in cui un'azienda ne ha bisogno.",
       modules: [
-        { title: 'Scoperta del Mercato e Ingresso', desc: 'Validazione del Profilo Cliente Ideale (ICP), mappatura dei concorrenti e analisi dei segnali di prezzo. Mappatura dei potenziali partner per un quadro chiaro.' },
-        { title: 'Costituzione Aziendale e Conformità', desc: 'Gestione della selezione dell\'entità giuridica (SRL/SPA o A.Ş./Ltd. Şti.), registrazioni fiscali, configurazione contabile e onboarding bancario locale.' },
-        { title: 'Persone e Mobilità', desc: 'Coordinamento dei processi di visto/trasferimento e creazione di percorsi di assunzione. Framework per contractor per opzioni di forza lavoro flessibili.' },
-        { title: 'Abilitazione Commerciale', desc: 'Assistenza nella configurazione di partner di canale, accordi di rivendita e piano "Primi 10 Clienti". Localizzazione del materiale per la regione target.' },
-        { title: 'Capitale e Incentivi', desc: 'Presentazioni a investitori/acceleratori, mappatura degli incentivi non dilutivi e supporto per le domande di sovvenzione.' },
-        { title: 'Operare per Scalare', desc: 'Strumentazione KPI, coaching OKR e revisioni operative trimestrali per garantire un\'espansione sostenibile.' },
+        { title: "Scoperta del mercato e ingresso", desc: "Validazione del profilo di cliente ideale, mappatura dei concorrenti e segnali di prezzo, più una mappa dei potenziali partner." },
+        { title: "Costituzione e conformità", desc: "Scelta del veicolo (S.r.l./S.p.A. o A.Ş./Ltd. Şti.), registrazioni fiscali, impostazione contabile e onboarding bancario locale." },
+        { title: "Persone e mobilità", desc: "Coordinamento di visti e trasferimenti, percorsi di assunzione locali e framework per contractor per il primo team." },
+        { title: "Abilitazione commerciale", desc: "Partner di canale, accordi di rivendita e un piano per i primi dieci clienti, con materiali localizzati per il mercato target." },
+        { title: "Capitale e incentivi", desc: "Presentazioni a investitori e acceleratori, mappa degli incentivi non diluitivi e supporto nelle domande di contributo." },
+        { title: "Operare per scalare", desc: "Strumentazione KPI, coaching OKR e revisioni operative trimestrali." },
       ],
-      tiersTitle: 'Il Vostro Percorso di Crescita',
-      tierLabel: 'Livello',
-      tierCta: 'Inizia',
+      tiersTitle: "Tre livelli",
+      tierLabel: "Livello",
+      tierCta: "Inizia",
       tiers: [
-        { name: 'Launch', duration: '6-8 Settimane', desc: 'Un programma "Fast-Start" focalizzato sulla creazione dell\'entità, conformità essenziale e supporto leggero Go-To-Market.' },
-        { name: 'Grow', duration: '3-6 Mesi', desc: 'Una fase di approfondimento che gestisce conformità completa, abilitazione commerciale e supporto attivo alle assunzioni.' },
-        { name: 'Scale', duration: '6-12 Mesi', desc: 'Partnership a lungo termine con cadenza operativa integrata, reporting esecutivo e partnership strategiche.' },
+        { name: "Launch", duration: "6–8 settimane", desc: "Costituzione, conformità di base e un piano go-to-market leggero." },
+        { name: "Grow", duration: "3–6 mesi", desc: "Conformità completa, abilitazione commerciale e supporto attivo alle assunzioni." },
+        { name: "Scale", duration: "6–12 mesi", desc: "Cadenza operativa integrata, reporting esecutivo e partnership strategiche nel lungo periodo." },
       ],
-      whyTitle: 'Perché Alvolo?',
-      whyBody: 'Non siamo solo consulenti; operiamo. Sviluppo commerciale, lavoro regolatorio e operatività end-to-end restano in un unico team — ciò che una boutique nel corridoio Turchia–Italia offre di rado. Ogni mandato aggiunge notai, banche, fornitori e investitori a una rete che i prossimi clienti possono usare dal primo giorno.',
-      whyCta: 'Prenota una Discovery Call',
+      whyTitle: "Perché Alvolo?",
+      whyBody: "Alvolo gestisce l'espansione oltre a consigliarla. Sviluppo commerciale, lavoro regolatorio e operatività restano in un unico team, cosa che poche boutique nel corridoio Turchia–Italia offrono. Ogni mandato aggiunge notai, banche, fornitori e investitori a una rete che il cliente successivo può usare dal primo giorno.",
+      whyCta: "Prenota una discovery call",
     },
   },
 };
@@ -1062,4 +542,3 @@ export const translations: Record<Locale, TranslationType> = {
 export function getTranslation(locale: Locale): TranslationType {
   return translations[locale] || translations.en;
 }
-

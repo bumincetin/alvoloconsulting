@@ -39,7 +39,7 @@ export const calculatorContent: Record<Locale, CalculatorContent> = {
   en: {
     eyebrow: "Expansion & Tax Planner",
     heading: "Model the entry before you commit capital.",
-    sub: "Configure headcount, sector and jurisdiction. The planner returns the recommended vehicle, an incorporation timeline, statutory capital and the compliance stack — then exports it as a dossier for your consultation.",
+    sub: "Configure headcount, sector and jurisdiction. The planner returns the recommended vehicle, an incorporation timeline, statutory capital and the compliance checklist, then exports it as a dossier for your consultation.",
     disclaimer: "Indicative modelling based on 2024 statutory rules and typical processing times. Not legal or tax advice.",
     inputs: {
       size: "Company size",
@@ -62,10 +62,10 @@ export const calculatorContent: Record<Locale, CalculatorContent> = {
       complexityLevels: ["Light", "Standard", "Structured", "Complex", "Institutional"],
     },
     entities: {
-      srl: { name: "S.r.l.", note: "Società a responsabilità limitata — the standard Italian limited company; capital from €1, €10,000 recommended for banking credibility." },
-      spa: { name: "S.p.A.", note: "Società per azioni — joint-stock company for 50+ headcount, board governance and future capital raising." },
-      ltd: { name: "Ltd. Şti.", note: "Limited şirket — the standard Turkish limited company; minimum capital ₺50,000 since 2024." },
-      as: { name: "A.Ş.", note: "Anonim şirket — Turkish joint-stock company; minimum capital ₺250,000, required for holdings and preferred for 50+ staff." },
+      srl: { name: "S.r.l.", note: "Società a responsabilità limitata, the standard Italian limited company; capital from €1, with €10,000 recommended for banking credibility." },
+      spa: { name: "S.p.A.", note: "Società per azioni, the joint-stock company for 50+ headcount, board governance and future capital raising." },
+      ltd: { name: "Ltd. Şti.", note: "Limited şirket, the standard Turkish limited company; minimum capital ₺50,000 since 2024." },
+      as: { name: "A.Ş.", note: "Anonim şirket, the Turkish joint-stock company; minimum capital ₺250,000, required for holdings and preferred for 50+ staff." },
     },
     checklist: {
       it_deed: "Notarial deed, articles & Registro delle Imprese filing",
@@ -145,10 +145,10 @@ export const calculatorContent: Record<Locale, CalculatorContent> = {
       complexityLevels: ["Hafif", "Standart", "Yapılandırılmış", "Karmaşık", "Kurumsal"],
     },
     entities: {
-      srl: { name: "S.r.l.", note: "Società a responsabilità limitata — standart İtalyan limited şirketi; sermaye 1 €'dan başlar, bankacılık güvenilirliği için 10.000 € önerilir." },
-      spa: { name: "S.p.A.", note: "Società per azioni — 50+ çalışan, yönetim kurulu ve gelecekteki sermaye artırımı için anonim şirket." },
-      ltd: { name: "Ltd. Şti.", note: "Limited şirket — standart Türk limited şirketi; 2024'ten itibaren asgari sermaye 50.000 ₺." },
-      as: { name: "A.Ş.", note: "Anonim şirket — asgari sermaye 250.000 ₺; holdingler için zorunlu, 50+ personel için tercih edilir." },
+      srl: { name: "S.r.l.", note: "Società a responsabilità limitata, standart İtalyan limited şirketi; sermaye 1 €'dan başlar, bankacılık güvenilirliği için 10.000 € önerilir." },
+      spa: { name: "S.p.A.", note: "Società per azioni, 50+ çalışan, yönetim kurulu ve gelecekteki sermaye artırımı için anonim şirket." },
+      ltd: { name: "Ltd. Şti.", note: "Limited şirket, standart Türk limited şirketi; 2024'ten itibaren asgari sermaye 50.000 ₺." },
+      as: { name: "A.Ş.", note: "Anonim şirket; asgari sermaye 250.000 ₺, holdingler için zorunlu, 50+ personel için tercih edilir." },
     },
     checklist: {
       it_deed: "Noter senedi, ana sözleşme ve Registro delle Imprese tescili",
@@ -205,7 +205,7 @@ export const calculatorContent: Record<Locale, CalculatorContent> = {
   it: {
     eyebrow: "Pianificatore di Espansione e Fiscale",
     heading: "Modella l'ingresso prima di impegnare capitale.",
-    sub: "Configura organico, settore e giurisdizione. Il pianificatore restituisce il veicolo consigliato, la tempistica di costituzione, il capitale statutario e lo stack di compliance — poi lo esporta come dossier per la tua consulenza.",
+    sub: "Configura organico, settore e giurisdizione. Il pianificatore restituisce il veicolo consigliato, la tempistica di costituzione, il capitale statutario e la checklist di compliance, poi lo esporta come dossier per la tua consulenza.",
     disclaimer: "Modellazione indicativa basata sulle regole statutarie 2024 e sui tempi di lavorazione tipici. Non costituisce consulenza legale o fiscale.",
     inputs: {
       size: "Dimensione aziendale",
@@ -228,10 +228,10 @@ export const calculatorContent: Record<Locale, CalculatorContent> = {
       complexityLevels: ["Leggera", "Standard", "Strutturata", "Complessa", "Istituzionale"],
     },
     entities: {
-      srl: { name: "S.r.l.", note: "Società a responsabilità limitata — la società di capitali standard; capitale da €1, €10.000 consigliati per la credibilità bancaria." },
-      spa: { name: "S.p.A.", note: "Società per azioni — per organici 50+, governance con CdA e future raccolte di capitale." },
-      ltd: { name: "Ltd. Şti.", note: "Limited şirket — la società a responsabilità limitata turca; capitale minimo ₺50.000 dal 2024." },
-      as: { name: "A.Ş.", note: "Anonim şirket — società per azioni turca; capitale minimo ₺250.000, obbligatoria per le holding e preferibile per 50+ dipendenti." },
+      srl: { name: "S.r.l.", note: "Società a responsabilità limitata, la società di capitali standard; capitale da €1, con €10.000 consigliati per la credibilità bancaria." },
+      spa: { name: "S.p.A.", note: "Società per azioni, per organici 50+, governance con CdA e future raccolte di capitale." },
+      ltd: { name: "Ltd. Şti.", note: "Limited şirket, la società a responsabilità limitata turca; capitale minimo ₺50.000 dal 2024." },
+      as: { name: "A.Ş.", note: "Anonim şirket, la società per azioni turca; capitale minimo ₺250.000, obbligatoria per le holding e preferibile per 50+ dipendenti." },
     },
     checklist: {
       it_deed: "Atto notarile, statuto e iscrizione al Registro delle Imprese",
